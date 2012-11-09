@@ -27,9 +27,12 @@ public class LineIterator implements Iterator<String> {
 			return false;
 		} else {
 			try {
-				return ((currentLine = bufferedReader.readLine()) != null) ? true
-						: !(finished = true);
-
+				if ((currentLine = bufferedReader.readLine()) != null)
+					return true;
+				else {
+					close();
+					return !(finished = true);
+				}
 			} catch (IOException ioe) {
 				close();
 				throw new IllegalStateException(ioe.toString());
@@ -46,13 +49,14 @@ public class LineIterator implements Iterator<String> {
 		return temp;
 	}
 
-	public void close() {
+	public boolean close() {
 		finished = true;
 		try {
 			bufferedReader.close();
 		} catch (IOException ignore) {
 		}
 		currentLine = null;
+		return finished;
 	}
 
 	@Override

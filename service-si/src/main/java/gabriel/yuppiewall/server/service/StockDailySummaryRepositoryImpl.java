@@ -8,7 +8,7 @@ import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
-@Component("stockDailySummaryRepositoryImpl")
+@Component("stockDailySummaryRepositoryMC")
 public class StockDailySummaryRepositoryImpl implements
 		StockDailySummaryRepository {
 
@@ -32,6 +32,14 @@ public class StockDailySummaryRepositoryImpl implements
 
 		// messagingTemplate.convertAndSend(activity);
 		System.out.println("Send Activity for save");
+	}
+
+	@Override
+	public void saveStockDailySummary(String csvStockDailySummary) {
+		channel.send(MessageBuilder.withPayload(csvStockDailySummary).build());
+
+		// messagingTemplate.convertAndSend(activity);
+	//	System.out.println("Send for save" + csvStockDailySummary);
 	}
 
 	@Override

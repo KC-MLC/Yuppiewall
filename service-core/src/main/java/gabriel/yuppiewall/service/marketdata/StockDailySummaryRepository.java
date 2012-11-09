@@ -9,6 +9,8 @@ public interface StockDailySummaryRepository {
 	void saveStockDailySummary(StockDailySummary_ tradingService);
 	
 	void saveStockDailySummary(StockDailySummary_[] tradingService);
+
+	void saveStockDailySummary(String csvStockDailySummary);
 	
 	
 }

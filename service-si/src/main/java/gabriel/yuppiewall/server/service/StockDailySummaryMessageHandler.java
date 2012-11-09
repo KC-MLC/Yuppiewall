@@ -3,6 +3,9 @@ package gabriel.yuppiewall.server.service;
 import gabriel.yuppiewall.domain.marketdata.StockDailySummary_;
 import gabriel.yuppiewall.service.marketdata.StockDailySummaryRepository;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -15,8 +18,6 @@ import java.util.concurrent.TimeoutException;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.Message;
 import org.springframework.integration.channel.QueueChannel;
@@ -30,8 +31,21 @@ public class StockDailySummaryMessageHandler implements Runnable {
 	final static int RECEIVE_TIMEOUT = 1000;
 	private QueueChannel channel;
 
-	@Autowired
-	@Qualifier("stockDailySummaryRepositoryJpa")
+	private static final int EXCHANGE = 0;
+	private static final int STOCKSYMBOL = 1;
+	private static final int DATE = 2;
+	private static final int STOCKPRICEOPEN = 3;
+	private static final int STOCKPRICEHIGH = 4;
+	private static final int STOCKPRICELOW = 5;
+	private static final int STOCKPRICECLOSE = 6;
+	private static final int STOCKVOLUME = 7;
+	private static final int STOCKPRICEADJCLOSE = 8;
+
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier("stockDailySummaryRepositoryJpa")
+	 */
 	private StockDailySummaryRepository stockDailySummaryRepository;
 
 	@Value("#{stockDailySummaryChannel}")
@@ -70,16 +84,37 @@ public class StockDailySummaryMessageHandler implements Runnable {
 					try {
 						activity = channel.receive(RECEIVE_TIMEOUT);
 						if (activity != null) {
-							System.out.println("got an activity");
-							batch.add((StockDailySummary_) activity
-									.getPayload());
-							counter++;
+							// System.out.println("got an activity");
+							String values[] = ((String) activity.getPayload())
+									.split(",");
+							if (values.length != 9)
+								continue;
+							try {
+
+								batch.add(new StockDailySummary_(
+										values[EXCHANGE],
+										values[STOCKSYMBOL],
+										new SimpleDateFormat("yyyy-mm-dd")
+												.parse(values[DATE]),
+										new BigDecimal(values[STOCKPRICEOPEN]),
+										new BigDecimal(values[STOCKPRICEHIGH]),
+										new BigDecimal(values[STOCKPRICELOW]),
+										new BigDecimal(values[STOCKPRICECLOSE]),
+										new BigInteger(values[STOCKVOLUME]),
+										new BigDecimal(
+												values[STOCKPRICEADJCLOSE])));
+								counter++;
+							} catch (Throwable e) {
+								e.printStackTrace();
+
+							}
 						}
 						if (counter == 11) {
 							return true;
 						}
 
 					} catch (Exception ie) {
+						ie.printStackTrace();
 						System.out.println("LOG THIS CASE");
 						break;
 					}
@@ -88,17 +123,16 @@ public class StockDailySummaryMessageHandler implements Runnable {
 				return (counter > 0);
 			}
 		}
-
-		public int getCounter() {
-			return counter;
-		}
+		/*
+		 * public int getCounter() { return counter; }
+		 */
 
 	};
 
 	public void handleStockDailySummaryMessage() {
 		while (true) {
 			ArrayList<StockDailySummary_> activityList = new ArrayList<>(20);
-			System.out.println("Spawning a hread");
+			// System.out.println("Spawning a hread");
 			Future<Boolean> result = executor.submit(new BatchCreater(
 					activityList));
 
@@ -124,8 +158,10 @@ public class StockDailySummaryMessageHandler implements Runnable {
 	// Exception.class)
 	private void handleTicket(ArrayList<StockDailySummary_> activityList) {
 
-		getStockDailySummaryRepository().saveStockDailySummary(
-				activityList.toArray(new StockDailySummary_[0]));
+		/*
+		 * getStockDailySummaryRepository().saveStockDailySummary(
+		 * activityList.toArray(new StockDailySummary_[0]));
+		 */
 
 		// dispatch the message to event server for post create activity
 		System.out.println("Received Activity ");

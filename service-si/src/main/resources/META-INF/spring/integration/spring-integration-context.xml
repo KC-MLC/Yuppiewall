@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/integration
 		http://www.springframework.org/schema/integration/spring-integration-2.1.xsd">
 
-	<int:channel id="stockDailySummary" datatype="java.lang.String">
+	<int:channel id="stockDailySummaryChannel" datatype="java.lang.String">
 		<int:queue capacity="50" />
 	</int:channel>
 
