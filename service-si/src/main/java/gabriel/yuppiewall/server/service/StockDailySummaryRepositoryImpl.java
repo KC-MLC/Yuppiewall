@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.server.service;
 
-import gabriel.yuppiewall.domain.marketdata.StockDailySummary_;
-import gabriel.yuppiewall.service.marketdata.StockDailySummaryRepository;
+import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.marketdata.repository.StockDailySummaryRepository;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.MessageChannel;

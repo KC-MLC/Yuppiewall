@@ -22,6 +22,7 @@
 
 		<module>service-core</module>
 		<module>service-si</module>
+<module>service-data</module>
 	</modules>
 	<dependencies>
 

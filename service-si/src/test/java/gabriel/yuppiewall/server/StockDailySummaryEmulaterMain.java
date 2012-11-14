@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.server;
 
+import gabriel.yuppiewall.marketdata.repository.StockDailySummaryRepository;
 import gabriel.yuppiewall.server.util.LineIterator;
-import gabriel.yuppiewall.service.marketdata.StockDailySummaryRepository;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
