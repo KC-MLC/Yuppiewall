@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>gabriel</groupId>
+		<artifactId>yuppiewall</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>gabriel.yuppiewall</groupId>
+	<artifactId>service-data</artifactId>
+	<packaging>pom</packaging>
+
+	<name>service-data</name>
+
+
+
+	<modules>
+		<module>service-data-hbase</module>
+		<!--module>service-data-hbase</module -->
+	</modules>
+
+	<dependencies>
+
+	<dependency>
+		<groupId>gabriel.yuppiewall</groupId>
+		<artifactId>service-core</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</dependency>
+	</dependencies>
+</project>
