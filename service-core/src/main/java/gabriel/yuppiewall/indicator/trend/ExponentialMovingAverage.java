@@ -13,9 +13,17 @@ public class ExponentialMovingAverage implements TechnicalIndicator {
 	public BigDecimal calculate(StockDailySummary_[] historical, int n) {
 
 		float k = 2F / (n + 1);
+		BigDecimal K = new BigDecimal(k);
+		BigDecimal Km1 = new BigDecimal(1 - k);
 		// calculate seed EMA
-		new SimpleMovingAverage().calculate(historical, n, n);
+		BigDecimal seedEMA = new SimpleMovingAverage().calculate(historical, n,
+				n);
+		BigDecimal ema = seedEMA;
+		for (int t = n; t < historical.length; t++) {
+			ema = historical[t].getStockPriceAdjClose().multiply(K.add(ema))
+					.multiply(Km1);
+		}
 
-		return null;
+		return ema;
 	}
 }
