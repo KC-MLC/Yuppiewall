@@ -16,7 +16,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 		if (historical.length >= days) {
 			long sum = 0;
 			for (int index = 0; index <= days; index++) {
-				sum += historical[index].getStockPriceLow().longValue();
+				sum += historical[index].getStockPriceAdjClose().longValue();
 			}
 			sum = sum / days;
 		}
@@ -48,7 +48,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 			int day) {
 		BigDecimal sum = new BigDecimal(0L);
 		for (int i = range - day; i < range; i++) {
-			sum = sum.add(historical[i].getStockPriceLow());
+			sum = sum.add(historical[i].getStockPriceAdjClose());
 		}
 
 		return sum.divide(new BigDecimal(day), RoundingMode.HALF_UP);
