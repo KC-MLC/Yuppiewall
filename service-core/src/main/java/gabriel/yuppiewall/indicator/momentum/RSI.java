@@ -1,11 +1,11 @@
 package gabriel.yuppiewall.indicator.momentum;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
+import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+
+import java.math.BigDecimal;
 
 public class RSI implements TechnicalIndicator {
 
@@ -30,10 +30,8 @@ public class RSI implements TechnicalIndicator {
 		// First Average Loss = Sum of Losses over the past n periods / n
 		BigDecimal N = new BigDecimal(n);
 		BigDecimal Nm1 = new BigDecimal(n - 1);
-		BigDecimal sumOfGain = new BigDecimal(0L);
-		BigDecimal sumOfLoss = new BigDecimal(0L);
-		BigDecimal h100 = new BigDecimal(100);
-		BigDecimal u1 = new BigDecimal(1);
+		BigDecimal sumOfGain = FU.U0;
+		BigDecimal sumOfLoss = FU.U0;
 
 		TechnicalIndicator_[] results = new TechnicalIndicator_[historical.length
 				- n];
@@ -51,8 +49,8 @@ public class RSI implements TechnicalIndicator {
 						.subtract(historical[i - 1].getStockPriceAdjClose()));
 
 		}
-		BigDecimal aveGain = sumOfGain.divide(N, RoundingMode.HALF_UP);
-		BigDecimal aveLoss = sumOfLoss.divide(N, RoundingMode.HALF_UP);
+		BigDecimal aveGain = sumOfGain.divide(N, FU.ROUND);
+		BigDecimal aveLoss = sumOfLoss.divide(N, FU.ROUND);
 		for (int i = n; i < historical.length; i++) {
 
 			int compareTo = historical[i - 1].getStockPriceAdjClose()
@@ -63,26 +61,26 @@ public class RSI implements TechnicalIndicator {
 						.add(historical[i - 1]
 								.getStockPriceAdjClose()
 								.subtract(historical[i].getStockPriceAdjClose()))
-						.divide(N, RoundingMode.HALF_UP);
+						.divide(N, FU.ROUND);
 
-				aveGain = aveGain.multiply(Nm1).divide(N, RoundingMode.HALF_UP);
+				aveGain = aveGain.multiply(Nm1).divide(N, FU.ROUND);
 
 			} else if (compareTo == -1) {
 				aveGain = aveGain
 						.multiply(Nm1)
 						.add(historical[i].getStockPriceAdjClose().subtract(
 								historical[i - 1].getStockPriceAdjClose()))
-						.divide(N, RoundingMode.HALF_UP);
+						.divide(N, FU.ROUND);
 
-				aveLoss = aveLoss.multiply(Nm1).divide(N, RoundingMode.HALF_UP);
+				aveLoss = aveLoss.multiply(Nm1).divide(N, FU.ROUND);
 			} else {
-				aveLoss = aveLoss.multiply(Nm1).divide(N, RoundingMode.HALF_UP);
-				aveGain = aveGain.multiply(Nm1).divide(N, RoundingMode.HALF_UP);
+				aveLoss = aveLoss.multiply(Nm1).divide(N, FU.ROUND);
+				aveGain = aveGain.multiply(Nm1).divide(N, FU.ROUND);
 			}
 
-			BigDecimal rsi = h100.subtract(h100.divide(
-					u1.add(aveGain.divide(aveLoss, RoundingMode.HALF_UP)),
-					RoundingMode.HALF_UP));
+			BigDecimal rsi = FU.H100.subtract(FU.H100.divide(
+					FU.U1.add(aveGain.divide(aveLoss, FU.ROUND)),
+					FU.ROUND));
 
 			results[rIndex++] = new TechnicalIndicator_(
 					historical[i].getDate(), "RSI", n + "DAY", rsi);

@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.indicator.trend;
 
+import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
@@ -47,7 +48,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 
 	public BigDecimal calculate(StockDailySummary_[] historical, int range,
 			int day) {
-		BigDecimal sum = new BigDecimal(0L);
+		BigDecimal sum = FU.U0;
 		for (int i = range - day; i < range; i++) {
 			sum = sum.add(historical[i].getStockPriceAdjClose());
 		}
@@ -57,7 +58,8 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 	}
 
 	@Override
-	public TechnicalIndicator_[] calculate(StockDailySummary_[] historical, int day) {
+	public TechnicalIndicator_[] calculate(StockDailySummary_[] historical,
+			int day) {
 		return calculate(historical, historical.length, day);
 
 	}
