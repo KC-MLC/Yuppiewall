@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.indicator;
 
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,8 +14,8 @@ public class SampleData {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static StockDailySummary_[] setup() throws ParseException {
-		StockDailySummary_[] historical = new StockDailySummary_[30];
+	public static EndOfDayData_[] setup() throws ParseException {
+		EndOfDayData_[] historical = new EndOfDayData_[30];
 
 		historical[0] = set("24-Mar-10", new BigDecimal(22.27));
 		historical[1] = set("25-Mar-10", new BigDecimal(22.19));
@@ -51,8 +51,8 @@ public class SampleData {
 		return historical;
 	}
 
-	public static StockDailySummary_[] setupADL() throws ParseException {
-		StockDailySummary_[] historical = new StockDailySummary_[4];
+	public static EndOfDayData_[] setupADL() throws ParseException {
+		EndOfDayData_[] historical = new EndOfDayData_[4];
 		historical[0] = set("10-Dec-10", 62.34, 61.37, 62.15, 7849);
 		historical[1] = set("13-Dec-10", 62.05, 60.69, 60.81, 11692);
 		historical[2] = set("14-Dec-10", 62.27, 60.10, 60.45, 10575);
@@ -79,17 +79,17 @@ public class SampleData {
 		return historical;
 	}
 
-	private static StockDailySummary_ set(String date, double high, double low,
+	private static EndOfDayData_ set(String date, double high, double low,
 			double close, long volume) throws ParseException {
-		return new StockDailySummary_("", "",
+		return new EndOfDayData_("", "",
 				new SimpleDateFormat("dd-MMM-yy").parse(date), new BigDecimal(
 						0L), new BigDecimal(high), new BigDecimal(low),
 				new BigDecimal(0L), BigInteger.valueOf(volume), new BigDecimal(
 						close));
 	}
 
-	public static StockDailySummary_[] setupRSI() throws ParseException {
-		StockDailySummary_[] historical = new StockDailySummary_[33];
+	public static EndOfDayData_[] setupRSI() throws ParseException {
+		EndOfDayData_[] historical = new EndOfDayData_[33];
 
 		historical[0] = set("14-Dec-09", new BigDecimal(44.34));
 		historical[1] = set("15-Dec-09", new BigDecimal(44.09));
@@ -129,9 +129,9 @@ public class SampleData {
 
 	}
 
-	static StockDailySummary_ set(String date, BigDecimal stockPriceAdjClose)
+	static EndOfDayData_ set(String date, BigDecimal stockPriceAdjClose)
 			throws ParseException {
-		return new StockDailySummary_("", "",
+		return new EndOfDayData_("", "",
 				new SimpleDateFormat("dd-MMM-yy").parse(date), new BigDecimal(
 						0L), new BigDecimal(0L), new BigDecimal(0L),
 				new BigDecimal(0L), new BigInteger("0"), stockPriceAdjClose);

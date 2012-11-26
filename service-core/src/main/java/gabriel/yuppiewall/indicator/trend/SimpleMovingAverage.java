@@ -3,7 +3,7 @@ package gabriel.yuppiewall.indicator.trend;
 import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -12,8 +12,7 @@ import java.util.Date;
 
 public class SimpleMovingAverage implements TechnicalIndicator {
 
-	void calculate(StockDailySummary_ today, StockDailySummary_ historical[],
-			int days) {
+	void calculate(EndOfDayData_ today, EndOfDayData_ historical[], int days) {
 
 		if (historical.length >= days) {
 			long sum = 0;
@@ -24,7 +23,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 		}
 	}
 
-	public void calculate(StockDailySummary_ historical[]) {
+	public void calculate(EndOfDayData_ historical[]) {
 
 		for (int i = 0; i < historical.length; i++) {
 			System.out.print(i + "\t");
@@ -40,14 +39,13 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 
 	}
 
-	protected void store(BigDecimal sma, StockDailySummary_ stockDailySummary_,
+	protected void store(BigDecimal sma, EndOfDayData_ stockDailySummary_,
 			int n, int day) {
 		System.out.print(stockDailySummary_.getDate() + "," + sma + "(" + n
 				+ "," + day + ")" + "\t");
 	}
 
-	public BigDecimal calculate(StockDailySummary_[] historical, int range,
-			int day) {
+	public BigDecimal calculate(EndOfDayData_[] historical, int range, int day) {
 		BigDecimal sum = FU.U0;
 		for (int i = range - day; i < range; i++) {
 			sum = sum.add(historical[i].getStockPriceAdjClose());
@@ -58,14 +56,14 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 	}
 
 	@Override
-	public TechnicalIndicator_[] calculate(StockDailySummary_[] historical,
-			int day) {
-		return calculate(historical, historical.length, day);
-
+	public TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int day) {
+		return new TechnicalIndicator_[] { new TechnicalIndicator_(
+				historical[historical.length - 1].getDate(), "SMA",
+				day + "DAY", calculate(historical, historical.length, day)) };
 	}
 
 	// @Override
-	public void calculateSet(StockDailySummary_[] historical, int day) {
+	public void calculateSet(EndOfDayData_[] historical, int day) {
 
 		for (int i = day - 1; i < historical.length; i++) {
 			BigDecimal val = calculate(historical, i + 1, day);
@@ -77,9 +75,9 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 
 	public static void main(String[] args) {
 
-		StockDailySummary_ historical[] = new StockDailySummary_[6];
+		EndOfDayData_ historical[] = new EndOfDayData_[6];
 		for (int i = 0; i < historical.length; i++) {
-			historical[i] = new StockDailySummary_("", "", new Date(),
+			historical[i] = new EndOfDayData_("", "", new Date(),
 					new BigDecimal(0L), new BigDecimal(0L), new BigDecimal(i),
 					new BigDecimal(0L), new BigInteger("0"), new BigDecimal(0L));
 

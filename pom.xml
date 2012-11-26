@@ -6,6 +6,10 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>yuppiewall</name>
+	
+	<prerequisites>
+		<maven>2.2.0</maven>
+	</prerequisites>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

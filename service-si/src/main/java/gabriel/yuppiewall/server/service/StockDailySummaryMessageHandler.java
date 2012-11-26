@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.server.service;
 
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
-import gabriel.yuppiewall.marketdata.repository.StockDailySummaryRepository;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -46,7 +46,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 	 * 
 	 * @Qualifier("stockDailySummaryRepositoryJpa")
 	 */
-	private StockDailySummaryRepository stockDailySummaryRepository;
+	private EndOfDayDataRepository stockDailySummaryRepository;
 
 	@Value("#{stockDailySummaryChannel}")
 	public void setChannel(QueueChannel channel) {
@@ -64,10 +64,10 @@ public class StockDailySummaryMessageHandler implements Runnable {
 
 	private class BatchCreater implements Callable<Boolean> {
 
-		private final List<StockDailySummary_> batch;
+		private final List<EndOfDayData_> batch;
 		private int counter;
 
-		public BatchCreater(List<StockDailySummary_> batch) {
+		public BatchCreater(List<EndOfDayData_> batch) {
 
 			this.batch = batch;
 		}
@@ -91,7 +91,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 								continue;
 							try {
 
-								batch.add(new StockDailySummary_(
+								batch.add(new EndOfDayData_(
 										values[EXCHANGE],
 										values[STOCKSYMBOL],
 										new SimpleDateFormat("yyyy-mm-dd")
@@ -131,7 +131,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 
 	public void handleStockDailySummaryMessage() {
 		while (true) {
-			ArrayList<StockDailySummary_> activityList = new ArrayList<>(20);
+			ArrayList<EndOfDayData_> activityList = new ArrayList<>(20);
 			// System.out.println("Spawning a hread");
 			Future<Boolean> result = executor.submit(new BatchCreater(
 					activityList));
@@ -156,7 +156,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 
 	// @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor =
 	// Exception.class)
-	private void handleTicket(ArrayList<StockDailySummary_> activityList) {
+	private void handleTicket(ArrayList<EndOfDayData_> activityList) {
 
 		/*
 		 * getStockDailySummaryRepository().saveStockDailySummary(
@@ -167,7 +167,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 		System.out.println("Received Activity ");
 	}
 
-	protected StockDailySummaryRepository getStockDailySummaryRepository() {
+	protected EndOfDayDataRepository getStockDailySummaryRepository() {
 		return stockDailySummaryRepository;
 	}
 

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry including="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry including="**/*.java" kind="src" path="src/test/resources"/>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.slf4j/slf4j-log4j12/1.6.4/jar/6b4973e0320e220ec6534478d60233fd1cc51c9b/slf4j-log4j12-1.6.4.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.slf4j/slf4j-log4j12/1.6.4/source/bfa69e79908e5cccc50586790095576297fb3a11/slf4j-log4j12-1.6.4-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-tx/3.1.2.RELEASE/jar/f9efe9e07e73ab593de0353e01b8bcbaafbfd3c1/spring-tx-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-tx/3.1.2.RELEASE/source/11b2b3b9f346ca3be0dcf79d59a3e23fdf99c172/spring-tx-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.aspectj/aspectjrt/1.6.12.M2/jar/1d89e5de8d2ed4d871c97ad35a3dfad408cb41b3/aspectjrt-1.6.12.M2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.aspectj/aspectjrt/1.6.12.M2/source/ab13eee6efba31c84d199e6f9bb18b1344957672/aspectjrt-1.6.12.M2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-aspects/3.1.2.RELEASE/jar/6f5b4382f59aa8dbf25494397c763d1f30490e59/spring-aspects-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-aspects/3.1.2.RELEASE/source/1f9db3c53ef64945cb0ae16ed4b092b157b52b55/spring-aspects-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.integration/spring-integration-amqp/2.2.0.RC2/jar/239d92bd63a9df4a5adf1593d135a53a0591a2a3/spring-integration-amqp-2.2.0.RC2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.integration/spring-integration-amqp/2.2.0.RC2/source/8a48ce7972586ab10787895e1aabc9a866c75e1/spring-integration-amqp-2.2.0.RC2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/1.0.1.Final/jar/3306a165afa81938fc3d8a0948e891de9f6b192b/hibernate-jpa-2.0-api-1.0.1.Final.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/1.0.1.Final/source/574f65373b46a038332eb1a14acc3142bd9e9810/hibernate-jpa-2.0-api-1.0.1.Final-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.data/spring-data-jpa/1.0.3.RELEASE/jar/b98ecad9cb4df1162586ab5fb1cad8f1826fc12e/spring-data-jpa-1.0.3.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.data/spring-data-jpa/1.0.3.RELEASE/source/d291a720002f514dea3e2d4583c1f181a64c6ec4/spring-data-jpa-1.0.3.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.apache.commons/commons-lang3/3.0.1/jar/4c3f3e51174a0260a2c5e78da49fac4710803aa5/commons-lang3-3.0.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.apache.commons/commons-lang3/3.0.1/source/e048d9cecbc49a3563fb05cdd8db1a25da887201/commons-lang3-3.0.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/javax.validation/validation-api/1.0.0.GA/jar/b6bd7f9d78f6fdaa3c37dae18a4bd298915f328e/validation-api-1.0.0.GA.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/javax.validation/validation-api/1.0.0.GA/source/7a561191db2203550fbfa40d534d4997624cd369/validation-api-1.0.0.GA-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-validator/4.2.0.Final/jar/eac2db0a9d86a9749724fe93d43afffa8106f25e/hibernate-validator-4.2.0.Final.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-validator/4.2.0.Final/source/a41e980a54e139faae6eb7054dc545b14125e090/hibernate-validator-4.2.0.Final-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-dbcp/commons-dbcp/1.3/jar/b295a6a7d6220d04948493594991dc761ffbdd1e/commons-dbcp-1.3.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-dbcp/commons-dbcp/1.3/source/fb2cf9cc6084a0102a533d7b6a2f7dc0da369b40/commons-dbcp-1.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-core/3.6.8.Final/jar/9a84fa0836d25efb04dd4d1ec57e35838968d009/hibernate-core-3.6.8.Final.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-core/3.6.8.Final/source/862eb419411aced7a4d3c17b4645cb3d3d200358/hibernate-core-3.6.8.Final-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-entitymanager/3.6.8.Final/jar/8f4420d64f23873d3772c77dd64a67c77cadaa31/hibernate-entitymanager-3.6.8.Final.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-entitymanager/3.6.8.Final/source/ac0bb44428499be784259dc4b4fe270ae970d4d9/hibernate-entitymanager-3.6.8.Final-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/postgresql/postgresql/9.0-801.jdbc3/jar/635d2f94ef80d9818750e2b05de71f9604b2ca70/postgresql-9.0-801.jdbc3.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/postgresql/postgresql/9.0-801.jdbc3/source/dbcd12f02b9527ab56b4ee7bd599d7a90999d260/postgresql-9.0-801.jdbc3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.codehaus.jackson/jackson-mapper-asl/1.9.2/jar/95400a7922ce75383866eb72f6ef4a7897923945/jackson-mapper-asl-1.9.2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.codehaus.jackson/jackson-mapper-asl/1.9.2/source/f033b16b4df1e2790b3027f59dcbac55fbf62585/jackson-mapper-asl-1.9.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/com.h2database/h2/1.3.166/jar/cab5ca78e3773d2229e7eb0dcf87011bcb628a80/h2-1.3.166.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/com.h2database/h2/1.3.166/source/3be5bc1245ca393b88839e712b0cfb27303bc589/h2-1.3.166-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/cglib/cglib-nodep/2.2/jar/59afed7ab65e7ec6585d5bc60556c3cbd203532b/cglib-nodep-2.2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/cglib/cglib-nodep/2.2/source/962f2bbd66901a9d67b0bb3c8c4a64ce6de0a8c4/cglib-nodep-2.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/junit/junit-dep/4.8.2/jar/127b170317b80223b74b5a17ffbe44bd4b12e532/junit-dep-4.8.2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/junit/junit-dep/4.8.2/source/dc40b58e487595d522d4cbe2417e61ead41555c8/junit-dep-4.8.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.easymock/easymock/2.3/jar/c2274b47798b37c3034a55b0b46d69dea6869c85/easymock-2.3.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.easymock/easymock/2.3/source/e985d45d0cc12c56e944144c7d71f88fff86fab6/easymock-2.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.easymock/easymockclassextension/2.3/jar/8234f97ebe396696e86be25977569ffaaa9c23fc/easymockclassextension-2.3.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.easymock/easymockclassextension/2.3/source/a763b72f6b6377ad50734f7ad4e6fa19d60ab0a7/easymockclassextension-2.3-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.mockito/mockito-all/1.9.0/jar/d13863fbd7c0bc32845c9d8a261d03b61bf28194/mockito-all-1.9.0.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.mockito/mockito-all/1.9.0/source/3cdbb5d11e1cf6c98b4d3697d9eeaa71ad59ef47/mockito-all-1.9.0-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-test/3.1.2.RELEASE/jar/55cbf497e2b1e499e9b02430fd5ee94aac60a143/spring-test-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-test/3.1.2.RELEASE/source/1db97dfcc532036d3896dad12a0f1e8bea7b385f/spring-test-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/log4j/log4j/1.2.16/bundle/7999a63bfccbc7c247a9aea10d83d4272bd492c6/log4j-1.2.16.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/log4j/log4j/1.2.16/source/bf945d1dc995be7fe64923625f842fbb6bf443be/log4j-1.2.16-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.slf4j/slf4j-api/1.6.4/jar/2396d74b12b905f780ed7966738bb78438e8371a/slf4j-api-1.6.4.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.slf4j/slf4j-api/1.6.4/source/a045ecb292c2b2559e8e9778303a08c91f537c68/slf4j-api-1.6.4-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/aopalliance/aopalliance/1.0/jar/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/aopalliance/aopalliance/1.0/source/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-asm/3.1.2.RELEASE/jar/d45753d8048317099395ce7f2bbcdb1776a2e26c/spring-asm-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-asm/3.1.2.RELEASE/source/9a4962ca96a6a090ee6864bcf8db8bf7880e1302/spring-asm-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-logging/commons-logging/1.1.1/jar/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-logging/commons-logging/1.1.1/source/f3f156cbff0e0fb0d64bfce31a352cce4a33bc19/commons-logging-1.1.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-core/3.1.2.RELEASE/jar/dd4295f0567deb2cc629dd647d2f055268c2fd3e/spring-core-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-core/3.1.2.RELEASE/source/87d5a67dcd08abd35c8a31e639f85929ad8fc722/spring-core-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-beans/3.1.2.RELEASE/jar/38ff7985f572a87d72023eedce3d720ce1ba4083/spring-beans-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-beans/3.1.2.RELEASE/source/35256eadac413df0d1e503182a0f18da39d6d026/spring-beans-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-aop/3.1.2.RELEASE/jar/a68c5ee96d735ac68c00e226e768ef70ae1d5c57/spring-aop-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-aop/3.1.2.RELEASE/source/ebdc69d0cc4de7fbce0c0e9197c9a9f210196556/spring-aop-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-expression/3.1.2.RELEASE/jar/c6d4aca58f993bda3cce2bc0536bd168cc9d7ed5/spring-expression-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-expression/3.1.2.RELEASE/source/e66dba8f9c95213d2aec09c92f7595b3341f631d/spring-expression-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-context/3.1.2.RELEASE/jar/6787712741427c1014aaca503d24e3b3f05f396/spring-context-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-context/3.1.2.RELEASE/source/f50389498695dc35fb9bf7134d4756a61d036eb7/spring-context-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-context-support/3.1.2.RELEASE/jar/7873812d2c36b7478bf885a82834d6740de83c9d/spring-context-support-3.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-context-support/3.1.2.RELEASE/source/623623d02091478fb11082fa445c4a587ec9e12e/spring-context-support-3.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.retry/spring-retry/1.0.2.RELEASE/jar/1598fc455c04ca0dcae306170a9e5a544cd06e1a/spring-retry-1.0.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.retry/spring-retry/1.0.2.RELEASE/source/ef344d16714ef300b5d72c43d7d4cc2e78ead23d/spring-retry-1.0.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.integration/spring-integration-core/2.2.0.RC2/jar/f976598f65938b2785461f011cb2def0c48655e8/spring-integration-core-2.2.0.RC2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.integration/spring-integration-core/2.2.0.RC2/source/96170ec9b32e5fca8b1fa3eb1b644d0348d2043d/spring-integration-core-2.2.0.RC2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.amqp/spring-amqp/1.1.2.RELEASE/jar/4c814e3b37298becaba6ddc45e530539994ac89d/spring-amqp-1.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.amqp/spring-amqp/1.1.2.RELEASE/source/ef02d3fcf9648e0aef079e20efda0fb632c2afbf/spring-amqp-1.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/com.rabbitmq/amqp-client/2.8.4/jar/c3016abfdff84443a3056e6bc78dd4c2b1c029b1/amqp-client-2.8.4.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/com.rabbitmq/amqp-client/2.8.4/source/64f78f1999fc5bcb43318f1f9ea5fd94113cba6/amqp-client-2.8.4-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.amqp/spring-rabbit/1.1.2.RELEASE/jar/cd4d34f067a146669292d6581dbe5615f7de261b/spring-rabbit-1.1.2.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.amqp/spring-rabbit/1.1.2.RELEASE/source/3edf23a77e783799cc94690f5203ea590e2ae79/spring-rabbit-1.1.2.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.data/spring-data-commons-core/1.1.0.RELEASE/jar/ad4e8e0eace89dd85c716fe6fbf21d0a80c429c5/spring-data-commons-core-1.1.0.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework.data/spring-data-commons-core/1.1.0.RELEASE/source/78a98e6e081fb71febef63e2e4956f9cbe081fe0/spring-data-commons-core-1.1.0.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-jdbc/3.0.5.RELEASE/jar/2af0bad1d8d681ed2e014b684287acc448ab30cb/spring-jdbc-3.0.5.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-jdbc/3.0.5.RELEASE/source/c8ac8ff6f389f6d249f51ed0a266fd811537af9f/spring-jdbc-3.0.5.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-orm/3.0.5.RELEASE/jar/cff2c955d1a510bab6e1eb2d1ced309f6ec37ce9/spring-orm-3.0.5.RELEASE.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.springframework/spring-orm/3.0.5.RELEASE/source/7514e501c926fc793fb0214c7d4567021091e77d/spring-orm-3.0.5.RELEASE-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.slf4j/jcl-over-slf4j/1.6.1/jar/99c61095a14dfc9e47a086068033c286bf236475/jcl-over-slf4j-1.6.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.slf4j/jcl-over-slf4j/1.6.1/source/dbc80dfd897e3bc528199ff97e29e44a0ac4b462/jcl-over-slf4j-1.6.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-pool/commons-pool/1.5.4/jar/75b6e20c596ed2945a259cea26d7fadd298398e6/commons-pool-1.5.4.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-pool/commons-pool/1.5.4/source/3e226507788e09f02eef641e868624fb823af6e6/commons-pool-1.5.4-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/antlr/antlr/2.7.6/jar/cf4f67dae5df4f9932ae7810f4548ef3e14dd35e/antlr-2.7.6.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/antlr/antlr/2.7.6/source/604014ca080ee7d3547f044ff4bd2c6ebfc0b82b/antlr-2.7.6-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-collections/commons-collections/3.1/jar/40fb048097caeacdb11dbb33b5755854d89efdeb/commons-collections-3.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/commons-collections/commons-collections/3.1/source/a48ca211fd2a564425c2cb9b90cb0f9158cfce52/commons-collections-3.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/dom4j/dom4j/1.6.1/jar/5d3ccc056b6f056dbf0dddfdf43894b9065a8f94/dom4j-1.6.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/dom4j/dom4j/1.6.1/source/a8e7149359255f43e0e5e3b1837948f9ed5861fb/dom4j-1.6.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-commons-annotations/3.2.0.Final/jar/ce990611448fc2865469e3b68d2fe76b050e3c4f/hibernate-commons-annotations-3.2.0.Final.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hibernate/hibernate-commons-annotations/3.2.0.Final/source/6afdc971f4d4dbe7650dbc5ea4a67101779ca001/hibernate-commons-annotations-3.2.0.Final-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/javax.transaction/jta/1.1/jar/2ca09f0b36ca7d71b762e14ea2ff09d5eac57558/jta-1.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/javax.transaction/jta/1.1/source/d5dad66d06246bd2e1e369cebff27faa9beb065a/jta-1.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/asm/asm/3.1/jar/c157def142714c544bdea2e6144645702adf7097/asm-3.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/asm/asm/3.1/source/2eaa4de56203f433f287a6df5885ef9ad3c5bcae/asm-3.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/cglib/cglib/2.2/jar/97d03461dc1c04ffc636dcb2579aae7724a78ef2/cglib-2.2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/cglib/cglib/2.2/source/962f2bbd66901a9d67b0bb3c8c4a64ce6de0a8c4/cglib-2.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/javassist/javassist/3.12.0.GA/jar/88b21d1ef06323beff58664cffa62848c033ecd2/javassist-3.12.0.GA.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/javassist/javassist/3.12.0.GA/source/ea2821228cbe0e80aceac2db4302699c1a711f42/javassist-3.12.0.GA-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.codehaus.jackson/jackson-core-asl/1.9.2/jar/8493982bba1727106d767034bd0d8e77bc1931a9/jackson-core-asl-1.9.2.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.codehaus.jackson/jackson-core-asl/1.9.2/source/11fb8a4f12be3b4a342fd65b5448273b8c32a2bd/jackson-core-asl-1.9.2-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hamcrest/hamcrest-core/1.1/jar/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" sourcepath="/home/parvez/.gradle/caches/artifacts-14/filestore/org.hamcrest/hamcrest-core/1.1/source/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/home/parvez/rnd/springtrader/lib/sqlfireclient-1.0.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

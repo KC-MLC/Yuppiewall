@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class StockDailySummary_ implements Serializable {
+public class EndOfDayData_ implements Serializable {
 
 	private Exchange_ exchange;
 	private String stockSymbol;
@@ -19,10 +19,10 @@ public class StockDailySummary_ implements Serializable {
 	private BigDecimal stockPriceOpen, stockPriceHigh, stockPriceLow,
 			stockPriceClose, stockPriceAdjClose;
 
-	public StockDailySummary_() {
+	public EndOfDayData_() {
 	}
 
-	public StockDailySummary_(String exchange, String stockSymbol, Date date,
+	public EndOfDayData_(String exchange, String stockSymbol, Date date,
 			BigDecimal stockPriceOpen, BigDecimal stockPriceHigh,
 			BigDecimal stockPriceLow, BigDecimal stockPriceClose,
 			BigInteger stockVolume, BigDecimal stockPriceAdjClose) {

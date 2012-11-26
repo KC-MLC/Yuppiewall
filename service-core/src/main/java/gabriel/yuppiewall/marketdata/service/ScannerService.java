@@ -1,44 +1,51 @@
 package gabriel.yuppiewall.marketdata.service;
 
+import gabriel.yuppiewall.common.Expresion;
+import gabriel.yuppiewall.common.FU;
+import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.indicator.trend.ExponentialMovingAverage;
+import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
+import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.repository.MarketRepository;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.indicator.trend.ExponentialMovingAverage;
-import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
-
-public class ScannerService implements Scanner {
+public abstract class ScannerService implements Scanner {
 
 	@Override
 	public void scan() {
 		// Hard Coded Business Rule will make them configurable later
-		// 1 ) Find all Stock from curent - 150 day
+		// 1 ) Find all Stock from current - 150 day
 		Exchange_ exchange = new Exchange_("NYSE");
 		Date dateFrom = getMarketRepository().getTradingDate(exchange,
 				new Date(), 150);
-		Expresion expresion = Expresion.between("date", dateFrom, new Date());
-		Map<String, StockDailySummary_[]> stockData = getStockDailySummaryRepository()
-				.findStock(exchange, expresion);
+		// Expresion expresion = Expresion.between("date", dateFrom, new
+		// Date());
+		Map<String, EndOfDayData_[]> stockData = null/*
+													 * getEndOfDayDataRepository(
+													 * ) .findStock(exchange,
+													 * expresion)
+													 */;
 		Iterator<String> itr = stockData.keySet().iterator();
 
 		while (itr.hasNext()) {
 			String symbol = itr.next();
-			StockDailySummary_[] historical = stockData.get(symbol);
+			EndOfDayData_[] historical = stockData.get(symbol);
 			// calculate 10 day sma
 			TechnicalIndicator_[] ti = new SimpleMovingAverage().calculate(
 					historical, 10);
 
 			// from the rule if Min(closing price of last 5 day) > today SMA
-			StockDailySummary_ min = FU.findMinimum(historical,
+			EndOfDayData_ min = FU.findMinimum(historical,
 					historical.length - 5, historical.length,
-					new Comparator<StockDailySummary_>() {
+					new Comparator<EndOfDayData_>() {
 						@Override
-						public int compare(StockDailySummary_ o1,
-								StockDailySummary_ o2) {
+						public int compare(EndOfDayData_ o1, EndOfDayData_ o2) {
 
 							return o1.getStockPriceAdjClose().compareTo(
 									o2.getStockPriceAdjClose());
@@ -67,4 +74,8 @@ public class ScannerService implements Scanner {
 		}
 
 	}
+
+	protected abstract EndOfDayDataRepository getEndOfDayDataRepository();
+
+	protected abstract MarketRepository getMarketRepository();
 }

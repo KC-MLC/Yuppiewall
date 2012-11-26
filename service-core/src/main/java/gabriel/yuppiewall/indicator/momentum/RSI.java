@@ -3,7 +3,7 @@ package gabriel.yuppiewall.indicator.momentum;
 import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
 
@@ -22,8 +22,7 @@ public class RSI implements TechnicalIndicator {
 	 **/
 
 	@Override
-	public TechnicalIndicator_[] calculate(StockDailySummary_[] historical,
-			int n) {
+	public TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int n) {
 
 		// first calculate
 		// First Average Gain = Sum of Gains over the past n periods / n.
@@ -79,8 +78,7 @@ public class RSI implements TechnicalIndicator {
 			}
 
 			BigDecimal rsi = FU.H100.subtract(FU.H100.divide(
-					FU.U1.add(aveGain.divide(aveLoss, FU.ROUND)),
-					FU.ROUND));
+					FU.U1.add(aveGain.divide(aveLoss, FU.ROUND)), FU.ROUND));
 
 			results[rIndex++] = new TechnicalIndicator_(
 					historical[i].getDate(), "RSI", n + "DAY", rsi);

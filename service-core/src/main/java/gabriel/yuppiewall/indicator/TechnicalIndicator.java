@@ -1,10 +1,10 @@
 package gabriel.yuppiewall.indicator;
 
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 public interface TechnicalIndicator {
 
-	TechnicalIndicator_[] calculate(StockDailySummary_[] historical, int day);
+	TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int day);
 
 }

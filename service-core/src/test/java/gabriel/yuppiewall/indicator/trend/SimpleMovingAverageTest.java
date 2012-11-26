@@ -1,7 +1,8 @@
 package gabriel.yuppiewall.indicator.trend;
 
 import gabriel.yuppiewall.indicator.SampleData;
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -14,7 +15,7 @@ import org.junit.Test;
 
 public class SimpleMovingAverageTest {
 
-	private StockDailySummary_ historical[];
+	private EndOfDayData_ historical[];
 
 	@Before
 	public void setUp() throws Exception {
@@ -24,28 +25,29 @@ public class SimpleMovingAverageTest {
 	@Test
 	public void test2day() {
 
-		historical = new StockDailySummary_[6];
+		historical = new EndOfDayData_[6];
 		for (int i = 0; i < historical.length; i++) {
-			historical[i] = new StockDailySummary_("", "", new Date(),
+			historical[i] = new EndOfDayData_("", "", new Date(),
 					new BigDecimal(0L), new BigDecimal(0L), new BigDecimal(i),
 					new BigDecimal(0L), new BigInteger("0"), new BigDecimal(0L));
 
 		}
 
-		BigDecimal sma = new SimpleMovingAverage().calculate(historical, 2);
-		Assert.assertEquals(new BigDecimal(4.5), sma);
+		TechnicalIndicator_[] sma = new SimpleMovingAverage().calculate(
+				historical, 2);
+		Assert.assertEquals(new BigDecimal(4.5), sma[sma.length - 1].getValue());
 
 		sma = new SimpleMovingAverage().calculate(historical, 3);
-		Assert.assertEquals(new BigDecimal(4), sma);
+		Assert.assertEquals(new BigDecimal(4), sma[sma.length - 1].getValue());
 
 		sma = new SimpleMovingAverage().calculate(historical, 4);
-		Assert.assertEquals(new BigDecimal(3.5), sma);
+		Assert.assertEquals(new BigDecimal(3.5), sma[sma.length - 1].getValue());
 
 		sma = new SimpleMovingAverage().calculate(historical, 5);
-		Assert.assertEquals(new BigDecimal(3), sma);
+		Assert.assertEquals(new BigDecimal(3), sma[sma.length - 1].getValue());
 
 		sma = new SimpleMovingAverage().calculate(historical, 6);
-		Assert.assertEquals(new BigDecimal(2.5), sma);
+		Assert.assertEquals(new BigDecimal(2.5), sma[sma.length - 1].getValue());
 
 	}
 
@@ -53,16 +55,18 @@ public class SimpleMovingAverageTest {
 	// http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_averages
 	@Test
 	public void testStockChart() {
-		BigDecimal sma = new SimpleMovingAverage().calculate(historical, 10);
+		TechnicalIndicator_[] sma = new SimpleMovingAverage().calculate(
+				historical, 10);
 		Assert.assertEquals(new BigDecimal(23.13).floatValue(),
-				round(sma.floatValue()));
+				round(sma[sma.length - 1].getValue().floatValue()));
 	}
 
 	@Test
 	public void testAllStockChart() {
-		BigDecimal sma = new SimpleMovingAverage().calculate(historical, 10);
+		TechnicalIndicator_[] sma = new SimpleMovingAverage().calculate(
+				historical, 10);
 		Assert.assertEquals(new BigDecimal(23.13).floatValue(),
-				round(sma.floatValue()));
+				round(sma[sma.length - 1].getValue().floatValue()));
 		// new SimpleMovingAverage().calculate(historical);
 		new SimpleMovingAverage().calculateSet(historical, 10);
 	}

@@ -1,10 +1,10 @@
 package gabriel.yuppiewall.indicator.trend;
 
-import java.math.BigDecimal;
-
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.marketdata.domain.StockDailySummary_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+
+import java.math.BigDecimal;
 
 public class ExponentialMovingAverage implements TechnicalIndicator {
 
@@ -14,8 +14,7 @@ public class ExponentialMovingAverage implements TechnicalIndicator {
 	// Multiplier: (2 / (Time periods + 1) ) = (2 / (10 + 1) ) = 0.1818 (18.18%)
 	// EMA: {Close - EMA(previous day)} x multiplier + EMA(previous day).
 	@Override
-	public TechnicalIndicator_[] calculate(StockDailySummary_[] historical,
-			int n) {
+	public TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int n) {
 
 		TechnicalIndicator_[] results = new TechnicalIndicator_[historical.length
 				- n];
