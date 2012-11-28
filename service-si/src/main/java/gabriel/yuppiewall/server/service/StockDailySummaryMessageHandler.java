@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.server.service;
 
+import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
@@ -92,7 +93,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 							try {
 
 								batch.add(new EndOfDayData_(
-										values[EXCHANGE],
+										new Exchange_(values[EXCHANGE]),
 										values[STOCKSYMBOL],
 										new SimpleDateFormat("yyyy-mm-dd")
 												.parse(values[DATE]),

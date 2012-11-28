@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository(value = "JPAMarketRepository")
 public class JPAMarketRepository implements MarketRepository {
 
 	@Autowired

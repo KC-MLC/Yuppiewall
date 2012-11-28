@@ -15,19 +15,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Configurable
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/spring/data-jpa/spring-data-jpa-context.xml")
+@ContextConfiguration(locations = "classpath:gabriel/yuppiewall/jpa/IntegrationTests-context.xml")
 @Transactional
 public class TestConfiguration {
 
-	// @PersistenceContext
-//	private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	//@Before
+	@Before
 	public void setUp() throws Exception {
 	}
 
 	@Test
 	public void test() {
-	//	Assert.assertNotNull(entityManager);
+		Assert.assertNotNull(entityManager);
 	}
 }

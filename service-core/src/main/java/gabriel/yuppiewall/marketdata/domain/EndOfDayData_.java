@@ -22,12 +22,12 @@ public class EndOfDayData_ implements Serializable {
 	public EndOfDayData_() {
 	}
 
-	public EndOfDayData_(String exchange, String stockSymbol, Date date,
+	public EndOfDayData_(Exchange_ exchange, String stockSymbol, Date date,
 			BigDecimal stockPriceOpen, BigDecimal stockPriceHigh,
 			BigDecimal stockPriceLow, BigDecimal stockPriceClose,
 			BigInteger stockVolume, BigDecimal stockPriceAdjClose) {
 
-		this.exchange = new Exchange_(exchange);
+		this.exchange = exchange;
 		this.stockSymbol = stockSymbol;
 		this.date = date;
 		this.strDate = new SimpleDateFormat("yyyymmdd").format(date);

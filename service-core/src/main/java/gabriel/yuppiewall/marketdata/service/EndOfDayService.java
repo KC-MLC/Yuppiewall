@@ -5,4 +5,6 @@ import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 public interface EndOfDayService {
 
 	public void saveEOD(EndOfDayData_ eod);
+
+	public void saveEOD(EndOfDayData_[] eod);
 }

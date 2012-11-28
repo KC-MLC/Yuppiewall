@@ -8,14 +8,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,9 +26,8 @@ public class JPAEndOfDayData implements Serializable {
 	@Id
 	private String identifier;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(optional = false, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "exchange", nullable = false)
-	@PrimaryKeyJoinColumn
 	private JPAExchange exchange;
 
 	@Column(name = "symbol", nullable = false, updatable = false)

@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,14 +19,14 @@ import javax.persistence.TemporalType;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "exchange")
+@Table(name = "trade_day")
 @NamedQuery(name = "JPATradeDay.findLastTradeDayByExchange", query = "select max(e.date) from JPATradeDay e where e.exchange=?")
 public class JPATradeDay implements Serializable {
 
 	@Id
 	private String identifier;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(optional = false, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name = "exchange", nullable = false)
 	private JPAExchange exchange;
 

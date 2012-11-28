@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.indicator;
 
+import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
@@ -81,11 +82,10 @@ public class SampleData {
 
 	private static EndOfDayData_ set(String date, double high, double low,
 			double close, long volume) throws ParseException {
-		return new EndOfDayData_("", "",
-				new SimpleDateFormat("dd-MMM-yy").parse(date), new BigDecimal(
-						0L), new BigDecimal(high), new BigDecimal(low),
-				new BigDecimal(0L), BigInteger.valueOf(volume), new BigDecimal(
-						close));
+		return new EndOfDayData_(new Exchange_(""), "", new SimpleDateFormat(
+				"dd-MMM-yy").parse(date), new BigDecimal(0L), new BigDecimal(
+				high), new BigDecimal(low), new BigDecimal(0L),
+				BigInteger.valueOf(volume), new BigDecimal(close));
 	}
 
 	public static EndOfDayData_[] setupRSI() throws ParseException {
@@ -131,10 +131,10 @@ public class SampleData {
 
 	static EndOfDayData_ set(String date, BigDecimal stockPriceAdjClose)
 			throws ParseException {
-		return new EndOfDayData_("", "",
-				new SimpleDateFormat("dd-MMM-yy").parse(date), new BigDecimal(
-						0L), new BigDecimal(0L), new BigDecimal(0L),
-				new BigDecimal(0L), new BigInteger("0"), stockPriceAdjClose);
+		return new EndOfDayData_(new Exchange_(""), "", new SimpleDateFormat(
+				"dd-MMM-yy").parse(date), new BigDecimal(0L),
+				new BigDecimal(0L), new BigDecimal(0L), new BigDecimal(0L),
+				new BigInteger("0"), stockPriceAdjClose);
 	}
 
 }

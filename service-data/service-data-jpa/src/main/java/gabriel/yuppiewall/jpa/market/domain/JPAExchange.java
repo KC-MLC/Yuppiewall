@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class JPAExchange implements Serializable {
 
 	@Id
-	@Column(name = "name")
+	@Column(name = "ex_name")
 	private String name;
 
 	public JPAExchange() {
