@@ -1,4 +1,4 @@
-package gabriel.yuppiewall.server.service;
+package gabriel.yuppiewall.si.marketdata.service;
 
 import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 //import org.springframework.transaction.annotation.Propagation;
 //import org.springframework.transaction.annotation.Transactional;
 
-@Component
+//@Component
 public class StockDailySummaryMessageHandler implements Runnable {
 
 	final static int RECEIVE_TIMEOUT = 1000;

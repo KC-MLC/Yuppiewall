@@ -1,8 +1,14 @@
 package gabriel.yuppiewall.market.domain;
 
-public class Exchange_ {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Exchange_ implements Serializable {
 
 	private String name;
+
+	public Exchange_() {
+	}
 
 	public Exchange_(String name) {
 		this.name = name;
@@ -10,6 +16,11 @@ public class Exchange_ {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public String toString() {
+		return "Exchange_ [name=" + name + "]";
 	}
 
 }

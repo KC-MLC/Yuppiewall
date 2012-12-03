@@ -6,10 +6,10 @@
 	<display-name>Yuppiewall-Services</display-name>
 
 	<!-- Java-based annotation-driven Spring container definition -->
-	<context-param>
+	<!-- <context-param>
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-	</context-param>
+	</context-param> -->
 	<!-- <context-param> -->
 	<!-- <param-name>spring.profiles.active</param-name> -->
 
@@ -26,10 +26,10 @@
 
 	<!-- Location of Java @Configuration classes that configure the components 
 		that makeup this application -->
-	<context-param>
+<!-- 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>gabriel.yuppiewall.ws.configuration.WebConfig</param-value>
-	</context-param>
+	</context-param> -->
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>

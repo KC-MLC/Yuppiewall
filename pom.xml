@@ -28,7 +28,7 @@
 		<module>service-core</module>
 		<module>service-si</module>
 		<module>service-data</module>
-		<module>service-web</module>
+		<!-- <module>service-web</module> -->
 		<module>service-ws</module>
 	</modules>
 	<dependencies>
@@ -116,6 +116,14 @@
 			<artifactId>spring-test-mvc</artifactId>
 			<version>1.0.0.M2</version>
 			<scope>test</scope>
+		</dependency>
+	<!-- java.lang.IllegalStateException: CGLIB is required to process @Configuration 
+		classes. Either add CGLIB to the classpath or remove the following @Configuration 
+		bean definitions: [webConfig] -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
 		</dependency>
 
 	</dependencies>

@@ -79,4 +79,15 @@ public class EndOfDayData_ implements Serializable {
 		return strDate;
 	}
 
+	@Override
+	public String toString() {
+		return "EndOfDayData_ [exchange=" + exchange + ", stockSymbol="
+				+ stockSymbol + ", date=" + date + ", strDate=" + strDate
+				+ ", stockVolume=" + stockVolume + ", stockPriceOpen="
+				+ stockPriceOpen + ", stockPriceHigh=" + stockPriceHigh
+				+ ", stockPriceLow=" + stockPriceLow + ", stockPriceClose="
+				+ stockPriceClose + ", stockPriceAdjClose="
+				+ stockPriceAdjClose + "]";
+	}
+
 }

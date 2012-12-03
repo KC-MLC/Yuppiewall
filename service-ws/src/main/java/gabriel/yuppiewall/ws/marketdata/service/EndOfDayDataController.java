@@ -1,12 +1,12 @@
 package gabriel.yuppiewall.ws.marketdata.service;
 
-import gabriel.yuppiewall.market.service.MarketService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
-import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
-import gabriel.yuppiewall.marketdata.service.EndOfDayServiceImpl;
+import gabriel.yuppiewall.marketdata.service.EndOfDayService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.integration.MessageChannel;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,37 +15,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping(value = "/endofday")
-public class EndOfDayDataController extends EndOfDayServiceImpl {
+public class EndOfDayDataController implements EndOfDayService {
 
-	@Autowired
-	private EndOfDayDataRepository endOfDayDataRepository;
-	@Autowired
-	private MarketService marketService;
+	private MessageChannel endOfDayChannel;
 
-	/*
-	 * @RequestMapping(value = "/accountProfile/{id}", method =
-	 * RequestMethod.GET) public ResponseEntity<Accountprofile> find(
-	 * 
-	 * @PathVariable("id") final Integer id) {
-	 * 
-	 * }
-	 */
+	@Value("#{yw_eod_channel}")
+	public void setEndOfDayChannel(MessageChannel endOfDayChannel) {
+		this.endOfDayChannel = endOfDayChannel;
+	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/bulk", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void saveEOD(@RequestBody EndOfDayData_ eod) {
+	// @Consumes("application/json")
+	public void saveEOD(@RequestBody EndOfDayData_[] eod) {
 
-		super.saveEOD(eod);
-	}
-
-	@Override
-	protected EndOfDayDataRepository getEndOfDayDataRepository() {
-		return endOfDayDataRepository;
-	}
-
-	@Override
-	protected MarketService getMarketService() {
-		return marketService;
+		endOfDayChannel.send(MessageBuilder.withPayload(eod).build());
+		System.out.println("eod Send - ");
 	}
 
 }

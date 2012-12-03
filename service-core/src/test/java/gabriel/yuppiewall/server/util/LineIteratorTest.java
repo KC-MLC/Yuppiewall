@@ -1,5 +1,7 @@
 package gabriel.yuppiewall.server.util;
 
+import gabriel.yuppiewall.common.LineIterator;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 

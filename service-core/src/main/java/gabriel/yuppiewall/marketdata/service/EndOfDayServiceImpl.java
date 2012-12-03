@@ -15,19 +15,7 @@ import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 public abstract class EndOfDayServiceImpl implements EndOfDayService {
 
-	@Override
-	public void saveEOD(EndOfDayData_ eod) {
-		// check if this is unique business day
-
-		{// TODO check if this step is necessary
-			getMarketService().createIfNotPresent(eod.getExchange(),
-					eod.getDate());
-
-		}
-
-		getEndOfDayDataRepository().createEndOfDayData(eod);
-
-	}
+	
 
 	@Override
 	public void saveEOD(EndOfDayData_[] endOfDayData_) {

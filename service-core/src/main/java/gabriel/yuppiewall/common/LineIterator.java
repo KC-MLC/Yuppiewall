@@ -1,4 +1,4 @@
-package gabriel.yuppiewall.server.util;
+package gabriel.yuppiewall.common;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

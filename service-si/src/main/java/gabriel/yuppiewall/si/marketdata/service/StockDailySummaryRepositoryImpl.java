@@ -1,4 +1,4 @@
-package gabriel.yuppiewall.server.service;
+package gabriel.yuppiewall.si.marketdata.service;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
-@Component("stockDailySummaryRepositoryMC")
+//@Component("stockDailySummaryRepositoryMC")
 public class StockDailySummaryRepositoryImpl implements EndOfDayDataRepository {
 
 	private MessageChannel channel;

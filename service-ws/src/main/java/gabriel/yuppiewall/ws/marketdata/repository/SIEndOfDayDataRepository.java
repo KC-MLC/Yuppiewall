@@ -1,24 +1,24 @@
 package gabriel.yuppiewall.ws.marketdata.repository;
 
-import java.util.List;
-
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
-import org.springframework.beans.factory.annotation.Value;
+import java.util.List;
+
 import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
-@Component("siEndOfDayDataRepository")
+//@Component("siEndOfDayDataRepository")
 public class SIEndOfDayDataRepository implements EndOfDayDataRepository {
 
 	private MessageChannel channel;
 
-	@Value("#{saveEndOfDayData}")
+	/*//@Value("#{yw_eod_channel}")
 	public void setChannel(MessageChannel channel) {
-		this.channel = channel;
-	}
+		System.out.println("KKKKKKKKKKKKKKKKKKKKKKKK==" + channel);
+		// this.channel = channel;
+	}*/
 
 	@Override
 	public void createEndOfDayData(EndOfDayData_ endOfDayData) {
