@@ -16,7 +16,7 @@
 	<context:component-scan base-package="gabriel.yuppiewall.ws" />
 
 	<mvc:annotation-driven />
-	<!-- <int:channel id="yw_eod_channel" /> -->
+	<int:channel id="yw_eod_channel" />
 
 	<int-amqp:outbound-channel-adapter
 		routing-key="yw.eod.queue" amqp-template="amqpTemplate" channel="yw_eod_channel" />

@@ -15,4 +15,8 @@ public interface MarketRepository {
 
 	void createTradeDay(TradeDay_ td);
 
+	void incrementTradeDay(Date date, Exchange_ exchange);
+
+	TradeDay_ findTradeDayBefore(TradeDay_ td);
+
 }

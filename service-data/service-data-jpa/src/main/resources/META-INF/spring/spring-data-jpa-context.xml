@@ -19,7 +19,7 @@
 
 	<context:component-scan base-package="gabriel.yuppiewall.jpa" />
 
-	<jpa:repositories base-package="gabriel.yuppiewall.jpa.market.repository" />
+	<jpa:repositories base-package="gabriel.yuppiewall.jpa" />
 
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
 		id="transactionManager">
@@ -45,7 +45,7 @@
 			</map>
 		</property>
 	</bean>
-	<beans profile="default,test">
+	<beans profile="test">
 		<util:properties id="dbPropertiesBean">
 			<prop key="use_scrollable_resultset">false</prop>
 			<prop key="dialect">org.hibernate.dialect.H2Dialect</prop>
@@ -53,11 +53,11 @@
 		</util:properties>
 		<jdbc:embedded-database id="dataSource" type="H2" />
 	</beans>
-	<beans profile="mysql">
+	<beans profile="default,mysql">
 		<util:properties id="dbPropertiesBean">
 			<prop key="use_scrollable_resultset">true</prop>
 			<prop key="dialect">org.hibernate.dialect.MySQLDialect </prop>
-			<prop key="hb2ddl.auto">validate</prop>
+			<prop key="hb2ddl.auto">update</prop>
 		</util:properties>
 		<bean class="org.apache.commons.dbcp.BasicDataSource"
 			destroy-method="close" id="dataSource">
@@ -71,7 +71,6 @@
 			<property name="timeBetweenEvictionRunsMillis" value="1800000" />
 			<property name="numTestsPerEvictionRun" value="3" />
 			<property name="minEvictableIdleTimeMillis" value="1800000" />
-			<property name="defaultTransactionIsolation" value="2" />
 			<property name="validationQuery" value="SELECT version();" />
 			<!-- Default isolation level for SQLfire is NONE. Default isolation level 
 				for vPostgres is TRANSACTION_READ_COMMITTED Constant value documentation: 

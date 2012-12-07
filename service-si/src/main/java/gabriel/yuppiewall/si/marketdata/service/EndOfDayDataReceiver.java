@@ -5,6 +5,8 @@ import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.marketdata.service.EndOfDayServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Component;
@@ -13,17 +15,17 @@ import org.springframework.stereotype.Component;
 public class EndOfDayDataReceiver extends EndOfDayServiceImpl implements
 		SmartLifecycle {
 
-	// @Autowired
+	@Autowired
+	@Qualifier("JPAEndOfDayDataRepository")
 	private EndOfDayDataRepository endOfDayDataRepository;
-	// @Autowired
+	@Autowired
+	@Qualifier("MarketService")
 	private MarketService marketService;
 
 	@ServiceActivator
 	@Override
 	public void saveEOD(EndOfDayData_[] eod) {
-		for (EndOfDayData_ endOfDayData_ : eod) {
-			System.out.println(endOfDayData_.getStockSymbol());
-		}
+		
 		super.saveEOD(eod);
 
 	}

@@ -10,9 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository(value = "JPAMarketRepository")
+@Service(value = "JPAMarketRepository")
 public class JPAMarketRepository implements MarketRepository {
 
 	@Autowired
@@ -27,8 +27,8 @@ public class JPAMarketRepository implements MarketRepository {
 
 	@Override
 	public TradeDay_ getTradeDay(Exchange_ exchange, Date date) {
-		JPATradeDay td = tradeDayRepository.findOne(exchange.getName()
-				+ new SimpleDateFormat("ddmmyyyy").format(date));
+		JPATradeDay td = tradeDayRepository.findOne(exchange.getName() + ":"
+				+ new SimpleDateFormat(TradeDay_.DATE_PATTERN).format(date));
 		return (td != null) ? td.getTradeDay() : null;
 	}
 
@@ -37,8 +37,8 @@ public class JPAMarketRepository implements MarketRepository {
 
 		JPATradeDay td = tradeDayRepository
 				.findLastTradeDayByExchange(new JPAExchange(exchange));
-		return (td != null) ? td.getTradeDay() : new TradeDay_(exchange, null,
-				0);
+		return (td != null) ? new TradeDay_(exchange, td.getDate(),
+				td.getBusinessday()) : new TradeDay_(exchange, null, 0);
 	}
 
 	@Override
@@ -47,4 +47,19 @@ public class JPAMarketRepository implements MarketRepository {
 
 	}
 
+	@Override
+	public void incrementTradeDay(Date date, Exchange_ exchange) {
+		tradeDayRepository.incrementBusinessdayBy1(date, new JPAExchange(
+				exchange));
+
+	}
+
+	@Override
+	public TradeDay_ findTradeDayBefore(TradeDay_ td_) {
+		JPATradeDay td = tradeDayRepository.findLastTradeDayBeforeDate(
+				td_.getDate(), new JPAExchange(td_.getExchange()));
+		return (td == null/* Beginning of time */) ? new TradeDay_(
+				td_.getExchange(), td_.getDate(), 0) : new TradeDay_(td_.getExchange(),
+				td.getDate(), td.getBusinessday());
+	}
 }

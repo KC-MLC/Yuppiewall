@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>DynaTableRf.html</welcome-file>
-  </welcome-file-list>
+	<!-- Servlets -->
+	<!-- <servlet> <servlet-name>xyzServlet</servlet-name> <servlet-class>gabriel.yuppiewall.server.XYZServiceImpl</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>xyzServlet</servlet-name> <url-pattern>/context/xyz</url-pattern> 
+		</servlet-mapping> -->
 
-  <servlet>
-    <servlet-name>requestFactoryServlet</servlet-name>
-    <servlet-class>com.google.web.bindery.requestfactory.server.RequestFactoryServlet</servlet-class>
-    <init-param>
-      <param-name>symbolMapsDirectory</param-name>
-      <!-- You'll need to compile with -extras and move the symbolMaps directory
-           to this location if you want stack trace deobfuscation to work -->
-      <param-value>WEB-INF/classes/symbolMaps/</param-value>
-    </init-param>
-  </servlet>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>YuppieWall.html</welcome-file>
+	</welcome-file-list>
 
-  <servlet-mapping>
-    <servlet-name>requestFactoryServlet</servlet-name>
-    <url-pattern>/gwtRequest</url-pattern>
-  </servlet-mapping>
-
-  <filter>
-    <filter-name>TransactionContext</filter-name>
-    <filter-class>com.google.gwt.sample.dynatablerf.server.SchoolCalendarService</filter-class>
-  </filter>
-
-  <filter-mapping>
-    <filter-name>TransactionContext</filter-name>
-    <url-pattern>/gwtRequest</url-pattern>
-  </filter-mapping>
 </web-app>

@@ -13,6 +13,7 @@ public class EndOfDayData_ implements Serializable {
 
 	private Exchange_ exchange;
 	private String stockSymbol;
+	public static final String DATE_FORMAT = "ddMMyyyy";
 	private Date date;
 	private String strDate;
 	private BigInteger stockVolume;
@@ -30,7 +31,7 @@ public class EndOfDayData_ implements Serializable {
 		this.exchange = exchange;
 		this.stockSymbol = stockSymbol;
 		this.date = date;
-		this.strDate = new SimpleDateFormat("yyyymmdd").format(date);
+		this.strDate = new SimpleDateFormat(DATE_FORMAT).format(date);
 		this.stockPriceOpen = stockPriceOpen;
 		this.stockPriceHigh = stockPriceHigh;
 		this.stockPriceLow = stockPriceLow;

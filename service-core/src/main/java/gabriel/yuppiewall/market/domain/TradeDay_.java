@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class TradeDay_ {
 
+	public static final String DATE_PATTERN = "ddMMyyyy";
+
 	private Exchange_ exchange;
 	private Date date;
 	private int businessday;
@@ -13,7 +15,6 @@ public class TradeDay_ {
 	}
 
 	public TradeDay_(Exchange_ exchange, Date date, int businessday) {
-		super();
 		this.exchange = exchange;
 		this.date = date;
 		this.businessday = businessday;

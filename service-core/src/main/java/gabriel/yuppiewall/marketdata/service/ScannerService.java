@@ -16,6 +16,20 @@ import java.util.Iterator;
 import java.util.Map;
 
 public abstract class ScannerService implements Scanner {
+	
+	/**
+	 * Input
+	 * 		exchange : "NYSE"
+	 * 		range
+	 * 			from : now
+	 * 			day/past_date : date/day
+	 * 
+	 * Filter
+	 * 		SMA(10)
+	 * 
+	 *   
+	 *   
+	 */
 
 	@Override
 	public void scan() {

@@ -15,21 +15,21 @@ import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 public abstract class EndOfDayServiceImpl implements EndOfDayService {
 
-	
-
 	@Override
 	public void saveEOD(EndOfDayData_[] endOfDayData_) {
 		// group the record based on echange:date
 		Map<String/* exchange:date */, List<EndOfDayData_>> record = new HashMap<String, List<EndOfDayData_>>();
-		SimpleDateFormat sdf = new SimpleDateFormat("ddmmyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat(EndOfDayData_.DATE_FORMAT);
 		for (EndOfDayData_ eod : endOfDayData_) {
 			// create key
-			String key = eod.getExchange().getName() + ":" + eod.getStrDate();
+			String key = eod.getExchange().getName() + ":"
+					+ sdf.format(eod.getDate());
 			List<EndOfDayData_> list = record.get(key);
 			if (list == null) {
 				list = new ArrayList<EndOfDayData_>();
 				record.put(key, list);
 			}
+			list.add(eod);
 		}
 
 		Iterator<String> recordItr = record.keySet().iterator();
