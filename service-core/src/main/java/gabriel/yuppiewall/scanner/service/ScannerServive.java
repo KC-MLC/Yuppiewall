@@ -4,7 +4,8 @@ import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
 import java.security.Principal;
 
-public interface ScanRunner {
+public interface ScannerServive {
 
-	public void runScan(ScanParameter param, Principal requester);
+	String runScan(ScanParameter param, Principal requester);
+
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateLocales='default'>
+
+	<ui:with field='res'
+		type='gabriel.yuppiewall.gwt.client.YuppieWallResources' />
+
+	<ui:style>
+		.linkBar {
+			background: grey;
+			padding: 2px 22px 2px 0px;
+			text-align: right;
+			background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%,
+				rgba(0, 0, 0, 0.1) 100%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100% );
+		}
+	</ui:style>
+
+	<g:DockLayoutPanel unit='PT'/>
+
+</ui:UiBinder> 

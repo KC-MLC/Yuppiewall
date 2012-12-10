@@ -4,6 +4,6 @@
 /*/.project
 /*/.settings/
 /*/target/
-
+*.class
 /*/*~
 

@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.marketdata.service;
 
-import gabriel.yuppiewall.common.Expresion;
 import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.trend.ExponentialMovingAverage;
@@ -15,23 +14,17 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
-public abstract class ScannerService implements Scanner {
-	
+public abstract class ScannerService {
+
 	/**
-	 * Input
-	 * 		exchange : "NYSE"
-	 * 		range
-	 * 			from : now
-	 * 			day/past_date : date/day
+	 * Input exchange : "NYSE" range from : now day/past_date : date/day
 	 * 
-	 * Filter
-	 * 		SMA(10)
+	 * Filter SMA(10)
 	 * 
-	 *   
-	 *   
+	 * 
+	 * 
 	 */
 
-	@Override
 	public void scan() {
 		// Hard Coded Business Rule will make them configurable later
 		// 1 ) Find all Stock from current - 150 day

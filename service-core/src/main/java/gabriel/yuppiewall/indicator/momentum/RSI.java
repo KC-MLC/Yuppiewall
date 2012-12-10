@@ -6,6 +6,7 @@ import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class RSI implements TechnicalIndicator {
 
@@ -22,7 +23,10 @@ public class RSI implements TechnicalIndicator {
 	 **/
 
 	@Override
-	public TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int n) {
+	public TechnicalIndicator_[] calculate(List<EndOfDayData_> historical,
+			int n, SCAN_ON scanON) {
+		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue
+				.getMapper(scanON);
 
 		// first calculate
 		// First Average Gain = Sum of Gains over the past n periods / n.
@@ -32,34 +36,34 @@ public class RSI implements TechnicalIndicator {
 		BigDecimal sumOfGain = FU.U0;
 		BigDecimal sumOfLoss = FU.U0;
 
-		TechnicalIndicator_[] results = new TechnicalIndicator_[historical.length
-				- n];
+		TechnicalIndicator_[] results = new TechnicalIndicator_[historical
+				.size() - n];
 		int rIndex = 0;
 
 		for (int i = 1; i < n; i++) {
-			int compareTo = historical[i - 1].getStockPriceAdjClose()
-					.compareTo(historical[i].getStockPriceAdjClose());
+
+			int compareTo = mapper.getValue(historical.get(i - 1)).compareTo(
+					mapper.getValue(historical.get(i)));
 			if (compareTo == 1)
-				sumOfLoss = sumOfLoss.add(historical[i - 1]
-						.getStockPriceAdjClose().subtract(
-								historical[i].getStockPriceAdjClose()));
+				sumOfLoss = sumOfLoss.add(mapper
+						.getValue(historical.get(i - 1)).subtract(
+								mapper.getValue(historical.get(i))));
 			else if (compareTo == -1)
-				sumOfGain = sumOfGain.add(historical[i].getStockPriceAdjClose()
-						.subtract(historical[i - 1].getStockPriceAdjClose()));
+				sumOfGain = sumOfGain.add(mapper.getValue(historical.get(i))
+						.subtract(mapper.getValue(historical.get(i - 1))));
 
 		}
 		BigDecimal aveGain = sumOfGain.divide(N, FU.ROUND);
 		BigDecimal aveLoss = sumOfLoss.divide(N, FU.ROUND);
-		for (int i = n; i < historical.length; i++) {
+		for (int i = n; i < historical.size(); i++) {
 
-			int compareTo = historical[i - 1].getStockPriceAdjClose()
-					.compareTo(historical[i].getStockPriceAdjClose());
+			int compareTo = mapper.getValue(historical.get(i - 1)).compareTo(
+					mapper.getValue(historical.get(i)));
 			if (compareTo == 1) {
 				aveLoss = aveLoss
 						.multiply(Nm1)
-						.add(historical[i - 1]
-								.getStockPriceAdjClose()
-								.subtract(historical[i].getStockPriceAdjClose()))
+						.add(mapper.getValue(historical.get(i - 1)).subtract(
+								mapper.getValue(historical.get(i))))
 						.divide(N, FU.ROUND);
 
 				aveGain = aveGain.multiply(Nm1).divide(N, FU.ROUND);
@@ -67,8 +71,8 @@ public class RSI implements TechnicalIndicator {
 			} else if (compareTo == -1) {
 				aveGain = aveGain
 						.multiply(Nm1)
-						.add(historical[i].getStockPriceAdjClose().subtract(
-								historical[i - 1].getStockPriceAdjClose()))
+						.add(mapper.getValue(historical.get(i)).subtract(
+								mapper.getValue(historical.get(i - 1))))
 						.divide(N, FU.ROUND);
 
 				aveLoss = aveLoss.multiply(Nm1).divide(N, FU.ROUND);
@@ -80,10 +84,10 @@ public class RSI implements TechnicalIndicator {
 			BigDecimal rsi = FU.H100.subtract(FU.H100.divide(
 					FU.U1.add(aveGain.divide(aveLoss, FU.ROUND)), FU.ROUND));
 
-			results[rIndex++] = new TechnicalIndicator_(
-					historical[i].getDate(), "RSI", n + "DAY", rsi);
+			results[rIndex++] = new TechnicalIndicator_(historical.get(i)
+					.getDate(), "RSI", n + "DAY", rsi);
 
-			System.out.println(historical[i].getDate() + "," + rsi);
+			System.out.println(historical.get(i).getDate() + "," + rsi);
 		}
 
 		return results;

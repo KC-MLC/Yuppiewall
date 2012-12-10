@@ -1,14 +1,15 @@
 package gabriel.yuppiewall.si.marketdata.service;
 
-import java.util.List;
-
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.scanner.domain.ScanParameter;
+
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
-import org.springframework.stereotype.Component;
 
 //@Component("stockDailySummaryRepositoryMC")
 public class StockDailySummaryRepositoryImpl implements EndOfDayDataRepository {
@@ -34,4 +35,8 @@ public class StockDailySummaryRepositoryImpl implements EndOfDayDataRepository {
 
 	}
 
+	@Override
+	public Map<String, List<EndOfDayData_>> findRecords(ScanParameter param) {
+		throw new UnsupportedOperationException("findRecords");
+	}
 }

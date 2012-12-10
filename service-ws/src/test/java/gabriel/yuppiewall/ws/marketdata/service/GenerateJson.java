@@ -6,7 +6,6 @@ import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -31,7 +30,7 @@ public class GenerateJson {
 		EndOfDayData_ data = new EndOfDayData_(new Exchange_("NYSE"), "AEA",
 				new SimpleDateFormat("yyyy-mm-dd").parse("2010-01-27"),
 				new BigDecimal("4.82"), new BigDecimal("5.16"), new BigDecimal(
-						"4.79"), new BigDecimal("5.09"), new BigInteger(
+						"4.79"), new BigDecimal("5.09"), new BigDecimal(
 						"243500"), new BigDecimal("5.09"));
 		System.out.println(mapper.writeValueAsString(data));
 		mapper.writeValue(new File("data1.json"), data);

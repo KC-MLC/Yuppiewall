@@ -5,7 +5,6 @@ import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.Message;
 import org.springframework.integration.channel.QueueChannel;
-import org.springframework.stereotype.Component;
 //import org.springframework.transaction.annotation.Propagation;
 //import org.springframework.transaction.annotation.Transactional;
 
@@ -101,7 +99,7 @@ public class StockDailySummaryMessageHandler implements Runnable {
 										new BigDecimal(values[STOCKPRICEHIGH]),
 										new BigDecimal(values[STOCKPRICELOW]),
 										new BigDecimal(values[STOCKPRICECLOSE]),
-										new BigInteger(values[STOCKVOLUME]),
+										new BigDecimal(values[STOCKVOLUME]),
 										new BigDecimal(
 												values[STOCKPRICEADJCLOSE])));
 								counter++;

@@ -6,14 +6,18 @@ import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 public class StochasticOscillator implements TechnicalIndicator {
 
 	// http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:stochrsi
 	// StochRSI = (RSI - Lowest Low RSI) / (Highest High RSI - Lowest Low RSI)
 	@Override
-	public TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int day) {
-		TechnicalIndicator_[] listOfRSI = new RSI().calculate(historical, day);
+	public TechnicalIndicator_[] calculate(List<EndOfDayData_> historical,
+			int day, SCAN_ON scanON) {
+
+		TechnicalIndicator_[] listOfRSI = new RSI().calculate(historical, day,
+				scanON);
 		TechnicalIndicator_[] results = new TechnicalIndicator_[listOfRSI.length
 				- day];
 		int rIndex = 0;

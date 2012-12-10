@@ -6,6 +6,7 @@ import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class AccumulationDistributionLine implements TechnicalIndicator {
 
@@ -15,12 +16,13 @@ public class AccumulationDistributionLine implements TechnicalIndicator {
 	// 2. Money Flow Volume = Money Flow Multiplier x Volume for the Period
 	// 3. ADL = Previous ADL + Current Period's Money Flow Volume
 	@Override
-	public TechnicalIndicator_[] calculate(EndOfDayData_[] historical, int day) {
+	public TechnicalIndicator_[] calculate(List<EndOfDayData_> historical,
+			int day, SCAN_ON ignore) {
 
 		BigDecimal ADL = FU.U0;
 
-		for (int i = 0; i < historical.length; i++) {
-			EndOfDayData_ t = historical[i];
+		for (int i = 0; i < historical.size(); i++) {
+			EndOfDayData_ t = historical.get(i);
 			// t.getStockPriceAdjClose().subtract(subtrahend)
 			/*
 			 * BigDecimal cml = t.getStockPriceAdjClose().subtract(
@@ -32,7 +34,7 @@ public class AccumulationDistributionLine implements TechnicalIndicator {
 					.getStockPriceHigh().subtract(t.getStockPriceLow()),
 					FU.ROUND);
 
-			BigDecimal mfv = mfm.multiply(new BigDecimal(t.getStockVolume()));
+			BigDecimal mfv = mfm.multiply(t.getStockVolume());
 			ADL = ADL.add(mfv);
 			System.out.println(t.getDate() + "," /* + mfm + "," + mfv + "," */
 					+ ADL);

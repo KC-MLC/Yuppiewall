@@ -5,7 +5,6 @@ import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -15,7 +14,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,7 +38,7 @@ public class JPAEndOfDayData implements Serializable {
 	private Date date;
 
 	@Column(name = "stock_volume", precision = 14, nullable = false, updatable = false)
-	private BigInteger stockVolume;
+	private BigDecimal stockVolume;
 
 	@Column(name = "stock_price_open", precision = 14, scale = 2, nullable = false, updatable = false)
 	private BigDecimal stockPriceOpen;
@@ -72,5 +70,11 @@ public class JPAEndOfDayData implements Serializable {
 
 		this.identifier = eodd.getExchange().getName() + symbol
 				+ eodd.getStrDate();
+	}
+
+	public EndOfDayData_ getEndOfDayData() {
+		return new EndOfDayData_(exchange.getExchange(), symbol, date,
+				stockPriceOpen, stockPriceHigh, stockPriceLow, stockPriceClose,
+				stockVolume, stockPriceAdjClose);
 	}
 }
