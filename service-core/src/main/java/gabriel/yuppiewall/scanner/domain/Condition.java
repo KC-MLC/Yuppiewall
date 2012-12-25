@@ -47,6 +47,10 @@ public class Condition {
 		return operand;
 	}
 
+	public SCAN_ON getScanOn() {
+		return scanOn;
+	}
+
 	public int getValue() {
 		return this.value;
 	}

@@ -20,6 +20,7 @@ public abstract class EndOfDayServiceImpl implements EndOfDayService {
 		// group the record based on echange:date
 		Map<String/* exchange:date */, List<EndOfDayData_>> record = new HashMap<String, List<EndOfDayData_>>();
 		SimpleDateFormat sdf = new SimpleDateFormat(EndOfDayData_.DATE_FORMAT);
+		ArrayList<EndOfDayData_> listAll = new ArrayList<EndOfDayData_>();
 		for (EndOfDayData_ eod : endOfDayData_) {
 			// create key
 			String key = eod.getExchange().getName() + ":"
@@ -30,9 +31,11 @@ public abstract class EndOfDayServiceImpl implements EndOfDayService {
 				record.put(key, list);
 			}
 			list.add(eod);
+			listAll.add(eod);
 		}
 
 		Iterator<String> recordItr = record.keySet().iterator();
+		System.out.println("KKKKKKKKKKKKKKKKKKKKK>" + record.size());
 		while (recordItr.hasNext()) {
 			String key = recordItr.next();
 			String[] keydata = key.split(":");
@@ -46,9 +49,10 @@ public abstract class EndOfDayServiceImpl implements EndOfDayService {
 				}
 			}
 
-			getEndOfDayDataRepository().createEndOfDayData(record.get(key));
+			// getEndOfDayDataRepository().createEndOfDayData(record.get(key));
 		}
-
+		System.out.println("***************************>" + listAll.size());
+		getEndOfDayDataRepository().createEndOfDayData(listAll);
 	}
 
 	protected abstract EndOfDayDataRepository getEndOfDayDataRepository();

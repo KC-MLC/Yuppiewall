@@ -34,7 +34,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="false" />
+				<property name="showSql" value="true" />
 				<property name="databasePlatform" value="#{dbPropertiesBean['dialect']}" />
 			</bean>
 		</property>
@@ -42,6 +42,7 @@
 			<map>
 				<entry key="hibernate.jdbc.use_scrollable_resultset" value="#{dbPropertiesBean['use_scrollable_resultset']}" />
 				<entry key="hibernate.hbm2ddl.auto" value="#{dbPropertiesBean['hb2ddl.auto']}" />
+					<entry key="hibernate.jdbc.batch_size" value="20" />
 			</map>
 		</property>
 	</bean>
@@ -57,6 +58,7 @@
 		<util:properties id="dbPropertiesBean">
 			<prop key="use_scrollable_resultset">true</prop>
 			<prop key="dialect">org.hibernate.dialect.MySQLDialect </prop>
+		
 			<prop key="hb2ddl.auto">update</prop>
 		</util:properties>
 		<bean class="org.apache.commons.dbcp.BasicDataSource"

@@ -8,6 +8,7 @@ import gabriel.yuppiewall.market.service.MarketServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ public class MarketService extends MarketServiceImpl {
 
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
+	@Async
 	public void createIfNotPresent(Exchange_ exchange, Date date) {
 		super.createIfNotPresent(exchange, date);
 	}

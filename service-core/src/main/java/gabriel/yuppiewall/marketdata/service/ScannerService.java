@@ -25,7 +25,7 @@ public abstract class ScannerService {
 	 * 
 	 */
 
-	public void scan() {
+	public void scan() {/*
 		// Hard Coded Business Rule will make them configurable later
 		// 1 ) Find all Stock from current - 150 day
 		Exchange_ exchange = new Exchange_("NYSE");
@@ -33,11 +33,11 @@ public abstract class ScannerService {
 				new Date(), 150);
 		// Expresion expresion = Expresion.between("date", dateFrom, new
 		// Date());
-		Map<String, EndOfDayData_[]> stockData = null/*
+		Map<String, EndOfDayData_[]> stockData = null
 													 * getEndOfDayDataRepository(
 													 * ) .findStock(exchange,
 													 * expresion)
-													 */;
+													 ;
 		Iterator<String> itr = stockData.keySet().iterator();
 
 		while (itr.hasNext()) {
@@ -80,7 +80,7 @@ public abstract class ScannerService {
 			}
 		}
 
-	}
+	*/}
 
 	protected abstract EndOfDayDataRepository getEndOfDayDataRepository();
 

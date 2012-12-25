@@ -26,7 +26,7 @@ public class JPAEndOfDayData implements Serializable {
 	@Id
 	private String identifier;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "exchange", nullable = false, updatable = false)
 	private JPAExchange exchange;
 

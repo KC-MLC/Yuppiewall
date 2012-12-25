@@ -4,7 +4,6 @@ import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -85,7 +84,7 @@ public class SampleData {
 		return new EndOfDayData_(new Exchange_(""), "", new SimpleDateFormat(
 				"dd-MMM-yy").parse(date), new BigDecimal(0L), new BigDecimal(
 				high), new BigDecimal(low), new BigDecimal(0L),
-				BigInteger.valueOf(volume), new BigDecimal(close));
+				BigDecimal.valueOf(volume), new BigDecimal(close));
 	}
 
 	public static EndOfDayData_[] setupRSI() throws ParseException {
@@ -134,7 +133,7 @@ public class SampleData {
 		return new EndOfDayData_(new Exchange_(""), "", new SimpleDateFormat(
 				"dd-MMM-yy").parse(date), new BigDecimal(0L),
 				new BigDecimal(0L), new BigDecimal(0L), new BigDecimal(0L),
-				new BigInteger("0"), stockPriceAdjClose);
+				new BigDecimal("0"), stockPriceAdjClose);
 	}
 
 }

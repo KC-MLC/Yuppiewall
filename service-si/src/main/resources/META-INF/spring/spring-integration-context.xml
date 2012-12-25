@@ -51,4 +51,19 @@
 	<int-amqp:inbound-channel-adapter id="yw_eod_channel"
 		connection-factory="rabbitConnectionFactory" queue-names="yw.eod.queue" />
 
+
+	<int:gateway id="scannerServiceSI" service-interface="gabriel.yuppiewall.scanner.service.ScannerServive"
+		default-request-channel="scannerServiveRunScanChannel" default-reply-channel="scannerServiveRunScanReplyChannel"
+		default-request-timeout="120000" default-reply-timeout="120000" />
+	<int:channel id="scannerServiveRunScanChannel" />
+	<int-amqp:outbound-gateway id="scannerRabbitGateway"
+		request-channel="scannerServiveRunScanChannel" reply-channel="scannerServiveRunScanEncodedReplyChannel"
+		amqp-template="amqpTemplate" exchange-name="scanner.runscan.exchange"
+		routing-key="scanner.runscan" />
+	<int:channel id="scannerServiveRunScanEncodedReplyChannel" />
+	<!-- <int:json-to-object-transformer
+		input-channel="scannerServiveRunScanEncodedReplyChannel" output-channel="scannerServiveRunScanReplyChannel"
+		type="mypackage.entities.Customers" />
+	<int:channel id="scannerServiveRunScanReplyChannel" /> -->
+
 </beans>

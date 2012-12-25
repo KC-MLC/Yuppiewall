@@ -17,6 +17,8 @@
 		}
 	</ui:style>
 
-	<g:DockLayoutPanel unit='PT'/>
+	<g:DecoratorPanel>
+		
+	</g:DecoratorPanel>
 
 </ui:UiBinder> 

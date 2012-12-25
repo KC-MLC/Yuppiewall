@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FilebasedEODDataReader {
-	private static ExecutorService executor = Executors.newCachedThreadPool();
+	private static ExecutorService executor = Executors.newFixedThreadPool(5);
 
 	/**
 	 * @param args
@@ -25,28 +25,40 @@ public class FilebasedEODDataReader {
 		File[] files = root.listFiles();
 
 		for (File file : files) {
-			List<EndOfDayData_> batch = new ArrayList<EndOfDayData_>();
+			EndOfDayData_[] data = new EndOfDayData_[100];
+			int counter = 0;
 			try {
 				Iterator<String> itr = new LineIterator(new FileInputStream(
 						file));
+				String[] name = file.getName().split("_");
+				System.out.println(file.getName());
 
+				long start = System.currentTimeMillis();
 				while (itr.hasNext()) {
 					String line = itr.next();
-					EndOfDayData_ eod = ParseCSV.parse(line);// parse this line
+
+					EndOfDayData_ eod = ParseCSV.parse(name[0] + "," + name[1]
+							+ "," + line);// parse this line
 					if (eod == null)
 						continue;
-					batch.add(eod);
-					if (batch.size() == 100) {
+					data[counter++] = eod;
+					if (counter == 100) {
 						// spawn the thread which will fire the webservice call
-						sendToServer(batch);
-						batch = new ArrayList<EndOfDayData_>();
+						sendToServer(data);
+						data = new EndOfDayData_[100];
+						counter = 0;
 					}
 				}
-				if (batch.size() > 0) {
+				if (counter > 0) {
 					// spawn the thread which will fire the webservice call
-					sendToServer(batch);
+					EndOfDayData_[] temp = new EndOfDayData_[counter];
+
+					System.arraycopy(data, 0, temp, 0, counter);
+					sendToServer(temp);
 				}
-				batch = null;//
+				System.out.println("OVER = "
+						+ (System.currentTimeMillis() - start));
+				data = null;//
 			} catch (FileNotFoundException ignore) {
 				ignore.printStackTrace();
 			}
@@ -54,7 +66,7 @@ public class FilebasedEODDataReader {
 
 	}
 
-	private static void sendToServer(final List<EndOfDayData_> batch) {
+	private static void sendToServer(final EndOfDayData_[] data) {
 		/*
 		 * new EndOfDayServiceRestClient().saveEOD(batch .toArray(new
 		 * EndOfDayData_[0]));
@@ -64,8 +76,7 @@ public class FilebasedEODDataReader {
 
 			public void run() {
 
-				new EndOfDayServiceRestClient().saveEOD(batch
-						.toArray(new EndOfDayData_[0]));
+				new EndOfDayServiceRestClient().saveEOD(data);
 
 			}
 		});

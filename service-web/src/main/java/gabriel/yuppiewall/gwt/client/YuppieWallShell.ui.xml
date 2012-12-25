@@ -25,6 +25,11 @@
 
 			</g:HTMLPanel>
 		</g:north>
+		<g:center>
+			<g:VerticalPanel>
+				<g:Button text="Click" ui:field="open"/>
+			</g:VerticalPanel>
+		</g:center>
 
 
 

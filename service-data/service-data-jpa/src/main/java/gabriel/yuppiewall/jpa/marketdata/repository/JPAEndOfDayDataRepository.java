@@ -36,12 +36,21 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 
 		List<JPAEndOfDayData> convertedList = new ArrayList<JPAEndOfDayData>(
 				list.size());
+
+		// int counter = 0;
 		for (EndOfDayData_ endOfDayData_ : list) {
 			convertedList.add(new JPAEndOfDayData(endOfDayData_));
+			/*
+			 * jpaEODDataRepository.save(new JPAEndOfDayData(endOfDayData_)); if
+			 * (++counter == 20) { jpaEODDataRepository.flush(); counter = 0; }
+			 */
 		}
-
+		/*
+		 * if (counter != 0) jpaEODDataRepository.flush();
+		 */
 		jpaEODDataRepository.save(convertedList);
-
+		//jpaEODDataRepository.flush();
+		
 	}
 
 	@Override
