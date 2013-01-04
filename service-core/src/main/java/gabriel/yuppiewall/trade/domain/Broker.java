@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.trade.domain;
 
-public interface Broker {
+public class Broker {
 
-	OrderStatus placeOrder(Order order);
 }

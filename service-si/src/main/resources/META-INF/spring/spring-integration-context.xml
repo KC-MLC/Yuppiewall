@@ -52,18 +52,70 @@
 		connection-factory="rabbitConnectionFactory" queue-names="yw.eod.queue" />
 
 
-	<int:gateway id="scannerServiceSI" service-interface="gabriel.yuppiewall.scanner.service.ScannerServive"
-		default-request-channel="scannerServiveRunScanChannel" default-reply-channel="scannerServiveRunScanReplyChannel"
-		default-request-timeout="120000" default-reply-timeout="120000" />
-	<int:channel id="scannerServiveRunScanChannel" />
-	<int-amqp:outbound-gateway id="scannerRabbitGateway"
-		request-channel="scannerServiveRunScanChannel" reply-channel="scannerServiveRunScanEncodedReplyChannel"
-		amqp-template="amqpTemplate" exchange-name="scanner.runscan.exchange"
-		routing-key="scanner.runscan" />
-	<int:channel id="scannerServiveRunScanEncodedReplyChannel" />
-	<!-- <int:json-to-object-transformer
-		input-channel="scannerServiveRunScanEncodedReplyChannel" output-channel="scannerServiveRunScanReplyChannel"
-		type="mypackage.entities.Customers" />
-	<int:channel id="scannerServiveRunScanReplyChannel" /> -->
+	<!-- <int:channel id="trades-in-channel" /> <int:channel id="trades-out-channel" 
+		/> <int:gateway id="tradeGateway" default-request-channel="trades-in-channel" 
+		default-reply-channel="trades-out-channel" service-interface="gabriel.yuppiewall.si.jsi.endpoints.gateway.ITradeGateway" 
+		/> <int:service-activator input-channel="trades-in-channel" output-channel="trades-out-channel" 
+		ref="tradeProcessor" method="receiveTrade"> </int:service-activator> -->
+
+	<!-- <bean id="tradeProcessor" class="gabriel.yuppiewall.si.jsi.endpoints.gateway.TradeProcessor" 
+		/> -->
+
+
+	<!-- <int:channel id="run-Scan-Channel" /> <int:channel id="run-Scan-Reply-Channel" 
+		/> <int:gateway id="scannerGateway" default-request-channel="run-Scan-Channel" 
+		default-reply-channel="run-Scan-Reply-Channel" service-interface="gabriel.yuppiewall.si.scanner.service.ScannerServiceGateway" 
+		/> <int:service-activator input-channel="run-Scan-Channel" output-channel="run-Scan-Reply-Channel" 
+		ref="scannerServiceSI" method="processScan"> </int:service-activator> -->
+
+	<!-- To receive an AMQP Message from a Queue, and respond to its reply-to 
+		address, configure an inbound-gateway. -->
+	<int-amqp:inbound-gateway id="scanRabbitGateway"
+		request-channel="run_scan_channel" queue-names="yw.scan.queue"
+		connection-factory="rabbitConnectionFactory" />
+
+	<rabbit:queue name="yw.scan.queue" auto-delete="true"
+		durable="true" />
+	<int:channel id="run_scan_channel" />
+	<int:service-activator input-channel="run_scan_channel"
+		ref="scannerServiceSI" method="runScan" />
+
+	<!-- rabbit exchanges, queues, and bindings used by this app -->
+	<rabbit:topic-exchange name="scanner.runscan.exchange"
+		auto-delete="true" durable="true">
+		<rabbit:bindings>
+			<rabbit:binding queue="yw.scan.queue" pattern="yw.scan.binding" />
+			<!-- <rabbit:binding queue="all-hot-drinks" pattern="drink.hot" /> -->
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+
+	<!-- <rabbit:direct-exchange name="scanner.runscan.exchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="yw.scan.queue" key="yw.scan.binding" />
+		</rabbit:bindings>
+	</rabbit:direct-exchange> -->
+
+
+	<!-- <int:channel id="run-Scan-Channel" /> <int-amqp:inbound-gateway id="scannerGateway" 
+		request-channel="run-Scan-Channel" queue-names="yw.scan.runscan" connection-factory="rabbitConnectionFactory" 
+		mapped-request-headers="*" mapped-reply-headers="*" error-handler="errorHandler" 
+		/> <int:service-activator id="scannerServiveActivator" input-channel="run-Scan-Channel" 
+		requires-reply="true" ref="scannerServiceSI" method="processScan"> </int:service-activator> -->
+
+	<!-- <int:channel id="scannerServiveRunScanChannel" /> <int:gateway id="scannerGateway" 
+		service-interface="gabriel.yuppiewall.scanner.service.ScannerServive" default-request-channel="scannerServiveRunScanChannel" 
+		default-reply-channel="scannerServiveRunScanReplyChannel" default-request-timeout="120000" 
+		default-reply-timeout="120000" /> <int:channel id="scannerServiveRunScanReplyChannel" 
+		/> <int-amqp:outbound-gateway id="scannerRabbitGateway" request-channel="scannerServiveRunScanChannel" 
+		reply-channel="scannerServiveRunScanEncodedReplyChannel" amqp-template="amqpTemplate" 
+		exchange-name="scanner.runscan.exchange" routing-key="scanner.runscan" /> 
+		<int:channel id="scannerServiveRunScanEncodedReplyChannel" /> <int:service-activator 
+		input-channel="scannerServiveRunScanChannel" output-channel="scannerServiveRunScanReplyChannel" 
+		ref="scannerServiceSI" method="runScan"> </int:service-activator> -->
+
+
+	<!-- <int:json-to-object-transformer input-channel="scannerServiveRunScanEncodedReplyChannel" 
+		output-channel="scannerServiveRunScanReplyChannel" type="mypackage.entities.Customers" 
+		/> <int:channel id="scannerServiveRunScanReplyChannel" /> -->
 
 </beans>

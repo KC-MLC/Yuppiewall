@@ -1,58 +1,35 @@
 package gabriel.yuppiewall.scanner.domain;
 
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
 
-public class Condition {
+import java.io.Serializable;
 
-	private String indicator;
-	private PERIOD period;
-	private SCAN_ON scanOn;
-	private int value;
+@SuppressWarnings("serial")
+public class Condition implements Serializable {
+
+	private Expression lhs;
 	private OPERAND operand;
-	private Condition rhs;
+	private Expression rhs;
 
-	public Condition(String indicator, PERIOD period, int value, SCAN_ON scanOn) {
-		this.indicator = indicator;
-		this.period = period;
-		this.scanOn = scanOn;
-		this.value = value;
-
+	public Condition() {
 	}
 
-	public Condition(int value) {
-		this.value = value;
-	}
-
-	public String getIndicator() {
-		return indicator;
-	}
-
-	public Condition greterThen(int i) {
-		operand = OPERAND.GT;
-		rhs = new Condition(i);
-		return this;
-	}
-
-	public Condition getLHS() {
-		return new Condition(indicator, period, value, scanOn);
-	}
-
-	public Condition getRHS() {
-		return rhs;
+	public Condition(Expression rhs, OPERAND operand, Expression lhs) {
+		this.lhs = lhs;
+		this.operand = operand;
+		this.rhs = rhs;
 	}
 
 	public OPERAND getOperand() {
 		return operand;
 	}
 
-	public SCAN_ON getScanOn() {
-		return scanOn;
+	public Expression getLhs() {
+		return lhs;
 	}
 
-	public int getValue() {
-		return this.value;
+	public Expression getRhs() {
+		return rhs;
 	}
 
 }

@@ -69,7 +69,7 @@ public class CreateYahooFinanceList {
 						"43.80.41.41", 8080));
 				int BUFFER_SIZE = 4096;
 				URL url = new URL(
-						"http://ichart.finance.yahoo.com/table.csv?d=12&e=18&f=2012&g=d&a=12&b=18&c=2012&ignore=.csv&s="
+						"http://ichart.finance.yahoo.com/table.csv?d=12&e=18&f=2012&g=d&a=12&b=18&c=2013&ignore=.csv&s="
 								+ symbol);
 				HttpURLConnection urlConnection = (HttpURLConnection) url
 						.openConnection(proxy);

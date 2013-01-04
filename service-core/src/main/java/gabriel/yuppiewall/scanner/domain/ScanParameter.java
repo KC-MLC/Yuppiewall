@@ -1,12 +1,14 @@
 package gabriel.yuppiewall.scanner.domain;
 
+import gabriel.yuppiewall.market.domain.Exchange_;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
-
-public class ScanParameter {
+@SuppressWarnings("serial")
+public class ScanParameter implements Serializable {
 
 	private String scanId;
 	private Exchange_ exchange;
@@ -46,7 +48,7 @@ public class ScanParameter {
 		this.scanId = uid;
 	}
 
-	static class Builder {
+	public static class Builder implements Serializable {
 
 		private ScanParameter param = new ScanParameter();
 
@@ -60,8 +62,9 @@ public class ScanParameter {
 			return this;
 		}
 
-		Builder addCondition(Condition condition) {
-			param.conditions.add(condition);
+		public Builder addCondition(Expression lhs, OPERAND operand,
+				Expression rhs) {
+			param.conditions.add(new Condition(lhs, operand, rhs));
 			return this;
 		}
 
@@ -78,22 +81,23 @@ public class ScanParameter {
 	public static void main(String[] args) {
 		// [type = stock] and [country = us] and [daily sma(20,daily volume) >
 		// 40000]
-		ScanParameter sp = new ScanParameter()
-				.Builder()
-				.fromExchange(new Exchange_("NYSE"))
-				.addCondition(
-						new Condition("SMA", PERIOD.DAILY, 20, SCAN_ON.VOLUME)
-								.greterThen(40000)).build();
+		/*
+		 * ScanParameter sp = new ScanParameter() .Builder() .fromExchange(new
+		 * Exchange_("NYSE")) .addCondition( new Expression("sma", PERIOD.DAILY,
+		 * new BigDecimal(20), SCAN_ON.VOLUME), OPERAND.GT, new Expression(new
+		 * BigDecimal(40000))).build();
+		 */
 	}
 
-	private Builder Builder() {
-		// TODO Auto-generated method stub
-		return null;
+	public Builder Builder() {
+		return new Builder();
 	}
 
-	public List<Condition> getCondition() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Condition> getConditions() {
+		return conditions;
 	}
 
+	public void setConditions(List<Condition> conditions) {
+		this.conditions = conditions;
+	}
 }

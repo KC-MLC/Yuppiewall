@@ -6,12 +6,12 @@ import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.scanner.domain.Condition;
+import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
 
 import java.math.BigDecimal;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,12 +20,15 @@ import java.util.Map;
 public abstract class ScannerServiceImpl implements ScannerServive {
 
 	@Override
-	public List<EndOfDayData_> runScan(final ScanParameter param,
-			final Principal requester) {
+	public List<EndOfDayData_> runScan(final ScanParameter param/*
+																 * , final
+																 * PrimaryPrincipal
+																 * requester
+																 */) {
 
 		Map<String, List<EndOfDayData_>> eodData = getEndOfDayDataRepository()
 				.findRecords(param);
-		List<Condition> conditions = param.getCondition();
+		List<Condition> conditions = param.getConditions();
 		Iterator<String> itr = eodData.keySet().iterator();
 		List<EndOfDayData_> retValue = new ArrayList<>();
 		while (itr.hasNext()) {
@@ -34,14 +37,12 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 			boolean success = true;
 			for (Condition condition : conditions) {
 
-				Condition lhsCondition = condition.getLHS();
-				Condition rhsCondition = condition.getRHS();
+				Expression lhs = condition.getLhs();
+				Expression rhs = condition.getRhs();
 
-				BigDecimal lhs = run(lhsCondition, records,
-						lhsCondition.getScanOn());
-				BigDecimal rhs = run(rhsCondition.getRHS(), records,
-						rhsCondition.getScanOn());
-				if (!operate(lhs, condition.getOperand(), rhs)) {
+				BigDecimal lValue = run(lhs, records, lhs.getScanOn());
+				BigDecimal rValue = run(rhs, records, rhs.getScanOn());
+				if (!operate(lValue, condition.getOperand(), rValue)) {
 					itr.remove();
 					records = null;
 					success = false;
@@ -67,14 +68,14 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 		return false;
 	}
 
-	private BigDecimal run(Condition lhs, List<EndOfDayData_> records,
+	private BigDecimal run(Expression exp, List<EndOfDayData_> records,
 			SCAN_ON scanOn) {
-		if (lhs.getIndicator() == null)
-			return null;
+		if (exp.getIndicator() == null)
+			return exp.getValue();
 		TechnicalIndicator ti = getTechnicalIndicatorService()
-				.getTechnicalIndicator(lhs.getIndicator());
-		TechnicalIndicator_[] result = ti.calculate(records, lhs.getValue(),
-				convert(scanOn));
+				.getTechnicalIndicator(exp.getIndicator());
+		TechnicalIndicator_[] result = ti.calculate(records, exp.getValue()
+				.intValue(), convert(scanOn));
 
 		return result[result.length - 1].getValue();
 

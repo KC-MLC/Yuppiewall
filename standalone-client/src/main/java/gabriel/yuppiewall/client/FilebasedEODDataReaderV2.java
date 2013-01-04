@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -43,6 +44,10 @@ public class FilebasedEODDataReaderV2 {
 					EndOfDayData_ eod = ParseCSV.parse(name[0] + "," + name[1]
 							+ "," + line);// parse this line
 					if (eod == null)
+						continue;
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(eod.getDate());
+					if (cal.get(Calendar.YEAR) < 2012)
 						continue;
 
 					List<EndOfDayData_> list = dataList.get(eod.getExchange()
@@ -88,12 +93,10 @@ public class FilebasedEODDataReaderV2 {
 		 */
 		System.out.println("sending>>" + data.length);
 		new EndOfDayServiceRestClient().saveEOD(data);
-		/*try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		/*
+		 * try { Thread.sleep(5000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		/*
 		 * executor.execute(new Runnable() { public void run() { // new
 		 * EndOfDayServiceRestClient().saveEOD(data); } });

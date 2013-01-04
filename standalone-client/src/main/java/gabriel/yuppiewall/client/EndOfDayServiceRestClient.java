@@ -20,7 +20,7 @@ public class EndOfDayServiceRestClient implements EndOfDayService {
 		try {
 
 			URL url = new URL(
-					"http://localhost:8082/service-ws/api/endofday/bulk");
+					"http://localhost:8081/service-ws/api/endofday/bulk");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sdsi.bmrc.client.application.ApplicationService;
 import com.sdsi.bmrc.client.application.ApplicationServiceImpl;
+import com.sdsi.bmrc.client.application.scanner.PortfolioApplication;
 import com.sdsi.bmrc.client.application.scanner.ScannerApplication;
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
@@ -35,6 +36,7 @@ public class YuppiewallUI extends Application implements Window.CloseListener,
 		{
 			/** TODO REMOVE REGISTER MODULE THIS SHOULD BE VIA SPRING **/
 			applicationService.registerApplication(new ScannerApplication());
+			applicationService.registerApplication(new PortfolioApplication());
 		}
 
 		setInstance(this);

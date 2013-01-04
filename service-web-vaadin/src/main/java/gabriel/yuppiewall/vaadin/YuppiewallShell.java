@@ -58,13 +58,22 @@ public class YuppiewallShell extends Window {
 		 * bottom.addComponent(contactUS = new Label("BOTTOM")); //$NON-NLS-1$
 		 */
 		// Menu tree, initially shown
-		sideBarMenu = new VerticalLayout();
-		// sideBarMenu.setMargin(true);
-		sideBarMenu.setHeight("100%"); //$NON-NLS-1$
-		sideBarMenu.setWidth("50px"); //$NON-NLS-1$
-		// sideBarMenu.setSpacing(true);
 
-		mainSplit.addComponent(sideBarMenu);
+		Panel sideBarMenuH = new Panel();
+		sideBarMenuH.setWidth("53px"); //$NON-NLS-1$
+		sideBarMenuH.setHeight("100%");
+		sideBarMenuH.setContent(new VerticalLayout());
+		((VerticalLayout) sideBarMenuH.getContent()).setSpacing(false);
+		((VerticalLayout) sideBarMenuH.getContent()).setMargin(false);
+
+		sideBarMenu = new VerticalLayout();
+		sideBarMenuH.addComponent(sideBarMenu);
+
+		// sideBarMenu.setMargin(true);
+		sideBarMenu.setWidth("53px"); //$NON-NLS-1$
+		sideBarMenu.setSpacing(true);
+
+		mainSplit.addComponent(sideBarMenuH);
 
 		mainSplit.addComponent(contentArea = new Panel(new VerticalLayout()));
 		contentArea.setHeight("100%");

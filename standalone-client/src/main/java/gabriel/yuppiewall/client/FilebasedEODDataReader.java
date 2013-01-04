@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -41,6 +42,11 @@ public class FilebasedEODDataReader {
 							+ "," + line);// parse this line
 					if (eod == null)
 						continue;
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(eod.getDate());
+					if (cal.get(Calendar.YEAR) < 2000)
+						continue;
+
 					data[counter++] = eod;
 					if (counter == 100) {
 						// spawn the thread which will fire the webservice call
