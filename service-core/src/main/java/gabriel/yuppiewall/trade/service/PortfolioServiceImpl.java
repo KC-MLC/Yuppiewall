@@ -40,6 +40,12 @@ public abstract class PortfolioServiceImpl implements PortfolioService {
 	}
 
 	@Override
+	public List<Instrument> getPortfolioInstrument(Portfolio portfolio) {
+
+		return getPortfolioRepositorty().getPortfolioInstrument(portfolio);	
+	}
+
+	@Override
 	public List<Portfolio> getPortfolio(PrimaryPrincipal user) {
 
 		return getPortfolioRepositorty().findAllPortfolio(user);
@@ -49,8 +55,6 @@ public abstract class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
 	public void attachIfNotpresent(Portfolio portfolio, Instrument instrument) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException(
-				"method not impl attachIfNotpresent ");
+		getPortfolioRepositorty().attachIfNotpresent(portfolio, instrument);
 	}
 }

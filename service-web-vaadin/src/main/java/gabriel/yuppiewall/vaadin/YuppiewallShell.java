@@ -5,6 +5,11 @@ import gabriel.yuppiewall.vaadin.application.ApplicationService;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -16,6 +21,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 @SuppressWarnings("serial")
+@Component
+@Scope("session")
 public class YuppiewallShell extends Window {
 
 	private VerticalLayout sideBarMenu;
@@ -25,7 +32,8 @@ public class YuppiewallShell extends Window {
 
 	private static final String THEME_NAME = "wall-midnight";
 
-	public YuppiewallShell() {
+	@PostConstruct
+	protected void init() {
 		setCaption(WINDOW_TITLE);
 		setName(WINDOW_TITLE);
 		setTheme(THEME_NAME);

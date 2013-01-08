@@ -1,14 +1,18 @@
 package gabriel.yuppiewall.vaadin;
 
 import gabriel.yuppiewall.vaadin.application.ApplicationService;
-import gabriel.yuppiewall.vaadin.application.ApplicationServiceImpl;
 import gabriel.yuppiewall.vaadin.application.portfolio.PortfolioApplication;
 import gabriel.yuppiewall.vaadin.application.scanner.ScannerApplication;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
@@ -18,15 +22,21 @@ import com.vaadin.ui.Window.CloseEvent;
 /**
  * The Application's "main" class
  */
+@SuppressWarnings("serial")
+@Component
+@Scope("prototype")
 public class YuppiewallUI extends Application implements Window.CloseListener,
 		Serializable, HttpServletRequestListener {
 
 	private static ThreadLocal<YuppiewallUI> MAIN = new ThreadLocal<YuppiewallUI>();
-	private YuppiewallShell uiController;
 
-	// @Autowired
-	private ApplicationService applicationService = new ApplicationServiceImpl();
+	@Autowired
+	public YuppiewallShell uiController;
 
+	@Autowired
+	private ApplicationService applicationService;
+
+	//@PostConstruct
 	@Override
 	public void init() {
 		/*
@@ -41,7 +51,7 @@ public class YuppiewallUI extends Application implements Window.CloseListener,
 		}
 
 		setInstance(this);
-		uiController = new YuppiewallShell();
+		 uiController = new YuppiewallShell();
 
 		setMainWindow(uiController);
 

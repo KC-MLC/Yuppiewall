@@ -25,7 +25,6 @@ public class Portfolio implements Serializable {
 
 	public Portfolio(PrimaryPrincipal user, String portfolioId,
 			String portfolioName, Date creationtDate) {
-		super();
 		this.user = user;
 		this.portfolioId = portfolioId;
 		this.portfolioName = portfolioName;
@@ -54,6 +53,11 @@ public class Portfolio implements Serializable {
 
 	public void setCreationtDate(Date creationtDate) {
 		this.creationtDate = creationtDate;
+	}
+
+	@Override
+	public String toString() {
+		return getPortfolioName();
 	}
 
 }

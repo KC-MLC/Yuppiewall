@@ -12,6 +12,8 @@ public interface PortfolioService {
 
 	List<Portfolio> getPortfolio(PrimaryPrincipal user);
 
+	List<Instrument> getPortfolioInstrument(Portfolio portfolio);
+
 	void attachIfNotpresent(Portfolio portfolio, Instrument instrument);
 
 }

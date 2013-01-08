@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("serial")
-@Service("moduleServiceImpl")
+@Component
 @Scope("prototype")
 public class ApplicationServiceImpl implements ApplicationService {
 
@@ -16,7 +16,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private ArrayList<Application> apps = new ArrayList<Application>();
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void registerApplication(
 			@SuppressWarnings("rawtypes") Application application) {
 		apps.add(application);
@@ -24,7 +23,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void unregisterApplication(
 			@SuppressWarnings("rawtypes") Application module) {
 		apps.remove(module);

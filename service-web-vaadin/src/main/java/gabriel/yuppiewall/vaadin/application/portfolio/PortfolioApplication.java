@@ -53,7 +53,7 @@ public class PortfolioApplication implements Application<ComponentContainer> {
 		VerticalSplitPanel navBar = new VerticalSplitPanel();
 		hsp.setFirstComponent(navBar);
 
-		PortfolioTreeView portfolioTreeView = new PortfolioTreeView();
+		PortfolioTreeViewImpl portfolioTreeView = new PortfolioTreeViewImpl();
 
 		navBar.setFirstComponent(portfolioTreeView);
 		navBar.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);

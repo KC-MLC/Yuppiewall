@@ -36,6 +36,8 @@ public class JPAPortfolio implements Serializable {
 	@JoinColumn(name = "owner_id", nullable = false, updatable = false)
 	private JPAPrincipal ownerID;
 
+	public static final String REL_HAS_INSTRUMENT = "has_instument";
+
 	public JPAPortfolio() {
 	}
 

@@ -8,8 +8,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class Transaction implements Serializable {
-	PrimaryPrincipal user;
+	private PrimaryPrincipal user;
 	private TransactionType type;
 
 	private Instrument instrument;
