@@ -1,4 +1,4 @@
-package com.sdsi.bmrc.client.application;
+package gabriel.yuppiewall.vaadin.application;
 
 import java.io.Serializable;
 import java.util.List;

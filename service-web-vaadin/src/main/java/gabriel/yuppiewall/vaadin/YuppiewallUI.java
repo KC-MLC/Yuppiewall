@@ -1,14 +1,15 @@
 package gabriel.yuppiewall.vaadin;
 
+import gabriel.yuppiewall.vaadin.application.ApplicationService;
+import gabriel.yuppiewall.vaadin.application.ApplicationServiceImpl;
+import gabriel.yuppiewall.vaadin.application.portfolio.PortfolioApplication;
+import gabriel.yuppiewall.vaadin.application.scanner.ScannerApplication;
+
 import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sdsi.bmrc.client.application.ApplicationService;
-import com.sdsi.bmrc.client.application.ApplicationServiceImpl;
-import com.sdsi.bmrc.client.application.scanner.PortfolioApplication;
-import com.sdsi.bmrc.client.application.scanner.ScannerApplication;
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
 import com.vaadin.ui.Window;

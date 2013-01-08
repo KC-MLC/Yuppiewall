@@ -1,6 +1,7 @@
-package com.sdsi.bmrc.client.application.scanner;
+package gabriel.yuppiewall.vaadin.application.scanner;
 
-import com.sdsi.bmrc.client.application.Application;
+import gabriel.yuppiewall.vaadin.application.Application;
+
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComponentContainer;

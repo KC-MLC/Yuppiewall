@@ -1,9 +1,10 @@
 package gabriel.yuppiewall.vaadin;
 
+import gabriel.yuppiewall.vaadin.application.Application;
+import gabriel.yuppiewall.vaadin.application.ApplicationService;
+
 import java.util.List;
 
-import com.sdsi.bmrc.client.application.Application;
-import com.sdsi.bmrc.client.application.ApplicationService;
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -62,6 +63,7 @@ public class YuppiewallShell extends Window {
 		Panel sideBarMenuH = new Panel();
 		sideBarMenuH.setWidth("53px"); //$NON-NLS-1$
 		sideBarMenuH.setHeight("100%");
+		sideBarMenuH.setStyleName("sidebar");
 		sideBarMenuH.setContent(new VerticalLayout());
 		((VerticalLayout) sideBarMenuH.getContent()).setSpacing(false);
 		((VerticalLayout) sideBarMenuH.getContent()).setMargin(false);
