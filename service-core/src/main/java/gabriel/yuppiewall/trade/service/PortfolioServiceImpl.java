@@ -26,7 +26,7 @@ public abstract class PortfolioServiceImpl implements PortfolioService {
 				portfolio);
 		if (portfolioId != null)
 			throw new EntityAlreadyExistsException(Portfolio.class,
-					"portfolioName", null);
+					"portfolioName", "portfolio name already in use");
 
 		// create a new portfolio
 		portfolio.setCreationtDate(new Date());
@@ -42,7 +42,7 @@ public abstract class PortfolioServiceImpl implements PortfolioService {
 	@Override
 	public List<Instrument> getPortfolioInstrument(Portfolio portfolio) {
 
-		return getPortfolioRepositorty().getPortfolioInstrument(portfolio);	
+		return getPortfolioRepositorty().getPortfolioInstrument(portfolio);
 	}
 
 	@Override

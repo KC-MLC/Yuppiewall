@@ -1,37 +1,36 @@
 package gabriel.yuppiewall.vaadin.application.portfolio;
 
+import gabriel.yuppiewall.common.exception.BusinessException;
 import gabriel.yuppiewall.trade.domain.Portfolio;
 import gabriel.yuppiewall.trade.service.PortfolioService;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.YuppiewallUI;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.util.BeanItem;
-import com.vaadin.data.validator.StringLengthValidator;
+import com.google.common.eventbus.EventBus;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.DefaultFieldFactory;
-import com.vaadin.ui.Field;
-import com.vaadin.ui.Form;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window.Notification;
 import com.vaadin.ui.themes.BaseTheme;
 
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
 @Scope("prototype")
-public class AddNewPortfolioViewImpl implements Serializable{
+public class AddNewPortfolioViewImpl implements Serializable {
 
 	private VerticalLayout rootLayout;
+	@Autowired
+	private EventBus eventBus;
 
 	public AddNewPortfolioViewImpl() {
 	}
@@ -40,35 +39,21 @@ public class AddNewPortfolioViewImpl implements Serializable{
 		rootLayout = new VerticalLayout();
 		rootLayout.setMargin(true);
 		rootLayout.setSpacing(true);
-		Portfolio portfolio = new Portfolio();
-		BeanItem<Portfolio> personItem = new BeanItem<Portfolio>(portfolio);
-
-		// Create the Form
-		final Form portfolioForm = new Form();
-		portfolioForm.setCaption("New Portfolio");
-		portfolioForm.setWriteThrough(false); // we want explicit 'apply'
-		portfolioForm.setInvalidCommitted(false); // no invalid values in
-													// datamodel
-
-		// FieldFactory for customizing the fields and adding validators
-		portfolioForm.setFormFieldFactory(new PortfolioFieldFactory());
-		portfolioForm.setItemDataSource(personItem); // bind to POJO via
-														// BeanItem
-
-		// Determines which properties are shown, and in which order:
-		portfolioForm.setVisibleItemProperties(Arrays
-				.asList(new String[] { "portfolioName" }));
-
-		// Add form to layout
-		rootLayout.addComponent(portfolioForm);
-
+		HorizontalLayout row = new HorizontalLayout();
+		rootLayout.addComponent(row);
+		row.setSpacing(true);
+		row.addComponent(new Label("Portfolio Name"));
+		final TextField tfPortfolioName = new TextField();
+		row.addComponent(tfPortfolioName);
+		final Label errorMessage = new Label();
+		rootLayout.addComponent(errorMessage);
 		// The cancel / apply buttons
 		HorizontalLayout buttons = new HorizontalLayout();
 		buttons.setSpacing(true);
 		Button discardChanges = new Button("Discard changes",
 				new Button.ClickListener() {
 					public void buttonClick(ClickEvent event) {
-						portfolioForm.discard();
+						tfPortfolioName.setValue("");
 					}
 				});
 		discardChanges.setStyleName(BaseTheme.BUTTON_LINK);
@@ -78,49 +63,27 @@ public class AddNewPortfolioViewImpl implements Serializable{
 		Button apply = new Button("Apply", new Button.ClickListener() {
 			public void buttonClick(ClickEvent event) {
 				try {
-					// portfolioForm.commit();
+					errorMessage.setValue("");
 					PortfolioService ps = YuppiewallUI.getInstance()
 							.getService("portfolioService");
 
-					ps.createPortfolio(new Portfolio(
+					Portfolio p = ps.createPortfolio(new Portfolio(
 							(PrimaryPrincipal) YuppiewallUI.getInstance()
 									.getApplicationData("user"),
-							"portfolioName"));
-				} catch (Exception e) {
-					// Ignored, we'll let the Form handle the errors
+							(String) tfPortfolioName.getValue()));
+					YuppiewallUI.getInstance().uiController.showNotification(
+							"System Message", "Portfolio "
+									+ (String) tfPortfolioName.getValue()
+									+ " got created",
+							Notification.TYPE_TRAY_NOTIFICATION);
+					eventBus.post(new PortfolioCreatedEvent(p));
+				} catch (BusinessException e) {
+					errorMessage.setValue(e.getMessage());
 				}
 			}
 		});
 		buttons.addComponent(apply);
-		portfolioForm.getFooter().addComponent(buttons);
-		portfolioForm.getFooter().setMargin(false, false, true, true);
-
-	}
-
-	private class PortfolioFieldFactory extends DefaultFieldFactory {
-
-		private static final String COMMON_FIELD_WIDTH = "12em";
-
-		public PortfolioFieldFactory() {
-
-		}
-
-		@Override
-		public Field createField(Item item, Object propertyId,
-				Component uiContext) {
-			Field f = super.createField(item, propertyId, uiContext);
-
-			if ("portfolioName".equals(propertyId)) {
-				TextField tf = (TextField) f;
-				tf.setRequired(true);
-				tf.setRequiredError("Please enter New Portfolio Name");
-				tf.setWidth(COMMON_FIELD_WIDTH);
-				tf.addValidator(new StringLengthValidator(
-						"First Name must be 3-15 characters", 3, 15, false));
-			}
-
-			return f;
-		}
+		rootLayout.addComponent(buttons);
 
 	}
 

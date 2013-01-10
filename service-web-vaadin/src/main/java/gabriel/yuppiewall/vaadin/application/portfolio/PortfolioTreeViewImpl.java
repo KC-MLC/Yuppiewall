@@ -3,6 +3,7 @@ package gabriel.yuppiewall.vaadin.application.portfolio;
 import gabriel.yuppiewall.trade.domain.Portfolio;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.YuppiewallUI;
+import gabriel.yuppiewall.vaadin.application.portfolio.TransactionViewImpl.PortfolioChangeRecorder;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.ItemClickEvent;
@@ -40,6 +42,16 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 	@Autowired
 	private EventBus eventBus;
 
+	class PortfolioCreatedRecorder {
+		@Subscribe
+		public void recordPortfolioCreated(PortfolioCreatedEvent e) {
+			// close the window
+			YuppiewallUI.getInstance().uiController.getWindow().removeWindow(
+					addNewPortfolio);
+			updateTree();
+		}
+	}
+
 	@Autowired
 	private AddNewPortfolioViewImpl addNewPortfolioViewImpl;
 
@@ -49,6 +61,7 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 	}
 
 	public void init() {
+		eventBus.register(new PortfolioCreatedRecorder());
 		rootlayout = new VerticalLayout();
 		HorizontalLayout menubar = new HorizontalLayout();
 		menubar.setStyleName("small-segment");
@@ -94,7 +107,6 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 			@Override
 			public void itemClick(ItemClickEvent event) {
 				{
-					System.out.println("Double clicked!");
 					Portfolio folio = (Portfolio) event.getItem()
 							.getItemProperty(PORTFOLIO_PROPERTY_VALUE)
 							.getValue();
@@ -134,9 +146,11 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 			addNewPortfolio = new Window("Add New Portfolio");
 			// ...and make it modal
 			addNewPortfolio.setModal(true);
+
 			// addNewPortfolio.setStyleName(")
 			// AddNewPortfolioViewImpl
 			addNewPortfolioViewImpl.init();
+			addNewPortfolioViewImpl.getView().setSizeUndefined();
 		}
 		if (addNewPortfolio.getParent() != null) {
 			// window is already showing
@@ -148,7 +162,6 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 			YuppiewallUI.getInstance().uiController.getWindow().addWindow(
 					addNewPortfolio);
 			addNewPortfolio.center();
-
 		}
 
 	}
