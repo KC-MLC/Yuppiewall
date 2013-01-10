@@ -2,6 +2,7 @@ package gabriel.yuppiewall.jpa.trade.domain;
 
 import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
 import gabriel.yuppiewall.trade.domain.Portfolio;
+import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -55,6 +56,10 @@ public class JPAPortfolio implements Serializable {
 	public Portfolio getPortfolio() {
 		return new Portfolio(ownerID.getPrimaryPrincipal(), portfolioId,
 				portfolioName, creationtDate);
+	}
+
+	public Portfolio getPortfolio(PrimaryPrincipal user) {
+		return new Portfolio(user, portfolioId, portfolioName, creationtDate);
 	}
 
 }

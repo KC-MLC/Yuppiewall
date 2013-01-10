@@ -10,5 +10,11 @@ public interface PortfolioTreeView {
 	public static final Object PORTFOLIO_PROPERTY_VALUE = "value";
 	public static final Object PORTFOLIO_PROPERTY_ICON = "icon";
 
-	void updateTreeView(List<Portfolio> portfolio);
+	interface PortfolioTreeViewEvent {
+		List<Portfolio> updateTreeView();
+
+	}
+
+	public void addListener(PortfolioTreeViewEvent eventHandeler);
+
 }

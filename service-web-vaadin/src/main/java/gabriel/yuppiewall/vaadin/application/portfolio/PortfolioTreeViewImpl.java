@@ -29,6 +29,8 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 	private Item allHolding;
 	private Window addNewPortfolio;
 
+	private PortfolioTreeViewEvent eventHandeler = new PortfolioTreeViewPresenter();
+
 	public PortfolioTreeViewImpl() {
 		HorizontalLayout menubar = new HorizontalLayout();
 		menubar.setStyleName("small-segment");
@@ -91,7 +93,7 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 		portfolioTree
 				.setItemCaptionMode(AbstractSelect.ITEM_CAPTION_MODE_PROPERTY);
 
-		addRoot();
+		updateTree();
 
 	}
 
@@ -100,6 +102,7 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 			addNewPortfolio = new Window("Add New Portfolio");
 			// ...and make it modal
 			addNewPortfolio.setModal(true);
+			// addNewPortfolio.setStyleName(")
 			// AddNewPortfolioViewImpl
 		}
 		if (addNewPortfolio.getParent() != null) {
@@ -119,26 +122,35 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 
 	private void addRoot() {
 		// Add root
-		allHolding = portfolioContainer.addItem(portfolioCount++);
+		allHolding = portfolioContainer.addItem(portfolioCount);
 		Portfolio all = new Portfolio(null, "all", "My Holding", null);
 		allHolding.getItemProperty(PORTFOLIO_PROPERTY_NAME).setValue(
 				all.toString());
 		allHolding.getItemProperty(PORTFOLIO_PROPERTY_VALUE).setValue(all);
 
 		// Allow children
-		portfolioContainer.setChildrenAllowed(allHolding, true);
-
+		portfolioContainer.setChildrenAllowed(portfolioCount, true);
+		portfolioCount += 1;
 	}
 
-	@Override
-	public void updateTreeView(List<Portfolio> portfolios) {
+	private void updateTree() {
+		List<Portfolio> portfolios = eventHandeler.updateTreeView();
 		portfolioContainer.removeAllItems();
 		addRoot();
 		for (Portfolio portfolio : portfolios) {
-			Item item = portfolioContainer.addItem(portfolioCount++);
+			Item item = portfolioContainer.addItem(portfolioCount);
 			item.getItemProperty(PORTFOLIO_PROPERTY_NAME).setValue(
 					portfolio.toString());
 			item.getItemProperty(PORTFOLIO_PROPERTY_VALUE).setValue(portfolio);
+			portfolioContainer.setParent(0, portfolioCount);
+			portfolioContainer.setChildrenAllowed(portfolioCount, false);
+			portfolioCount += 1;
 		}
+	}
+
+	@Override
+	public void addListener(PortfolioTreeViewEvent eventHandeler) {
+		this.eventHandeler = eventHandeler;
+
 	}
 }

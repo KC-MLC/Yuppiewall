@@ -44,7 +44,7 @@ public class JpaPortfolioRepositorty implements
 				.findAllByUser(new JPAPrincipal(user));
 		List<Portfolio> retValue = new ArrayList<>();
 		for (JPAPortfolio jpaPortfolio : p) {
-			retValue.add(jpaPortfolio.getPortfolio());
+			retValue.add(jpaPortfolio.getPortfolio(user));
 		}
 		return retValue;
 	}

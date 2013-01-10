@@ -1,8 +1,11 @@
 package gabriel.yuppiewall.vaadin.application.portfolio;
 
-import java.util.Arrays;
-
 import gabriel.yuppiewall.trade.domain.Portfolio;
+import gabriel.yuppiewall.trade.service.PortfolioService;
+import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
+import gabriel.yuppiewall.vaadin.YuppiewallUI;
+
+import java.util.Arrays;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
@@ -63,7 +66,14 @@ public class AddNewPortfolioViewImpl extends VerticalLayout {
 		Button apply = new Button("Apply", new Button.ClickListener() {
 			public void buttonClick(ClickEvent event) {
 				try {
-					portfolioForm.commit();
+					//portfolioForm.commit();
+					PortfolioService ps = YuppiewallUI.getInstance()
+							.getService("portfolioService");
+
+					ps.createPortfolio(new Portfolio(
+							(PrimaryPrincipal) YuppiewallUI.getInstance()
+									.getApplicationData("user"),
+							"portfolioName"));
 				} catch (Exception e) {
 					// Ignored, we'll let the Form handle the errors
 				}

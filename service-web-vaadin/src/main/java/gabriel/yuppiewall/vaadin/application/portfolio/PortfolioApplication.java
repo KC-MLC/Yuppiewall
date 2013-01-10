@@ -21,7 +21,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.Tree;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
@@ -199,111 +198,8 @@ public class PortfolioApplication implements Application<ComponentContainer> {
 		VerticalSplitPanel contentPane = new VerticalSplitPanel();
 		contentPane.setSplitPosition(70, Sizeable.UNITS_PERCENTAGE);
 		hsp.setSecondComponent(contentPane);
-
-		VerticalLayout contentPaneSearchSection = new VerticalLayout();
-		contentPaneSearchSection.setSizeFull();
-		contentPaneSearchSection.setMargin(true);
-		contentPaneSearchSection.setSpacing(true);
+		TransactionViewImpl contentPaneSearchSection = new TransactionViewImpl();
 		contentPane.setFirstComponent(contentPaneSearchSection);
-
-		Tree t;
-		t = new Tree("Portfolio");
-
-		// | | Edit portfolio | Delete
-		// portfolio | Download to spreadsheet | Download to OFX
-
-		HorizontalLayout butBar = new HorizontalLayout();
-		butBar.setStyleName("small-segment");
-		contentPaneSearchSection.addComponent(butBar);
-		{
-			Button addNewPortfolio = new Button("Import transactions");
-			addNewPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
-			addNewPortfolio.setDescription("Import transactions");
-
-			butBar.addComponent(addNewPortfolio);
-		}
-		{
-			Button addNewPortfolio = new Button("Edit transactions");
-			addNewPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
-			addNewPortfolio.setDescription("Edit transactions");
-
-			butBar.addComponent(addNewPortfolio);
-		}
-		{
-			Button addNewPortfolio = new Button("Download to spreadsheet");
-			addNewPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
-			addNewPortfolio.setDescription("Download to spreadsheet");
-
-			butBar.addComponent(addNewPortfolio);
-		}
-		{
-			Button addNewPortfolio = new Button("Download to OFX");
-			addNewPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
-			addNewPortfolio.setDescription("Download to OFX");
-
-			butBar.addComponent(addNewPortfolio);
-		}
-
-		TreeTable holdingTT = new TreeTable();
-		holdingTT.setWidth("100%");
-		holdingTT.setColumnCollapsingAllowed(true);
-		Panel holdingTTPanel = new Panel();
-		holdingTTPanel.setSizeFull();
-		holdingTTPanel.addComponent(holdingTT);
-		contentPaneSearchSection.addComponent(holdingTTPanel);
-		contentPaneSearchSection.setExpandRatio(holdingTTPanel, 1);
-
-		holdingTT.addContainerProperty("Name", String.class, "");
-		holdingTT.addContainerProperty("Symbol", String.class, "");
-		holdingTT.addContainerProperty("Last Price", BigDecimal.class,
-				new BigDecimal(0.0));
-		holdingTT.addContainerProperty("Share", Integer.class, new Integer(0));
-		holdingTT.addContainerProperty("Price/Share", BigDecimal.class,
-				new BigDecimal(0.0));
-		holdingTT.addContainerProperty("Mkt Value", BigDecimal.class,
-				new BigDecimal(0.0));
-		holdingTT.addContainerProperty("Un realized P/L", BigDecimal.class,
-				new BigDecimal(0.0));
-		holdingTT.addContainerProperty("Un realized P/L %", BigDecimal.class,
-				new BigDecimal(0.0));
-		holdingTT.addContainerProperty("Realized P/L", BigDecimal.class,
-				new BigDecimal(0.0));
-		holdingTT.addContainerProperty("Realized P/L %", BigDecimal.class,
-				new BigDecimal(0.0));
-		// holdingTT.setColumnCollapsed("Realized P/L %", true);
-		Object allProjects = holdingTT.addItem(new Object[] { "Test", "GOOG",
-				new BigDecimal(90), new Integer(9), new BigDecimal(90),
-				new BigDecimal(90), new BigDecimal(90), new BigDecimal(90),
-				new BigDecimal(90) }, null);
-		TabSheet tabSheet = new TabSheet();
-		tabSheet.setSizeFull();
-		contentPane.setSecondComponent(tabSheet);
-
-		VerticalLayout bottomLayount = new VerticalLayout();
-		bottomLayount.setSpacing(true);
-
-		Panel bottom = new Panel(bottomLayount);
-		final Drawer drawer = new Drawer("Add Transaction", bottom);
-		// Drawer is designed to work best with explicitly defined widths.
-		drawer.setWidth("100%");
-		contentPaneSearchSection.addComponent(drawer);
-		HorizontalLayout addNewTransactionLayout = new HorizontalLayout();
-		bottom.addComponent(addNewTransactionLayout);
-		// contentPaneSearchSection.addComponent(bottom);
-		addNewTransactionLayout.setSpacing(true);
-		ComboBox type = new ComboBox("Type");
-		addNewTransactionLayout.addComponent(type);
-
-		PopupDateField date = new PopupDateField("Date");
-		addNewTransactionLayout.addComponent(date);
-
-		TextField share = new TextField("Share");
-		addNewTransactionLayout.addComponent(share);
-
-		TextField price = new TextField("price");
-		addNewTransactionLayout.addComponent(price);
-
-		bottom.addComponent(new Button("Add to portfolio"));
 
 		{
 			AnnotatedTimeLine atl = new AnnotatedTimeLine();

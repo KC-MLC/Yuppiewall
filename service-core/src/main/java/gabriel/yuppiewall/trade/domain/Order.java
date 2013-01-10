@@ -79,6 +79,20 @@ public class Order implements Serializable {
 	private Account account;
 	private Instrument instrument;
 
+	public Order(TransactionType transactionType, Date date, Long quantity,
+			BigDecimal price, Account account, Instrument instrument) {
+		super();
+		this.transactionType = transactionType;
+		this.date = date;
+		this.quantity = quantity;
+		this.price = price;
+		this.account = account;
+		this.instrument = instrument;
+	}
+
+	public Order() {
+	}
+
 	public Date getDate() {
 		return date;
 	}

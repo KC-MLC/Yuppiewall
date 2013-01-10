@@ -31,6 +31,11 @@ public class Portfolio implements Serializable {
 		this.creationtDate = creationtDate;
 	}
 
+	public Portfolio(PrimaryPrincipal user, String portfolioName) {
+		this.user = user;
+		this.portfolioName = portfolioName;
+	}
+
 	public PrimaryPrincipal getUser() {
 		return user;
 	}

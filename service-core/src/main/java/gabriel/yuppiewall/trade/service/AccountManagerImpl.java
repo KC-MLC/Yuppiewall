@@ -33,9 +33,9 @@ public abstract class AccountManagerImpl implements AccountManager {
 				addTransaction(new Transaction(user, type,
 						order.getInstrument(), order.getDate(),
 						order.getPrice(), order.getQuantity()));
-
-				getPortfolioManager().attachIfNotpresent(portfolio,
-						order.getInstrument());
+				if (portfolio.getPortfolioId() != null)
+					getPortfolioManager().attachIfNotpresent(portfolio,
+							order.getInstrument());
 			} else { // TODO not supported
 				throw new IllegalArgumentException("Not implented");
 			}
@@ -44,6 +44,13 @@ public abstract class AccountManagerImpl implements AccountManager {
 			throw new IllegalArgumentException("Not implented");
 		}
 
+	}
+
+	@Override
+	public List<Instrument> getAllInstrument(PrimaryPrincipal user) {
+		// TODO not supported
+		throw new UnsupportedOperationException(
+				"Not implented:getAllInstrument");
 	}
 
 	@Override
