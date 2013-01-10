@@ -35,14 +35,14 @@ public class MarketService extends MarketServiceImpl {
 
 	@Override
 	public Date getExchangeCurrentTime(Exchange_ exchange) {
-		// TODO
-		throw new UnsupportedOperationException("getExchangeCurrentTime");
+		// TODO get exchange time zone and convert local time to that
+		return new Date();
+
 	}
 
 	@Override
 	public Exchange_ getExchange(Instrument instrument) {
-		// TODO
-		throw new UnsupportedOperationException("getExchange");
+		return marketRepository.getExchange(instrument);
 	}
 
 }

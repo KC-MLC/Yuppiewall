@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.trade.service;
 
+import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.market.service.MarketService;
@@ -13,6 +14,7 @@ import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class AccountManagerImpl implements AccountManager {
 
@@ -22,15 +24,18 @@ public abstract class AccountManagerImpl implements AccountManager {
 		MarketService ms = getMarketService();
 		Exchange_ exchange = ms.getExchange(order.getInstrument());
 		if (exchange == null)
-			throw new IllegalArgumentException("Not a valid instrument");
+			throw new InvalidParameterValueException(
+					gabriel.yuppiewall.market.domain.Instrument.class, "name",
+					"Instrument not supported");
 		Date exNow = ms.getExchangeCurrentTime(exchange);
 		if (order.getDate().before(exNow)) {
 			// this is of type just store and forget
 			// create transaction
 			TransactionType type = order.getTransactionType();
 			if (type == TransactionType.BUY) {
+				String txID = UUID.randomUUID().toString();
 				PrimaryPrincipal user = portfolio.getUser();
-				addTransaction(new Transaction(user, type,
+				addTransaction(new Transaction(txID, user, type,
 						order.getInstrument(), order.getDate(),
 						order.getPrice(), order.getQuantity()));
 				if (portfolio.getPortfolioId() != null)

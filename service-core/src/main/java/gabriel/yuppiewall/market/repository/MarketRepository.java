@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.market.repository;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.market.domain.TradeDay_;
 
@@ -18,5 +19,7 @@ public interface MarketRepository {
 	void incrementTradeDay(Date date, Exchange_ exchange);
 
 	TradeDay_ findTradeDayBefore(TradeDay_ td);
+
+	Exchange_ getExchange(Instrument instrument);
 
 }

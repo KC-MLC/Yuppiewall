@@ -2,6 +2,11 @@ package gabriel.yuppiewall.vaadin.application.scanner;
 
 import gabriel.yuppiewall.vaadin.application.Application;
 
+import java.io.Serializable;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComponentContainer;
@@ -13,7 +18,10 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 
 @SuppressWarnings("serial")
-public class ScannerApplication implements Application<ComponentContainer> {
+@Component
+@Scope("prototype")
+public class ScannerApplication implements Application<ComponentContainer>,
+		Serializable {
 
 	public ScannerApplication() {
 

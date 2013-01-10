@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("accountManager")
-public class AccountManagerService extends AccountManagerImpl {
+public class SpringAccountManager extends AccountManagerImpl {
 
 	@Autowired
 	private PortfolioService portfolioService;
+
+	@Autowired
+	private TransactionService transactionService;
+	@Autowired
+	private MarketService marketService;
 
 	@Override
 	protected PortfolioService getPortfolioManager() {
@@ -21,14 +26,12 @@ public class AccountManagerService extends AccountManagerImpl {
 
 	@Override
 	protected TransactionService getTransactionService() {
-		// TODO Auto-generated method stub
-		return null;
+		return transactionService;
 	}
 
 	@Override
 	protected MarketService getMarketService() {
-		// TODO Auto-generated method stub
-		return null;
+		return marketService;
 	}
 
 }

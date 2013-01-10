@@ -44,4 +44,8 @@ public class BusinessException extends RuntimeException {
 		this.cozId = cozId;
 		this.message = message;
 	}
+
+	public String getMessage() {
+		return message;
+	}
 }

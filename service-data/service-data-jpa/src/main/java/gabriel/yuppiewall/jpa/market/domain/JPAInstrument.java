@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.jpa.market.domain;
 
-import gabriel.yuppiewall.market.domain.Symbol;
+import gabriel.yuppiewall.market.domain.Instrument;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "symbol")
-public class JPASymbol implements Serializable {
+public class JPAInstrument implements Serializable {
 
 	@Id
 	@Column(name = "symbol_code")
@@ -37,18 +37,22 @@ public class JPASymbol implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 
-	public JPASymbol() {
+	public JPAInstrument() {
 
 	}
 
-	public JPASymbol(Symbol e) {
+	public JPAInstrument(Instrument e) {
 		this.name = e.getName();
 		this.exchange = new JPAExchange(e.getExchange());
 		this.startDate = e.getStartDate();
 		this.endDate = e.getEndDate();
 	}
 
-	public Symbol getSymbol() {
-		return new Symbol(name, exchange.getExchange(), startDate, endDate);
+	public JPAInstrument(String symbol) {
+		this.name = symbol;
+	}
+
+	public Instrument getSymbol() {
+		return new Instrument(name, exchange.getExchange(), startDate, endDate);
 	}
 }

@@ -1,21 +1,25 @@
 package gabriel.yuppiewall.market.domain;
 
+import gabriel.yuppiewall.common.meta.FieldDef;
+
 import java.io.Serializable;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class Symbol implements Serializable {
+public class Instrument implements Serializable {
 
+	@FieldDef(field = "Instrument", notnull = true)
 	private String name;
 	private Exchange_ exchange;
 
 	private Date startDate;
 	private Date endDate;
 
-	public Symbol() {
+	public Instrument() {
 	}
 
-	public Symbol(String name, Exchange_ exchange, Date startDate, Date endDate) {
+	public Instrument(String name, Exchange_ exchange, Date startDate,
+			Date endDate) {
 		this.name = name;
 		this.exchange = exchange;
 		this.startDate = startDate;

@@ -1,6 +1,8 @@
 package gabriel.yuppiewall.jpa.market.repository;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
+import gabriel.yuppiewall.jpa.market.domain.JPAInstrument;
 import gabriel.yuppiewall.jpa.market.domain.JPATradeDay;
 import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.market.domain.TradeDay_;
@@ -17,6 +19,9 @@ public class JPAMarketRepository implements MarketRepository {
 
 	@Autowired
 	private TradeDayRepository tradeDayRepository;
+
+	@Autowired
+	private InstrumentRepository instrumentRepository;
 
 	@Override
 	public Date getTradingDate(Exchange_ exchange, Date toDate, int days) {
@@ -59,7 +64,17 @@ public class JPAMarketRepository implements MarketRepository {
 		JPATradeDay td = tradeDayRepository.findLastTradeDayBeforeDate(
 				td_.getDate(), new JPAExchange(td_.getExchange()));
 		return (td == null/* Beginning of time */) ? new TradeDay_(
-				td_.getExchange(), td_.getDate(), 0) : new TradeDay_(td_.getExchange(),
-				td.getDate(), td.getBusinessday());
+				td_.getExchange(), td_.getDate(), 0) : new TradeDay_(
+				td_.getExchange(), td.getDate(), td.getBusinessday());
+	}
+
+	@Override
+	public Exchange_ getExchange(Instrument instrument) {
+
+		JPAExchange ex = instrumentRepository
+				.getExchangeByInstrument(new JPAInstrument(instrument
+						.getSymbol()));
+		return (ex == null) ? null : ex.getExchange();
+
 	}
 }

@@ -21,8 +21,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 @SuppressWarnings("serial")
-//@Component("yuppiewallShell")
-//@Scope("prototype")
+@Component("yuppiewallShell")
+@Scope("prototype")
 public class YuppiewallShell extends Window {
 
 	private VerticalLayout sideBarMenu;
@@ -32,8 +32,12 @@ public class YuppiewallShell extends Window {
 
 	private static final String THEME_NAME = "wall-midnight";
 
-	//@PostConstruct
 	public YuppiewallShell() {
+	}
+
+	// @PostConstruct
+	public void init() {
+
 		setCaption(WINDOW_TITLE);
 		setName(WINDOW_TITLE);
 		setTheme(THEME_NAME);

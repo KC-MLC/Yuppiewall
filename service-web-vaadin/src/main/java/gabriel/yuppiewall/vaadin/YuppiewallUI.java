@@ -2,11 +2,10 @@ package gabriel.yuppiewall.vaadin;
 
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.application.ApplicationService;
-import gabriel.yuppiewall.vaadin.application.portfolio.PortfolioApplication;
-import gabriel.yuppiewall.vaadin.application.scanner.ScannerApplication;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -20,6 +19,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.google.common.eventbus.EventBus;
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
 import com.vaadin.ui.Window;
@@ -36,7 +36,9 @@ public class YuppiewallUI extends Application implements Window.CloseListener,
 
 	private static ThreadLocal<YuppiewallUI> MAIN = new ThreadLocal<YuppiewallUI>();
 
+	@Autowired
 	public YuppiewallShell uiController;
+
 	private transient HttpSession session;
 
 	@Autowired
@@ -53,6 +55,9 @@ public class YuppiewallUI extends Application implements Window.CloseListener,
 			"khushboo.choudhary@gmail.com");
 
 	private Map<String, Serializable> appData = new HashMap<>();
+
+	@Autowired
+	private EventBus bus;
 
 	// @PostConstruct
 	@Override
@@ -73,15 +78,27 @@ public class YuppiewallUI extends Application implements Window.CloseListener,
 
 		}
 		{
+			@SuppressWarnings("rawtypes")
+			Map<String, gabriel.yuppiewall.vaadin.application.Application> beans = context
+					.getBeansOfType(gabriel.yuppiewall.vaadin.application.Application.class);
+			for (Iterator<String> iterator = beans.keySet().iterator(); iterator
+					.hasNext();) {
+				String beanName = iterator.next();
+
+				applicationService.registerApplication(beans.get(beanName));
+			}
 			/** TODO REMOVE REGISTER MODULE THIS SHOULD BE VIA SPRING **/
-			applicationService.registerApplication(new ScannerApplication());
-			applicationService.registerApplication(new PortfolioApplication());
+			/*
+			 * applicationService.registerApplication(new ScannerApplication());
+			 * applicationService.registerApplication(new
+			 * PortfolioApplication());
+			 */
 			appData.put("user", user);
 		}
 
 		setInstance(this);
-		uiController = new YuppiewallShell();
-
+		// uiController = new YuppiewallShell();
+		uiController.init();
 		setMainWindow(uiController);
 
 	}
@@ -144,7 +161,7 @@ public class YuppiewallUI extends Application implements Window.CloseListener,
 
 		uiController.removeAllComponents();
 		try {
-			session.invalidate();
+			// session.invalidate();
 		} catch (java.lang.IllegalStateException ignore) {
 
 		}

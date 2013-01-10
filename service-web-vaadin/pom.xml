@@ -153,8 +153,8 @@
 			<artifactId>service-core-spring</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<!-- TODO REMOVE THAT-->
-	
+		<!-- TODO REMOVE THAT -->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -186,6 +186,11 @@
 			<groupId>org.vaadin.addons</groupId>
 			<artifactId>drawer</artifactId>
 			<version>1.1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>refresher</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 
 		<dependency>

@@ -5,7 +5,10 @@ import gabriel.yuppiewall.trade.service.PortfolioService;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.YuppiewallUI;
 
+import java.io.Serializable;
 import java.util.Arrays;
+
+import org.springframework.context.annotation.Scope;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
@@ -14,6 +17,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.DefaultFieldFactory;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.Form;
@@ -23,11 +27,19 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.BaseTheme;
 
 @SuppressWarnings("serial")
-public class AddNewPortfolioViewImpl extends VerticalLayout {
+@org.springframework.stereotype.Component
+@Scope("prototype")
+public class AddNewPortfolioViewImpl implements Serializable{
+
+	private VerticalLayout rootLayout;
 
 	public AddNewPortfolioViewImpl() {
-		setMargin(true);
-		setSpacing(true);
+	}
+
+	public void init() {
+		rootLayout = new VerticalLayout();
+		rootLayout.setMargin(true);
+		rootLayout.setSpacing(true);
 		Portfolio portfolio = new Portfolio();
 		BeanItem<Portfolio> personItem = new BeanItem<Portfolio>(portfolio);
 
@@ -48,7 +60,7 @@ public class AddNewPortfolioViewImpl extends VerticalLayout {
 				.asList(new String[] { "portfolioName" }));
 
 		// Add form to layout
-		addComponent(portfolioForm);
+		rootLayout.addComponent(portfolioForm);
 
 		// The cancel / apply buttons
 		HorizontalLayout buttons = new HorizontalLayout();
@@ -66,7 +78,7 @@ public class AddNewPortfolioViewImpl extends VerticalLayout {
 		Button apply = new Button("Apply", new Button.ClickListener() {
 			public void buttonClick(ClickEvent event) {
 				try {
-					//portfolioForm.commit();
+					// portfolioForm.commit();
 					PortfolioService ps = YuppiewallUI.getInstance()
 							.getService("portfolioService");
 
@@ -110,6 +122,10 @@ public class AddNewPortfolioViewImpl extends VerticalLayout {
 			return f;
 		}
 
+	}
+
+	public ComponentContainer getView() {
+		return rootLayout;
 	}
 
 }

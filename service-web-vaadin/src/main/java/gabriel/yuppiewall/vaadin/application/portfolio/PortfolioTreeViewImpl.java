@@ -3,10 +3,17 @@ package gabriel.yuppiewall.vaadin.application.portfolio;
 import gabriel.yuppiewall.trade.domain.Portfolio;
 import gabriel.yuppiewall.vaadin.YuppiewallUI;
 
+import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+
+import com.google.common.eventbus.EventBus;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.HierarchicalContainer;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.Button;
@@ -19,22 +26,32 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.BaseTheme;
 
 @SuppressWarnings("serial")
-public class PortfolioTreeViewImpl extends VerticalLayout implements
-		PortfolioTreeView {
-
+@org.springframework.stereotype.Component
+@Scope("prototype")
+public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
+	VerticalLayout rootlayout;
 	private HierarchicalContainer portfolioContainer;
 
 	private int portfolioCount;
-
 	private Item allHolding;
 	private Window addNewPortfolio;
+
+	@Autowired
+	private EventBus eventBus;
+
+	@Autowired
+	private AddNewPortfolioViewImpl addNewPortfolioViewImpl;
 
 	private PortfolioTreeViewEvent eventHandeler = new PortfolioTreeViewPresenter();
 
 	public PortfolioTreeViewImpl() {
+	}
+
+	public void init() {
+		rootlayout = new VerticalLayout();
 		HorizontalLayout menubar = new HorizontalLayout();
 		menubar.setStyleName("small-segment");
-		addComponent(menubar);
+		rootlayout.addComponent(menubar);
 
 		Button addNewPortfolio = new Button("add");
 		addNewPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
@@ -69,11 +86,25 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 		menubar.addComponent(deletePortfolio);
 
 		Tree portfolioTree = new Tree("Portfolio");
-		addComponent(portfolioTree);
+		portfolioTree.setImmediate(true);
+		rootlayout.addComponent(portfolioTree);
+		portfolioTree.addListener(new ItemClickListener() {
 
+			@Override
+			public void itemClick(ItemClickEvent event) {
+				{
+					System.out.println("Double clicked!");
+					Portfolio folio = (Portfolio) event.getItem()
+							.getItemProperty(PORTFOLIO_PROPERTY_VALUE)
+							.getValue();
+					eventBus.post(new PortfolioSelectedEvent(folio));
+				}
+
+			}
+		});
 		portfolioContainer = new HierarchicalContainer();
 		portfolioTree.setContainerDataSource(portfolioContainer);
-		addComponent(portfolioTree);
+		rootlayout.addComponent(portfolioTree);
 		// Create containerproperty for name
 		portfolioContainer.addContainerProperty(PORTFOLIO_PROPERTY_VALUE,
 				Portfolio.class, null);
@@ -104,14 +135,15 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 			addNewPortfolio.setModal(true);
 			// addNewPortfolio.setStyleName(")
 			// AddNewPortfolioViewImpl
+			addNewPortfolioViewImpl.init();
 		}
 		if (addNewPortfolio.getParent() != null) {
 			// window is already showing
-			getWindow().showNotification("Window is already open");
+			// getWindow().showNotification("Window is already open");
 		} else {
 			// Open the subwindow by adding it to the parent
 			// window
-			addNewPortfolio.setContent(new AddNewPortfolioViewImpl());
+			addNewPortfolio.setContent(addNewPortfolioViewImpl.getView());
 			YuppiewallUI.getInstance().uiController.getWindow().addWindow(
 					addNewPortfolio);
 			addNewPortfolio.center();
@@ -122,6 +154,7 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 
 	private void addRoot() {
 		// Add root
+		portfolioCount = 0;
 		allHolding = portfolioContainer.addItem(portfolioCount);
 		Portfolio all = new Portfolio(null, "all", "My Holding", null);
 		allHolding.getItemProperty(PORTFOLIO_PROPERTY_NAME).setValue(
@@ -142,7 +175,7 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 			item.getItemProperty(PORTFOLIO_PROPERTY_NAME).setValue(
 					portfolio.toString());
 			item.getItemProperty(PORTFOLIO_PROPERTY_VALUE).setValue(portfolio);
-			portfolioContainer.setParent(0, portfolioCount);
+			portfolioContainer.setParent(portfolioCount, 0);
 			portfolioContainer.setChildrenAllowed(portfolioCount, false);
 			portfolioCount += 1;
 		}
@@ -151,6 +184,9 @@ public class PortfolioTreeViewImpl extends VerticalLayout implements
 	@Override
 	public void addListener(PortfolioTreeViewEvent eventHandeler) {
 		this.eventHandeler = eventHandeler;
+	}
 
+	public com.vaadin.ui.Component getRoot() {
+		return rootlayout;
 	}
 }

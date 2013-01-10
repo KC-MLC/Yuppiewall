@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.jpa.trade.repository;
 
-import gabriel.yuppiewall.jpa.trade.domain.JPAPortfolio;
+import gabriel.yuppiewall.jpa.trade.domain.JPATransaction;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

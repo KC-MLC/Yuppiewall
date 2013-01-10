@@ -7,6 +7,6 @@
 	<context:component-scan base-package="gabriel.yuppiewall.vaadin" />
 
 	<bean id="applicationContextProvider" class="gabriel.yuppiewall.vaadin.ApplicationContextProvider"></bean>
-
+	<bean id="eventBus" class="com.google.common.eventbus.EventBus" />
 
 </beans>

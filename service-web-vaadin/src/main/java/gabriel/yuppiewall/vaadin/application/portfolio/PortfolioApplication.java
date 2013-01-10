@@ -2,32 +2,29 @@ package gabriel.yuppiewall.vaadin.application.portfolio;
 
 import gabriel.yuppiewall.vaadin.application.Application;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-import org.vaadin.henrik.drawer.Drawer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.vaadin.vaadinvisualizations.AnnotatedTimeLine;
 import org.vaadin.vaadinvisualizations.AnnotatedTimeLineEntry;
 
 import com.vaadin.terminal.Sizeable;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.PopupDateField;
-import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
-import com.vaadin.ui.themes.BaseTheme;
 
 @SuppressWarnings("serial")
-public class PortfolioApplication implements Application<ComponentContainer> {
+@Component
+@Scope("prototype")
+public class PortfolioApplication implements Application<ComponentContainer>,
+		Serializable {
 
 	public PortfolioApplication() {
 
@@ -35,6 +32,10 @@ public class PortfolioApplication implements Application<ComponentContainer> {
 
 	public boolean initialize;
 	private VerticalLayout applicationUI;
+	@Autowired
+	private TransactionViewImpl contentPaneSearchSection;
+	@Autowired
+	private PortfolioTreeViewImpl portfolioTreeView;
 
 	@Override
 	public void initialize() {
@@ -52,9 +53,8 @@ public class PortfolioApplication implements Application<ComponentContainer> {
 		VerticalSplitPanel navBar = new VerticalSplitPanel();
 		hsp.setFirstComponent(navBar);
 
-		PortfolioTreeViewImpl portfolioTreeView = new PortfolioTreeViewImpl();
-
-		navBar.setFirstComponent(portfolioTreeView);
+		portfolioTreeView.init();
+		navBar.setFirstComponent(portfolioTreeView.getRoot());
 		navBar.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 
 		{// RSS feed reader
@@ -198,8 +198,8 @@ public class PortfolioApplication implements Application<ComponentContainer> {
 		VerticalSplitPanel contentPane = new VerticalSplitPanel();
 		contentPane.setSplitPosition(70, Sizeable.UNITS_PERCENTAGE);
 		hsp.setSecondComponent(contentPane);
-		TransactionViewImpl contentPaneSearchSection = new TransactionViewImpl();
-		contentPane.setFirstComponent(contentPaneSearchSection);
+		contentPaneSearchSection.init();
+		contentPane.setFirstComponent(contentPaneSearchSection.getRoot());
 
 		{
 			AnnotatedTimeLine atl = new AnnotatedTimeLine();
