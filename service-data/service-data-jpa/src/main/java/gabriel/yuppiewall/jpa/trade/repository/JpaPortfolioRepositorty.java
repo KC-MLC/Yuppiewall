@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.jpa.trade.repository;
 
+import gabriel.yuppiewall.instrument.domain.GenaricInstrument;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.er.EntityRelation;
 import gabriel.yuppiewall.jpa.er.EntityRelationRepository;
@@ -65,19 +66,17 @@ public class JpaPortfolioRepositorty implements
 	@Override
 	public List<Instrument> getPortfolioInstrument(Portfolio portfolio) {
 		List<EntityRelation> instruments = entityRelationRepository
-				.getEntityRHSID(portfolio.getPortfolioId(),
+				.getEntityRHSId(portfolio.getPortfolioId(),
 						JPAPortfolio.REL_HAS_INSTRUMENT);
 
 		if (instruments.size() == 0)
 			return new ArrayList<>();
 		// else
 		List<Instrument> retvalue = new ArrayList<>(instruments.size());
-		// TODO
-		throw new UnsupportedOperationException(
-				"method not implemented getPortfolioInstrument");
-		/*
-		 * for (EntityRelation entityRelation : instruments) { retvalue.add(); }
-		 */
+		for (EntityRelation er : instruments) {
+			retvalue.add(new GenaricInstrument(er.getEntityIdRHS()));
+		}
+		return retvalue;
 
 	}
 }

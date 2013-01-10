@@ -5,8 +5,6 @@ import gabriel.yuppiewall.vaadin.application.ApplicationService;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

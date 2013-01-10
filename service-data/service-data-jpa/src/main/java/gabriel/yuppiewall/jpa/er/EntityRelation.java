@@ -15,9 +15,9 @@ import javax.persistence.Table;
 public class EntityRelation implements Serializable {
 
 	@Column(name = "entity_lhs", nullable = false, insertable = true)
-	private String entityIDLHS;
+	private String entityIdLHS;
 	@Column(name = "entity_rhs", nullable = false, insertable = true)
-	private String entityIDRHS;
+	private String entityIdRHS;
 	@Id
 	@Column(name = "relationship_id")
 	private String relationshipID;
@@ -31,12 +31,20 @@ public class EntityRelation implements Serializable {
 
 	public EntityRelation(String entityIDLHS, String entityIDRHS,
 			String relationshipType) {
-		this.entityIDLHS = entityIDLHS;
-		this.entityIDRHS = entityIDRHS;
+		this.entityIdLHS = entityIDLHS;
+		this.entityIdRHS = entityIDRHS;
 		this.relationshipType = relationshipType;
 		this.createdDate = new Date();
 		this.relationshipID = UUID.randomUUID().toString();
 
+	}
+
+	public String getEntityIdLHS() {
+		return entityIdLHS;
+	}
+
+	public String getEntityIdRHS() {
+		return entityIdRHS;
 	}
 
 }

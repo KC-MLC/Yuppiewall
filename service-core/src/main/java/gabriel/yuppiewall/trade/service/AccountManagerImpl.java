@@ -62,11 +62,18 @@ public abstract class AccountManagerImpl implements AccountManager {
 	public List<Transaction> getTransactions(Portfolio portfolio) {
 
 		// nothing to do as all merging and grouping will be done by view
+		if (portfolio.getPortfolioId() == null) {
+			// return all holding data
+			// TODO is this needed
+			return getTransactionService().getTransactionDetails(
+					portfolio.getUser());
+		}
 		List<Instrument> instruments = getPortfolioManager()
 				.getPortfolioInstrument(portfolio);
 		if (instruments.size() == 0)
 			return new ArrayList<>();
-		return getTransactionService().getTransactionDetails(instruments);
+		return getTransactionService().getTransactionDetails(
+				portfolio.getUser(), instruments);
 	}
 
 	protected abstract PortfolioService getPortfolioManager();

@@ -13,13 +13,13 @@ public interface EntityRelationRepository extends
 		JpaSpecificationExecutor<EntityRelation>,
 		JpaRepository<EntityRelation, String> {
 
-	@Query(value = "select case when (count(er) > 0)  then true else false end from EntityRelation er where er.entityIDLHS = :lhsID and er.entityIDRHS = :rhsID and er.relationshipType=:relationshipType")
-	boolean doesRelationExist(@Param("lhsID") String lhsID,
-			@Param("rhsID") String rhsID,
+	@Query(value = "select case when (count(er) > 0)  then true else false end from EntityRelation er where er.entityIdLHS = :lhsId and er.entityIdRHS = :rhsId and er.relationshipType=:relationshipType")
+	boolean doesRelationExist(@Param("lhsId") String lhsId,
+			@Param("rhsId") String rhsId,
 			@Param("relationshipType") String relationshipType);
 	
-	@Query(value = "select er from EntityRelation er where er.entityIDLHS = :lhsID and er.relationshipType=:relationshipType")
-	List<EntityRelation> getEntityRHSID(@Param("lhsID") String lhsID,
+	@Query(value = "select er from EntityRelation er where er.entityIdLHS = :lhsId and er.relationshipType=:relationshipType")
+	List<EntityRelation> getEntityRHSId(@Param("lhsId") String lhsId,
 			@Param("relationshipType") String relationshipType);
 
 }

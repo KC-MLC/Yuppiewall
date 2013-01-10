@@ -1,7 +1,10 @@
 package gabriel.yuppiewall.jpa.trade.domain;
 
+import gabriel.yuppiewall.instrument.domain.GenaricInstrument;
 import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
+import gabriel.yuppiewall.trade.domain.Order.TransactionType;
 import gabriel.yuppiewall.trade.domain.Transaction;
+import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -54,5 +57,12 @@ public class JPATransaction implements Serializable {
 		price = transaction.getPrice();
 		quantity = transaction.getQuantity();
 		txType = transaction.getType().getCode();
+	}
+
+	public Transaction getTransaction(PrimaryPrincipal user) {
+
+		return new Transaction(transactionId, user,
+				TransactionType.getType(txType), new GenaricInstrument(symbol),
+				dateOfExecution, price, quantity);
 	}
 }

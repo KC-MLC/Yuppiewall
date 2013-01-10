@@ -1,6 +1,7 @@
 package gabriel.yuppiewall.vaadin.application.portfolio;
 
 import gabriel.yuppiewall.trade.domain.Portfolio;
+import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.YuppiewallUI;
 
 import java.io.Serializable;
@@ -156,7 +157,9 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 		// Add root
 		portfolioCount = 0;
 		allHolding = portfolioContainer.addItem(portfolioCount);
-		Portfolio all = new Portfolio(null, "all", "My Holding", null);
+		Portfolio all = new Portfolio((PrimaryPrincipal) YuppiewallUI
+				.getInstance().getApplicationData("user"), null, "My Holding",
+				null);
 		allHolding.getItemProperty(PORTFOLIO_PROPERTY_NAME).setValue(
 				all.toString());
 		allHolding.getItemProperty(PORTFOLIO_PROPERTY_VALUE).setValue(all);
