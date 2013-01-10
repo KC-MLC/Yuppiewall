@@ -1,9 +1,12 @@
 package gabriel.yuppiewall.vaadin.application.portfolio;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.trade.domain.Portfolio;
+import gabriel.yuppiewall.trade.service.AccountManager;
+import gabriel.yuppiewall.trade.service.PortfolioService;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.YuppiewallUI;
-import gabriel.yuppiewall.vaadin.application.portfolio.TransactionViewImpl.PortfolioChangeRecorder;
+import gabriel.yuppiewall.vaadin.application.SubComponentView;
 
 import java.io.Serializable;
 import java.util.List;
@@ -38,6 +41,9 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 	private int portfolioCount;
 	private Item allHolding;
 	private Window addNewPortfolio;
+	private Window editPortfolio;
+
+	private Portfolio selectedPortfolio;
 
 	@Autowired
 	private EventBus eventBus;
@@ -54,6 +60,8 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 
 	@Autowired
 	private AddNewPortfolioViewImpl addNewPortfolioViewImpl;
+	@Autowired
+	private EditPortfolioViewImpl editPortfolioViewImpl;
 
 	private PortfolioTreeViewEvent eventHandeler = new PortfolioTreeViewPresenter();
 
@@ -67,31 +75,52 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 		menubar.setStyleName("small-segment");
 		rootlayout.addComponent(menubar);
 
-		Button addNewPortfolio = new Button("add");
-		addNewPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
-		addNewPortfolio.setDescription("add new Portfolio");
-		addNewPortfolio.setIcon(new ThemeResource(
+		final Button addNewPortfolioButton = new Button("add");
+		addNewPortfolioButton.setStyleName(BaseTheme.BUTTON_LINK);
+		addNewPortfolioButton.setDescription("add new Portfolio");
+		addNewPortfolioButton.setIcon(new ThemeResource(
 				"../runo/icons/16/document-add.png"));
 
-		addNewPortfolio.addListener(new ClickListener() {
+		addNewPortfolioButton.addListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				openAddNewPortfolioWindow();
-
+				// openAddNewPortfolioWindow();
+				addNewPortfolio = openWindow(addNewPortfolio,
+						"Create New Portfolio", addNewPortfolioViewImpl);
 			}
 		});
 
-		menubar.addComponent(addNewPortfolio);
-		Button editPortfolio = new Button("edit");
-		editPortfolio.setStyleName(BaseTheme.BUTTON_LINK);
-		editPortfolio.setDescription("Edit Portfolio");
-		editPortfolio
-				.setIcon(new ThemeResource("../runo/icons/16/document.png"));
+		menubar.addComponent(addNewPortfolioButton);
+		final Button editPortfolioWindow = new Button("edit");
+		editPortfolioWindow.setStyleName(BaseTheme.BUTTON_LINK);
+		editPortfolioWindow.setDescription("Edit Portfolio");
+		editPortfolioWindow.setIcon(new ThemeResource(
+				"../runo/icons/16/document.png"));
+		editPortfolioWindow.addListener(new ClickListener() {
 
-		menubar.addComponent(editPortfolio);
-		editPortfolio.setEnabled(false);
-		Button deletePortfolio = new Button("delete");
+			@Override
+			public void buttonClick(ClickEvent event) {
+				editPortfolio = openWindow(editPortfolio, "Edit Portfolio",
+						editPortfolioViewImpl);
+
+				PortfolioService ps = YuppiewallUI.getInstance().getService(
+						"portfolioService");
+				AccountManager accountManager = YuppiewallUI.getInstance()
+						.getService("accountManager");
+				List<Instrument> selectedHolding = ps
+						.getPortfolioInstrument(selectedPortfolio);
+				List<Instrument> allHoldingList = accountManager
+						.getAllInstrument((PrimaryPrincipal) YuppiewallUI
+								.getInstance().getApplicationData("user"));
+				editPortfolioViewImpl.loadData(selectedPortfolio,
+						allHoldingList, selectedHolding);
+
+			}
+		});
+		menubar.addComponent(editPortfolioWindow);
+		editPortfolioWindow.setEnabled(false);
+		final Button deletePortfolio = new Button("delete");
 		deletePortfolio.setStyleName(BaseTheme.BUTTON_LINK);
 		deletePortfolio.setDescription("Delete Portfolio");
 		deletePortfolio.setIcon(new ThemeResource(
@@ -110,7 +139,18 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 					Portfolio folio = (Portfolio) event.getItem()
 							.getItemProperty(PORTFOLIO_PROPERTY_VALUE)
 							.getValue();
-					eventBus.post(new PortfolioSelectedEvent(folio));
+					selectedPortfolio = folio;
+					// make edit selected if
+					if (folio.getPortfolioId() != null) {
+						editPortfolioWindow.setEnabled(true);
+						deletePortfolio.setEnabled(true);
+					} else {
+						editPortfolioWindow.setEnabled(false);
+						deletePortfolio.setEnabled(false);
+
+					}
+
+					eventBus.post(new PortfolioSelectedEvent(selectedPortfolio));
 				}
 
 			}
@@ -141,28 +181,30 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 
 	}
 
-	private void openAddNewPortfolioWindow() {
-		if (addNewPortfolio == null) {
-			addNewPortfolio = new Window("Add New Portfolio");
+	private Window openWindow(Window window, String caption,
+			SubComponentView view) {
+		if (window == null) {
+			window = new Window(caption);
 			// ...and make it modal
-			addNewPortfolio.setModal(true);
+			window.setModal(true);
 
 			// addNewPortfolio.setStyleName(")
 			// AddNewPortfolioViewImpl
-			addNewPortfolioViewImpl.init();
-			addNewPortfolioViewImpl.getView().setSizeUndefined();
+			view.init();
+			view.getView().setSizeUndefined();
 		}
-		if (addNewPortfolio.getParent() != null) {
+		if (window.getParent() != null) {
 			// window is already showing
 			// getWindow().showNotification("Window is already open");
 		} else {
 			// Open the subwindow by adding it to the parent
 			// window
-			addNewPortfolio.setContent(addNewPortfolioViewImpl.getView());
+			window.setContent(view.getView());
 			YuppiewallUI.getInstance().uiController.getWindow().addWindow(
-					addNewPortfolio);
-			addNewPortfolio.center();
+					window);
+			window.center();
 		}
+		return window;
 
 	}
 

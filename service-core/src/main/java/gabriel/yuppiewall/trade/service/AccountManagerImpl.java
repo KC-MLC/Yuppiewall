@@ -13,7 +13,9 @@ import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public abstract class AccountManagerImpl implements AccountManager {
@@ -53,9 +55,16 @@ public abstract class AccountManagerImpl implements AccountManager {
 
 	@Override
 	public List<Instrument> getAllInstrument(PrimaryPrincipal user) {
-		// TODO not supported
-		throw new UnsupportedOperationException(
-				"Not implented:getAllInstrument");
+		List<Instrument> retValue = new ArrayList<>();
+
+		List<Transaction> txList = getTransactionService()
+				.getTransactionDetails(user);
+		Set<Instrument> dupList = new HashSet<>();
+		for (Transaction transaction : txList) {
+			if (dupList.add(transaction.getInstrument()))
+				retValue.add(transaction.getInstrument());
+		}
+		return retValue;
 	}
 
 	@Override

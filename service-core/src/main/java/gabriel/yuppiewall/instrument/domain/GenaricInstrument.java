@@ -41,4 +41,8 @@ public class GenaricInstrument implements Instrument {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return symbol;
+	}
 }
