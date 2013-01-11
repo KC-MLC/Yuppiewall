@@ -2,13 +2,9 @@ package gabriel.yuppiewall.feed.news;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.net.ProxySelector;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.stream.XMLEventReader;
@@ -26,8 +22,10 @@ public class RSSFeedParser {
 	static {
 		System.setProperty("java.net.useSystemProxies", "true");
 		SYSTEM_PROXY = Proxy.NO_PROXY;
-		/*SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
-				"43.80.41.41", 8080));*/
+		/*
+		 * SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
+		 * "43.80.41.41", 8080));
+		 */
 
 	}
 
@@ -59,8 +57,8 @@ public class RSSFeedParser {
 						continue;
 					if (event.asStartElement().getName().getLocalPart() == (TITLE)) {
 						event = eventReader.nextEvent();
-						//String title = event.asCharacters().getData();
-						String title =readHtml(eventReader, event);
+						// String title = event.asCharacters().getData();
+						String title = readHtml(eventReader, event);
 						feed.setTitle(title);
 						continue;
 					}

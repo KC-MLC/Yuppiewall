@@ -43,8 +43,9 @@ public class PortfolioApplication implements Application<ComponentContainer>,
 		// setMargin(true);
 		// setSpacing(true);
 		// make it fill the whole window
-		if (initialize)
+		if (initialize) {
 			return;
+		}
 		applicationUI = new VerticalLayout();
 		applicationUI.setSizeFull();
 		HorizontalSplitPanel hsp = new HorizontalSplitPanel();
@@ -169,5 +170,13 @@ public class PortfolioApplication implements Application<ComponentContainer>,
 	@Override
 	public String getThumbnail() {
 		return "../wall-midnight/icons/portfolio.png";
+	}
+
+	@Override
+	public void onLoad() {
+		contentPaneSearchSection.onLoad();
+		portfolioTreeView.onLoad();
+		newsReaperView.onLoad();
+
 	}
 }

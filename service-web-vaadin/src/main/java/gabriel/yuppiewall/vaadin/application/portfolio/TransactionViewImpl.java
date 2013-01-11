@@ -295,6 +295,10 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 
 	}
 
+	public void onLoad() {
+
+	}
+
 	private void setTypeContainer(IndexedContainer container, String name,
 			TransactionType type) {
 

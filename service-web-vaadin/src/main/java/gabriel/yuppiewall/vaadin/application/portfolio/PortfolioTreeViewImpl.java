@@ -64,6 +64,8 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 	private EditPortfolioViewImpl editPortfolioViewImpl;
 
 	private PortfolioTreeViewEvent eventHandeler = new PortfolioTreeViewPresenter();
+	private Portfolio rootNode;
+	private Tree portfolioTree;
 
 	public PortfolioTreeViewImpl() {
 	}
@@ -128,7 +130,7 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 		deletePortfolio.setEnabled(false);
 		menubar.addComponent(deletePortfolio);
 
-		Tree portfolioTree = new Tree("Portfolio");
+		portfolioTree = new Tree("Portfolio");
 		portfolioTree.setImmediate(true);
 		rootlayout.addComponent(portfolioTree);
 		portfolioTree.addListener(new ItemClickListener() {
@@ -177,8 +179,18 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 		portfolioTree
 				.setItemCaptionMode(AbstractSelect.ITEM_CAPTION_MODE_PROPERTY);
 
-		updateTree();
+	}
 
+	public void onLoad() {
+		updateTree();
+		portfolioTree.expandItemsRecursively(0);
+
+		if (selectedPortfolio == null) {
+			// fire set selected on tree root
+			portfolioTree.select(0);
+			selectedPortfolio = rootNode;
+			eventBus.post(new PortfolioSelectedEvent(selectedPortfolio));
+		}
 	}
 
 	private Window openWindow(Window window, String caption,
@@ -212,12 +224,11 @@ public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
 		// Add root
 		portfolioCount = 0;
 		allHolding = portfolioContainer.addItem(portfolioCount);
-		Portfolio all = new Portfolio((PrimaryPrincipal) YuppiewallUI
-				.getInstance().getApplicationData("user"), null, "My Holding",
-				null);
+		rootNode = new Portfolio((PrimaryPrincipal) YuppiewallUI.getInstance()
+				.getApplicationData("user"), null, "My Holding", null);
 		allHolding.getItemProperty(PORTFOLIO_PROPERTY_NAME).setValue(
-				all.toString());
-		allHolding.getItemProperty(PORTFOLIO_PROPERTY_VALUE).setValue(all);
+				rootNode.toString());
+		allHolding.getItemProperty(PORTFOLIO_PROPERTY_VALUE).setValue(rootNode);
 
 		// Allow children
 		portfolioContainer.setChildrenAllowed(portfolioCount, true);

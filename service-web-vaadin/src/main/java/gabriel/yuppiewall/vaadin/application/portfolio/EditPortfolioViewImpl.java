@@ -87,6 +87,9 @@ public class EditPortfolioViewImpl implements Serializable, SubComponentView {
 			public void buttonClick(ClickEvent event) {
 				try {
 					errorMessage.setValue("");
+					// check if anything has changed
+					// check for name change
+
 					PortfolioService ps = YuppiewallUI.getInstance()
 							.getService("portfolioService");
 
@@ -105,6 +108,7 @@ public class EditPortfolioViewImpl implements Serializable, SubComponentView {
 				}
 			}
 		});
+		apply.setEnabled(false);
 		buttons.addComponent(apply);
 		rootLayout.addComponent(buttons);
 

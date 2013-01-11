@@ -102,4 +102,10 @@ public class ScannerApplication implements Application<ComponentContainer>,
 	public String getThumbnail() {
 		return "../wall-midnight/icons/scanericon.png";
 	}
+
+	@Override
+	public void onLoad() {
+		// TODO Auto-generated method stub
+		
+	}
 }

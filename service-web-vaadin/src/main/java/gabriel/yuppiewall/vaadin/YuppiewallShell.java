@@ -144,6 +144,7 @@ public class YuppiewallShell extends Window {
 				getWindow().addWindow(subwindow);
 				subwindow.setWidth("90%");
 				subwindow.setHeight("90%");
+				application.onLoad();
 			}
 		}
 

@@ -32,8 +32,10 @@ public class NewsReaperViewImpl implements NewsReaperView, Serializable {
 		rootlayout = new VerticalLayout();
 		rootlayout.setSpacing(true);
 
-		updateNews();
+	}
 
+	public void onLoad() {
+		updateNews();
 	}
 
 	private void updateNews() {
@@ -49,7 +51,7 @@ public class NewsReaperViewImpl implements NewsReaperView, Serializable {
 
 			Panel p = new Panel(feed.getTitle());
 			VerticalLayout layout = (VerticalLayout) p.getContent();
-			layout.setMargin(true); 
+			layout.setMargin(true);
 			rootlayout.addComponent(p);
 			Label l = new Label(feed.getDescription());
 			l.setContentMode(Label.CONTENT_XHTML);

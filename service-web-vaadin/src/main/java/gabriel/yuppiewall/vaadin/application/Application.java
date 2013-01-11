@@ -18,4 +18,6 @@ public interface Application<T> extends Serializable {
 
 	public String getThumbnail();
 
+	public void onLoad();
+
 }
