@@ -35,7 +35,7 @@ import com.vaadin.ui.themes.BaseTheme;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 public class PortfolioTreeViewImpl implements PortfolioTreeView, Serializable {
-	VerticalLayout rootlayout;
+	private VerticalLayout rootlayout;
 	private HierarchicalContainer portfolioContainer;
 
 	private int portfolioCount;
