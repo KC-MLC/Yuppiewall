@@ -24,7 +24,7 @@ public abstract class NewsReaperImpl implements NewsReaper {
 		}
 		if (keyWordList.length() == 0)
 			return feeds;
-		String csv = keyWordList.substring(0, keyWordList.length() - 2);
+		String csv = keyWordList.substring(0, keyWordList.length() - 1);
 
 		List<NewsAgency> agency = getNewsAgencies();
 		if (agency.size() == 0)

@@ -31,6 +31,7 @@ import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.AbstractSelect.Filtering;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Window.Notification;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -236,6 +237,7 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 
 		final PopupDateField date = new PopupDateField("Date");
 		addNewTransactionLayout.addComponent(date);
+		date.setResolution(PopupDateField.RESOLUTION_DAY);
 
 		final TextField share = new TextField("Symbol");
 		addNewTransactionLayout.addComponent(share);
@@ -273,6 +275,12 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 						try {
 							accountManager.placeOrder(null, selectedPortfolio,
 									order);
+							YuppiewallUI.getInstance().uiController
+									.showNotification("System Message",
+											"Transaction Advice received ",
+											Notification.TYPE_TRAY_NOTIFICATION);
+							// eventBus.post(new ReloadTransactionEvent());
+							loadGrid();
 						} catch (BusinessException exception) {
 							exception.printStackTrace();
 							errorMessage.setValue(exception.getMessage());

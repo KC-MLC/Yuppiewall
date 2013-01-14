@@ -1,9 +1,11 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
 import gabriel.yuppiewall.vaadin.application.Application;
+import gabriel.yuppiewall.vaadin.application.portfolio.TransactionViewImpl;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +28,9 @@ public class ScannerApplication implements Application<ComponentContainer>,
 	public ScannerApplication() {
 
 	}
+
+	@Autowired
+	private ScanFilterViewImpl scanFilterView;
 
 	public boolean initialize;
 	private VerticalLayout applicationUI;
@@ -50,22 +55,9 @@ public class ScannerApplication implements Application<ComponentContainer>,
 		contentPane.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
 		hsp.setSecondComponent(contentPane);
 
-		VerticalLayout contentPaneSearchSection = new VerticalLayout();
+		scanFilterView.init();
+		contentPane.setFirstComponent(scanFilterView.getRoot());
 
-		contentPaneSearchSection.setMargin(true);
-		contentPaneSearchSection.setSpacing(true);
-		contentPane.setFirstComponent(contentPaneSearchSection);
-		TextArea query = new TextArea();
-		query.setSizeFull();
-		query.setRows(5);
-		query.setImmediate(true);
-		contentPaneSearchSection.addComponent(query);
-		HorizontalLayout butBar = new HorizontalLayout();
-		butBar.setStyleName("small-segment");
-		contentPaneSearchSection.addComponent(butBar);
-		butBar.addComponent(new Button("save"));
-		butBar.addComponent(new Button("run"));
-		butBar.addComponent(new Button("validate"));
 		TabSheet tabSheet = new TabSheet();
 		tabSheet.setSizeFull();
 		contentPane.setSecondComponent(tabSheet);
@@ -106,6 +98,6 @@ public class ScannerApplication implements Application<ComponentContainer>,
 	@Override
 	public void onLoad() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
