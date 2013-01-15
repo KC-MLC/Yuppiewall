@@ -27,12 +27,10 @@ public class ScannerService extends ScannerServiceImpl {
 
 	@Override
 	@ServiceActivator
-	public List<EndOfDayData_> runScan(ScanParameter param/*
-														 * , PrimaryPrincipal
-														 * requester
-														 */) {
+	public List<EndOfDayData_> runScan(ScanParameter param,
+			PrimaryPrincipal requester) {
 		System.out.println("In SCAN SI");
-		return super.runScan(param/* , requester */);
+		return super.runScan(param, requester);
 	}
 
 	@Override

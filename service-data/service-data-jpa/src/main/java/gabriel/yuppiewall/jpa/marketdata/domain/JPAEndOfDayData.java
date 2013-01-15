@@ -1,7 +1,9 @@
 package gabriel.yuppiewall.jpa.marketdata.domain;
 
+import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,6 +19,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.springframework.data.jpa.domain.Specification;
 
 @SuppressWarnings("serial")
 @Entity
@@ -76,5 +84,26 @@ public class JPAEndOfDayData implements Serializable {
 		return new EndOfDayData_(exchange.getExchange(), symbol, date,
 				stockPriceOpen, stockPriceHigh, stockPriceLow, stockPriceClose,
 				stockVolume, stockPriceAdjClose);
+	}
+
+	static class EndOfDayDataSpecifications {
+		public static Specification<JPAEndOfDayData> searchEndOfDayData(
+				final GlobalFilter globalFilter) {
+			return new Specification<JPAEndOfDayData>() {
+				@SuppressWarnings("rawtypes")
+				public Predicate toPredicate(Root eoddata, CriteriaQuery query,
+						CriteriaBuilder builder) {
+					Predicate predicate = builder.conjunction();
+					Tupple<String, String> groupFilter = globalFilter.getGroup();
+					if(groupFilter.getKey().equals("country"))
+					{
+						
+					}
+					
+
+					return predicate;
+				}
+			};
+		}
 	}
 }

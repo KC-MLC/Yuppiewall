@@ -1,7 +1,6 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
 import gabriel.yuppiewall.vaadin.application.Application;
-import gabriel.yuppiewall.vaadin.application.portfolio.TransactionViewImpl;
 
 import java.io.Serializable;
 
@@ -10,12 +9,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.vaadin.terminal.Sizeable;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.ComponentContainer;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
-import com.vaadin.ui.TabSheet;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 
@@ -31,6 +26,8 @@ public class ScannerApplication implements Application<ComponentContainer>,
 
 	@Autowired
 	private ScanFilterViewImpl scanFilterView;
+	@Autowired
+	private ScanResultViewImpl scanResultView;
 
 	public boolean initialize;
 	private VerticalLayout applicationUI;
@@ -58,9 +55,8 @@ public class ScannerApplication implements Application<ComponentContainer>,
 		scanFilterView.init();
 		contentPane.setFirstComponent(scanFilterView.getRoot());
 
-		TabSheet tabSheet = new TabSheet();
-		tabSheet.setSizeFull();
-		contentPane.setSecondComponent(tabSheet);
+		scanResultView.init();
+		contentPane.setSecondComponent(scanResultView.getRoot());
 
 		initialize = true;
 	}

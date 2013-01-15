@@ -1,6 +1,7 @@
 package gabriel.yuppiewall.scanner.service;
 
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
+import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
@@ -9,7 +10,7 @@ import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
+import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,12 +21,10 @@ import java.util.Map;
 public abstract class ScannerServiceImpl implements ScannerServive {
 
 	@Override
-	public List<EndOfDayData_> runScan(final ScanParameter param/*
-																 * , final
-																 * PrimaryPrincipal
-																 * requester
-																 */) {
+	public List<EndOfDayData_> runScan(final ScanParameter param,
+			final PrimaryPrincipal requester) {
 
+		//get group filter
 		Map<String, List<EndOfDayData_>> eodData = getEndOfDayDataRepository()
 				.findRecords(param);
 		List<Condition> conditions = param.getConditions();

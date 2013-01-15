@@ -20,4 +20,9 @@ public class MissingRequiredFiledException extends BusinessException {
 		super(clz, fieldHandle, COZ_ID, message);
 
 	}
+
+	public MissingRequiredFiledException(Class<?> clz, String fieldHandle,
+			String message) {
+		super(clz, fieldHandle, COZ_ID, message);
+	}
 }

@@ -1,16 +1,24 @@
 package gabriel.yuppiewall.jpa.marketdata.repository;
 
+import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
+import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
+import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
+import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.jpa.market.repository.TradeDayRepository;
 import gabriel.yuppiewall.jpa.marketdata.domain.JPAEndOfDayData;
 import gabriel.yuppiewall.market.domain.Exchange_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.scanner.domain.Condition;
+import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +45,6 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 		List<JPAEndOfDayData> convertedList = new ArrayList<JPAEndOfDayData>(
 				list.size());
 
-		// int counter = 0;
 		for (EndOfDayData_ endOfDayData_ : list) {
 			convertedList.add(new JPAEndOfDayData(endOfDayData_));
 			/*
@@ -49,35 +56,78 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 		 * if (counter != 0) jpaEODDataRepository.flush();
 		 */
 		jpaEODDataRepository.save(convertedList);
-		//jpaEODDataRepository.flush();
-		
+		// jpaEODDataRepository.flush();
+
 	}
 
 	@Override
 	public Map<String, List<EndOfDayData_>> findRecords(ScanParameter param) {
-		// get repository criteria
+		// TODO only supporting two parameter from query should add
+		// implementation for average function also
+		GlobalFilter gfilter = param.getGlobalFilter();
+		if (gfilter == null)
+			throw new MissingRequiredFiledException(GlobalFilter.class,
+					"globalFilter", "Missing Global Filter");
+		Tupple<String, String> group = gfilter.getGroup();
+		if (group == null)
+			throw new MissingRequiredFiledException(GlobalFilter.class,
+					"globalFilter", "Missing Global Filter");
+		List<JPAEndOfDayData> list = null;
+		String key = group.getKey();
+		if ("country".equals(key)) {
+			list = jpaEODDataRepository.findAllByCountry(new JPAExchange(
+					new Exchange_(null, group.getValue())));
+		} else if ("exchange".equals(key)) {
+			list = jpaEODDataRepository.findAllByExchange(new JPAExchange(
+					new Exchange_(group.getValue())));
+		} else {
+			throw new InvalidParameterValueException(GlobalFilter.class,
+					"globalFilter", key + " Fileter Not supported");
+		}
+		// group them in symbol
+		Map<String, List<EndOfDayData_>> groupedValue = new HashMap<String, List<EndOfDayData_>>();
 
-		Exchange_ exchange = param.getExchange();
-		Date fromDate = param.getFromDate();
-		Date toDate = param.getToDate();
-		List<JPAEndOfDayData> records = null;
-		if ((fromDate == null) && (toDate == null))
-			records = jpaEODDataRepository.findAll(new JPAExchange(exchange));
-		Map<String, List<EndOfDayData_>> returnValue = new HashMap<>();
-
-		if (records == null)
-			return returnValue;
-
-		for (JPAEndOfDayData jpaEndOfDayData : records) {
+		for (JPAEndOfDayData jpaEndOfDayData : list) {
 			EndOfDayData_ eod = jpaEndOfDayData.getEndOfDayData();
-			List<EndOfDayData_> list = returnValue.get(eod.getStockSymbol());
-			if (list == null) {
-				list = new ArrayList<>();
-				returnValue.put(eod.getStockSymbol(), list);
+			List<EndOfDayData_> eodList = groupedValue
+					.get(eod.getStockSymbol());
+			if (eodList == null) {
+				eodList = new ArrayList<>();
+				groupedValue.put(eod.getStockSymbol(), eodList);
 			}
-			list.add(eod);
+			eodList.add(eod);
 		}
 
-		return returnValue;
+		Condition avePriceConition = gfilter.getAvgPrice();
+		if (avePriceConition != null) {
+			filter(avePriceConition, groupedValue, SCAN_ON.CLOSING);
+
+		}
+		Condition aveVolConition = gfilter.getAvgVolue();
+		if (aveVolConition != null) {
+			filter(aveVolConition, groupedValue, SCAN_ON.VOLUME);
+		}
+		return groupedValue;
+	}
+
+	private static void filter(Condition aveVolConition,
+			Map<String, List<EndOfDayData_>> groupedValue, SCAN_ON scanOn) {
+
+		if (aveVolConition != null) {
+			SimpleMovingAverage am = new SimpleMovingAverage();
+			Iterator<String> itr = groupedValue.keySet().iterator();
+			while (itr.hasNext()) {
+				String symbol = itr.next();
+				List<EndOfDayData_> tempList = groupedValue.get(symbol);
+				TechnicalIndicator_[] res = am.calculate(tempList,
+						aveVolConition.getLhs().getValue().intValue(), scanOn);
+				if (0 >= res[0].getValue().compareTo(
+						aveVolConition.getRhs().getValue())) {
+					itr.remove();
+				}
+			}
+
+		}
+
 	}
 }

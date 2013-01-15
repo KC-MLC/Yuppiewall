@@ -23,7 +23,15 @@ public class JPAInstrument implements Serializable {
 
 	@Id
 	@Column(name = "symbol_code")
+	private String symbol;
+
+	@Column(name = "name")
 	private String name;
+	@Column(name = "industry")
+	private String industry;
+
+	@Column(name = "sector")
+	private String sector;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "exchange", nullable = false, updatable = false)
@@ -42,17 +50,18 @@ public class JPAInstrument implements Serializable {
 	}
 
 	public JPAInstrument(Instrument e) {
-		this.name = e.getName();
+		this.symbol = e.getName();
 		this.exchange = new JPAExchange(e.getExchange());
 		this.startDate = e.getStartDate();
 		this.endDate = e.getEndDate();
 	}
 
 	public JPAInstrument(String symbol) {
-		this.name = symbol;
+		this.symbol = symbol;
 	}
 
 	public Instrument getSymbol() {
-		return new Instrument(name, exchange.getExchange(), startDate, endDate);
+		return new Instrument(symbol, exchange.getExchange(), startDate,
+				endDate);
 	}
 }

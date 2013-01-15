@@ -17,6 +17,8 @@ public class JPAExchange implements Serializable {
 	@Id
 	@Column(name = "ex_name")
 	private String name;
+	@Column(name = "ex_country_code")
+	private String country;
 
 	public JPAExchange() {
 
@@ -24,10 +26,11 @@ public class JPAExchange implements Serializable {
 
 	public JPAExchange(Exchange_ e) {
 		this.name = e.getName();
+		this.country = e.getCountry();
 	}
 
 	public Exchange_ getExchange() {
-		return new Exchange_(name);
+		return new Exchange_(name, country);
 	}
 
 }
