@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.ws.marketdata.service;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.service.EndOfDayService;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +27,7 @@ public class EndOfDayDataController implements EndOfDayService {
 	@RequestMapping(value = "/bulk", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	// @Consumes("application/json")
-	public void saveEOD(@RequestBody EndOfDayData_[] eod) {
+	public void saveEOD(@RequestBody EndOfDayData[] eod) {
 
 		endOfDayChannel.send(MessageBuilder.withPayload(eod).build());
 		System.out.println("eod Send - ");

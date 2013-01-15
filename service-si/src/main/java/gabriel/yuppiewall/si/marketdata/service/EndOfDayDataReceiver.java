@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.si.marketdata.service;
 
 import gabriel.yuppiewall.market.service.MarketService;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.marketdata.service.EndOfDayServiceImpl;
 
@@ -24,7 +24,7 @@ public class EndOfDayDataReceiver extends EndOfDayServiceImpl implements
 
 	@ServiceActivator
 	@Override
-	public void saveEOD(EndOfDayData_[] eod) {
+	public void saveEOD(EndOfDayData[] eod) {
 		
 		super.saveEOD(eod);
 

@@ -1,25 +1,25 @@
 package gabriel.yuppiewall.market.repository;
 
 import gabriel.yuppiewall.instrument.domain.Instrument;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.market.domain.TradeDay_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.market.domain.TradeDay;
 
 import java.util.Date;
 
 public interface MarketRepository {
 
-	Date getTradingDate(Exchange_ exchange, Date toDate, int days);
+	Date getTradingDate(Exchange exchange, Date toDate, int days);
 
-	TradeDay_ getTradeDay(Exchange_ exchange, Date date);
+	TradeDay getTradeDay(Exchange exchange, Date date);
 
-	TradeDay_ getLastTradeDay(Exchange_ exchange);
+	TradeDay getLastTradeDay(Exchange exchange);
 
-	void createTradeDay(TradeDay_ td);
+	void createTradeDay(TradeDay td);
 
-	void incrementTradeDay(Date date, Exchange_ exchange);
+	void incrementTradeDay(Date date, Exchange exchange);
 
-	TradeDay_ findTradeDayBefore(TradeDay_ td);
+	TradeDay findTradeDayBefore(TradeDay td);
 
-	Exchange_ getExchange(Instrument instrument);
+	Exchange getExchange(Instrument instrument);
 
 }

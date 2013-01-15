@@ -8,26 +8,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.market.service.MarketService;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 public abstract class EndOfDayServiceImpl implements EndOfDayService {
 
 	@Override
-	public void saveEOD(EndOfDayData_[] endOfDayData_) {
+	public void saveEOD(EndOfDayData[] endOfDayData_) {
 		// group the record based on echange:date
-		Map<String/* exchange:date */, List<EndOfDayData_>> record = new HashMap<String, List<EndOfDayData_>>();
-		SimpleDateFormat sdf = new SimpleDateFormat(EndOfDayData_.DATE_FORMAT);
-		ArrayList<EndOfDayData_> listAll = new ArrayList<EndOfDayData_>();
-		for (EndOfDayData_ eod : endOfDayData_) {
+		Map<String/* exchange:date */, List<EndOfDayData>> record = new HashMap<String, List<EndOfDayData>>();
+		SimpleDateFormat sdf = new SimpleDateFormat(EndOfDayData.DATE_FORMAT);
+		ArrayList<EndOfDayData> listAll = new ArrayList<EndOfDayData>();
+		for (EndOfDayData eod : endOfDayData_) {
 			// create key
 			String key = eod.getExchange().getName() + ":"
 					+ sdf.format(eod.getDate());
-			List<EndOfDayData_> list = record.get(key);
+			List<EndOfDayData> list = record.get(key);
 			if (list == null) {
-				list = new ArrayList<EndOfDayData_>();
+				list = new ArrayList<EndOfDayData>();
 				record.put(key, list);
 			}
 			list.add(eod);
@@ -43,7 +43,7 @@ public abstract class EndOfDayServiceImpl implements EndOfDayService {
 			{
 				try {
 					getMarketService().createIfNotPresent(
-							new Exchange_(keydata[0]), sdf.parse(keydata[1]));
+							new Exchange(keydata[0]), sdf.parse(keydata[1]));
 				} catch (ParseException ignore) {
 					ignore.printStackTrace();
 				}

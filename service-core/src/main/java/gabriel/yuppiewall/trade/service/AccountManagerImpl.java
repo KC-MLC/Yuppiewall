@@ -2,7 +2,7 @@ package gabriel.yuppiewall.trade.service;
 
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.instrument.domain.Instrument;
-import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.market.service.MarketService;
 import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Order;
@@ -24,7 +24,7 @@ public abstract class AccountManagerImpl implements AccountManager {
 	public void placeOrder(Account account1, Portfolio portfolio, Order order) {
 
 		MarketService ms = getMarketService();
-		Exchange_ exchange = ms.getExchange(order.getInstrument());
+		Exchange exchange = ms.getExchange(order.getInstrument());
 		if (exchange == null)
 			throw new InvalidParameterValueException(
 					gabriel.yuppiewall.market.domain.Instrument.class, "name",

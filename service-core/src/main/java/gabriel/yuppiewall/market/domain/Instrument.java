@@ -10,7 +10,7 @@ public class Instrument implements Serializable {
 
 	@FieldDef(field = "Instrument", notnull = true)
 	private String name;
-	private Exchange_ exchange;
+	private Exchange exchange;
 
 	private Date startDate;
 	private Date endDate;
@@ -18,7 +18,7 @@ public class Instrument implements Serializable {
 	public Instrument() {
 	}
 
-	public Instrument(String name, Exchange_ exchange, Date startDate,
+	public Instrument(String name, Exchange exchange, Date startDate,
 			Date endDate) {
 		this.name = name;
 		this.exchange = exchange;
@@ -30,7 +30,7 @@ public class Instrument implements Serializable {
 		return name;
 	}
 
-	public Exchange_ getExchange() {
+	public Exchange getExchange() {
 		return exchange;
 	}
 

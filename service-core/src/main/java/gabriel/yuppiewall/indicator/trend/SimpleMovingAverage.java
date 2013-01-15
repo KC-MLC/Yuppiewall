@@ -3,7 +3,7 @@ package gabriel.yuppiewall.indicator.trend;
 import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SimpleMovingAverage implements TechnicalIndicator {
 
-	void calculate(EndOfDayData_ today, EndOfDayData_ historical[], int days) {
+	void calculate(EndOfDayData today, EndOfDayData historical[], int days) {
 
 		if (historical.length >= days) {
 			long sum = 0;
@@ -38,13 +38,13 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 	 * }
 	 */
 
-	protected void store(BigDecimal sma, EndOfDayData_ stockDailySummary_,
+	protected void store(BigDecimal sma, EndOfDayData stockDailySummary_,
 			int n, int day) {
 		System.out.print(stockDailySummary_.getDate() + "," + sma + "(" + n
 				+ "," + day + ")" + "\t");
 	}
 
-	public BigDecimal calculate(List<EndOfDayData_> historical, int range,
+	public BigDecimal calculate(List<EndOfDayData> historical, int range,
 			int day, EndOfDayDataScanOnValue mapper) {
 		BigDecimal sum = FU.U0;
 		for (int i = range - day; i < range; i++) {
@@ -56,7 +56,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 	}
 
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData_> historical,
+	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
 			int day, SCAN_ON scanON) {
 		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue
 				.getMapper(scanON);

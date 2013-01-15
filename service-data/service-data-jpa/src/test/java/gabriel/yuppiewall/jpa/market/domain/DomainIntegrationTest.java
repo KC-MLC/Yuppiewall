@@ -2,8 +2,8 @@ package gabriel.yuppiewall.jpa.market.domain;
 
 import java.util.Date;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.market.domain.TradeDay_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.market.domain.TradeDay;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -35,10 +35,10 @@ public class DomainIntegrationTest {
 	@Test
 	public void testCreateDomainExchange() {
 		Assert.assertNotNull(entityManager);
-		entityManager.persist(new JPAExchange(new Exchange_("NYSE")));
+		entityManager.persist(new JPAExchange(new Exchange("NYSE")));
 		entityManager.flush();
 		try {
-			entityManager.persist(new JPAExchange(new Exchange_("NYSE")));
+			entityManager.persist(new JPAExchange(new Exchange("NYSE")));
 			entityManager.flush();
 			Assert.fail();
 		} catch (EntityExistsException e) {
@@ -50,14 +50,14 @@ public class DomainIntegrationTest {
 	@Test
 	public void testCreateDomainTradeDay() {
 		Assert.assertNotNull(entityManager);
-		Exchange_ nyse = new Exchange_("NYSE");
+		Exchange nyse = new Exchange("NYSE");
 		entityManager.persist(new JPAExchange(nyse));
 		entityManager.flush();
 		entityManager.persist(new JPATradeDay(
-				new TradeDay_(nyse, new Date(), 1)));
+				new TradeDay(nyse, new Date(), 1)));
 		entityManager.flush();
 		try {
-			entityManager.persist(new JPATradeDay(new TradeDay_(nyse,
+			entityManager.persist(new JPATradeDay(new TradeDay(nyse,
 					new Date(), 2)));
 			entityManager.flush();
 			Assert.fail();

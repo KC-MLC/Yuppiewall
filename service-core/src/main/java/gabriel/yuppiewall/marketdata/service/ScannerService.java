@@ -4,9 +4,9 @@ import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.trend.ExponentialMovingAverage;
 import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
-import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.market.repository.MarketRepository;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 import java.util.Comparator;

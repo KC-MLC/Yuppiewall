@@ -5,22 +5,22 @@ import gabriel.yuppiewall.common.meta.FieldDef;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Exchange_ implements Serializable {
+public class Exchange implements Serializable {
 
 	@FieldDef(field = "Exchange", notnull = true)
 	private String name;
 
 	private String country;
 
-	public Exchange_() {
+	public Exchange() {
 	}
 
-	public Exchange_(String name) {
+	public Exchange(String name) {
 		this.name = name;
 
 	}
 
-	public Exchange_(String name, String country) {
+	public Exchange(String name, String country) {
 		this.name = name;
 		this.country = country;
 	}

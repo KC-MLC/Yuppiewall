@@ -3,7 +3,7 @@ package gabriel.yuppiewall.indicator.momentum;
 import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,7 +23,7 @@ public class RSI implements TechnicalIndicator {
 	 **/
 
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData_> historical,
+	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
 			int n, SCAN_ON scanON) {
 		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue
 				.getMapper(scanON);

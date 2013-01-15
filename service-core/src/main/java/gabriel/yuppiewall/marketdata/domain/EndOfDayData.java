@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.marketdata.domain;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.domain.Exchange;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -8,9 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class EndOfDayData_ implements Serializable {
+public class EndOfDayData implements Serializable {
 
-	private Exchange_ exchange;
+	private Exchange exchange;
 	private String stockSymbol;
 	public static final String DATE_FORMAT = "ddMMyyyy";
 	private Date date;
@@ -19,10 +19,10 @@ public class EndOfDayData_ implements Serializable {
 	private BigDecimal stockPriceOpen, stockPriceHigh, stockPriceLow,
 			stockPriceClose, stockPriceAdjClose;
 
-	public EndOfDayData_() {
+	public EndOfDayData() {
 	}
 
-	public EndOfDayData_(Exchange_ exchange, String stockSymbol, Date date,
+	public EndOfDayData(Exchange exchange, String stockSymbol, Date date,
 			BigDecimal stockPriceOpen, BigDecimal stockPriceHigh,
 			BigDecimal stockPriceLow, BigDecimal stockPriceClose,
 			BigDecimal stockVolume, BigDecimal stockPriceAdjClose) {
@@ -39,7 +39,7 @@ public class EndOfDayData_ implements Serializable {
 		this.stockPriceAdjClose = stockPriceAdjClose;
 	}
 
-	public Exchange_ getExchange() {
+	public Exchange getExchange() {
 		return exchange;
 	}
 

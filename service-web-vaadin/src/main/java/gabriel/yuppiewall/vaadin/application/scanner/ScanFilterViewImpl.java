@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
 import gabriel.yuppiewall.common.Tupple;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.service.ScannerServive;
@@ -277,7 +277,7 @@ public class ScanFilterViewImpl implements Serializable {
 						group.setValue("usa");
 						gf.setGroup(group);
 
-						List<EndOfDayData_> scanResult = scanner.runScan(param,
+						List<EndOfDayData> scanResult = scanner.runScan(param,
 								(PrimaryPrincipal) YuppiewallUI.getInstance()
 										.getApplicationData("user"));
 						eventBus.post(new NewScanResult(scanResult));

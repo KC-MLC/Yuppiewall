@@ -4,8 +4,8 @@ import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.jpa.market.domain.JPAInstrument;
 import gabriel.yuppiewall.jpa.market.domain.JPATradeDay;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.market.domain.TradeDay_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.market.domain.TradeDay;
 import gabriel.yuppiewall.market.repository.MarketRepository;
 
 import java.text.SimpleDateFormat;
@@ -24,52 +24,52 @@ public class JPAMarketRepository implements MarketRepository {
 	private InstrumentRepository instrumentRepository;
 
 	@Override
-	public Date getTradingDate(Exchange_ exchange, Date toDate, int days) {
+	public Date getTradingDate(Exchange exchange, Date toDate, int days) {
 
 		throw new UnsupportedOperationException(
 				"Not Implemented : getTradingDate");
 	}
 
 	@Override
-	public TradeDay_ getTradeDay(Exchange_ exchange, Date date) {
+	public TradeDay getTradeDay(Exchange exchange, Date date) {
 		JPATradeDay td = tradeDayRepository.findOne(exchange.getName() + ":"
-				+ new SimpleDateFormat(TradeDay_.DATE_PATTERN).format(date));
+				+ new SimpleDateFormat(TradeDay.DATE_PATTERN).format(date));
 		return (td != null) ? td.getTradeDay() : null;
 	}
 
 	@Override
-	public TradeDay_ getLastTradeDay(Exchange_ exchange) {
+	public TradeDay getLastTradeDay(Exchange exchange) {
 
 		JPATradeDay td = tradeDayRepository
 				.findLastTradeDayByExchange(new JPAExchange(exchange));
-		return (td != null) ? new TradeDay_(exchange, td.getDate(),
-				td.getBusinessday()) : new TradeDay_(exchange, null, 0);
+		return (td != null) ? new TradeDay(exchange, td.getDate(),
+				td.getBusinessday()) : new TradeDay(exchange, null, 0);
 	}
 
 	@Override
-	public void createTradeDay(TradeDay_ td) {
+	public void createTradeDay(TradeDay td) {
 		tradeDayRepository.saveAndFlush(new JPATradeDay(td));
 
 	}
 
 	@Override
-	public void incrementTradeDay(Date date, Exchange_ exchange) {
+	public void incrementTradeDay(Date date, Exchange exchange) {
 		tradeDayRepository.incrementBusinessdayBy1(date, new JPAExchange(
 				exchange));
 
 	}
 
 	@Override
-	public TradeDay_ findTradeDayBefore(TradeDay_ td_) {
+	public TradeDay findTradeDayBefore(TradeDay td_) {
 		JPATradeDay td = tradeDayRepository.findLastTradeDayBeforeDate(
 				td_.getDate(), new JPAExchange(td_.getExchange()));
-		return (td == null/* Beginning of time */) ? new TradeDay_(
-				td_.getExchange(), td_.getDate(), 0) : new TradeDay_(
+		return (td == null/* Beginning of time */) ? new TradeDay(
+				td_.getExchange(), td_.getDate(), 0) : new TradeDay(
 				td_.getExchange(), td.getDate(), td.getBusinessday());
 	}
 
 	@Override
-	public Exchange_ getExchange(Instrument instrument) {
+	public Exchange getExchange(Instrument instrument) {
 
 		JPAExchange ex = instrumentRepository
 				.getExchangeByInstrument(new JPAInstrument(instrument

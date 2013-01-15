@@ -5,7 +5,7 @@ import java.util.List;
 
 import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.service.ScannerServiceImpl;
@@ -27,7 +27,7 @@ public class ScannerService extends ScannerServiceImpl {
 
 	@Override
 	@ServiceActivator
-	public List<EndOfDayData_> runScan(ScanParameter param,
+	public List<EndOfDayData> runScan(ScanParameter param,
 			PrimaryPrincipal requester) {
 		System.out.println("In SCAN SI");
 		return super.runScan(param, requester);

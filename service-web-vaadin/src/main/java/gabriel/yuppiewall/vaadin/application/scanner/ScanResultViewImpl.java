@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -77,14 +77,14 @@ public class ScanResultViewImpl implements Serializable {
 	public void loadGrid(NewScanResult e) {
 		resultTable.removeAllItems();
 		@SuppressWarnings("unchecked")
-		List<EndOfDayData_> scanResult = (List<EndOfDayData_>) e.getSource();
-		for (EndOfDayData_ endOfDayData_ : scanResult) {
+		List<EndOfDayData> scanResult = (List<EndOfDayData>) e.getSource();
+		for (EndOfDayData endOfDayData_ : scanResult) {
 			addRow(endOfDayData_);
 		}
 
 	}
 
-	private void addRow(EndOfDayData_ data) {
+	private void addRow(EndOfDayData data) {
 		Item item = resultTable.addItem(data.getStockSymbol());
 		item.getItemProperty(SYMBOL).setValue(data.getStockSymbol());
 		item.getItemProperty(NAME).setValue("-");

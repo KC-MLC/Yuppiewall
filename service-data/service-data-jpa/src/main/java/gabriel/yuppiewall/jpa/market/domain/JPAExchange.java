@@ -2,7 +2,7 @@ package gabriel.yuppiewall.jpa.market.domain;
 
 import java.io.Serializable;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.domain.Exchange;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,13 +24,13 @@ public class JPAExchange implements Serializable {
 
 	}
 
-	public JPAExchange(Exchange_ e) {
+	public JPAExchange(Exchange e) {
 		this.name = e.getName();
 		this.country = e.getCountry();
 	}
 
-	public Exchange_ getExchange() {
-		return new Exchange_(name, country);
+	public Exchange getExchange() {
+		return new Exchange(name, country);
 	}
 
 }

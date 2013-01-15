@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.indicator;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -14,8 +14,8 @@ public class SampleData {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static EndOfDayData_[] setup() throws ParseException {
-		EndOfDayData_[] historical = new EndOfDayData_[30];
+	public static EndOfDayData[] setup() throws ParseException {
+		EndOfDayData[] historical = new EndOfDayData[30];
 
 		historical[0] = set("24-Mar-10", new BigDecimal(22.27));
 		historical[1] = set("25-Mar-10", new BigDecimal(22.19));
@@ -51,8 +51,8 @@ public class SampleData {
 		return historical;
 	}
 
-	public static EndOfDayData_[] setupADL() throws ParseException {
-		EndOfDayData_[] historical = new EndOfDayData_[4];
+	public static EndOfDayData[] setupADL() throws ParseException {
+		EndOfDayData[] historical = new EndOfDayData[4];
 		historical[0] = set("10-Dec-10", 62.34, 61.37, 62.15, 7849);
 		historical[1] = set("13-Dec-10", 62.05, 60.69, 60.81, 11692);
 		historical[2] = set("14-Dec-10", 62.27, 60.10, 60.45, 10575);
@@ -79,16 +79,16 @@ public class SampleData {
 		return historical;
 	}
 
-	private static EndOfDayData_ set(String date, double high, double low,
+	private static EndOfDayData set(String date, double high, double low,
 			double close, long volume) throws ParseException {
-		return new EndOfDayData_(new Exchange_(""), "", new SimpleDateFormat(
+		return new EndOfDayData(new Exchange(""), "", new SimpleDateFormat(
 				"dd-MMM-yy").parse(date), new BigDecimal(0L), new BigDecimal(
 				high), new BigDecimal(low), new BigDecimal(0L),
 				BigDecimal.valueOf(volume), new BigDecimal(close));
 	}
 
-	public static EndOfDayData_[] setupRSI() throws ParseException {
-		EndOfDayData_[] historical = new EndOfDayData_[33];
+	public static EndOfDayData[] setupRSI() throws ParseException {
+		EndOfDayData[] historical = new EndOfDayData[33];
 
 		historical[0] = set("14-Dec-09", new BigDecimal(44.34));
 		historical[1] = set("15-Dec-09", new BigDecimal(44.09));
@@ -128,9 +128,9 @@ public class SampleData {
 
 	}
 
-	static EndOfDayData_ set(String date, BigDecimal stockPriceAdjClose)
+	static EndOfDayData set(String date, BigDecimal stockPriceAdjClose)
 			throws ParseException {
-		return new EndOfDayData_(new Exchange_(""), "", new SimpleDateFormat(
+		return new EndOfDayData(new Exchange(""), "", new SimpleDateFormat(
 				"dd-MMM-yy").parse(date), new BigDecimal(0L),
 				new BigDecimal(0L), new BigDecimal(0L), new BigDecimal(0L),
 				new BigDecimal("0"), stockPriceAdjClose);

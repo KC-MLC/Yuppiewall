@@ -1,8 +1,8 @@
 package gabriel.yuppiewall.marketdata.service;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 public interface EndOfDayService {
 
-	public void saveEOD(EndOfDayData_[] eod);
+	public void saveEOD(EndOfDayData[] eod);
 }

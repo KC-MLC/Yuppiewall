@@ -9,8 +9,8 @@ import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.jpa.market.repository.TradeDayRepository;
 import gabriel.yuppiewall.jpa.marketdata.domain.JPAEndOfDayData;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
@@ -35,17 +35,17 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 	private TradeDayRepository tradeDayRepository;
 
 	@Override
-	public void createEndOfDayData(EndOfDayData_ endOfDayData) {
+	public void createEndOfDayData(EndOfDayData endOfDayData) {
 		jpaEODDataRepository.saveAndFlush(new JPAEndOfDayData(endOfDayData));
 	}
 
 	@Override
-	public void createEndOfDayData(List<EndOfDayData_> list) {
+	public void createEndOfDayData(List<EndOfDayData> list) {
 
 		List<JPAEndOfDayData> convertedList = new ArrayList<JPAEndOfDayData>(
 				list.size());
 
-		for (EndOfDayData_ endOfDayData_ : list) {
+		for (EndOfDayData endOfDayData_ : list) {
 			convertedList.add(new JPAEndOfDayData(endOfDayData_));
 			/*
 			 * jpaEODDataRepository.save(new JPAEndOfDayData(endOfDayData_)); if
@@ -61,7 +61,7 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 	}
 
 	@Override
-	public Map<String, List<EndOfDayData_>> findRecords(ScanParameter param) {
+	public Map<String, List<EndOfDayData>> findRecords(ScanParameter param) {
 		// TODO only supporting two parameter from query should add
 		// implementation for average function also
 		GlobalFilter gfilter = param.getGlobalFilter();
@@ -76,20 +76,20 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 		String key = group.getKey();
 		if ("country".equals(key)) {
 			list = jpaEODDataRepository.findAllByCountry(new JPAExchange(
-					new Exchange_(null, group.getValue())));
+					new Exchange(null, group.getValue())));
 		} else if ("exchange".equals(key)) {
 			list = jpaEODDataRepository.findAllByExchange(new JPAExchange(
-					new Exchange_(group.getValue())));
+					new Exchange(group.getValue())));
 		} else {
 			throw new InvalidParameterValueException(GlobalFilter.class,
 					"globalFilter", key + " Fileter Not supported");
 		}
 		// group them in symbol
-		Map<String, List<EndOfDayData_>> groupedValue = new HashMap<String, List<EndOfDayData_>>();
+		Map<String, List<EndOfDayData>> groupedValue = new HashMap<String, List<EndOfDayData>>();
 
 		for (JPAEndOfDayData jpaEndOfDayData : list) {
-			EndOfDayData_ eod = jpaEndOfDayData.getEndOfDayData();
-			List<EndOfDayData_> eodList = groupedValue
+			EndOfDayData eod = jpaEndOfDayData.getEndOfDayData();
+			List<EndOfDayData> eodList = groupedValue
 					.get(eod.getStockSymbol());
 			if (eodList == null) {
 				eodList = new ArrayList<>();
@@ -111,14 +111,14 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 	}
 
 	private static void filter(Condition aveVolConition,
-			Map<String, List<EndOfDayData_>> groupedValue, SCAN_ON scanOn) {
+			Map<String, List<EndOfDayData>> groupedValue, SCAN_ON scanOn) {
 
 		if (aveVolConition != null) {
 			SimpleMovingAverage am = new SimpleMovingAverage();
 			Iterator<String> itr = groupedValue.keySet().iterator();
 			while (itr.hasNext()) {
 				String symbol = itr.next();
-				List<EndOfDayData_> tempList = groupedValue.get(symbol);
+				List<EndOfDayData> tempList = groupedValue.get(symbol);
 				TechnicalIndicator_[] res = am.calculate(tempList,
 						aveVolConition.getLhs().getValue().intValue(), scanOn);
 				if (0 >= res[0].getValue().compareTo(

@@ -1,14 +1,14 @@
 package gabriel.yuppiewall.indicator.momentum;
 
 import gabriel.yuppiewall.indicator.SampleData;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class RSITest {
 
-	private EndOfDayData_ historical[];
+	private EndOfDayData historical[];
 
 	@Before
 	public void setUp() throws Exception {

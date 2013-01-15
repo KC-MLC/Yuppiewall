@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.jpa.market.domain;
 
-import gabriel.yuppiewall.market.domain.TradeDay_;
+import gabriel.yuppiewall.market.domain.TradeDay;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -55,10 +55,10 @@ public class JPATradeDay implements Serializable {
 
 	}
 
-	public JPATradeDay(TradeDay_ td) {
+	public JPATradeDay(TradeDay td) {
 		this.identifier = td.getExchange().getName()
 				+ ":"
-				+ new SimpleDateFormat(TradeDay_.DATE_PATTERN).format(td
+				+ new SimpleDateFormat(TradeDay.DATE_PATTERN).format(td
 						.getDate());
 		this.exchange = new JPAExchange(td.getExchange());
 		this.date = td.getDate();
@@ -78,8 +78,8 @@ public class JPATradeDay implements Serializable {
 		return businessday;
 	}
 
-	public TradeDay_ getTradeDay() {
-		return new TradeDay_(exchange.getExchange(), this.date,
+	public TradeDay getTradeDay() {
+		return new TradeDay(exchange.getExchange(), this.date,
 				this.businessday);
 	}
 }

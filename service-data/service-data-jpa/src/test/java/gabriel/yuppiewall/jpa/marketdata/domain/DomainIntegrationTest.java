@@ -1,8 +1,8 @@
 package gabriel.yuppiewall.jpa.marketdata.domain;
 
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -38,17 +38,17 @@ public class DomainIntegrationTest {
 	@Test
 	public void testCreateDomainTradeDay() throws ParseException {
 		Assert.assertNotNull(entityManager);
-		Exchange_ nyse = new Exchange_("NYSE");
+		Exchange nyse = new Exchange("NYSE");
 		entityManager.persist(new JPAExchange(nyse));
 		entityManager.flush();
 		;
-		entityManager.persist(new JPAEndOfDayData(new EndOfDayData_(nyse,
+		entityManager.persist(new JPAEndOfDayData(new EndOfDayData(nyse,
 				"GOOG", new SimpleDateFormat("dd-mm-yyyy").parse("01-01-2013"),
 				new BigDecimal(2), new BigDecimal(3), new BigDecimal(4),
 				new BigDecimal(6), new BigDecimal("3"), new BigDecimal(5))));
 		entityManager.flush();
 		try {
-			entityManager.persist(new JPAEndOfDayData(new EndOfDayData_(nyse,
+			entityManager.persist(new JPAEndOfDayData(new EndOfDayData(nyse,
 					"GOOG", new SimpleDateFormat("dd-mm-yyyy")
 							.parse("01-01-2013"), new BigDecimal(1),
 					new BigDecimal(1), new BigDecimal(1), new BigDecimal(1),

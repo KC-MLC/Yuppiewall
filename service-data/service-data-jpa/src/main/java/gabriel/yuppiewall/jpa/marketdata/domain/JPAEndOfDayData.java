@@ -2,7 +2,7 @@ package gabriel.yuppiewall.jpa.marketdata.domain;
 
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 
 import java.io.Serializable;
@@ -64,7 +64,7 @@ public class JPAEndOfDayData implements Serializable {
 
 	}
 
-	public JPAEndOfDayData(EndOfDayData_ eodd) {
+	public JPAEndOfDayData(EndOfDayData eodd) {
 
 		this.date = eodd.getDate();
 		this.stockPriceAdjClose = eodd.getStockPriceAdjClose();
@@ -80,8 +80,8 @@ public class JPAEndOfDayData implements Serializable {
 				+ eodd.getStrDate();
 	}
 
-	public EndOfDayData_ getEndOfDayData() {
-		return new EndOfDayData_(exchange.getExchange(), symbol, date,
+	public EndOfDayData getEndOfDayData() {
+		return new EndOfDayData(exchange.getExchange(), symbol, date,
 				stockPriceOpen, stockPriceHigh, stockPriceLow, stockPriceClose,
 				stockVolume, stockPriceAdjClose);
 	}

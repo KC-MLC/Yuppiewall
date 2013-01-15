@@ -2,8 +2,8 @@ package gabriel.yuppiewall.indicator.trend;
 
 import gabriel.yuppiewall.indicator.SampleData;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public class SimpleMovingAverageTest {
 
-	private EndOfDayData_ historical[];
+	private EndOfDayData historical[];
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,9 +26,9 @@ public class SimpleMovingAverageTest {
 	@Test
 	public void test2day() {
 
-		historical = new EndOfDayData_[6];
+		historical = new EndOfDayData[6];
 		for (int i = 0; i < historical.length; i++) {
-			historical[i] = new EndOfDayData_(new Exchange_(""), "",
+			historical[i] = new EndOfDayData(new Exchange(""), "",
 					new Date(), new BigDecimal(0L), new BigDecimal(0L),
 					new BigDecimal(i), new BigDecimal(0L), new BigDecimal("0"),
 					new BigDecimal(0L));

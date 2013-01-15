@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.ws.marketdata.service;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
+import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
@@ -32,7 +32,7 @@ public class ScanClient {
 			ObjectMapper mapper = new ObjectMapper();
 			ScanParameter sp = new ScanParameter()
 					.Builder()
-					.fromExchange(new Exchange_("NYSE"))
+					.fromExchange(new Exchange("NYSE"))
 					.addCondition(
 							new Expression("sma", PERIOD.DAILY, new BigDecimal(
 									20), SCAN_ON.VOLUME), OPERAND.GT,

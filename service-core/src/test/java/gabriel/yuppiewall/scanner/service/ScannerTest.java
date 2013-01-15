@@ -3,8 +3,8 @@ package gabriel.yuppiewall.scanner.service;
 import gabriel.yuppiewall.indicator.SampleData;
 import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.Expression;
@@ -44,26 +44,26 @@ public class ScannerTest {
 				return new EndOfDayDataRepository() {
 
 					@Override
-					public void createEndOfDayData(EndOfDayData_ endOfDayData) {
+					public void createEndOfDayData(EndOfDayData endOfDayData) {
 						// TODO Auto-generated method stub
 
 					}
 
 					@Override
-					public void createEndOfDayData(List<EndOfDayData_> list) {
+					public void createEndOfDayData(List<EndOfDayData> list) {
 						// TODO Auto-generated method stub
 
 					}
 
 					@Override
-					public Map<String, List<EndOfDayData_>> findRecords(
+					public Map<String, List<EndOfDayData>> findRecords(
 							ScanParameter param) {
-						Map<String, List<EndOfDayData_>> list = new HashMap<>();
+						Map<String, List<EndOfDayData>> list = new HashMap<>();
 						{
-							EndOfDayData_[] li;
+							EndOfDayData[] li;
 							try {
 								li = SampleData.setup();
-								List<EndOfDayData_> l = Arrays.asList(li);
+								List<EndOfDayData> l = Arrays.asList(li);
 								list.put("GOOG", l);
 							} catch (ParseException e) {
 								// TODO Auto-generated catch block
@@ -82,7 +82,7 @@ public class ScannerTest {
 	public void testBasicParse() {
 		ScanParameter sp = new ScanParameter()
 				.Builder()
-				.fromExchange(new Exchange_("NYSE"))
+				.fromExchange(new Exchange("NYSE"))
 				.addCondition(
 						new Expression("sma", PERIOD.DAILY, new BigDecimal(20),
 								SCAN_ON.VOLUME), OPERAND.GT,
