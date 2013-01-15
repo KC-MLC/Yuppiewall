@@ -4,6 +4,7 @@ import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.Expression;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,7 +18,7 @@ public class AccumulationDistributionLine implements TechnicalIndicator {
 	// 3. ADL = Previous ADL + Current Period's Money Flow Volume
 	@Override
 	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
-			int day, SCAN_ON ignore) {
+			Expression exp) {
 
 		BigDecimal ADL = FU.U0;
 

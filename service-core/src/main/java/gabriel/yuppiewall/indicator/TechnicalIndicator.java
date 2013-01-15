@@ -2,6 +2,7 @@ package gabriel.yuppiewall.indicator;
 
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.Expression;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,9 +13,19 @@ public interface TechnicalIndicator {
 		abstract public BigDecimal getValue(EndOfDayData data);
 
 		public static EndOfDayDataScanOnValue getMapper(SCAN_ON scanON) {
-			if (scanON == SCAN_ON.VOLUME)
+
+			switch (scanON) {
+			case VOLUME:
 				return volume;
-			return null;
+			case CLOSING:
+				return closing;
+			case HIGH:
+				return high;
+			case LOW:
+				return low;
+			default:
+				throw new UnsupportedOperationException("Not yet implemented ");
+			}
 		}
 	}
 
@@ -25,12 +36,32 @@ public interface TechnicalIndicator {
 			return data.getStockVolume();
 		}
 	};
+	EndOfDayDataScanOnValue closing = new EndOfDayDataScanOnValue() {
+
+		@Override
+		public BigDecimal getValue(EndOfDayData data) {
+			return data.getStockPriceAdjClose();
+		}
+	};
+	EndOfDayDataScanOnValue high = new EndOfDayDataScanOnValue() {
+
+		@Override
+		public BigDecimal getValue(EndOfDayData data) {
+			return data.getStockPriceHigh();
+		}
+	};
+	EndOfDayDataScanOnValue low = new EndOfDayDataScanOnValue() {
+		@Override
+		public BigDecimal getValue(EndOfDayData data) {
+			return data.getStockPriceLow();
+		}
+	};
 
 	public enum SCAN_ON {
-		VOLUME, CLOSING
+		VOLUME, CLOSING, HIGH, LOW
 	}
 
-	TechnicalIndicator_[] calculate(List<EndOfDayData> historical, int day,
-			SCAN_ON scanON);
+	TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+			Expression exp);
 
 }

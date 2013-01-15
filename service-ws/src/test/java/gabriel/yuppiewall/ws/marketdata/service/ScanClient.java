@@ -1,15 +1,9 @@
 package gabriel.yuppiewall.ws.marketdata.service;
 
-import gabriel.yuppiewall.market.domain.Exchange;
-import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;

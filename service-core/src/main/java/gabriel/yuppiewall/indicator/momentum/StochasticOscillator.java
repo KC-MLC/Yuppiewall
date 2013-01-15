@@ -3,6 +3,7 @@ package gabriel.yuppiewall.indicator.momentum;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.Expression;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,10 +15,9 @@ public class StochasticOscillator implements TechnicalIndicator {
 	// StochRSI = (RSI - Lowest Low RSI) / (Highest High RSI - Lowest Low RSI)
 	@Override
 	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
-			int day, SCAN_ON scanON) {
-
-		TechnicalIndicator_[] listOfRSI = new RSI().calculate(historical, day,
-				scanON);
+			Expression exp) {
+		int day = Integer.parseInt(exp.getParameters());
+		TechnicalIndicator_[] listOfRSI = new RSI().calculate(historical, exp);
 		TechnicalIndicator_[] results = new TechnicalIndicator_[listOfRSI.length
 				- day];
 		int rIndex = 0;

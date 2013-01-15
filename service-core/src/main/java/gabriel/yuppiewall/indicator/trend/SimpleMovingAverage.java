@@ -1,9 +1,11 @@
 package gabriel.yuppiewall.indicator.trend;
 
 import gabriel.yuppiewall.common.FU;
+import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.Expression;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -57,12 +59,28 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 
 	@Override
 	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
-			int day, SCAN_ON scanON) {
-		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue
-				.getMapper(scanON);
+			Expression exp) {
+		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue.getMapper(exp
+				.getScanOn());
+		String param = exp.getParameters();
+		int size = Integer.parseInt(param);
+		int ofset = exp.getOffset();
+		if (size + ofset > historical.size())
+			throw new InvalidParameterValueException(
+					"parameter exceeds data set max data set is" + size);
+		historical = historical.subList(historical.size() - (size + ofset),
+				historical.size() - ofset);
+
+		BigDecimal sum = FU.U0;
+		for (int i = 0, max = historical.size(); i < max; i++) {
+			sum = sum.add(mapper.getValue(historical.get(i)));
+		}
+		BigDecimal sma = sum.divide(new BigDecimal(historical.size()),
+				RoundingMode.HALF_UP);
+
 		return new TechnicalIndicator_[] { new TechnicalIndicator_(historical
-				.get(historical.size() - 1).getDate(), "SMA", day + "DAY",
-				calculate(historical, historical.size(), day, mapper)) };
+				.get(historical.size() - 1).getDate(), "SMA", ofset + "DAY",
+				sma) };
 	}
 
 	// @Override

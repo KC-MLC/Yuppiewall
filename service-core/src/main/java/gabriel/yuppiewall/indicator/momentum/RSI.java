@@ -4,6 +4,7 @@ import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.Expression;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,13 +25,14 @@ public class RSI implements TechnicalIndicator {
 
 	@Override
 	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
-			int n, SCAN_ON scanON) {
-		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue
-				.getMapper(scanON);
+			Expression exp) {
+		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue.getMapper(exp
+				.getScanOn());
 
 		// first calculate
 		// First Average Gain = Sum of Gains over the past n periods / n.
 		// First Average Loss = Sum of Losses over the past n periods / n
+		int n = Integer.parseInt(exp.getParameters());
 		BigDecimal N = new BigDecimal(n);
 		BigDecimal Nm1 = new BigDecimal(n - 1);
 		BigDecimal sumOfGain = FU.U0;

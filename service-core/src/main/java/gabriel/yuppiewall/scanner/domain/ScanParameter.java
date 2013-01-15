@@ -9,12 +9,8 @@ public class ScanParameter implements Serializable {
 	private String scanId;
 	private List<Condition> conditions;
 
-	public enum SCAN_ON {
-		VOLUME, CLOSING
-	}
-
 	public enum PERIOD {
-		DAILY, WEEKLY, MONTHLY, QUARTERLY
+		DAYS, WEEK
 	}
 
 	public enum OPERAND {

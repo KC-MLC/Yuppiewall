@@ -14,7 +14,7 @@ public class Condition implements Serializable {
 	public Condition() {
 	}
 
-	public Condition(Expression rhs, OPERAND operand, Expression lhs) {
+	public Condition(Expression lhs, OPERAND operand, Expression rhs) {
 		this.lhs = lhs;
 		this.operand = operand;
 		this.rhs = rhs;

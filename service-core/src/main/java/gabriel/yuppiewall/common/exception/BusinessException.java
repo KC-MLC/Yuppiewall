@@ -1,8 +1,8 @@
 package gabriel.yuppiewall.common.exception;
 
-import java.util.List;
-
 import gabriel.yuppiewall.common.meta.FieldDef;
+
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class BusinessException extends RuntimeException {
@@ -43,6 +43,10 @@ public class BusinessException extends RuntimeException {
 		}
 		this.cozId = cozId;
 		this.message = message;
+	}
+
+	public BusinessException(String message2) {
+		this.message = message2;
 	}
 
 	public String getMessage() {

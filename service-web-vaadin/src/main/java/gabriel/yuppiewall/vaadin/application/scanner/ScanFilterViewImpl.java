@@ -16,6 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import com.google.common.eventbus.EventBus;
+import com.vaadin.data.Container;
+import com.vaadin.data.Item;
+import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.ui.AbstractSelect;
+import com.vaadin.ui.AbstractSelect.Filtering;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -34,6 +39,9 @@ import com.vaadin.ui.VerticalLayout;
 public class ScanFilterViewImpl implements Serializable {
 
 	private VerticalLayout rootlayout;
+	private static final Object TYPE_PROPERTY_NAME = "name";
+	private static final Object TYPE_PROPERTY_VALUE = "value";
+
 	private static final String H_COL1_WIDTH = "12em";
 	private static final String H_COL2_WIDTH = "10em";
 	private static final String H_COL3_WIDTH = "14em";
@@ -65,16 +73,44 @@ public class ScanFilterViewImpl implements Serializable {
 			globalFilterLyt.setSpacing(true);
 
 			ComboBox groupSelect = new ComboBox();
+			// setIndexexContainer(groupSelect);
 			groupSelect.setWidth(UIConstant.LONG_FIELD_WIDTH);
+			/**/
+
 			globalFilterLyt.addComponent(getFormField("Group", groupSelect));
 			ComboBox selectAvgVolume = new ComboBox();
+			setIndexexContainer(selectAvgVolume);
+			setDefaultValue(selectAvgVolume.getContainerDataSource(),
+					new Tupple<String, Object>("Any", null),
+					new Tupple<String, Object>(">40000", 40000),
+					new Tupple<String, Object>(">60000", 60000),
+					new Tupple<String, Object>(">80000", 80000),
+					new Tupple<String, Object>(">100000", 100000),
+					new Tupple<String, Object>(">200000", 200000),
+					new Tupple<String, Object>(">300000", 300000),
+					new Tupple<String, Object>(">500000", 500000),
+					new Tupple<String, Object>(">1000000", 1000000));
+			selectAvgVolume.select(1);
 			selectAvgVolume.setWidth(UIConstant.MEDIUM_FIELD_WIDTH);
 			TextField tfAvgVolume = new TextField();
 			tfAvgVolume.setWidth(UIConstant.SMALL_FIELD_WIDTH);
 			globalFilterLyt.addComponent(getFormField("Avg Vol",
 					selectAvgVolume, "over", tfAvgVolume, "days"));
+			tfAvgVolume.setValue("20");
 
 			ComboBox selectAvgPrice = new ComboBox();
+			setIndexexContainer(selectAvgPrice);
+			setDefaultValue(selectAvgPrice.getContainerDataSource(),
+					new Tupple<String, Object>("Any", null),
+					new Tupple<String, Object>("$1.00", 1),
+					new Tupple<String, Object>("$2.00", 2),
+					new Tupple<String, Object>("$5.00", 5),
+					new Tupple<String, Object>("$10.00", 10),
+					new Tupple<String, Object>("$20.00", 20),
+					new Tupple<String, Object>("$50.00", 50),
+					new Tupple<String, Object>("$75.00", 75),
+					new Tupple<String, Object>("$100.00", 100));
+			selectAvgPrice.select(0);
 			selectAvgPrice.setWidth(UIConstant.MEDIUM_FIELD_WIDTH);
 			TextField tfAvgPrice = new TextField();
 			tfAvgPrice.setWidth(UIConstant.SMALL_FIELD_WIDTH);
@@ -87,7 +123,7 @@ public class ScanFilterViewImpl implements Serializable {
 					"Additional Technical Expressions");
 			additonalFilterPanel.setWidth("100%");
 
-			// rootlayout.addComponent(additonalFilterPanel);
+			rootlayout.addComponent(additonalFilterPanel);
 			VerticalLayout additonalFilterLyt = (VerticalLayout) additonalFilterPanel
 					.getContent();
 			additonalFilterLyt.setSpacing(true);
@@ -98,7 +134,7 @@ public class ScanFilterViewImpl implements Serializable {
 					"Add predefined condition", selectPreCondition,
 					btAddPreCondition));
 
-			// additonalFilterLyt.addComponent(new TableStylingExample());
+			/*// additonalFilterLyt.addComponent(new TableStylingExample());
 			GridLayout additonalFilterGrid = new GridLayout(7, 3);
 			additonalFilterGrid.setWidth("100%");
 			additonalFilterLyt.addComponent(additonalFilterGrid);
@@ -254,7 +290,7 @@ public class ScanFilterViewImpl implements Serializable {
 				additonalFilterGrid.addComponent(period, 6, 2);
 				additonalFilterGrid.setComponentAlignment(period,
 						Alignment.MIDDLE_CENTER);
-			}
+			}*/
 
 			{
 				HorizontalLayout bottom = new HorizontalLayout();
@@ -275,6 +311,7 @@ public class ScanFilterViewImpl implements Serializable {
 						Tupple<String, String> group = new Tupple<String, String>(
 								"country");
 						group.setValue("usa");
+
 						gf.setGroup(group);
 
 						List<EndOfDayData> scanResult = scanner.runScan(param,
@@ -292,6 +329,40 @@ public class ScanFilterViewImpl implements Serializable {
 			}
 
 		}
+	}
+
+	private void setIndexexContainer(final ComboBox type) {
+		IndexedContainer typeContainer = new IndexedContainer();
+		typeContainer.addContainerProperty(TYPE_PROPERTY_NAME, String.class,
+				null);
+		typeContainer.addContainerProperty(TYPE_PROPERTY_VALUE, Object.class,
+				null);
+		type.setContainerDataSource(typeContainer);
+
+		// Sets the combobox to show a certain property as the item caption
+		type.setItemCaptionPropertyId(TYPE_PROPERTY_NAME);
+		type.setItemCaptionMode(AbstractSelect.ITEM_CAPTION_MODE_PROPERTY);
+
+		// Set the appropriate filtering mode for this example
+		type.setFilteringMode(Filtering.FILTERINGMODE_STARTSWITH);
+		type.setImmediate(true);
+
+		// Disallow null selections
+		type.setNullSelectionAllowed(false);
+	}
+
+	@SafeVarargs
+	private final void setDefaultValue(Container container,
+			Tupple<String, Object>... value) {
+
+		for (int i = 0; i < value.length; i++) {
+			Tupple tupple = value[i];
+			Item item = container.addItem(i);
+			item.getItemProperty(TYPE_PROPERTY_NAME).setValue(tupple.getKey());
+			item.getItemProperty(TYPE_PROPERTY_VALUE).setValue(
+					tupple.getValue());
+		}
+
 	}
 
 	private Component getFormField(Object... field) {

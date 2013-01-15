@@ -1,10 +1,9 @@
 package gabriel.yuppiewall.scanner.domain;
 
+import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @SuppressWarnings("serial")
 public class Expression implements Serializable {
@@ -12,22 +11,20 @@ public class Expression implements Serializable {
 	private String indicator;
 	private PERIOD period;
 	private SCAN_ON scanOn;
-	private BigDecimal value;
+	private String parameters;
+	private Integer offset;
 
 	public Expression() {
 	}
 
-	public Expression(String indicator, PERIOD period, BigDecimal value,
-			SCAN_ON scanOn) {
+	public Expression(String indicator, String parameters, Integer offset,
+			PERIOD period, SCAN_ON scanOn) {
 		this.indicator = indicator;
 		this.period = period;
 		this.scanOn = scanOn;
-		this.value = value;
+		this.parameters = parameters;
+		this.offset = offset;
 
-	}
-
-	public Expression(BigDecimal value) {
-		this.value = value;
 	}
 
 	public String getIndicator() {
@@ -38,12 +35,16 @@ public class Expression implements Serializable {
 		return scanOn;
 	}
 
-	public BigDecimal getValue() {
-		return this.value;
-	}
-
 	public PERIOD getPeriod() {
 		return period;
+	}
+
+	public String getParameters() {
+		return parameters;
+	}
+
+	public Integer getOffset() {
+		return offset;
 	}
 
 }

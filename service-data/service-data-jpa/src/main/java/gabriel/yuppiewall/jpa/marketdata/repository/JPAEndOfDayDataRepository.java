@@ -3,7 +3,6 @@ package gabriel.yuppiewall.jpa.marketdata.repository;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
-import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
@@ -16,6 +15,7 @@ import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -98,34 +98,35 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 
 		Condition avePriceConition = gfilter.getAvgPrice();
 		if (avePriceConition != null) {
-			filter(avePriceConition, groupedValue, SCAN_ON.CLOSING);
+			filter(avePriceConition, groupedValue);
 
 		}
 		Condition aveVolConition = gfilter.getAvgVolue();
 		if (aveVolConition != null) {
-			filter(aveVolConition, groupedValue, SCAN_ON.VOLUME);
+			filter(aveVolConition, groupedValue);
 		}
 		return groupedValue;
 	}
 
 	private static void filter(Condition aveVolConition,
-			Map<String, List<EndOfDayData>> groupedValue, SCAN_ON scanOn) {
+			Map<String, List<EndOfDayData>> groupedValue) {
 
 		if (aveVolConition != null) {
-			SimpleMovingAverage am = new SimpleMovingAverage();
+			SimpleMovingAverage sma = new SimpleMovingAverage();
 			Iterator<String> itr = groupedValue.keySet().iterator();
 			while (itr.hasNext()) {
 				String symbol = itr.next();
 				List<EndOfDayData> tempList = groupedValue.get(symbol);
-				TechnicalIndicator_[] res = am.calculate(tempList,
-						aveVolConition.getLhs().getValue().intValue(), scanOn);
-				if (0 >= res[0].getValue().compareTo(
-						aveVolConition.getRhs().getValue())) {
+				TechnicalIndicator_[] res = sma.calculate(tempList,
+						aveVolConition.getLhs());
+				if (0 >= res[0].getValue()
+						.compareTo(
+								new BigDecimal(aveVolConition.getRhs()
+										.getParameters()))) {
 					itr.remove();
 				}
 			}
-
 		}
-
 	}
+
 }

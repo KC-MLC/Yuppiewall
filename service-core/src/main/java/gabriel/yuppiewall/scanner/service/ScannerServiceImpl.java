@@ -1,7 +1,6 @@
 package gabriel.yuppiewall.scanner.service;
 
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
-
 import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
@@ -10,7 +9,6 @@ import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.math.BigDecimal;
@@ -42,8 +40,8 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 				Expression lhs = condition.getLhs();
 				Expression rhs = condition.getRhs();
 
-				BigDecimal lValue = run(lhs, records, lhs.getScanOn());
-				BigDecimal rValue = run(rhs, records, rhs.getScanOn());
+				BigDecimal lValue = run(lhs, records);
+				BigDecimal rValue = run(rhs, records);
 				if (!operate(lValue, condition.getOperand(), rValue)) {
 					itr.remove();
 					records = null;
@@ -70,31 +68,21 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 		return false;
 	}
 
-	private BigDecimal run(Expression exp, List<EndOfDayData> records,
-			SCAN_ON scanOn) {
+	private BigDecimal run(Expression exp, List<EndOfDayData> records) {
 		if (exp.getIndicator() == null)
-			return exp.getValue();
+			throw new UnsupportedOperationException(
+					"constant value not supported");// return new
+													// BigDecimal(exp.getValue());
+
 		TechnicalIndicator ti = getTechnicalIndicatorService()
 				.getTechnicalIndicator(exp.getIndicator());
-		TechnicalIndicator_[] result = ti.calculate(records, exp.getValue()
-				.intValue(), convert(scanOn));
+		TechnicalIndicator_[] result = ti.calculate(records, exp);
 
 		return result[result.length - 1].getValue();
 
 	}
 
 	protected abstract TechnicalIndicatorService getTechnicalIndicatorService();
-
-	private static gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON convert(
-			SCAN_ON scanOn) {
-		switch (scanOn) {
-		case VOLUME:
-			return gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON.VOLUME;
-		case CLOSING:
-			return gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON.CLOSING;
-		}
-		return null;
-	}
 
 	protected abstract EndOfDayDataRepository getEndOfDayDataRepository();
 

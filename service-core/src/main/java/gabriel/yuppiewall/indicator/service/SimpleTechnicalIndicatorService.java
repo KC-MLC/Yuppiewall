@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.indicator.service;
 
+import gabriel.yuppiewall.indicator.ConstantEval;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.momentum.RSI;
 import gabriel.yuppiewall.indicator.momentum.StochasticOscillator;
@@ -16,11 +17,12 @@ public class SimpleTechnicalIndicatorService implements
 	private static Map<String, TechnicalIndicator> indicators = new HashMap<>();
 
 	static {
-		indicators.put("rsi", new RSI());
-		indicators.put("sma", new SimpleMovingAverage());
-		indicators.put("ema", new ExponentialMovingAverage());
-		indicators.put("adl", new AccumulationDistributionLine());
-		indicators.put("osc", new StochasticOscillator());
+		indicators.put("RSI", new RSI());
+		indicators.put("SMA", new SimpleMovingAverage());
+		indicators.put("EMA", new ExponentialMovingAverage());
+		indicators.put("ADL", new AccumulationDistributionLine());
+		indicators.put("OSC", new StochasticOscillator());
+		indicators.put("High", new ConstantEval());
 	}
 
 	@Override
