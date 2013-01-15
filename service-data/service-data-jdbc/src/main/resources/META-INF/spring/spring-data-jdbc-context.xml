@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- This will automatically locate any and all property files you have 
+		within your classpath, provided they fall under the META-INF/spring directory. 
+		The located property files are parsed and their values can then be used within 
+		application context files in the form of ${propertyKey}. -->
+
+	<context:property-placeholder location="classpath*:META-INF/spring/*.properties" />
+
+	<context:component-scan base-package="gabriel.yuppiewall.jdbc" />
+
+<!-- 	<jpa:repositories base-package="gabriel.yuppiewall.jdbc" /> -->
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- <import resource="classpath:/META-INF/spring/integration/amqp-data-outbound-context.xml" 
+		/> -->
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" id="dataSource">
+		<property name="driverClassName" value="${database.driverClassName}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="1800000" />
+		<property name="numTestsPerEvictionRun" value="3" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+		<property name="validationQuery" value="SELECT version();" />
+		<!-- Default isolation level for SQLfire is NONE. Default isolation level 
+			for vPostgres is TRANSACTION_READ_COMMITTED Constant value documentation: 
+			http://docs.oracle.com/javase/6/docs/api/constant-values.html Override the 
+			default isolation level to ensure consistent unit test behavior across data 
+			stores. Examples: NONE = 0 TRANSACTION_READ_UNCOMMITTED = 1 TRANSACTION_READ_COMMITTED 
+			= 2 -->
+		<property name="defaultTransactionIsolation" value="2" />
+	</bean>
+
+
+
+
+
+	<!-- <beans profile="jndi"> <util:properties id="dbPropertiesBean"> <prop 
+		key="use_scrollable_resultset">false</prop> <prop key="dialect">org.hibernate.dialect.DerbyDialect</prop> 
+		<prop key="hb2ddl.auto">validate</prop> </util:properties> <jee:jndi-lookup 
+		id="dataSource" jndi-name="jdbc/nanodb" /> </beans> -->
+
+	<!--beans profile="jndiPostgresql"> <util:properties id="dbPropertiesBean"> 
+		<prop key="use_scrollable_resultset">true</prop> <prop key="dialect">org.hibernate.dialect.PostgreSQLDialect</prop> 
+		<prop key="hb2ddl.auto">validate</prop> </util:properties> <jee:jndi-lookup 
+		id="dataSource" jndi-name="jdbc/nanodb" /> </beans -->
+
+</beans>

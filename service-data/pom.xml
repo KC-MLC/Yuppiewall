@@ -17,6 +17,7 @@
 	<modules>
 		<!-- <module>service-data-hbase</module> -->
 		<module>service-data-jpa</module>
+<module>service-data-jdbc</module>
 	</modules>
 
 	<dependencies>

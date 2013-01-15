@@ -3,21 +3,12 @@ package gabriel.yuppiewall.scanner.service;
 import gabriel.yuppiewall.indicator.SampleData;
 import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
-import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
-import gabriel.yuppiewall.scanner.domain.Condition;
-import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.SCAN_ON;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +71,7 @@ public class ScannerTest {
 
 	@Test
 	public void testBasicParse() {
-		ScanParameter sp = new ScanParameter()
+		/*ScanParameter sp = new ScanParameter()
 				.Builder()
 				.fromExchange(new Exchange("NYSE"))
 				.addCondition(
@@ -88,6 +79,6 @@ public class ScannerTest {
 								SCAN_ON.VOLUME), OPERAND.GT,
 						new Expression(new BigDecimal(40000))).build();
 		scanner.runScan(sp);
-
+*/
 	}
 }

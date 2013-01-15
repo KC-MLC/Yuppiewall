@@ -30,13 +30,7 @@ public class ScanClient {
 			conn.setRequestProperty("Content-Type", "application/json");
 
 			ObjectMapper mapper = new ObjectMapper();
-			ScanParameter sp = new ScanParameter()
-					.Builder()
-					.fromExchange(new Exchange("NYSE"))
-					.addCondition(
-							new Expression("sma", PERIOD.DAILY, new BigDecimal(
-									20), SCAN_ON.VOLUME), OPERAND.GT,
-							new Expression(new BigDecimal(40000))).build();
+			ScanParameter sp = new ScanParameter();
 
 			byte[] postdata = mapper.writeValueAsBytes(sp);
 			System.out.println(new String(postdata));

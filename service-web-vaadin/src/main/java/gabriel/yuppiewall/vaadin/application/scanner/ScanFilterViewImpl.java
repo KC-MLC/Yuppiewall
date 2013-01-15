@@ -269,9 +269,9 @@ public class ScanFilterViewImpl implements Serializable {
 					@Override
 					public void buttonClick(ClickEvent event) {
 						ScannerServive scanner = YuppiewallUI.getInstance()
-								.getService("scannerServive");
-						ScanParameter param = new ScanParameter();
+								.getService("scannerService");
 						GlobalFilter gf = new GlobalFilter();
+						ScanParameter param = new ScanParameter(gf);
 						Tupple<String, String> group = new Tupple<String, String>(
 								"country");
 						group.setValue("usa");
