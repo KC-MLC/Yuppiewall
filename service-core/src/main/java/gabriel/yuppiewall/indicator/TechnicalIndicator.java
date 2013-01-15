@@ -23,6 +23,8 @@ public interface TechnicalIndicator {
 				return high;
 			case LOW:
 				return low;
+			case OPEN:
+				return open;
 			default:
 				throw new UnsupportedOperationException("Not yet implemented ");
 			}
@@ -56,9 +58,15 @@ public interface TechnicalIndicator {
 			return data.getStockPriceLow();
 		}
 	};
+	EndOfDayDataScanOnValue open = new EndOfDayDataScanOnValue() {
+		@Override
+		public BigDecimal getValue(EndOfDayData data) {
+			return data.getStockPriceOpen();
+		}
+	};
 
 	public enum SCAN_ON {
-		VOLUME, CLOSING, HIGH, LOW
+		VOLUME, CLOSING, HIGH, LOW, OPEN
 	}
 
 	TechnicalIndicator_[] calculate(List<EndOfDayData> historical,

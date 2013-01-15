@@ -10,8 +10,10 @@ import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreconfiguredIndicatorRepository {
-	private static final List<PreconfiguredIndicator> preconfigList = new ArrayList<>();
+public abstract class PreconfiguredIndicatorServiceImpl implements
+		PreconfiguredIndicatorService {
+
+	protected static final List<PreconfiguredIndicator> preconfigList = new ArrayList<>();
 	static {
 		{
 			PreconfiguredIndicator config = new PreconfiguredIndicator(

@@ -17,6 +17,13 @@ public class Expression implements Serializable {
 	public Expression() {
 	}
 
+	public Expression(String indicator, SCAN_ON scanOn) {
+		super();
+		this.indicator = indicator;
+		this.scanOn = scanOn;
+
+	}
+
 	public Expression(String indicator, String parameters, Integer offset,
 			PERIOD period, SCAN_ON scanOn) {
 		this.indicator = indicator;

@@ -23,6 +23,9 @@ public class SimpleTechnicalIndicatorService implements
 		indicators.put("ADL", new AccumulationDistributionLine());
 		indicators.put("OSC", new StochasticOscillator());
 		indicators.put("High", new ConstantEval());
+		indicators.put("Close", new ConstantEval());
+		indicators.put("Volume", new ConstantEval());
+		indicators.put("Open", new ConstantEval());
 	}
 
 	@Override

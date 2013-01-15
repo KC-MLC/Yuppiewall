@@ -1,7 +1,11 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
 import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.indicator.PreconfiguredIndicator;
+import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
+import gabriel.yuppiewall.indicator.repository.PreconfiguredIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.service.ScannerServive;
@@ -26,10 +30,10 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
@@ -42,20 +46,26 @@ public class ScanFilterViewImpl implements Serializable {
 	private static final Object TYPE_PROPERTY_NAME = "name";
 	private static final Object TYPE_PROPERTY_VALUE = "value";
 
-	private static final String H_COL1_WIDTH = "12em";
-	private static final String H_COL2_WIDTH = "10em";
-	private static final String H_COL3_WIDTH = "14em";
-	private static final String H_COL4_WIDTH = "7em";
+	private static final Object INDICATOR = "Indicators";
+	private static final Object PAPAMETER = "Parameters";
+	private static final Object DATA_OFFSET = "Date Offset";
+	private static final Object PERIOD = "Period";
+	private static final Object COMPARATOR = "Comparator";
 
-	private static final String COL1_WIDTH = "10em";
-	private static final String COL2_WIDTH = "8em";
-	private static final String COL3_WIDTH = "12em";
-	private static final String COL4_WIDTH = "5em";
+	private static final Object INDICATOR2 = "Indicators.";
+	private static final Object PAPAMETER2 = "Parameters.";
+	private static final Object DATA_OFFSET2 = "Date Offset.";
+	private static final Object PERIOD2 = "Period.";
 
 	@Autowired
 	private EventBus eventBus;
+	private Table additionalFilter;
 
 	public ScanFilterViewImpl() {
+	}
+
+	public void onLoad() {
+
 	}
 
 	public void init() {
@@ -69,7 +79,7 @@ public class ScanFilterViewImpl implements Serializable {
 
 			VerticalLayout globalFilterLyt = (VerticalLayout) globalFilter
 					.getContent();
-			globalFilterLyt.setMargin(true, false, false, true);
+			globalFilterLyt.setMargin(true);
 			globalFilterLyt.setSpacing(true);
 
 			ComboBox groupSelect = new ComboBox();
@@ -78,6 +88,14 @@ public class ScanFilterViewImpl implements Serializable {
 			/**/
 
 			globalFilterLyt.addComponent(getFormField("Group", groupSelect));
+			setIndexexContainer(groupSelect);
+			setDefaultValue(groupSelect.getContainerDataSource(),
+					new Tupple<String, Object>("-- Countries --", null),
+					new Tupple<String, Object>("United States", "c-usa"),
+					new Tupple<String, Object>("-- Exchanges --", null),
+					new Tupple<String, Object>("NASDAQ", "ex-nasdaq"),
+					new Tupple<String, Object>("NYSE", "ex-nyse"));
+			groupSelect.select(1);
 			ComboBox selectAvgVolume = new ComboBox();
 			setIndexexContainer(selectAvgVolume);
 			setDefaultValue(selectAvgVolume.getContainerDataSource(),
@@ -90,6 +108,7 @@ public class ScanFilterViewImpl implements Serializable {
 					new Tupple<String, Object>(">300000", 300000),
 					new Tupple<String, Object>(">500000", 500000),
 					new Tupple<String, Object>(">1000000", 1000000));
+
 			selectAvgVolume.select(1);
 			selectAvgVolume.setWidth(UIConstant.MEDIUM_FIELD_WIDTH);
 			TextField tfAvgVolume = new TextField();
@@ -121,183 +140,124 @@ public class ScanFilterViewImpl implements Serializable {
 		{
 			Panel additonalFilterPanel = new Panel(
 					"Additional Technical Expressions");
-			additonalFilterPanel.setWidth("100%");
+			// additonalFilterPanel.setWidth("100%");
 
 			rootlayout.addComponent(additonalFilterPanel);
 			VerticalLayout additonalFilterLyt = (VerticalLayout) additonalFilterPanel
 					.getContent();
 			additonalFilterLyt.setSpacing(true);
 			additonalFilterLyt.setMargin(true);
-			ComboBox selectPreCondition = new ComboBox();
+			final ComboBox selectPreCondition = new ComboBox();
+			{
+
+				setIndexexContainer(selectPreCondition);
+
+				{
+					PreconfiguredIndicatorService preconfiguredIndicatorService = YuppiewallUI
+							.getInstance().getService(
+									"preconfiguredIndicatorService");
+					List<PreconfiguredIndicator> list = preconfiguredIndicatorService
+							.getPreconfiguredIndicator();
+
+					Tupple<String, Object> values[] = new Tupple[list.size()];
+					for (int i = 0; i < list.size(); i++) {
+						PreconfiguredIndicator preconfiguredIndicator = list
+								.get(i);
+						values[i] = new Tupple<String, Object>(
+								preconfiguredIndicator.getName(),
+								preconfiguredIndicator);
+					}
+					setDefaultValue(
+							selectPreCondition.getContainerDataSource(), values);
+				}
+			}
+
 			Button btAddPreCondition = new Button("Insert");
-			additonalFilterLyt.addComponent(getFormField(
-					"Add predefined condition", selectPreCondition,
-					btAddPreCondition));
+			btAddPreCondition.addListener(new Button.ClickListener() {
 
-			/*// additonalFilterLyt.addComponent(new TableStylingExample());
-			GridLayout additonalFilterGrid = new GridLayout(7, 3);
-			additonalFilterGrid.setWidth("100%");
-			additonalFilterLyt.addComponent(additonalFilterGrid);
-			{
-				Label header = new Label("Indicators etc...	");
-				header.setWidth(H_COL1_WIDTH);
-				additonalFilterGrid.addComponent(header, 0, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
-			{
-				Label header = new Label("Parameters");
-				header.setWidth(H_COL2_WIDTH);
-				additonalFilterGrid.addComponent(header, 1, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
-			{
-				Label header = new Label("Date Offset & Period	");
-				header.setWidth(H_COL3_WIDTH);
-				additonalFilterGrid.addComponent(header, 2, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
-			{
-				Label header = new Label();
-				header.setWidth(H_COL4_WIDTH);
-				additonalFilterGrid.addComponent(header, 3, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
-			{
-				Label header = new Label("Indicators etc...	");
-				header.setWidth(H_COL1_WIDTH);
-				additonalFilterGrid.addComponent(header, 4, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
-			{
-				Label header = new Label("Parameters");
-				header.setWidth(H_COL2_WIDTH);
-				additonalFilterGrid.addComponent(header, 5, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
-			{
-				Label header = new Label("Date Offset & Period	");
-				header.setWidth(H_COL3_WIDTH);
-				additonalFilterGrid.addComponent(header, 6, 0);
-				additonalFilterGrid.setComponentAlignment(header,
-						Alignment.TOP_LEFT);
-			}
+				@Override
+				public void buttonClick(ClickEvent event) {
+					Object id = selectPreCondition.getValue();
+					
+					PreconfiguredIndicator preconfiguredIndicator = (PreconfiguredIndicator) selectPreCondition
+							.getItem(id).getItemProperty(TYPE_PROPERTY_VALUE);
+					//figure out if there is a space for this configuration
+					preconfiguredIndicator.g
+
+				}
+			});
+			HorizontalLayout menuLayout = new HorizontalLayout();
+			menuLayout.setWidth("100%");
+			menuLayout.setStyleName("toolbar");
+			additonalFilterLyt.addComponent(menuLayout);
+			Component preConLyt = getFormField("Add predefined condition",
+					selectPreCondition, btAddPreCondition);
+			preConLyt.setStyleName("segment");
+			menuLayout.addComponent(preConLyt);
+
+			menuLayout.setComponentAlignment(preConLyt, Alignment.MIDDLE_LEFT);
+
+			/*
+			 * additonalFilterLyt.addComponent(getFormField(
+			 * "Add predefined condition", selectPreCondition,
+			 * btAddPreCondition));
+			 */
+
+			additionalFilter = new Table();
+			additionalFilter.setWidth("100%");
+			// turn on column reordering and collapsing
+			additionalFilter.setColumnReorderingAllowed(false);
+			additionalFilter.setColumnCollapsingAllowed(false);
+			additionalFilter.setSortDisabled(false);
+			additonalFilterLyt.addComponent(additionalFilter);
+			// additonalFilterLyt.setExpandRatio(additionalFilter, 1);
+			additionalFilter.setSelectable(true);
+			additionalFilter.setMultiSelect(false);
+			additionalFilter.setEditable(true);
+			additionalFilter.setImmediate(true);
+			additionalFilter.setPageLength(0);
+
+			additionalFilter.addContainerProperty(INDICATOR, ComboBox.class,
+					null);
+			additionalFilter.setColumnExpandRatio(INDICATOR, 3);
+			additionalFilter.addContainerProperty(PAPAMETER, TextField.class,
+					"");
+			additionalFilter.setColumnExpandRatio(PAPAMETER, 2);
+			additionalFilter.addContainerProperty(DATA_OFFSET, TextField.class,
+					"");
+			additionalFilter.setColumnExpandRatio(DATA_OFFSET, 1);
+			additionalFilter.addContainerProperty(PERIOD, ComboBox.class, null);
+			additionalFilter.setColumnExpandRatio(PERIOD, 1);
+			additionalFilter.addContainerProperty(COMPARATOR, ComboBox.class,
+					null);
+			additionalFilter.setColumnExpandRatio(COMPARATOR, 1);
+
+			additionalFilter.addContainerProperty(INDICATOR2, ComboBox.class,
+					null);
+			additionalFilter.setColumnExpandRatio(INDICATOR2, 3);
+			additionalFilter.addContainerProperty(PAPAMETER2, TextField.class,
+					"");
+			additionalFilter.setColumnExpandRatio(PAPAMETER2, 2);
+			additionalFilter.addContainerProperty(DATA_OFFSET2,
+					TextField.class, "");
+			additionalFilter.setColumnExpandRatio(DATA_OFFSET2, 1);
+			additionalFilter
+					.addContainerProperty(PERIOD2, ComboBox.class, null);
+			additionalFilter.setColumnExpandRatio(PERIOD2, 1);
+
 			//
-			{
-				ComboBox indicator = new ComboBox();
-				indicator.setWidth(COL1_WIDTH);
-				additonalFilterGrid.addComponent(indicator, 0, 1);
-				additonalFilterGrid.setComponentAlignment(indicator,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				TextField parameter = new TextField();
-				parameter.setWidth(COL2_WIDTH);
-				additonalFilterGrid.addComponent(parameter, 1, 1);
-				additonalFilterGrid.setComponentAlignment(parameter,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				Component period = getFormField(new TextField(),
-						new ComboBox(), "ago");
-				period.setWidth(COL3_WIDTH);
-				additonalFilterGrid.addComponent(period, 2, 1);
-				additonalFilterGrid.setComponentAlignment(period,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				ComboBox comparater = new ComboBox();
-				comparater.setWidth(COL4_WIDTH);
-				additonalFilterGrid.addComponent(comparater, 3, 1);
-				additonalFilterGrid.setComponentAlignment(comparater,
-						Alignment.TOP_LEFT);
-			}
-			{
-				ComboBox indicator = new ComboBox();
-				indicator.setWidth(COL1_WIDTH);
-				additonalFilterGrid.addComponent(indicator, 4, 1);
-				additonalFilterGrid.setComponentAlignment(indicator,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				TextField parameter = new TextField();
-				parameter.setWidth(COL2_WIDTH);
-				additonalFilterGrid.addComponent(parameter, 5, 1);
-				additonalFilterGrid.setComponentAlignment(parameter,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				Component period = getFormField(new TextField(),
-						new ComboBox(), "ago");
-				period.setWidth(COL3_WIDTH);
-				additonalFilterGrid.addComponent(period, 6, 1);
-				additonalFilterGrid.setComponentAlignment(period,
-						Alignment.MIDDLE_CENTER);
-			}
-
-			{
-				ComboBox indicator = new ComboBox();
-				indicator.setWidth(COL1_WIDTH);
-				additonalFilterGrid.addComponent(indicator, 0, 2);
-				additonalFilterGrid.setComponentAlignment(indicator,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				TextField parameter = new TextField();
-				parameter.setWidth(COL2_WIDTH);
-				additonalFilterGrid.addComponent(parameter, 1, 2);
-				additonalFilterGrid.setComponentAlignment(parameter,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				Component period = getFormField(new TextField(),
-						new ComboBox(), "ago");
-				period.setWidth(COL3_WIDTH);
-				additonalFilterGrid.addComponent(period, 2, 2);
-				additonalFilterGrid.setComponentAlignment(period,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				ComboBox comparater = new ComboBox();
-				comparater.setWidth(COL4_WIDTH);
-				additonalFilterGrid.addComponent(comparater, 3, 2);
-				additonalFilterGrid.setComponentAlignment(comparater,
-						Alignment.TOP_LEFT);
-			}
-			{
-				ComboBox indicator = new ComboBox();
-				indicator.setWidth(COL1_WIDTH);
-				additonalFilterGrid.addComponent(indicator, 4, 2);
-				additonalFilterGrid.setComponentAlignment(indicator,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				TextField parameter = new TextField();
-				parameter.setWidth(COL2_WIDTH);
-				additonalFilterGrid.addComponent(parameter, 5, 2);
-				additonalFilterGrid.setComponentAlignment(parameter,
-						Alignment.MIDDLE_CENTER);
-			}
-			{
-				Component period = getFormField(new TextField(),
-						new ComboBox(), "ago");
-				period.setWidth(COL3_WIDTH);
-				additonalFilterGrid.addComponent(period, 6, 2);
-				additonalFilterGrid.setComponentAlignment(period,
-						Alignment.MIDDLE_CENTER);
-			}*/
 
 			{
 				HorizontalLayout bottom = new HorizontalLayout();
-				bottom.setMargin(true, false, false, true);
+				// bottom.setMargin(true, false, false, true);
 				bottom.setSpacing(true);
 				bottom.setStyleName("small-segment");
-				rootlayout.addComponent(bottom);
+				menuLayout.addComponent(bottom);
+
+				menuLayout
+						.setComponentAlignment(bottom, Alignment.MIDDLE_RIGHT);
+
+				// rootlayout.addComponent(bottom);
 
 				Button btRun = new Button("Run");
 				btRun.addListener(new Button.ClickListener() {
@@ -326,9 +286,96 @@ public class ScanFilterViewImpl implements Serializable {
 				bottom.addComponent(btSave);
 				bottom.addComponent(btCreateAlert);
 				// bottom.setStyleName(")
+				createEmptyRow();
+				createEmptyRow();
 			}
 
 		}
+	}
+
+	int row = 0;
+
+	void createEmptyRow() {
+		Item item = additionalFilter.addItem(row++);
+		item.getItemProperty(INDICATOR).setValue(getNewIndicatorCB());
+		item.getItemProperty(PAPAMETER).setValue(getNewTextField());
+		item.getItemProperty(DATA_OFFSET).setValue(getNewTextField());
+		item.getItemProperty(PERIOD).setValue(getNewPeriodCB());
+
+		item.getItemProperty(COMPARATOR).setValue(getNewComparatorCB());
+
+		item.getItemProperty(INDICATOR2).setValue(getNewIndicatorCB());
+		item.getItemProperty(PAPAMETER2).setValue(getNewTextField());
+		item.getItemProperty(DATA_OFFSET2).setValue(getNewTextField());
+		item.getItemProperty(PERIOD2).setValue(getNewPeriodCB());
+	}
+
+	private TextField getNewTextField() {
+		TextField tf = new TextField();
+
+		tf.setWidth("100%");
+
+		return tf;
+	}
+
+	private ComboBox getNewComparatorCB() {
+		ComboBox cb = new ComboBox();
+		cb.setWidth("100%");
+		setIndexexContainer(cb);
+		setDefaultValue(cb.getContainerDataSource(),
+				new Tupple<String, Object>("=", "EQ"),
+				new Tupple<String, Object>(">", "GT"),
+				new Tupple<String, Object>("<", "LT"));
+		cb.select(0);
+		return cb;
+	}
+
+	private ComboBox getNewPeriodCB() {
+		ComboBox cb = new ComboBox();
+		cb.setWidth("100%");
+		setIndexexContainer(cb);
+		setDefaultValue(cb.getContainerDataSource(),
+				new Tupple<String, Object>("Days", "d"),
+				new Tupple<String, Object>("Weeks", "w"));
+		cb.select(0);
+		return cb;
+	}
+
+	private ComboBox getNewIndicatorCB() {
+		ComboBox cb = new ComboBox();
+		cb.setWidth("100%");
+		setIndexexContainer(cb);
+		cb.setNullSelectionItemId(" ");
+		setDefaultValue(cb.getContainerDataSource(),
+				new Tupple<String, Object>("Constant = ", new Expression()),
+				new Tupple<String, Object>("----------", null),
+				new Tupple<String, Object>("SMA Close", new Expression("SMA",
+						SCAN_ON.CLOSING)), new Tupple<String, Object>(
+						"EMA Close", new Expression("EMA", SCAN_ON.CLOSING)),
+				new Tupple<String, Object>("Max. Close", new Expression(
+						"Close", SCAN_ON.CLOSING)), new Tupple<String, Object>(
+						"SMA Vol.", new Expression("SMA", SCAN_ON.VOLUME)),
+				new Tupple<String, Object>("EMA Vol.", new Expression("EMA",
+						SCAN_ON.VOLUME)), new Tupple<String, Object>(
+						"Max. Vol", new Expression("Volume", SCAN_ON.VOLUME)),
+				new Tupple<String, Object>("Max. High", new Expression("High",
+						SCAN_ON.HIGH)), new Tupple<String, Object>(
+						"----------", null), new Tupple<String, Object>("Open",
+						new Expression("Open", SCAN_ON.OPEN)),
+				new Tupple<String, Object>("High", new Expression("High",
+						SCAN_ON.HIGH)), new Tupple<String, Object>(
+						"Constant = ", new Expression()),
+				new Tupple<String, Object>("Low", new Expression("Low",
+						SCAN_ON.LOW)), new Tupple<String, Object>("Close",
+						new Expression("Close", SCAN_ON.CLOSING)),
+				new Tupple<String, Object>("----------", null),
+				new Tupple<String, Object>("RSI", new Expression("RSI",
+						SCAN_ON.CLOSING)), new Tupple<String, Object>("ADX",
+						new Expression("ADX", SCAN_ON.CLOSING)));
+
+		cb.setNullSelectionAllowed(true);
+
+		return cb;
 	}
 
 	private void setIndexexContainer(final ComboBox type) {
