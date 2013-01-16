@@ -54,10 +54,10 @@
 		</util:properties>
 		<jdbc:embedded-database id="dataSource" type="H2" />
 	</beans>
-	<beans profile="default,mysql">
+	<beans profile="default,pgsql">
 		<util:properties id="dbPropertiesBean">
 			<prop key="use_scrollable_resultset">true</prop>
-			<prop key="dialect">org.hibernate.dialect.MySQLDialect </prop>
+			<prop key="dialect">org.hibernate.dialect.PostgreSQLDialect </prop>
 		
 			<prop key="hb2ddl.auto">update</prop>
 		</util:properties>

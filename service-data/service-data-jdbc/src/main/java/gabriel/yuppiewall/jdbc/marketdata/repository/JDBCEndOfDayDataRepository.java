@@ -20,9 +20,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -129,6 +131,17 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 		return groupedValue;
 	}
 
+	private static Set<String> block = new HashSet<>();
+	{
+		block.add("FSR");
+		block.add("NOOF");
+		block.add("MNGL");
+		block.add("AGP");
+		block.add("DUSA");
+		block.add("EAGLW");
+		block.add("ARDC");
+	}
+
 	private static void filter(Condition aveVolConition,
 			Map<String, List<EndOfDayData>> groupedValue) {
 
@@ -138,8 +151,17 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 			while (itr.hasNext()) {
 				String symbol = itr.next();
 				List<EndOfDayData> tempList = groupedValue.get(symbol);
-				TechnicalIndicator_[] res = sma.calculate(tempList,
-						aveVolConition.getLhs());
+				TechnicalIndicator_[] res;
+				if (block.contains(symbol)) {
+					System.out.println("BLOCK");
+				}
+				try {
+					res = sma.calculate(tempList, aveVolConition.getLhs());
+				} catch (InvalidParameterValueException ipve) {
+					itr.remove();
+					System.out.println(symbol);
+					continue;
+				}
 				if (0 >= res[0].getValue()
 						.compareTo(
 								new BigDecimal(aveVolConition.getRhs()

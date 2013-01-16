@@ -1,11 +1,9 @@
 package gabriel.yuppiewall.client;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.service.EndOfDayService;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -16,7 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class EndOfDayServiceRestClient implements EndOfDayService {
 
 	// @Override
-	public void saveEOD(EndOfDayData_[] data) {
+	public void saveEOD(EndOfDayData[] data) {
 		try {
 
 			URL url = new URL(

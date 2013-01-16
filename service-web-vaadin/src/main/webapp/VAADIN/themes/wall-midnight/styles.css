@@ -1,2 +1,6 @@
 @import url(../midnightblue-chameleon/styles.css);
 
+.v-table-additionalfilter .v-table-cell-content-rhs {
+	background-color: #ffd;		
+}
+

@@ -14,7 +14,17 @@ public class ScanParameter implements Serializable {
 	}
 
 	public enum OPERAND {
-		GT, LT, EQUAL
+		GT(">"), LT("<"), EQUAL("=");
+
+		private String symbol;
+
+		private OPERAND(String symbol) {
+			this.symbol = symbol;
+		}
+
+		public String getSymbol() {
+			return symbol;
+		}
 	}
 
 	private GlobalFilter globalFilter;

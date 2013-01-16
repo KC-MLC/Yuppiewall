@@ -50,6 +50,7 @@ public class YuppiewallShell extends Window {
 
 		HorizontalLayout headerLayout = new HorizontalLayout();
 		mainLayout.addComponent(headerLayout);
+		headerLayout.setStyleName("sidebar");
 		headerLayout.setHeight("30px");
 		headerLayout.setWidth("100%");
 		headerLayout.setSpacing(false);

@@ -13,25 +13,38 @@ public class Expression implements Serializable {
 	private SCAN_ON scanOn;
 	private String parameters;
 	private Integer offset;
+	private String id;
 
 	public Expression() {
 	}
 
-	public Expression(String indicator, SCAN_ON scanOn) {
-		super();
+	public Expression(String parameters) {
+		this.parameters = parameters;
+	}
+
+	public Expression(String indicator, PERIOD period, SCAN_ON scanOn,
+			Integer offset) {
+		this.indicator = indicator;
+		this.period = period;
+		this.scanOn = scanOn;
+		this.offset = offset;
+	}
+
+	public Expression(String id, String indicator, SCAN_ON scanOn) {
 		this.indicator = indicator;
 		this.scanOn = scanOn;
+		this.id = id;
 
 	}
 
-	public Expression(String indicator, String parameters, Integer offset,
-			PERIOD period, SCAN_ON scanOn) {
+	public Expression(String id, String indicator, String parameters,
+			Integer offset, PERIOD period, SCAN_ON scanOn) {
 		this.indicator = indicator;
 		this.period = period;
 		this.scanOn = scanOn;
 		this.parameters = parameters;
 		this.offset = offset;
-
+		this.id = id;
 	}
 
 	public String getIndicator() {
@@ -52,6 +65,14 @@ public class Expression implements Serializable {
 
 	public Integer getOffset() {
 		return offset;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
 	}
 
 }

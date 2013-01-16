@@ -1,15 +1,13 @@
 package gabriel.yuppiewall.client;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
 import gabriel.yuppiewall.common.LineIterator;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,7 +24,7 @@ public class FilebasedEODDataReader {
 		File[] files = root.listFiles();
 
 		for (File file : files) {
-			EndOfDayData_[] data = new EndOfDayData_[100];
+			EndOfDayData[] data = new EndOfDayData[100];
 			int counter = 0;
 			try {
 				Iterator<String> itr = new LineIterator(new FileInputStream(
@@ -38,7 +36,7 @@ public class FilebasedEODDataReader {
 				while (itr.hasNext()) {
 					String line = itr.next();
 
-					EndOfDayData_ eod = ParseCSV.parse(name[0] + "," + name[1]
+					EndOfDayData eod = ParseCSV.parse(name[0] + "," + name[1]
 							+ "," + line);// parse this line
 					if (eod == null)
 						continue;
@@ -51,13 +49,13 @@ public class FilebasedEODDataReader {
 					if (counter == 100) {
 						// spawn the thread which will fire the webservice call
 						sendToServer(data);
-						data = new EndOfDayData_[100];
+						data = new EndOfDayData[100];
 						counter = 0;
 					}
 				}
 				if (counter > 0) {
 					// spawn the thread which will fire the webservice call
-					EndOfDayData_[] temp = new EndOfDayData_[counter];
+					EndOfDayData[] temp = new EndOfDayData[counter];
 
 					System.arraycopy(data, 0, temp, 0, counter);
 					sendToServer(temp);
@@ -72,7 +70,7 @@ public class FilebasedEODDataReader {
 
 	}
 
-	private static void sendToServer(final EndOfDayData_[] data) {
+	private static void sendToServer(final EndOfDayData[] data) {
 		/*
 		 * new EndOfDayServiceRestClient().saveEOD(batch .toArray(new
 		 * EndOfDayData_[0]));

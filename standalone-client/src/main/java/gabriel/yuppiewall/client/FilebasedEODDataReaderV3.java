@@ -3,27 +3,30 @@ package gabriel.yuppiewall.client;
 import gabriel.yuppiewall.common.LineIterator;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-public class FilebasedEODDataReaderV2 {
-	private static ExecutorService executor = Executors.newFixedThreadPool(5);
+public class FilebasedEODDataReaderV3 {
 
 	/**
 	 * @param args
+	 * @throws IOException
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// will search a directory for eod data file
 		File root = new File("/home/parvez/yuppiewall/data");
+		File output = new File("/home/parvez/yuppiewall/schemaZ.txt");
 		System.out.println(root.isDirectory());
 		Map<String, List<EndOfDayData>> dataList = new HashMap<String, List<EndOfDayData>>();
 
@@ -57,14 +60,6 @@ public class FilebasedEODDataReaderV2 {
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
-
-					if (list.size() == 20) {
-						// spawn the thread which will fire the webservice call
-						System.out.println(eod.getExchange().getName()
-								+ eod.getDate().getTime());
-						sendToServer(list.toArray(new EndOfDayData[0]));
-						list.clear();
-					}
 				}
 
 				System.out.println("OVER = "
@@ -74,24 +69,56 @@ public class FilebasedEODDataReaderV2 {
 				ignore.printStackTrace();
 			}
 		}
+		if (!output.exists()) {
+			output.createNewFile();
+		}
+		FileWriter fw = new FileWriter(output.getAbsoluteFile());
+		BufferedWriter bw = new BufferedWriter(fw);
+		String v = "INSERT INTO end_of_day_data (identifier, trade_date, stock_price_adj_close, stock_price_close, stock_price_high,"
+				+ " stock_price_low, stock_price_open, stock_volume, symbol, exchange)"
+				+ " VALUES ";
+		bw.write(v);
+		int[] i = new int[1];
 		for (Iterator<String> iterator = dataList.keySet().iterator(); iterator
 				.hasNext();) {
 			String key = iterator.next();
 			List<EndOfDayData> list = dataList.get(key);
 			System.out.println(key);
-			sendToServer(list.toArray(new EndOfDayData[0]));
+			sendToServer(list, bw, i);
 			list.clear();
-		}
 
+		}
+		bw.write(";");
+		bw.flush();
+		bw.close();
 	}
 
-	private static void sendToServer(final EndOfDayData[] data) {
+	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+	private static void sendToServer(List<EndOfDayData> list,
+			BufferedWriter bw, int[] i) throws IOException {
 		/*
 		 * new EndOfDayServiceRestClient().saveEOD(batch .toArray(new
 		 * EndOfDayData_[0]));
 		 */
-		System.out.println("sending>>" + data.length);
-		new EndOfDayServiceRestClient().saveEOD(data);
+		System.out.println("sending>>" + list.size());
+
+		for (EndOfDayData eod : list) {
+			String identifier = eod.getExchange().getName()
+					+ eod.getStockSymbol() + eod.getStrDate();
+			String v = "('" + identifier + "', '" + sdf.format(eod.getDate())
+					+ "', " + eod.getStockPriceAdjClose() + ", "
+					+ eod.getStockPriceClose() + ", " + eod.getStockPriceHigh()
+					+ ", " + eod.getStockPriceLow() + ", "
+					+ eod.getStockPriceOpen() + ", " + eod.getStockVolume()
+					+ ", '" + eod.getStockSymbol() + "', '"
+					+ eod.getExchange().getName() + "'),";
+			System.out.println(i[0]++);
+			bw.write(v);
+
+		}
+
+		// new EndOfDayServiceRestClient().saveEOD(data);
 		/*
 		 * try { Thread.sleep(5000); } catch (InterruptedException e) { // TODO
 		 * Auto-generated catch block e.printStackTrace(); }

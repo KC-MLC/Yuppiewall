@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.client;
 
-import gabriel.yuppiewall.market.domain.Exchange_;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData_;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -18,11 +18,11 @@ public class ParseCSV {
 	private static final int STOCKVOLUME = 7;
 	private static final int STOCKPRICEADJCLOSE = 8;
 
-	public static EndOfDayData_ parse(String csv) {
+	public static EndOfDayData parse(String csv) {
 		String values[] = csv.split(",");
 
 		try {
-			return new EndOfDayData_(new Exchange_(values[EXCHANGE]),
+			return new EndOfDayData(new Exchange(values[EXCHANGE]),
 					values[STOCKSYMBOL],
 					new SimpleDateFormat("yyyy-MM-dd").parse(values[DATE]),
 					new BigDecimal(values[STOCKPRICEOPEN]), new BigDecimal(
