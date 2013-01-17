@@ -1,6 +1,7 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.ScanOutput;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -77,25 +78,25 @@ public class ScanResultViewImpl implements Serializable {
 	public void loadGrid(NewScanResult e) {
 		resultTable.removeAllItems();
 		@SuppressWarnings("unchecked")
-		List<EndOfDayData> scanResult = (List<EndOfDayData>) e.getSource();
-		for (EndOfDayData endOfDayData_ : scanResult) {
-			addRow(endOfDayData_);
+		List<ScanOutput> scanResult = (List<ScanOutput>) e.getSource();
+		for (ScanOutput scanOutput : scanResult) {
+			addRow(scanOutput);
 		}
 
 	}
 
-	private void addRow(EndOfDayData data) {
-		Item item = resultTable.addItem(data.getStockSymbol());
-		item.getItemProperty(SYMBOL).setValue(data.getStockSymbol());
+	private void addRow(ScanOutput data) {
+		Item item = resultTable.addItem(data.getSymbol());
+		item.getItemProperty(SYMBOL).setValue(data.getSymbol());
 		item.getItemProperty(NAME).setValue("-");
 		item.getItemProperty(EXCHANGE).setValue("-");
 		item.getItemProperty(SECTOR).setValue("-");
 		item.getItemProperty(INDUSTRY).setValue("-");
-		item.getItemProperty(OPEN).setValue(data.getStockPriceOpen());
-		item.getItemProperty(HIGH).setValue(data.getStockPriceHigh());
-		item.getItemProperty(LOW).setValue(data.getStockPriceLow());
-		item.getItemProperty(CLOSE).setValue(data.getStockPriceAdjClose());
-		item.getItemProperty(VOLUME).setValue(data.getStockVolume());
+		item.getItemProperty(OPEN).setValue(data.getOpen());
+		item.getItemProperty(HIGH).setValue(data.getHigh());
+		item.getItemProperty(LOW).setValue(data.getLow());
+		item.getItemProperty(CLOSE).setValue(data.getClose());
+		item.getItemProperty(VOLUME).setValue(data.getVolume());
 
 	}
 

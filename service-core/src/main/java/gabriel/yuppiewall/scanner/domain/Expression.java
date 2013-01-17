@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.scanner.domain;
 
+import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
 
@@ -14,6 +15,8 @@ public class Expression implements Serializable {
 	private String parameters;
 	private Integer offset;
 	private String id;
+
+	private TechnicalIndicator technicalIndicator;
 
 	public Expression() {
 	}
@@ -71,8 +74,20 @@ public class Expression implements Serializable {
 		return id;
 	}
 
+	public void setOffset(Integer offset) {
+		this.offset = offset;
+	}
+
 	public void setParameters(String parameters) {
 		this.parameters = parameters;
+	}
+
+	public TechnicalIndicator getTechnicalIndicator() {
+		return technicalIndicator;
+	}
+
+	public void setTechnicalIndicator(TechnicalIndicator technicalIndicator) {
+		this.technicalIndicator = technicalIndicator;
 	}
 
 }

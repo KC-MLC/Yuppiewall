@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.ws.scanner.service;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.service.ScannerServive;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
@@ -24,7 +24,7 @@ public class ScannerController implements ScannerServive {
 
 	@RequestMapping(value = "/process", method = RequestMethod.POST)
 	@Override
-	public List<EndOfDayData> runScan(@RequestBody ScanParameter param,
+	public List<ScanOutput> runScan(@RequestBody ScanParameter param,
 			@RequestBody PrimaryPrincipal requester) {
 		System.out.println("GOT THE REQUESST");
 		return scannerGateway.runScan(param, requester);

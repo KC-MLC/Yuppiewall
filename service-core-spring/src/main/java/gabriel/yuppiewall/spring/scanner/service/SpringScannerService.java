@@ -15,7 +15,7 @@ public class SpringScannerService extends ScannerServiceImpl {
 	private TechnicalIndicatorService technicalIndicatorService = new SimpleTechnicalIndicatorService();
 
 	@Autowired
-	@Qualifier("JDBCEndOfDayDataRepository")
+	@Qualifier("JDBCInMemoryMarketdata")
 	private EndOfDayDataRepository endOfDayDataRepository;
 
 	@Override

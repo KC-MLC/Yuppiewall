@@ -49,7 +49,7 @@ public class ScannerApplication implements Application<ComponentContainer>,
 		hsp.setFirstComponent(navBar);
 
 		VerticalSplitPanel contentPane = new VerticalSplitPanel();
-		contentPane.setSplitPosition(30, Sizeable.UNITS_PERCENTAGE);
+		contentPane.setSplitPosition(70, Sizeable.UNITS_PERCENTAGE);
 		hsp.setSecondComponent(contentPane);
 
 		scanFilterView.init();

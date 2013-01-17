@@ -1,85 +1,61 @@
 package gabriel.yuppiewall.scanner.service;
 
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.marketdata.repository.ScanResult;
 import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.Expression;
+import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public abstract class ScannerServiceImpl implements ScannerServive {
 
 	@Override
-	public List<EndOfDayData> runScan(final ScanParameter param,
+	public List<ScanOutput> runScan(final ScanParameter param,
 			final PrimaryPrincipal requester) {
 
 		// get group filter
-		Map<String, List<EndOfDayData>> eodData = getEndOfDayDataRepository()
-				.findRecords(param);
+		ScanResult eodData = getEndOfDayDataRepository().findRecords(param);
 		List<Condition> conditions = param.getConditions();
-		if (conditions == null)
-			conditions = new ArrayList<>();
-		Iterator<String> itr = eodData.keySet().iterator();
-		List<EndOfDayData> retValue = new ArrayList<>();
-		while (itr.hasNext()) {
-			String symbol = itr.next();
-			List<EndOfDayData> records = eodData.get(symbol);
-			boolean success = true;
+
+		if (conditions != null) {
 			for (Condition condition : conditions) {
-
-				Expression lhs = condition.getLhs();
-				Expression rhs = condition.getRhs();
-
-				BigDecimal lValue = run(lhs, records);
-				BigDecimal rValue = run(rhs, records);
-				if (!operate(lValue, condition.getOperand(), rValue)) {
-					itr.remove();
-					records = null;
-					success = false;
-					break;
-				}
+				setTechnicalIndicator(condition.getLhs());
+				setTechnicalIndicator(condition.getRhs());
 			}
-			if (success)
-				retValue.add(records.get(records.size() - 1));
+
+			ScannerUtil.filter(conditions, eodData);
+		}
+		List<ScanOutput> retValue = new ArrayList<ScanOutput>(eodData
+				.getFilteredResult().size());
+		Iterator<String> itr = eodData.getFilteredResult().iterator();
+		while (itr.hasNext()) {
+			String key = itr.next();
+			EndOfDayData eod = eodData.getInitialGrupedRecord().get(key).get(0);
+			retValue.add(new ScanOutput(eod.getStockSymbol(), null, eod
+					.getExchange().getName(), null, null, eod
+					.getStockPriceOpen(), eod.getStockPriceHigh(), eod
+					.getStockPriceLow(), eod.getStockPriceClose(), eod
+					.getStockVolume()));
 		}
 		return retValue;
 
 	}
 
-	private boolean operate(BigDecimal lhs, OPERAND operand, BigDecimal rhs) {
-		switch (operand) {
-		case EQUAL:
-			return (lhs.compareTo(rhs) == 0);
-		case GT:
-			return (lhs.compareTo(rhs) > 0);
-		case LT:
-			return (lhs.compareTo(rhs) < 0);
-		}
-		return false;
-	}
-
-	private BigDecimal run(Expression exp, List<EndOfDayData> records) {
+	private void setTechnicalIndicator(Expression exp) {
 		if (exp.getIndicator() == null)
 			throw new UnsupportedOperationException(
-					"constant value not supported");// return new
-													// BigDecimal(exp.getValue());
-
+					"constant value not supported");
 		TechnicalIndicator ti = getTechnicalIndicatorService()
 				.getTechnicalIndicator(exp.getIndicator());
-		TechnicalIndicator_[] result = ti.calculate(records, exp);
-
-		return result[result.length - 1].getValue();
-
+		exp.setTechnicalIndicator(ti);
 	}
 
 	protected abstract TechnicalIndicatorService getTechnicalIndicatorService();

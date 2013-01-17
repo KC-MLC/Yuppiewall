@@ -26,7 +26,7 @@ public class FilebasedEODDataReaderV3 {
 	public static void main(String[] args) throws IOException {
 		// will search a directory for eod data file
 		File root = new File("/home/parvez/yuppiewall/data");
-		File output = new File("/home/parvez/yuppiewall/schemaZ.txt");
+		File output = new File("/home/parvez/yuppiewall/schemaZ2.txt");
 		System.out.println(root.isDirectory());
 		Map<String, List<EndOfDayData>> dataList = new HashMap<String, List<EndOfDayData>>();
 
@@ -106,13 +106,15 @@ public class FilebasedEODDataReaderV3 {
 		for (EndOfDayData eod : list) {
 			String identifier = eod.getExchange().getName()
 					+ eod.getStockSymbol() + eod.getStrDate();
+			if(i[0]!=0)
+				bw.write(",");
 			String v = "('" + identifier + "', '" + sdf.format(eod.getDate())
 					+ "', " + eod.getStockPriceAdjClose() + ", "
 					+ eod.getStockPriceClose() + ", " + eod.getStockPriceHigh()
 					+ ", " + eod.getStockPriceLow() + ", "
 					+ eod.getStockPriceOpen() + ", " + eod.getStockVolume()
 					+ ", '" + eod.getStockSymbol() + "', '"
-					+ eod.getExchange().getName() + "'),";
+					+ eod.getExchange().getName() + "')";
 			System.out.println(i[0]++);
 			bw.write(v);
 

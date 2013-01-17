@@ -20,6 +20,18 @@ public class Condition implements Serializable {
 		this.rhs = rhs;
 	}
 
+	public void setLhs(Expression lhs) {
+		this.lhs = lhs;
+	}
+
+	public void setOperand(OPERAND operand) {
+		this.operand = operand;
+	}
+
+	public void setRhs(Expression rhs) {
+		this.rhs = rhs;
+	}
+
 	public OPERAND getOperand() {
 		return operand;
 	}

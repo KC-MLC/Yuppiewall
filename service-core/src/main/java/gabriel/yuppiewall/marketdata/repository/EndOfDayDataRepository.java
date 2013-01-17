@@ -1,10 +1,9 @@
 package gabriel.yuppiewall.marketdata.repository;
 
-import java.util.List;
-import java.util.Map;
-
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
+
+import java.util.List;
 
 public interface EndOfDayDataRepository {
 
@@ -12,7 +11,7 @@ public interface EndOfDayDataRepository {
 
 	void createEndOfDayData(List<EndOfDayData> list);
 
-	Map<String, List<EndOfDayData>> findRecords(ScanParameter param);
+	ScanResult findRecords(ScanParameter param);
 
 	/*
 	 * void saveStockDailySummary(StockDailySummary_[] tradingService);

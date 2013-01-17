@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.indicator.service;
 
+import gabriel.yuppiewall.indicator.Constant;
 import gabriel.yuppiewall.indicator.ConstantEval;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.momentum.RSI;
@@ -26,11 +27,15 @@ public class SimpleTechnicalIndicatorService implements
 		indicators.put("Close", new ConstantEval());
 		indicators.put("Volume", new ConstantEval());
 		indicators.put("Open", new ConstantEval());
+		indicators.put("Constant", new Constant());
 	}
 
 	@Override
 	public TechnicalIndicator getTechnicalIndicator(String indicator) {
-		return indicators.get(indicator);
+		TechnicalIndicator ti = indicators.get(indicator);
+		if (ti == null)
+			throw new UnsupportedOperationException("No indicator found");
+		return ti;
 	}
 
 }

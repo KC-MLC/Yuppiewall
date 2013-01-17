@@ -1,17 +1,13 @@
 package gabriel.yuppiewall.scanner.service;
 
-import gabriel.yuppiewall.indicator.SampleData;
 import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.marketdata.repository.ScanResult;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
-import java.text.ParseException;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,8 +43,8 @@ public class ScannerTest {
 					}
 
 					@Override
-					public Map<String, List<EndOfDayData>> findRecords(
-							ScanParameter param) {
+					public ScanResult findRecords(
+							ScanParameter param) {/*
 						Map<String, List<EndOfDayData>> list = new HashMap<>();
 						{
 							EndOfDayData[] li;
@@ -63,7 +59,7 @@ public class ScannerTest {
 
 						}
 						return list;
-					}
+					*/return null;}
 				};
 			}
 		};

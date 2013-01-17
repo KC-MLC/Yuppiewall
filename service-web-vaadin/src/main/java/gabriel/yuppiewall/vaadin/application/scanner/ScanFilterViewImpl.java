@@ -4,13 +4,12 @@ import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.indicator.PreconfiguredIndicator;
 import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
 import gabriel.yuppiewall.indicator.repository.PreconfiguredIndicatorService;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.Expression;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
+import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
 import gabriel.yuppiewall.scanner.service.ScannerServive;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.UIConstant;
@@ -39,7 +38,6 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.BaseTheme;
@@ -53,20 +51,10 @@ public class ScanFilterViewImpl implements Serializable {
 	private static final Object TYPE_PROPERTY_NAME = "name";
 	private static final Object TYPE_PROPERTY_VALUE = "value";
 
-	private static final Object INDICATOR = "Indicators";
-	private static final Object PAPAMETER = "Parameters";
-	private static final Object DATA_OFFSET = "Date Offset";
-	private static final Object PERIOD = "Period";
-	private static final Object COMPARATOR = "Comparator";
-
-	private static final Object INDICATOR2 = "Indicators.";
-	private static final Object PAPAMETER2 = "Parameters.";
-	private static final Object DATA_OFFSET2 = "Date Offset.";
-	private static final Object PERIOD2 = "Period.";
-
 	@Autowired
 	private EventBus eventBus;
-	private Table additionalFilter;
+
+	private ScanAdditionFilter scanAdditionFilter;
 
 	private GlobalFilter gf;
 
@@ -80,6 +68,7 @@ public class ScanFilterViewImpl implements Serializable {
 	public void init() {
 
 		rootlayout = new VerticalLayout();
+		scanAdditionFilter = new ScanAdditionFilter();
 		rootlayout.setSpacing(true);
 		{
 			gf = new GlobalFilter();
@@ -315,47 +304,8 @@ public class ScanFilterViewImpl implements Serializable {
 							.getItem(id).getItemProperty(TYPE_PROPERTY_VALUE)
 							.getValue();
 					// figure out if there is a space for this configuration
-					int size = preconfiguredIndicator.getConditions().size();
-					// TODO find target row to insert
-					int emptyRow = 0;
-					for (int i = 0; i < size; i++) {
-						Condition con = preconfiguredIndicator.getConditions()
-								.get(i);
-						Expression lhs = con.getLhs();
-						Item item = additionalFilter.getItem(emptyRow++);
-						ComboBox cb = (ComboBox) item
-								.getItemProperty(INDICATOR).getValue();
-						cb.setValue(lhs.getId());
-						TextField tf = (TextField) item.getItemProperty(
-								PAPAMETER).getValue();
-						tf.setValue(lhs.getParameters());
-						tf = (TextField) item.getItemProperty(DATA_OFFSET)
-								.getValue();
-						tf.setValue(lhs.getOffset());
-
-						cb = (ComboBox) item.getItemProperty(PERIOD).getValue();
-						cb.setValue(0);
-
-						Expression rhs = con.getRhs();
-						cb = (ComboBox) item.getItemProperty(INDICATOR2)
-								.getValue();
-						cb.setValue(rhs.getId());
-						tf = (TextField) item.getItemProperty(PAPAMETER2)
-								.getValue();
-						tf.setValue(rhs.getParameters());
-						tf = (TextField) item.getItemProperty(DATA_OFFSET2)
-								.getValue();
-						tf.setValue(rhs.getOffset());
-
-						cb = (ComboBox) item.getItemProperty(PERIOD2)
-								.getValue();
-						cb.setValue(0);
-
-						cb = (ComboBox) item.getItemProperty(COMPARATOR)
-								.getValue();
-						cb.setValue(con.getOperand().getSymbol());
-					}
-
+					scanAdditionFilter.insertRow(preconfiguredIndicator
+							.getConditions());
 				}
 			});
 			HorizontalLayout menuLayout = new HorizontalLayout();
@@ -375,49 +325,9 @@ public class ScanFilterViewImpl implements Serializable {
 			 * btAddPreCondition));
 			 */
 
-			additionalFilter = new Table();
-			additionalFilter.setWidth("100%");
-			// turn on column reordering and collapsing
-			additionalFilter.setColumnReorderingAllowed(false);
-			additionalFilter.setColumnCollapsingAllowed(false);
-			additionalFilter.setSortDisabled(false);
-			additonalFilterLyt.addComponent(additionalFilter);
+			additonalFilterLyt.addComponent(scanAdditionFilter
+					.getAdditionalFilter());
 			// additonalFilterLyt.setExpandRatio(additionalFilter, 1);
-			additionalFilter.setSelectable(true);
-			additionalFilter.setMultiSelect(false);
-			additionalFilter.setEditable(true);
-			additionalFilter.setImmediate(true);
-			additionalFilter.setPageLength(0);
-
-			additionalFilter.addContainerProperty(INDICATOR, ComboBox.class,
-					null);
-			additionalFilter.setColumnExpandRatio(INDICATOR, 3);
-			additionalFilter.addContainerProperty(PAPAMETER, TextField.class,
-					"");
-			additionalFilter.setColumnExpandRatio(PAPAMETER, 2);
-			additionalFilter.addContainerProperty(DATA_OFFSET, TextField.class,
-					"");
-			additionalFilter.setColumnExpandRatio(DATA_OFFSET, 1);
-			additionalFilter.addContainerProperty(PERIOD, ComboBox.class, null);
-			additionalFilter.setColumnExpandRatio(PERIOD, 1);
-			additionalFilter.addContainerProperty(COMPARATOR, ComboBox.class,
-					null);
-			additionalFilter.setColumnExpandRatio(COMPARATOR, 1);
-
-			additionalFilter.addContainerProperty(INDICATOR2, ComboBox.class,
-					null);
-			additionalFilter.setColumnExpandRatio(INDICATOR2, 3);
-			additionalFilter.addContainerProperty(PAPAMETER2, TextField.class,
-					"");
-			additionalFilter.setColumnExpandRatio(PAPAMETER2, 2);
-			additionalFilter.addContainerProperty(DATA_OFFSET2,
-					TextField.class, "");
-			additionalFilter.setColumnExpandRatio(DATA_OFFSET2, 1);
-			additionalFilter
-					.addContainerProperty(PERIOD2, ComboBox.class, null);
-			additionalFilter.setColumnExpandRatio(PERIOD2, 1);
-
-			//
 
 			{
 				HorizontalLayout bottom = new HorizontalLayout();
@@ -445,7 +355,9 @@ public class ScanFilterViewImpl implements Serializable {
 						ScannerServive scanner = YuppiewallUI.getInstance()
 								.getService("scannerService");
 						ScanParameter param = new ScanParameter(gf);
-						List<EndOfDayData> scanResult = scanner.runScan(param,
+						param.setConditions(scanAdditionFilter
+								.getInsertedCondition());
+						List<ScanOutput> scanResult = scanner.runScan(param,
 								(PrimaryPrincipal) YuppiewallUI.getInstance()
 										.getApplicationData("user"));
 						eventBus.post(new NewScanResult(scanResult));
@@ -476,10 +388,10 @@ public class ScanFilterViewImpl implements Serializable {
 				bottom.addComponent(btSave);
 				bottom.addComponent(btCreateAlert);
 
-				createEmptyRow();
-				createEmptyRow();
-				createEmptyRow();
-				createEmptyRow();
+				scanAdditionFilter.createEmptyRow();
+				scanAdditionFilter.createEmptyRow();
+				scanAdditionFilter.createEmptyRow();
+				scanAdditionFilter.createEmptyRow();
 			}
 
 		}
@@ -487,112 +399,6 @@ public class ScanFilterViewImpl implements Serializable {
 
 	protected void reportError(String string) {
 		// TODO Auto-generated method stub
-
-	}
-
-	private int row = 0;
-
-	private void createEmptyRow() {
-		Item item = additionalFilter.addItem(row++);
-		item.getItemProperty(INDICATOR).setValue(getNewIndicatorCB());
-		item.getItemProperty(PAPAMETER).setValue(getNewTextField());
-		item.getItemProperty(DATA_OFFSET).setValue(getNewTextField());
-		item.getItemProperty(PERIOD).setValue(getNewPeriodCB());
-
-		item.getItemProperty(COMPARATOR).setValue(getNewComparatorCB());
-
-		item.getItemProperty(INDICATOR2).setValue(getNewIndicatorCB());
-		item.getItemProperty(PAPAMETER2).setValue(getNewTextField());
-		item.getItemProperty(DATA_OFFSET2).setValue(getNewTextField());
-		item.getItemProperty(PERIOD2).setValue(getNewPeriodCB());
-	}
-
-	private TextField getNewTextField() {
-		TextField tf = new TextField();
-
-		tf.setWidth("100%");
-
-		return tf;
-	}
-
-	private ComboBox getNewComparatorCB() {
-		ComboBox cb = new ComboBox();
-		cb.setWidth("100%");
-		setIndexexContainer(cb);
-		setDefaultValue(cb.getContainerDataSource(),
-				new Tupple<String, Object>("=", "EQ"),
-				new Tupple<String, Object>(">", "GT"),
-				new Tupple<String, Object>("<", "LT"));
-		cb.select(0);
-		return cb;
-	}
-
-	private ComboBox getNewPeriodCB() {
-		ComboBox cb = new ComboBox();
-		cb.setWidth("100%");
-		setIndexexContainer(cb);
-		setDefaultValue(cb.getContainerDataSource(),
-				new Tupple<String, Object>("Days", "d"),
-				new Tupple<String, Object>("Weeks", "w"));
-		cb.select(0);
-		return cb;
-	}
-
-	private ComboBox getNewIndicatorCB() {
-		ComboBox cb = new ComboBox();
-		cb.setWidth("100%");
-		setIndexexContainer(cb);
-		cb.setNullSelectionItemId(" ");
-		setDefaultValueIndicator(cb.getContainerDataSource(),
-				new Tupple<String, Expression>("Constant = ", null),
-				new Tupple<String, Expression>("----------", null),
-				new Tupple<String, Expression>("SMA Close", new Expression(
-						"SMA.C", "SMA", SCAN_ON.CLOSING)),
-				new Tupple<String, Expression>("EMA Close", new Expression(
-						"EMA.C", "EMA", SCAN_ON.CLOSING)),
-				new Tupple<String, Expression>("Max. Close", new Expression(
-						"MCLOSE", "Close", SCAN_ON.CLOSING)),
-				new Tupple<String, Expression>("SMA Vol.", new Expression(
-						"SMA.V", "SMA", SCAN_ON.VOLUME)),
-				new Tupple<String, Expression>("EMA Vol.", new Expression(
-						"EMA.V", "EMA", SCAN_ON.VOLUME)),
-				new Tupple<String, Expression>("Max. Vol", new Expression(
-						"MVOLUME", "Volume", SCAN_ON.VOLUME)),
-				new Tupple<String, Expression>("Max. High", new Expression(
-						"MHIGH", "High", SCAN_ON.HIGH)),
-				new Tupple<String, Expression>("----------", null),
-				new Tupple<String, Expression>("Open", new Expression("OPEN",
-						"Open", SCAN_ON.OPEN)), new Tupple<String, Expression>(
-						"High", new Expression("HIGH", "High", SCAN_ON.HIGH)),
-				new Tupple<String, Expression>("Low", new Expression("LOW",
-						"Low", SCAN_ON.LOW)), new Tupple<String, Expression>(
-						"Close", new Expression("CLOSE", "Close",
-								SCAN_ON.CLOSING)),
-				new Tupple<String, Expression>("----------", null),
-				new Tupple<String, Expression>("RSI", new Expression("RSI.C",
-						"RSI", SCAN_ON.CLOSING)),
-				new Tupple<String, Expression>("ADX", new Expression("ADX.C",
-						"ADX", SCAN_ON.CLOSING)));
-
-		cb.setNullSelectionAllowed(true);
-
-		return cb;
-	}
-
-	@SafeVarargs
-	private final void setDefaultValueIndicator(Container container,
-			Tupple<String, Expression>... value) {
-		for (int i = 0; i < value.length; i++) {
-			Tupple<String, Expression> tupple = value[i];
-
-			Expression v = tupple.getValue();
-			String k = (v != null) ? v.getId() : "" + i;
-
-			Item item = container.addItem(k);
-			item.getItemProperty(TYPE_PROPERTY_NAME).setValue(tupple.getKey());
-			item.getItemProperty(TYPE_PROPERTY_VALUE).setValue(
-					tupple.getValue());
-		}
 
 	}
 

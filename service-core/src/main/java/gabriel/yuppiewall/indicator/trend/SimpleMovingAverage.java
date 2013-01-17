@@ -65,14 +65,12 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 		String param = exp.getParameters();
 		int size = Integer.parseInt(param);
 		int ofset = exp.getOffset();
-		int startIndex = 0;
+
 		if (size + ofset > historical.size()) {
-			System.out.println("FOUND");
 			throw new InvalidParameterValueException(
 					"parameter exceeds data set max data set is" + size);
 		}
-		historical = historical.subList(historical.size() - (size + ofset),
-				historical.size() - ofset);
+		historical = historical.subList(ofset, size);
 
 		BigDecimal sum = FU.U0;
 		for (int i = 0, max = historical.size(); i < max; i++) {

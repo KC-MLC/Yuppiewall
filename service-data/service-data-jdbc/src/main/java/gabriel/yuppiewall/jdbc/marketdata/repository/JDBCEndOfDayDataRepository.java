@@ -8,6 +8,7 @@ import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.marketdata.repository.ScanResult;
 import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
@@ -20,11 +21,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -52,14 +51,7 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 
 	}
 
-	@Override
-	public Map<String, List<EndOfDayData>> findRecords(ScanParameter param) {
-		// TODO only supporting two parameter from query should add
-		// implementation for average function also
-		GlobalFilter gfilter = param.getGlobalFilter();
-		if (gfilter == null)
-			throw new MissingRequiredFiledException(GlobalFilter.class,
-					"globalFilter", "Missing Global Filter");
+	protected ScanResult createList(GlobalFilter gfilter) {
 		Tupple<String, String> group = gfilter.getGroup();
 		if (group == null)
 			throw new MissingRequiredFiledException(GlobalFilter.class,
@@ -108,7 +100,6 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 		executeStreamed(jdbcTemplate, callback, sql, group.getValue());
 		// group them in symbol
 		Map<String, List<EndOfDayData>> groupedValue = new HashMap<String, List<EndOfDayData>>();
-
 		for (EndOfDayData eod : list) {
 
 			List<EndOfDayData> eodList = groupedValue.get(eod.getStockSymbol());
@@ -118,11 +109,22 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 			}
 			eodList.add(eod);
 		}
+		return new ScanResult(groupedValue.keySet(), groupedValue);
+	}
 
+	@Override
+	public ScanResult findRecords(ScanParameter param) {
+		// TODO only supporting two parameter from query should add
+		// implementation for average function also
+		GlobalFilter gfilter = param.getGlobalFilter();
+		if (gfilter == null)
+			throw new MissingRequiredFiledException(GlobalFilter.class,
+					"globalFilter", "Missing Global Filter");
+
+		ScanResult groupedValue = createList(gfilter);
 		Condition avePriceConition = gfilter.getAvgPrice();
 		if (avePriceConition != null) {
 			filter(avePriceConition, groupedValue);
-
 		}
 		Condition aveVolConition = gfilter.getAvgVolue();
 		if (aveVolConition != null) {
@@ -131,47 +133,30 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 		return groupedValue;
 	}
 
-	private static Set<String> block = new HashSet<>();
-	{
-		block.add("FSR");
-		block.add("NOOF");
-		block.add("MNGL");
-		block.add("AGP");
-		block.add("DUSA");
-		block.add("EAGLW");
-		block.add("ARDC");
-	}
+	private static void filter(Condition condition, ScanResult groupedValue) {
 
-	private static void filter(Condition aveVolConition,
-			Map<String, List<EndOfDayData>> groupedValue) {
+		SimpleMovingAverage sma = new SimpleMovingAverage();
 
-		if (aveVolConition != null) {
-			SimpleMovingAverage sma = new SimpleMovingAverage();
-			Iterator<String> itr = groupedValue.keySet().iterator();
-			while (itr.hasNext()) {
-				String symbol = itr.next();
-				List<EndOfDayData> tempList = groupedValue.get(symbol);
-				TechnicalIndicator_[] res;
-				if (block.contains(symbol)) {
-					System.out.println("BLOCK");
-				}
-				try {
-					res = sma.calculate(tempList, aveVolConition.getLhs());
-				} catch (InvalidParameterValueException ipve) {
-					itr.remove();
-					System.out.println(symbol);
-					continue;
-				}
-				if (0 >= res[0].getValue()
-						.compareTo(
-								new BigDecimal(aveVolConition.getRhs()
-										.getParameters()))) {
-					itr.remove();
-				}
+		Iterator<String> itr = groupedValue.getFilteredResult().iterator();
+
+		while (itr.hasNext()) {
+			String symbol = itr.next();
+			List<EndOfDayData> tempList = groupedValue.getInitialGrupedRecord()
+					.get(symbol);
+			TechnicalIndicator_[] res;
+
+			try {
+				res = sma.calculate(tempList, condition.getLhs());
+			} catch (InvalidParameterValueException ipve) {
+				itr.remove();
+				System.out.println(symbol);
+				continue;
 			}
-
+			if (0 >= res[0].getValue().compareTo(
+					new BigDecimal(condition.getRhs().getParameters()))) {
+				itr.remove();
+			}
 		}
-
 	}
 
 	private void executeStreamed(JdbcTemplate jdbcTemplate,

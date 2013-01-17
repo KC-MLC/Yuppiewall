@@ -1,15 +1,14 @@
 package gabriel.yuppiewall.si.scanner.service;
 
-import java.security.Principal;
-import java.util.List;
-
 import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.service.ScannerServiceImpl;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,7 +26,7 @@ public class ScannerService extends ScannerServiceImpl {
 
 	@Override
 	@ServiceActivator
-	public List<EndOfDayData> runScan(ScanParameter param,
+	public List<ScanOutput> runScan(ScanParameter param,
 			PrimaryPrincipal requester) {
 		System.out.println("In SCAN SI");
 		return super.runScan(param, requester);

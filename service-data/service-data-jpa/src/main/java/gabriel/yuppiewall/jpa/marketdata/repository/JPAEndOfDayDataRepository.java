@@ -11,6 +11,7 @@ import gabriel.yuppiewall.jpa.marketdata.domain.JPAEndOfDayData;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.marketdata.repository.ScanResult;
 import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
@@ -61,7 +62,7 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 	}
 
 	@Override
-	public Map<String, List<EndOfDayData>> findRecords(ScanParameter param) {
+	public ScanResult findRecords(ScanParameter param) {
 		// TODO only supporting two parameter from query should add
 		// implementation for average function also
 		GlobalFilter gfilter = param.getGlobalFilter();
@@ -105,7 +106,8 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 		if (aveVolConition != null) {
 			filter(aveVolConition, groupedValue);
 		}
-		return groupedValue;
+		throw new UnsupportedOperationException("NOT IN USE");
+		// return groupedValue;
 	}
 
 	private static void filter(Condition aveVolConition,
