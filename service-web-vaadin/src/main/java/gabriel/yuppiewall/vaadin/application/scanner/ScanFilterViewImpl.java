@@ -10,6 +10,7 @@ import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
+import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
 import gabriel.yuppiewall.scanner.service.ScannerServive;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.UIConstant;
@@ -150,8 +151,10 @@ public class ScanFilterViewImpl implements Serializable {
 							gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD.DAYS,
 							SCAN_ON.VOLUME, 0);
 
-					Condition avgVolue = new Condition(lhs, OPERAND.GT,
-							new Expression(key.toString()));
+					Expression rhs = new Expression("Constant", null, null, 0,
+							key.toString());
+
+					Condition avgVolue = new Condition(lhs, OPERAND.GT, rhs);
 					gf.setAvgVolue(avgVolue);
 
 					String param = (String) tfAvgVolume.getValue();
@@ -219,8 +222,10 @@ public class ScanFilterViewImpl implements Serializable {
 							gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD.DAYS,
 							SCAN_ON.CLOSING, 0);
 
-					Condition avgPrice = new Condition(lhs, OPERAND.GT,
-							new Expression(key.toString()));
+					Expression rhs = new Expression("Constant", null, null, 0,
+							key.toString());
+
+					Condition avgPrice = new Condition(lhs, OPERAND.GT, rhs);
 					gf.setAvgPrice(avgPrice);
 
 					String param = (String) tfAvgPrice.getValue();

@@ -33,6 +33,15 @@ public class Expression implements Serializable {
 		this.offset = offset;
 	}
 
+	public Expression(String indicator, PERIOD period, SCAN_ON scanOn,
+			Integer offset, String parameters) {
+		this.indicator = indicator;
+		this.period = period;
+		this.scanOn = scanOn;
+		this.offset = offset;
+		this.parameters = parameters;
+	}
+
 	public Expression(String id, String indicator, SCAN_ON scanOn) {
 		this.indicator = indicator;
 		this.scanOn = scanOn;

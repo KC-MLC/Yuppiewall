@@ -2,7 +2,7 @@ package gabriel.yuppiewall.jdbc.marketdata.repository;
 
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
-import gabriel.yuppiewall.marketdata.repository.ScanResult;
+import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 
 import java.sql.Connection;
@@ -104,9 +104,9 @@ public class JDBCInMemoryMarketdata extends JDBCEndOfDayDataRepository {
 		jdbcTemplate.execute(creator, callback);
 	}
 
-	protected ScanResult createList(GlobalFilter gfilter) {
+	protected ScanRequest createList(GlobalFilter gfilter) {
 
-		return new ScanResult(new LinkedList<>(groupedValue.keySet()),
+		return new ScanRequest(new LinkedList<>(groupedValue.keySet()),
 				groupedValue);
 	}
 }

@@ -52,7 +52,8 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 		for (int i = range - day; i < range; i++) {
 			sum = sum.add(mapper.getValue(historical.get(i)));
 		}
-
+		if (sum.equals(FU.U0))
+			return FU.U0;
 		return sum.divide(new BigDecimal(day), RoundingMode.HALF_UP);
 
 	}

@@ -3,17 +3,13 @@ package gabriel.yuppiewall.jdbc.marketdata.repository;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
-import gabriel.yuppiewall.marketdata.repository.ScanResult;
-import gabriel.yuppiewall.scanner.domain.Condition;
+import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +17,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +46,7 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 
 	}
 
-	protected ScanResult createList(GlobalFilter gfilter) {
+	protected ScanRequest createList(GlobalFilter gfilter) {
 		Tupple<String, String> group = gfilter.getGroup();
 		if (group == null)
 			throw new MissingRequiredFiledException(GlobalFilter.class,
@@ -94,7 +89,6 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 									.getBigDecimal(8), rs.getBigDecimal(9), rs
 									.getBigDecimal(5), rs.getBigDecimal(10)));
 				}
-
 			}
 		};
 		executeStreamed(jdbcTemplate, callback, sql, group.getValue());
@@ -109,11 +103,11 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 			}
 			eodList.add(eod);
 		}
-		return new ScanResult(groupedValue.keySet(), groupedValue);
+		return new ScanRequest(groupedValue.keySet(), groupedValue);
 	}
 
 	@Override
-	public ScanResult findRecords(ScanParameter param) {
+	public ScanRequest createScanRequest(ScanParameter param) {
 		// TODO only supporting two parameter from query should add
 		// implementation for average function also
 		GlobalFilter gfilter = param.getGlobalFilter();
@@ -121,42 +115,9 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 			throw new MissingRequiredFiledException(GlobalFilter.class,
 					"globalFilter", "Missing Global Filter");
 
-		ScanResult groupedValue = createList(gfilter);
-		Condition avePriceConition = gfilter.getAvgPrice();
-		if (avePriceConition != null) {
-			filter(avePriceConition, groupedValue);
-		}
-		Condition aveVolConition = gfilter.getAvgVolue();
-		if (aveVolConition != null) {
-			filter(aveVolConition, groupedValue);
-		}
+		ScanRequest groupedValue = createList(gfilter);
+
 		return groupedValue;
-	}
-
-	private static void filter(Condition condition, ScanResult groupedValue) {
-
-		SimpleMovingAverage sma = new SimpleMovingAverage();
-
-		Iterator<String> itr = groupedValue.getFilteredResult().iterator();
-
-		while (itr.hasNext()) {
-			String symbol = itr.next();
-			List<EndOfDayData> tempList = groupedValue.getInitialGrupedRecord()
-					.get(symbol);
-			TechnicalIndicator_[] res;
-
-			try {
-				res = sma.calculate(tempList, condition.getLhs());
-			} catch (InvalidParameterValueException ipve) {
-				itr.remove();
-				System.out.println(symbol);
-				continue;
-			}
-			if (0 >= res[0].getValue().compareTo(
-					new BigDecimal(condition.getRhs().getParameters()))) {
-				itr.remove();
-			}
-		}
 	}
 
 	private void executeStreamed(JdbcTemplate jdbcTemplate,

@@ -3,23 +3,18 @@ package gabriel.yuppiewall.jpa.marketdata.repository;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
-import gabriel.yuppiewall.indicator.trend.SimpleMovingAverage;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.jpa.market.repository.TradeDayRepository;
 import gabriel.yuppiewall.jpa.marketdata.domain.JPAEndOfDayData;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
-import gabriel.yuppiewall.marketdata.repository.ScanResult;
-import gabriel.yuppiewall.scanner.domain.Condition;
+import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +57,7 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 	}
 
 	@Override
-	public ScanResult findRecords(ScanParameter param) {
+	public ScanRequest createScanRequest(ScanParameter param) {
 		// TODO only supporting two parameter from query should add
 		// implementation for average function also
 		GlobalFilter gfilter = param.getGlobalFilter();
@@ -96,39 +91,6 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 			}
 			eodList.add(eod);
 		}
-
-		Condition avePriceConition = gfilter.getAvgPrice();
-		if (avePriceConition != null) {
-			filter(avePriceConition, groupedValue);
-
-		}
-		Condition aveVolConition = gfilter.getAvgVolue();
-		if (aveVolConition != null) {
-			filter(aveVolConition, groupedValue);
-		}
-		throw new UnsupportedOperationException("NOT IN USE");
-		// return groupedValue;
+		return new ScanRequest(groupedValue.keySet(), groupedValue);
 	}
-
-	private static void filter(Condition aveVolConition,
-			Map<String, List<EndOfDayData>> groupedValue) {
-
-		if (aveVolConition != null) {
-			SimpleMovingAverage sma = new SimpleMovingAverage();
-			Iterator<String> itr = groupedValue.keySet().iterator();
-			while (itr.hasNext()) {
-				String symbol = itr.next();
-				List<EndOfDayData> tempList = groupedValue.get(symbol);
-				TechnicalIndicator_[] res = sma.calculate(tempList,
-						aveVolConition.getLhs());
-				if (0 >= res[0].getValue()
-						.compareTo(
-								new BigDecimal(aveVolConition.getRhs()
-										.getParameters()))) {
-					itr.remove();
-				}
-			}
-		}
-	}
-
 }

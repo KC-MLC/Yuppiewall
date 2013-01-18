@@ -84,7 +84,7 @@ public class ScanAdditionFilter {
 
 		int emptyRow = getFirstEmptyIndex(size);
 		if (emptyRow == -1) {
-			createEmptyRow(size);
+			emptyRow = createEmptyRow(size);
 		}
 		for (int i = 0; i < size; i++) {
 			Condition con = conditions.get(i);
@@ -99,7 +99,7 @@ public class ScanAdditionFilter {
 			tf.setValue(lhs.getOffset());
 
 			cb = (ComboBox) item.getItemProperty(PERIOD).getValue();
-			cb.setValue(0);
+			cb.setValue("Days");
 
 			Expression rhs = con.getRhs();
 			cb = (ComboBox) item.getItemProperty(INDICATOR2).getValue();
@@ -118,7 +118,7 @@ public class ScanAdditionFilter {
 
 	}
 
-	private void createEmptyRow(int size) {
+	private int createEmptyRow(int size) {
 		int i = rowMaping.size() - 1;
 		int emptyRow = 0;
 		for (; 0 > i; i--) {
@@ -127,8 +127,10 @@ public class ScanAdditionFilter {
 			}
 			emptyRow++;
 		}
+
 		for (int j = 0; j < (size - emptyRow); j++)
 			createEmptyRow();
+		return i;
 
 	}
 
@@ -169,7 +171,7 @@ public class ScanAdditionFilter {
 
 		item.getItemProperty(INDICATOR2).setValue(row.getIndicatorRHS());
 		item.getItemProperty(PAPAMETER2).setValue(row.getParameterRHS());
-		item.getItemProperty(DATA_OFFSET2).setValue(row.getPeriodRHS());
+		item.getItemProperty(DATA_OFFSET2).setValue(row.getDateOffSetRHS());
 		item.getItemProperty(PERIOD2).setValue(row.getPeriodRHS());
 	}
 
@@ -199,6 +201,8 @@ public class ScanAdditionFilter {
 				@Override
 				public void valueChange(ValueChangeEvent event) {
 					Object id = indicatorLHS.getValue();
+					if (id == null)
+						return;
 
 					Expression lhs = (Expression) indicatorLHS.getItem(id)
 							.getItemProperty(TYPE_PROPERTY_VALUE).getValue();
@@ -295,6 +299,8 @@ public class ScanAdditionFilter {
 
 		protected void setRHS() {
 			Object id = indicatorRHS.getValue();
+			if (id == null)
+				return;
 			Expression rhs = (Expression) indicatorRHS.getItem(id)
 					.getItemProperty(TYPE_PROPERTY_VALUE).getValue();
 			if (condition == null)
@@ -309,7 +315,8 @@ public class ScanAdditionFilter {
 
 		protected void setOperand() {
 			Object id = comparator.getValue();
-
+			if (id == null)
+				return;
 			OPERAND operand = (OPERAND) comparator.getItem(id)
 					.getItemProperty(TYPE_PROPERTY_VALUE).getValue();
 			if (operand == null) {
@@ -323,7 +330,7 @@ public class ScanAdditionFilter {
 		protected void setOffset(Expression exp, TextField tf) {
 			if (exp == null)
 				return;
-			String param = (String) tf.getValue();
+			String param = (String) tf.getValue().toString();
 			if (param != null && (param = param.trim()).length() == 0)
 				param = null;
 			exp.setOffset((param == null) ? null : Integer.parseInt(param));
@@ -434,7 +441,7 @@ public class ScanAdditionFilter {
 					new Tupple<String, Object>("=", OPERAND.EQUAL),
 					new Tupple<String, Object>(">", OPERAND.GT),
 					new Tupple<String, Object>("<", OPERAND.LT));
-			cb.select(0);
+
 			return cb;
 		}
 

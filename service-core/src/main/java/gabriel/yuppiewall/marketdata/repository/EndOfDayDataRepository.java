@@ -11,7 +11,7 @@ public interface EndOfDayDataRepository {
 
 	void createEndOfDayData(List<EndOfDayData> list);
 
-	ScanResult findRecords(ScanParameter param);
+	ScanRequest createScanRequest(ScanParameter param);
 
 	/*
 	 * void saveStockDailySummary(StockDailySummary_[] tradingService);

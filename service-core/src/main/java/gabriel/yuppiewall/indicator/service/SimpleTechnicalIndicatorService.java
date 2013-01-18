@@ -24,6 +24,7 @@ public class SimpleTechnicalIndicatorService implements
 		indicators.put("ADL", new AccumulationDistributionLine());
 		indicators.put("OSC", new StochasticOscillator());
 		indicators.put("High", new ConstantEval());
+		indicators.put("Low", new ConstantEval());
 		indicators.put("Close", new ConstantEval());
 		indicators.put("Volume", new ConstantEval());
 		indicators.put("Open", new ConstantEval());
@@ -34,7 +35,8 @@ public class SimpleTechnicalIndicatorService implements
 	public TechnicalIndicator getTechnicalIndicator(String indicator) {
 		TechnicalIndicator ti = indicators.get(indicator);
 		if (ti == null)
-			throw new UnsupportedOperationException("No indicator found");
+			throw new UnsupportedOperationException("No indicator found"
+					+ indicator);
 		return ti;
 	}
 

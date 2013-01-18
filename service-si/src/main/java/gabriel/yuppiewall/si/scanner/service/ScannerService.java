@@ -5,7 +5,9 @@ import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
+import gabriel.yuppiewall.scanner.service.ScanRunner;
 import gabriel.yuppiewall.scanner.service.ScannerServiceImpl;
+import gabriel.yuppiewall.scanner.service.ScannerUtil;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class ScannerService extends ScannerServiceImpl {
 
 	private TechnicalIndicatorService technicalIndicatorService = new SimpleTechnicalIndicatorService();
-
+	private ScanRunner runner = new ScannerUtil();
 	@Autowired
 	@Qualifier("JPAEndOfDayDataRepository")
 	private EndOfDayDataRepository endOfDayDataRepository;
@@ -42,4 +44,8 @@ public class ScannerService extends ScannerServiceImpl {
 		return endOfDayDataRepository;
 	}
 
+	@Override
+	protected ScanRunner getScanRunner() {
+		return runner;
+	}
 }

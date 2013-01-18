@@ -4,7 +4,7 @@ import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
-import gabriel.yuppiewall.marketdata.repository.ScanResult;
+import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class ScannerTest {
 					}
 
 					@Override
-					public ScanResult findRecords(
+					public ScanRequest createScanRequest(
 							ScanParameter param) {/*
 						Map<String, List<EndOfDayData>> list = new HashMap<>();
 						{
@@ -61,6 +61,12 @@ public class ScannerTest {
 						return list;
 					*/return null;}
 				};
+			}
+
+			@Override
+			protected ScanRunner getScanRunner() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		};
 	}

@@ -6,12 +6,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class ScanResult {
+public class ScanRequest {
 
 	private Collection<String /* symbol */> filteredResult;
 	private Map<String /* symbol */, List<EndOfDayData>> initialGrupedRecord;
 
-	public ScanResult(Collection<String> filteredResult,
+	public ScanRequest(Collection<String> filteredResult,
 			Map<String, List<EndOfDayData>> initialGrupedRecord) {
 		super();
 		this.filteredResult = filteredResult;
@@ -24,6 +24,11 @@ public class ScanResult {
 
 	public Map<String, List<EndOfDayData>> getInitialGrupedRecord() {
 		return initialGrupedRecord;
+	}
+
+	public void setInitialGrupedRecord(
+			Map<String, List<EndOfDayData>> initialGrupedRecord) {
+		this.initialGrupedRecord = initialGrupedRecord;
 	}
 
 }
