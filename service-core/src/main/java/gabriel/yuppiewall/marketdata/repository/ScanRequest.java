@@ -1,33 +1,39 @@
 package gabriel.yuppiewall.marketdata.repository;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class ScanRequest {
+@SuppressWarnings("serial")
+public class ScanRequest implements Serializable {
 
-	private Collection<String /* symbol */> filteredResult;
-	private Map<String /* symbol */, List<EndOfDayData>> initialGrupedRecord;
+	private Collection<Instrument> filteredResult;
+	private Map<Instrument /* symbol */, List<EndOfDayData>> initialGrupedRecord;
 
-	public ScanRequest(Collection<String> filteredResult,
-			Map<String, List<EndOfDayData>> initialGrupedRecord) {
+	public ScanRequest() {
+	}
+
+	public ScanRequest(Collection<Instrument> filteredResult,
+			Map<Instrument, List<EndOfDayData>> initialGrupedRecord) {
 		super();
 		this.filteredResult = filteredResult;
 		this.initialGrupedRecord = initialGrupedRecord;
 	}
 
-	public Collection<String> getFilteredResult() {
+	public Collection<Instrument> getFilteredResult() {
 		return filteredResult;
 	}
 
-	public Map<String, List<EndOfDayData>> getInitialGrupedRecord() {
+	public Map<Instrument, List<EndOfDayData>> getInitialGrupedRecord() {
 		return initialGrupedRecord;
 	}
 
 	public void setInitialGrupedRecord(
-			Map<String, List<EndOfDayData>> initialGrupedRecord) {
+			Map<Instrument, List<EndOfDayData>> initialGrupedRecord) {
 		this.initialGrupedRecord = initialGrupedRecord;
 	}
 

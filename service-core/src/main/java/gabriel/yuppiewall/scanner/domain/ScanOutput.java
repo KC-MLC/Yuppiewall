@@ -1,73 +1,58 @@
 package gabriel.yuppiewall.scanner.domain;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+
 import java.math.BigDecimal;
 
 public class ScanOutput {
 
-	private String symbol;
-	private String name;
-	private String exchange;
-	private String sector;
-	private String industry;
-	private BigDecimal open;
-	private BigDecimal high;
-	private BigDecimal low;
-	private BigDecimal close;
-	private BigDecimal volume;
+	private Instrument instrument;
 
-	public ScanOutput(String symbol, String name, String exchange,
-			String sector, String industry, BigDecimal open, BigDecimal high,
-			BigDecimal low, BigDecimal close, BigDecimal volume) {
-		this.symbol = symbol;
-		this.name = name;
-		this.exchange = exchange;
-		this.sector = sector;
-		this.industry = industry;
-		this.open = open;
-		this.high = high;
-		this.low = low;
-		this.close = close;
-		this.volume = volume;
+	private EndOfDayData eod;
+
+	public ScanOutput(Instrument instrument, EndOfDayData eod) {
+		this.instrument = instrument;
+		this.eod = eod;
 	}
 
 	public String getSymbol() {
-		return symbol;
+		return instrument.getSymbol();
 	}
 
 	public String getName() {
-		return name;
+		return instrument.getName();
 	}
 
 	public String getExchange() {
-		return exchange;
+		return instrument.getExchange().getName();
 	}
 
 	public String getSector() {
-		return sector;
+		return instrument.getSecter();
 	}
 
 	public String getIndustry() {
-		return industry;
+		return instrument.getIndustry();
 	}
 
 	public BigDecimal getOpen() {
-		return open;
+		return eod.getStockPriceOpen();
 	}
 
 	public BigDecimal getHigh() {
-		return high;
+		return eod.getStockPriceHigh();
 	}
 
 	public BigDecimal getLow() {
-		return low;
+		return eod.getStockPriceLow();
 	}
 
 	public BigDecimal getClose() {
-		return close;
+		return eod.getStockPriceClose();
 	}
 
 	public BigDecimal getVolume() {
-		return volume;
+		return eod.getStockVolume();
 	}
-
 }

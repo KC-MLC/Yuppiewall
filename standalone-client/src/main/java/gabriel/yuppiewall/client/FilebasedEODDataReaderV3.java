@@ -52,11 +52,11 @@ public class FilebasedEODDataReaderV3 {
 					if (cal.get(Calendar.YEAR) < 2011)
 						continue;
 
-					List<EndOfDayData> list = dataList.get(eod.getExchange()
+					List<EndOfDayData> list = dataList.get(eod.getInstrument().getExchange()
 							.getName() + eod.getDate().getTime());
 					if (list == null) {
 						list = new ArrayList<EndOfDayData>();
-						dataList.put(eod.getExchange().getName()
+						dataList.put(eod.getInstrument().getExchange().getName()
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
@@ -104,17 +104,17 @@ public class FilebasedEODDataReaderV3 {
 		System.out.println("sending>>" + list.size());
 
 		for (EndOfDayData eod : list) {
-			String identifier = eod.getExchange().getName()
-					+ eod.getStockSymbol() + eod.getStrDate();
-			if(i[0]!=0)
+			String identifier = eod.getInstrument().getExchange().getName()
+					+ eod.getInstrument().getSymbol() + eod.getStrDate();
+			if (i[0] != 0)
 				bw.write(",");
 			String v = "('" + identifier + "', '" + sdf.format(eod.getDate())
 					+ "', " + eod.getStockPriceAdjClose() + ", "
 					+ eod.getStockPriceClose() + ", " + eod.getStockPriceHigh()
 					+ ", " + eod.getStockPriceLow() + ", "
 					+ eod.getStockPriceOpen() + ", " + eod.getStockVolume()
-					+ ", '" + eod.getStockSymbol() + "', '"
-					+ eod.getExchange().getName() + "')";
+					+ ", '" + eod.getInstrument().getSymbol() + "', '"
+					+ eod.getInstrument().getExchange().getName() + "')";
 			System.out.println(i[0]++);
 			bw.write(v);
 

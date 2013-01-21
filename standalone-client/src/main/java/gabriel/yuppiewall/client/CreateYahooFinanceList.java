@@ -20,11 +20,11 @@ import java.util.concurrent.Executors;
 
 public class CreateYahooFinanceList {
 
-	static ExecutorService executo = Executors.newFixedThreadPool(5);
+	static ExecutorService executo = Executors.newFixedThreadPool(10);
 
 	public static void main(String[] args) throws FileNotFoundException {
 		File file = new File(
-				"/home/parvez/rnd/Yuppiewall/standalone-client/All.txt");
+				"/home/parvez/Downloads/AMEX.txt");
 		Iterator<String> itr = new LineIterator(new FileInputStream(file));
 		long start = System.currentTimeMillis();
 		while (itr.hasNext()) {
@@ -33,7 +33,7 @@ public class CreateYahooFinanceList {
 			String[] splits = line.split(",");
 			if (splits != null && splits.length > 0) {
 				String symbol = splits[1].trim();
-				String market = splits[0].trim();
+				String market = "amex";
 				// System.out.println(market + ", " + symbol);
 				executo.submit(new CreateYahooFinanceList().new Run(market,
 						symbol));

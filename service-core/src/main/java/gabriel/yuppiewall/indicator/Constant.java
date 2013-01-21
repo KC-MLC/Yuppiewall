@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.indicator;
 
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
 

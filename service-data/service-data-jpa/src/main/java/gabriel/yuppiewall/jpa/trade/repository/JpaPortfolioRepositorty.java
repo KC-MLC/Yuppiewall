@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.jpa.trade.repository;
 
-import gabriel.yuppiewall.instrument.domain.GenaricInstrument;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.er.EntityRelation;
 import gabriel.yuppiewall.jpa.er.EntityRelationRepository;
@@ -74,7 +73,7 @@ public class JpaPortfolioRepositorty implements
 		// else
 		List<Instrument> retvalue = new ArrayList<>(instruments.size());
 		for (EntityRelation er : instruments) {
-			retvalue.add(new GenaricInstrument(er.getEntityIdRHS()));
+			retvalue.add(new Instrument(er.getEntityIdRHS()));
 		}
 		return retvalue;
 

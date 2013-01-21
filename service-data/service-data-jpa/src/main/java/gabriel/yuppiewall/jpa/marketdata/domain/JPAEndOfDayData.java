@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.jpa.marketdata.domain;
 
 import gabriel.yuppiewall.common.Tupple;
-import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
+import gabriel.yuppiewall.jpa.market.domain.JPAInstrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 
@@ -35,11 +35,8 @@ public class JPAEndOfDayData implements Serializable {
 	private String identifier;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-	@JoinColumn(name = "exchange", nullable = false, updatable = false)
-	private JPAExchange exchange;
-
-	@Column(name = "symbol", nullable = false, updatable = false)
-	private String symbol;
+	@JoinColumn(name = "instrument", nullable = false, updatable = false)
+	private JPAInstrument instrument;
 
 	@Column(name = "trade_date")
 	@Temporal(TemporalType.DATE)
@@ -73,15 +70,14 @@ public class JPAEndOfDayData implements Serializable {
 		this.stockPriceLow = eodd.getStockPriceLow();
 		this.stockPriceOpen = eodd.getStockPriceOpen();
 		this.stockVolume = eodd.getStockVolume();
-		this.symbol = eodd.getStockSymbol();
-		this.exchange = new JPAExchange(eodd.getExchange());
+		this.instrument = new JPAInstrument(eodd.getInstrument());
 
-		this.identifier = eodd.getExchange().getName() + symbol
-				+ eodd.getStrDate();
+		this.identifier = eodd.getInstrument().getExchange().getName()
+				+ eodd.getInstrument().getSymbol() + eodd.getStrDate();
 	}
 
 	public EndOfDayData getEndOfDayData() {
-		return new EndOfDayData(exchange.getExchange(), symbol, date,
+		return new EndOfDayData(instrument.getInstrument(), date,
 				stockPriceOpen, stockPriceHigh, stockPriceLow, stockPriceClose,
 				stockVolume, stockPriceAdjClose);
 	}
@@ -94,12 +90,11 @@ public class JPAEndOfDayData implements Serializable {
 				public Predicate toPredicate(Root eoddata, CriteriaQuery query,
 						CriteriaBuilder builder) {
 					Predicate predicate = builder.conjunction();
-					Tupple<String, String> groupFilter = globalFilter.getGroup();
-					if(groupFilter.getKey().equals("country"))
-					{
-						
+					Tupple<String, String> groupFilter = globalFilter
+							.getGroup();
+					if (groupFilter.getKey().equals("country")) {
+
 					}
-					
 
 					return predicate;
 				}

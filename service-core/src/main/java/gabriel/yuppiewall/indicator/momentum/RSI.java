@@ -1,8 +1,8 @@
 package gabriel.yuppiewall.indicator.momentum;
 
 import gabriel.yuppiewall.common.FU;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
 

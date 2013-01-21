@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.jpa.marketdata.domain;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
@@ -42,17 +43,21 @@ public class DomainIntegrationTest {
 		entityManager.persist(new JPAExchange(nyse));
 		entityManager.flush();
 		;
-		entityManager.persist(new JPAEndOfDayData(new EndOfDayData(nyse,
-				"GOOG", new SimpleDateFormat("dd-mm-yyyy").parse("01-01-2013"),
+		entityManager.persist(new JPAEndOfDayData(new EndOfDayData(
+				new Instrument("GOOG", new Exchange("nyse")),
+				new SimpleDateFormat("dd-mm-yyyy").parse("01-01-2013"),
 				new BigDecimal(2), new BigDecimal(3), new BigDecimal(4),
 				new BigDecimal(6), new BigDecimal("3"), new BigDecimal(5))));
 		entityManager.flush();
 		try {
-			entityManager.persist(new JPAEndOfDayData(new EndOfDayData(nyse,
-					"GOOG", new SimpleDateFormat("dd-mm-yyyy")
-							.parse("01-01-2013"), new BigDecimal(1),
-					new BigDecimal(1), new BigDecimal(1), new BigDecimal(1),
-					new BigDecimal("1"), new BigDecimal(1))));
+			entityManager
+					.persist(new JPAEndOfDayData(new EndOfDayData(
+							new Instrument("GOOG", new Exchange("nyse")),
+							new SimpleDateFormat("dd-mm-yyyy")
+									.parse("01-01-2013"), new BigDecimal(1),
+							new BigDecimal(1), new BigDecimal(1),
+							new BigDecimal(1), new BigDecimal("1"),
+							new BigDecimal(1))));
 			entityManager.flush();
 			Assert.fail();
 		} catch (EntityExistsException e) {

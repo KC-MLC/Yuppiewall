@@ -52,11 +52,11 @@ public class FilebasedEODDataReaderV4 {
 					if (cal.get(Calendar.YEAR) < 2011)
 						continue;
 
-					List<EndOfDayData> list = dataList.get(eod.getExchange()
+					List<EndOfDayData> list = dataList.get(eod.getInstrument().getExchange()
 							.getName() + eod.getDate().getTime());
 					if (list == null) {
 						list = new ArrayList<EndOfDayData>();
-						dataList.put(eod.getExchange().getName()
+						dataList.put(eod.getInstrument().getExchange().getName()
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
@@ -74,10 +74,13 @@ public class FilebasedEODDataReaderV4 {
 		}
 		FileWriter fw = new FileWriter(output.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
-		/*String v = "INSERT INTO end_of_day_data (identifier, trade_date, stock_price_adj_close, stock_price_close, stock_price_high,"
-				+ " stock_price_low, stock_price_open, stock_volume, symbol, exchange)"
-				+ " VALUES ";
-		bw.write(v);*/
+		/*
+		 * String v =
+		 * "INSERT INTO end_of_day_data (identifier, trade_date, stock_price_adj_close, stock_price_close, stock_price_high,"
+		 * +
+		 * " stock_price_low, stock_price_open, stock_volume, symbol, exchange)"
+		 * + " VALUES "; bw.write(v);
+		 */
 		int[] i = new int[1];
 		for (Iterator<String> iterator = dataList.keySet().iterator(); iterator
 				.hasNext();) {
@@ -88,7 +91,7 @@ public class FilebasedEODDataReaderV4 {
 			list.clear();
 
 		}
-		//bw.write(";");
+		// bw.write(";");
 		bw.flush();
 		bw.close();
 	}
@@ -104,16 +107,16 @@ public class FilebasedEODDataReaderV4 {
 		System.out.println("sending>>" + list.size());
 
 		for (EndOfDayData eod : list) {
-			String identifier = eod.getExchange().getName()
-					+ eod.getStockSymbol() + eod.getStrDate();
-			
-			String v =  identifier + "," + sdf.format(eod.getDate())
-					+ "," + eod.getStockPriceAdjClose() + ","
+			String identifier = eod.getInstrument().getExchange().getName()
+					+ eod.getInstrument().getSymbol() + eod.getStrDate();
+
+			String v = identifier + "," + sdf.format(eod.getDate()) + ","
+					+ eod.getStockPriceAdjClose() + ","
 					+ eod.getStockPriceClose() + "," + eod.getStockPriceHigh()
 					+ "," + eod.getStockPriceLow() + ","
 					+ eod.getStockPriceOpen() + "," + eod.getStockVolume()
-					+ "," + eod.getStockSymbol() + ","
-					+ eod.getExchange().getName();
+					+ "," + eod.getInstrument().getSymbol() + ","
+					+ eod.getInstrument().getExchange().getName();
 			System.out.println(i[0]++);
 			bw.write(v);
 			bw.newLine();

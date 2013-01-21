@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.ws.marketdata.service;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
@@ -27,7 +28,9 @@ public class GenerateJson {
 		ObjectMapper mapper = new ObjectMapper();
 		// exchange,stock_symbol,date,stock_price_open,stock_price_high,stock_price_low,stock_price_close,stock_volume,stock_price_adj_close
 		// NYSE,AEA,2010-01-27,4.82,5.16,4.79,5.09,243500,5.09
-		EndOfDayData data = new EndOfDayData(new Exchange("NYSE"), "AEA",
+
+		EndOfDayData data = new EndOfDayData(new Instrument("AEA",
+				new Exchange("NYSE")),
 				new SimpleDateFormat("yyyy-mm-dd").parse("2010-01-27"),
 				new BigDecimal("4.82"), new BigDecimal("5.16"), new BigDecimal(
 						"4.79"), new BigDecimal("5.09"), new BigDecimal(

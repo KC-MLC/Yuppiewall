@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp-2.1.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="gabriel.yuppiewall.ws" />
+
+	<mvc:annotation-driven />
+	<int:channel id="yw_eod_channel" />
+
+	<int-amqp:outbound-channel-adapter
+		routing-key="yw.eod.queue" amqp-template="amqpTemplate" channel="yw_eod_channel" />
+
+	<!-- Infrastructure -->
+
+	<rabbit:connection-factory id="connectionFactory" />
+
+	<!-- Set up the AmqpTemplate/RabbitTemplate: -->
+	<rabbit:template id="amqpTemplate" connection-factory="rabbitConnectionFactory"
+		reply-timeout="10000" />
+
+	<!-- Request that queues, exchanges and bindings be automatically declared 
+		on the broker: -->
+	<rabbit:admin connection-factory="rabbitConnectionFactory" />
+
+	<bean id="rabbitConnectionFactory"
+		class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
+		<constructor-arg value="yuppiewallmom" />
+		<property name="username" value="guest" />
+		<property name="password" value="guest" />
+	</bean>
+
+	<rabbit:queue name="yw.eod.queue" />
+
+	<rabbit:direct-exchange name="yw.eod.exchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="yw.eod.queue" key="yw.eod.binding" />
+		</rabbit:bindings>
+	</rabbit:direct-exchange>
+
+	<!-- -->
+
+	<int:channel id="request_scan_channel" />
+
+	<!-- To send AMQP Messages to an Exchange and receive back a response from 
+		a remote client, configure an outbound-gateway -->
+	<int-amqp:outbound-gateway id="scanRabbitGateway" 
+		request-channel="request_scan_channel" reply-channel="reply_scan_channel"
+		exchange-name="scanner.runscan.exchange" routing-key="yw.scan.binding"
+		amqp-template="amqpTemplate" />
+	<int:channel id="reply_scan_channel" />
+	<int:gateway id="scanGateway" service-interface="gabriel.yuppiewall.scanner.service.ScannerServive"
+                 default-request-channel="request_scan_channel" default-reply-channel="reply_scan_channel"
+                 default-request-timeout="120000" default-reply-timeout="120000"/>
+	
+
+	<rabbit:topic-exchange name="scanner.runscan.exchange"
+		auto-delete="true" durable="true">
+		<rabbit:bindings>
+			<rabbit:binding queue="scan_queue" pattern="yw.scan.binding" />
+		</rabbit:bindings>
+	</rabbit:topic-exchange>
+
+	<rabbit:queue name="scan_queue" auto-delete="true"
+		durable="true" />
+
+</beans>

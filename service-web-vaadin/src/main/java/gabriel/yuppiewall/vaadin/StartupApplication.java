@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.vaadin;
 
-import gabriel.yuppiewall.jdbc.marketdata.repository.JDBCInMemoryMarketdata;
+import gabriel.yuppiewall.jdbc.ds.marketdata.repository.JDBCSymbolStore;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -29,9 +29,9 @@ public class StartupApplication extends HttpServlet {
 				WebApplicationContext appContext = WebApplicationContextUtils
 						.getWebApplicationContext(servletConfig
 								.getServletContext());
-				JDBCInMemoryMarketdata memoryMarketdata = (JDBCInMemoryMarketdata) appContext
-						.getBean("JDBCInMemoryMarketdata");
-				memoryMarketdata.init();
+				JDBCSymbolStore jdbcSymbolStore = (JDBCSymbolStore) appContext
+						.getBean("JDBCSymbolStore");
+				jdbcSymbolStore.init();
 				System.out.println("***********");
 				INIT = true;
 

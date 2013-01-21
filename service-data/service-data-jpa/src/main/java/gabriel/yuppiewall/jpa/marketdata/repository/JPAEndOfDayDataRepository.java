@@ -3,6 +3,7 @@ package gabriel.yuppiewall.jpa.marketdata.repository;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.market.domain.JPAExchange;
 import gabriel.yuppiewall.jpa.market.repository.TradeDayRepository;
 import gabriel.yuppiewall.jpa.marketdata.domain.JPAEndOfDayData;
@@ -80,14 +81,14 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 					"globalFilter", key + " Fileter Not supported");
 		}
 		// group them in symbol
-		Map<String, List<EndOfDayData>> groupedValue = new HashMap<String, List<EndOfDayData>>();
+		Map<Instrument, List<EndOfDayData>> groupedValue = new HashMap<Instrument, List<EndOfDayData>>();
 
 		for (JPAEndOfDayData jpaEndOfDayData : list) {
 			EndOfDayData eod = jpaEndOfDayData.getEndOfDayData();
-			List<EndOfDayData> eodList = groupedValue.get(eod.getStockSymbol());
+			List<EndOfDayData> eodList = groupedValue.get(eod.getInstrument());
 			if (eodList == null) {
 				eodList = new ArrayList<>();
-				groupedValue.put(eod.getStockSymbol(), eodList);
+				groupedValue.put(eod.getInstrument(), eodList);
 			}
 			eodList.add(eod);
 		}

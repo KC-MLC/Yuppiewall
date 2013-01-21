@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.client;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
@@ -22,15 +23,16 @@ public class ParseCSV {
 		String values[] = csv.split(",");
 
 		try {
-			return new EndOfDayData(new Exchange(values[EXCHANGE]),
-					values[STOCKSYMBOL],
-					new SimpleDateFormat("yyyy-MM-dd").parse(values[DATE]),
-					new BigDecimal(values[STOCKPRICEOPEN]), new BigDecimal(
-							values[STOCKPRICEHIGH]), new BigDecimal(
-							values[STOCKPRICELOW]), new BigDecimal(
-							values[STOCKPRICECLOSE]), new BigDecimal(
-							values[STOCKVOLUME]), new BigDecimal(
-							values[STOCKPRICEADJCLOSE]));
+
+			return new EndOfDayData(new Instrument(values[STOCKSYMBOL],
+					new Exchange(values[EXCHANGE])), new SimpleDateFormat(
+					"yyyy-MM-dd").parse(values[DATE]), new BigDecimal(
+					values[STOCKPRICEOPEN]), new BigDecimal(
+					values[STOCKPRICEHIGH]), new BigDecimal(
+					values[STOCKPRICELOW]), new BigDecimal(
+					values[STOCKPRICECLOSE]), new BigDecimal(
+					values[STOCKVOLUME]), new BigDecimal(
+					values[STOCKPRICEADJCLOSE]));
 		} catch (ParseException ignore) {
 			ignore.printStackTrace();
 			System.out.println("FAILED TO PARSE:" + csv);

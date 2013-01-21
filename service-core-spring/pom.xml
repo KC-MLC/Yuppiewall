@@ -25,5 +25,16 @@
 			<artifactId>service-data-jdbc</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<!-- for ds client -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.5</version>
+		</dependency>
 	</dependencies>
 </project>

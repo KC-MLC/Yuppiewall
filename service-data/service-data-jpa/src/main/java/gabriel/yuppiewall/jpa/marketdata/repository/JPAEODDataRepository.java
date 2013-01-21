@@ -16,11 +16,11 @@ public interface JPAEODDataRepository extends
 		JpaSpecificationExecutor<JPAEndOfDayData>,
 		JpaRepository<JPAEndOfDayData, String> {
 
-	@Query(value = "select e from JPAEndOfDayData e where e.exchange=:exchange ORDER BY e.date")
+	@Query(value = "select e from JPAEndOfDayData e where e.instrument.exchange=:exchange ORDER BY e.date")
 	List<JPAEndOfDayData> findAllByExchange(
 			@Param("exchange") JPAExchange exchange);
 
-	@Query(value = "select e from JPAEndOfDayData e where e.exchange.country=:country ORDER BY e.date")
+	@Query(value = "select e from JPAEndOfDayData e where e.instrument.exchange.country=:country ORDER BY e.date")
 	List<JPAEndOfDayData> findAllByCountry(
 			@Param("country") String country);
 

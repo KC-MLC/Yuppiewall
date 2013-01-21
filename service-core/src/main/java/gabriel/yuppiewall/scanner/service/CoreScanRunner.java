@@ -1,7 +1,8 @@
 package gabriel.yuppiewall.scanner.service;
 
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
-import gabriel.yuppiewall.indicator.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.Condition;
@@ -14,15 +15,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ScannerUtil implements ScanRunner {
+public class CoreScanRunner implements ScanRunner {
+
+	private static final String RUNNER_ID = CoreScanRunner.class.getName();
 
 	@Override
 	public List<ScanOutput> runScan(List<Condition> conditions,
 			ScanRequest scanRequest) {
-		Iterator<String> itr = getSymbols(scanRequest);
+		Iterator<Instrument> itr = getSymbols(scanRequest);
 
 		while (itr.hasNext()) {
-			String symbol = itr.next();
+			Instrument symbol = itr.next();
 			List<EndOfDayData> records = getSymbolEODRecord(symbol, scanRequest);
 			for (Condition condition : conditions) {
 
@@ -47,27 +50,24 @@ public class ScannerUtil implements ScanRunner {
 		}
 		List<ScanOutput> retValue = new ArrayList<ScanOutput>(scanRequest
 				.getFilteredResult().size());
-		itr = scanRequest.getFilteredResult().iterator();
-		while (itr.hasNext()) {
-			String key = itr.next();
+		Iterator<Instrument> filteredResult = scanRequest.getFilteredResult()
+				.iterator();
+		while (filteredResult.hasNext()) {
+			Instrument key = filteredResult.next();
 			EndOfDayData eod = scanRequest.getInitialGrupedRecord().get(key)
 					.get(0);
-			retValue.add(new ScanOutput(eod.getStockSymbol(), null, eod
-					.getExchange().getName(), null, null, eod
-					.getStockPriceOpen(), eod.getStockPriceHigh(), eod
-					.getStockPriceLow(), eod.getStockPriceClose(), eod
-					.getStockVolume()));
+			retValue.add(new ScanOutput(key, eod));
 		}
 		return retValue;
 
 	}
 
-	protected List<EndOfDayData> getSymbolEODRecord(String symbol,
+	protected List<EndOfDayData> getSymbolEODRecord(Instrument instrument,
 			ScanRequest scanRequest) {
-		return scanRequest.getInitialGrupedRecord().get(symbol);
+		return scanRequest.getInitialGrupedRecord().get(instrument);
 	}
 
-	protected Iterator<String> getSymbols(ScanRequest scanRequest) {
+	protected Iterator<Instrument> getSymbols(ScanRequest scanRequest) {
 
 		return scanRequest.getFilteredResult().iterator();
 	}
@@ -91,5 +91,10 @@ public class ScannerUtil implements ScanRunner {
 			return (lhs.compareTo(rhs) < 0);
 		}
 		return false;
+	}
+
+	@Override
+	public String getId() {
+		return RUNNER_ID;
 	}
 }

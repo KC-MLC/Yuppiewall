@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.jdbc.marketdata.repository;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
@@ -30,7 +31,7 @@ import org.springframework.stereotype.Service;
 public class JDBCInMemoryMarketdata extends JDBCEndOfDayDataRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private Map<String, List<EndOfDayData>> groupedValue;
+	private Map<Instrument, List<EndOfDayData>> groupedValue;
 
 	public void init() {
 		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT");
@@ -53,11 +54,13 @@ public class JDBCInMemoryMarketdata extends JDBCEndOfDayDataRepository {
 					throws SQLException {
 				while (rs.next()) {
 					System.out.println("processing " + rs.getString(1));
-					list.add(new EndOfDayData(new Exchange(rs.getString(2)), rs
-							.getString(3), new Date(rs.getDate(4).getTime()),
-							rs.getBigDecimal(6), rs.getBigDecimal(7), rs
-									.getBigDecimal(8), rs.getBigDecimal(9), rs
-									.getBigDecimal(5), rs.getBigDecimal(10)));
+
+					list.add(new EndOfDayData(new Instrument(rs.getString(3),
+							new Exchange(rs.getString(2))), new Date(rs
+							.getDate(4).getTime()), rs.getBigDecimal(6), rs
+							.getBigDecimal(7), rs.getBigDecimal(8), rs
+							.getBigDecimal(9), rs.getBigDecimal(5), rs
+							.getBigDecimal(10)));
 				}
 
 			}
@@ -71,14 +74,14 @@ public class JDBCInMemoryMarketdata extends JDBCEndOfDayDataRepository {
 			ignore.printStackTrace();
 		}
 		// group them in symbol
-		HashMap<String, List<EndOfDayData>> temp = new HashMap<String, List<EndOfDayData>>();
+		HashMap<Instrument, List<EndOfDayData>> temp = new HashMap<>();
 
 		for (EndOfDayData eod : list) {
 
-			List<EndOfDayData> eodList = temp.get(eod.getStockSymbol());
+			List<EndOfDayData> eodList = temp.get(eod.getInstrument());
 			if (eodList == null) {
 				eodList = new ArrayList<>();
-				temp.put(eod.getStockSymbol(), eodList);
+				temp.put(eod.getInstrument(), eodList);
 			}
 			eodList.add(eod);
 		}

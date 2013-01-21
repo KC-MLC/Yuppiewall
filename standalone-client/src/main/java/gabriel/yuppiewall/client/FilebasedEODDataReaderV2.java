@@ -49,18 +49,21 @@ public class FilebasedEODDataReaderV2 {
 					if (cal.get(Calendar.YEAR) < 2011)
 						continue;
 
-					List<EndOfDayData> list = dataList.get(eod.getExchange()
-							.getName() + eod.getDate().getTime());
+					List<EndOfDayData> list = dataList.get(eod.getInstrument()
+							.getExchange().getName()
+							+ eod.getDate().getTime());
 					if (list == null) {
 						list = new ArrayList<EndOfDayData>();
-						dataList.put(eod.getExchange().getName()
+						dataList.put(eod.getInstrument().getExchange()
+								.getName()
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
 
 					if (list.size() == 20) {
 						// spawn the thread which will fire the webservice call
-						System.out.println(eod.getExchange().getName()
+						System.out.println(eod.getInstrument().getExchange()
+								.getName()
 								+ eod.getDate().getTime());
 						sendToServer(list.toArray(new EndOfDayData[0]));
 						list.clear();

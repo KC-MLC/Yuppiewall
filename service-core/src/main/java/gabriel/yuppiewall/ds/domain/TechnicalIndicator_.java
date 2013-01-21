@@ -1,4 +1,4 @@
-package gabriel.yuppiewall.indicator.domain;
+package gabriel.yuppiewall.ds.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;

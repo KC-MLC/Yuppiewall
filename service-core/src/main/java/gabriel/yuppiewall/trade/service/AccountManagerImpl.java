@@ -27,7 +27,7 @@ public abstract class AccountManagerImpl implements AccountManager {
 		Exchange exchange = ms.getExchange(order.getInstrument());
 		if (exchange == null)
 			throw new InvalidParameterValueException(
-					gabriel.yuppiewall.market.domain.Instrument.class, "name",
+					gabriel.yuppiewall.instrument.domain.Instrument.class, "name",
 					"Instrument not supported");
 		Date exNow = ms.getExchangeCurrentTime(exchange);
 		if (order.getDate().before(exNow)) {

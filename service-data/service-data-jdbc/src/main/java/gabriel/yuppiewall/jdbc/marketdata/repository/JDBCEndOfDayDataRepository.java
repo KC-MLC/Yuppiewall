@@ -3,6 +3,7 @@ package gabriel.yuppiewall.jdbc.marketdata.repository;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
@@ -83,23 +84,24 @@ public class JDBCEndOfDayDataRepository implements EndOfDayDataRepository {
 					throws SQLException {
 				while (rs.next()) {
 					System.out.println("processing " + rs.getString(1));
-					list.add(new EndOfDayData(new Exchange(rs.getString(2)), rs
-							.getString(3), new Date(rs.getDate(4).getTime()),
-							rs.getBigDecimal(6), rs.getBigDecimal(7), rs
-									.getBigDecimal(8), rs.getBigDecimal(9), rs
-									.getBigDecimal(5), rs.getBigDecimal(10)));
+					list.add(new EndOfDayData(new Instrument(rs.getString(3),
+							new Exchange(rs.getString(2))), new Date(rs
+							.getDate(4).getTime()), rs.getBigDecimal(6), rs
+							.getBigDecimal(7), rs.getBigDecimal(8), rs
+							.getBigDecimal(9), rs.getBigDecimal(5), rs
+							.getBigDecimal(10)));
 				}
 			}
 		};
 		executeStreamed(jdbcTemplate, callback, sql, group.getValue());
 		// group them in symbol
-		Map<String, List<EndOfDayData>> groupedValue = new HashMap<String, List<EndOfDayData>>();
+		Map<Instrument, List<EndOfDayData>> groupedValue = new HashMap<>();
 		for (EndOfDayData eod : list) {
 
-			List<EndOfDayData> eodList = groupedValue.get(eod.getStockSymbol());
+			List<EndOfDayData> eodList = groupedValue.get(eod.getInstrument());
 			if (eodList == null) {
 				eodList = new ArrayList<>();
-				groupedValue.put(eod.getStockSymbol(), eodList);
+				groupedValue.put(eod.getInstrument(), eodList);
 			}
 			eodList.add(eod);
 		}

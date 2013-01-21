@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.marketdata.domain;
 
-import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -10,8 +10,7 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class EndOfDayData implements Serializable {
 
-	private Exchange exchange;
-	private String stockSymbol;
+	private Instrument instrument;
 	public static final String DATE_FORMAT = "ddMMyyyy";
 	private Date date;
 	private String strDate;
@@ -22,13 +21,12 @@ public class EndOfDayData implements Serializable {
 	public EndOfDayData() {
 	}
 
-	public EndOfDayData(Exchange exchange, String stockSymbol, Date date,
+	public EndOfDayData(Instrument instrument, Date date,
 			BigDecimal stockPriceOpen, BigDecimal stockPriceHigh,
 			BigDecimal stockPriceLow, BigDecimal stockPriceClose,
 			BigDecimal stockVolume, BigDecimal stockPriceAdjClose) {
 
-		this.exchange = exchange;
-		this.stockSymbol = stockSymbol;
+		this.instrument = instrument;
 		this.date = date;
 		this.strDate = new SimpleDateFormat(DATE_FORMAT).format(date);
 		this.stockPriceOpen = stockPriceOpen;
@@ -37,14 +35,6 @@ public class EndOfDayData implements Serializable {
 		this.stockPriceClose = stockPriceClose;
 		this.stockVolume = stockVolume;
 		this.stockPriceAdjClose = stockPriceAdjClose;
-	}
-
-	public Exchange getExchange() {
-		return exchange;
-	}
-
-	public String getStockSymbol() {
-		return stockSymbol;
 	}
 
 	public Date getDate() {
@@ -79,15 +69,8 @@ public class EndOfDayData implements Serializable {
 		return strDate;
 	}
 
-	@Override
-	public String toString() {
-		return "EndOfDayData_ [exchange=" + exchange + ", stockSymbol="
-				+ stockSymbol + ", date=" + date + ", strDate=" + strDate
-				+ ", stockVolume=" + stockVolume + ", stockPriceOpen="
-				+ stockPriceOpen + ", stockPriceHigh=" + stockPriceHigh
-				+ ", stockPriceLow=" + stockPriceLow + ", stockPriceClose="
-				+ stockPriceClose + ", stockPriceAdjClose="
-				+ stockPriceAdjClose + "]";
+	public Instrument getInstrument() {
+		return instrument;
 	}
 
 }

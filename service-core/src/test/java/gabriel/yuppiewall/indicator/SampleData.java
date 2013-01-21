@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.indicator;
 
-import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.math.BigDecimal;
@@ -81,7 +81,7 @@ public class SampleData {
 
 	private static EndOfDayData set(String date, double high, double low,
 			double close, long volume) throws ParseException {
-		return new EndOfDayData(new Exchange(""), "", new SimpleDateFormat(
+		return new EndOfDayData(new Instrument(), new SimpleDateFormat(
 				"dd-MMM-yy").parse(date), new BigDecimal(0L), new BigDecimal(
 				high), new BigDecimal(low), new BigDecimal(0L),
 				BigDecimal.valueOf(volume), new BigDecimal(close));
@@ -130,7 +130,7 @@ public class SampleData {
 
 	static EndOfDayData set(String date, BigDecimal stockPriceAdjClose)
 			throws ParseException {
-		return new EndOfDayData(new Exchange(""), "", new SimpleDateFormat(
+		return new EndOfDayData(new Instrument(), new SimpleDateFormat(
 				"dd-MMM-yy").parse(date), new BigDecimal(0L),
 				new BigDecimal(0L), new BigDecimal(0L), new BigDecimal(0L),
 				new BigDecimal("0"), stockPriceAdjClose);

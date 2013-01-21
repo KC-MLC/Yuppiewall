@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ScanRunner {
 
+	public String getId();
+
 	public List<ScanOutput> runScan(List<Condition> conditions,
-			ScanRequest eodData);
+			ScanRequest scanRequest);
 }

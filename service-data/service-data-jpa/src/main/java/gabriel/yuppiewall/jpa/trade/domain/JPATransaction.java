@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.jpa.trade.domain;
 
-import gabriel.yuppiewall.instrument.domain.GenaricInstrument;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
 import gabriel.yuppiewall.trade.domain.Order.TransactionType;
 import gabriel.yuppiewall.trade.domain.Transaction;
@@ -62,7 +62,7 @@ public class JPATransaction implements Serializable {
 	public Transaction getTransaction(PrimaryPrincipal user) {
 
 		return new Transaction(transactionId, user,
-				TransactionType.getType(txType), new GenaricInstrument(symbol),
+				TransactionType.getType(txType), new Instrument(symbol),
 				dateOfExecution, price, quantity);
 	}
 }

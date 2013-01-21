@@ -1,7 +1,6 @@
 package gabriel.yuppiewall.vaadin.application.portfolio;
 
 import gabriel.yuppiewall.common.exception.BusinessException;
-import gabriel.yuppiewall.instrument.domain.GenaricInstrument;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.trade.domain.Order;
 import gabriel.yuppiewall.trade.domain.Order.TransactionType;
@@ -31,7 +30,6 @@ import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.AbstractSelect.Filtering;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Window.Notification;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -40,6 +38,7 @@ import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window.Notification;
 import com.vaadin.ui.themes.BaseTheme;
 
 @SuppressWarnings("serial")
@@ -271,7 +270,7 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 								.getInstance().getService("accountManager");
 						Order order = new Order(txType, (Date) txDate,
 								txQuantity, txPrice, null,
-								new GenaricInstrument(symbol));
+								new Instrument(symbol));
 						try {
 							accountManager.placeOrder(null, selectedPortfolio,
 									order);
