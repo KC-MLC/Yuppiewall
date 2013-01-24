@@ -4,16 +4,19 @@ import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.stereotype.Service;
+
+@Service("dataStore")
 public class DataStore {
 
 	private static final Comparator<EndOfDayData> comparator = new Comparator<EndOfDayData>() {
@@ -24,9 +27,9 @@ public class DataStore {
 		}
 	};
 
-	private static Map<Instrument, List<EndOfDayData>> groupedValue = new ConcurrentHashMap<>();
+	private Map<Instrument, List<EndOfDayData>> groupedValue = new ConcurrentHashMap<>();
 
-	private static void put(EndOfDayData data) {
+	private void put(EndOfDayData data) {
 		Instrument instrument = data.getInstrument();
 		List<EndOfDayData> value = groupedValue.get(instrument);
 
@@ -37,7 +40,7 @@ public class DataStore {
 		value.add(data);
 	}
 
-	public static void addAll(List<EndOfDayData> eodList) {
+	public void addAll(List<EndOfDayData> eodList) {
 		Set<Instrument> listtosort = new HashSet<>();
 		for (EndOfDayData eod : eodList) {
 			put(eod);
@@ -49,20 +52,20 @@ public class DataStore {
 		}
 	}
 
-	public static Integer getSize() {
+	public Integer getSize() {
 		return groupedValue.size();
 	}
 
-	public static void clear() {
+	public void clear() {
 		groupedValue.clear();
 	}
 
-	public static List<EndOfDayData> get(Instrument instrument) {
+	public List<EndOfDayData> get(Instrument instrument) {
 		return groupedValue.get(instrument);
 	}
 
-	public static Iterator<Instrument> keySetIterator() {
-		return new LinkedList<Instrument>(groupedValue.keySet()).iterator();
+	public Collection<Instrument> keySetIterator() {
+		return new LinkedList<Instrument>(groupedValue.keySet());
 	}
 
 }

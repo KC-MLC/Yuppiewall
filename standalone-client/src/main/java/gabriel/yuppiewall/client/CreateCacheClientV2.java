@@ -8,10 +8,9 @@ import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
-import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.net.Proxy;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,16 +28,39 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.commons.httpclient.util.HttpURLConnection;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.protocol.BasicHttpContext;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class CreateCacheClient extends InsertIntoRegion {
+public class CreateCacheClientV2 extends InsertIntoRegion {
 
 	private static Proxy SYSTEM_PROXY;
 	// static ExecutorService executo = Executors.newFixedThreadPool(20);
+	//HttpHost proxy = new HttpHost("43.80.41.41", 8080, "http");
 	private Map<Server, ExecutorService> serverToThread = new HashMap<Server, ExecutorService>();
 	private ObjectMapper mapper = new ObjectMapper();
 	private Set<Tupple<Instrument, Server>> updateDataList = new HashSet<Tupple<Instrument, Server>>();
 	Map<Server, List<List<EndOfDayData>>> sendToServer = new HashMap<Server, List<List<EndOfDayData>>>();
+	private PoolingClientConnectionManager cm = new PoolingClientConnectionManager();
+	{
+		cm.setMaxTotal(200);
+		cm.setDefaultMaxPerRoute(5);
+	}
+	DefaultHttpClient httpclient = new DefaultHttpClient(cm);
+	{
+
+		/*httpclient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,
+				proxy);*/
+	}
 
 	@Override
 	protected void onData(Command<EndOfDayData> command) {
@@ -85,9 +107,10 @@ public class CreateCacheClient extends InsertIntoRegion {
 			final Server server = itr.next();
 			final List<List<EndOfDayData>> list = sendToServer2.get(server);
 
-			/*new Thread(new Runnable() {
+			new Thread(new Runnable() {
 
-				public void run() {*/
+				public void run() {
+
 					for (List<EndOfDayData> eodList : list) {
 
 						if (eodList == null || eodList.size() == 0) {
@@ -101,8 +124,9 @@ public class CreateCacheClient extends InsertIntoRegion {
 					}
 
 				}
-			/*}).start();
-		}*/
+
+			}).start();
+		}
 
 	}
 
@@ -149,10 +173,10 @@ public class CreateCacheClient extends InsertIntoRegion {
 	static {
 		// System.setProperty("java.net.useSystemProxies", "true");
 		SYSTEM_PROXY = Proxy.NO_PROXY;
-		
-		 /* SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
-		  "43.80.41.41", 8080));*/
-		 
+		/*
+		 * SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
+		 * "43.80.41.41", 8080));
+		 */
 	}
 
 	@Override
@@ -169,49 +193,76 @@ public class CreateCacheClient extends InsertIntoRegion {
 
 	private void sendToServer(final List<EndOfDayData> dataList,
 			final Server server, ExecutorService executo) {
-/*		executo.submit(new Runnable() {
 
-			public void run() {*/
+		executo.submit(new Runnable() {
+
+			public void run() {
+
 				// TODO Auto-generated method stub
-
+				HttpPut httpPut = new HttpPut(server.getServerContext()
+						+ "/cache/");
 				try {
-					URL url = new URL(server.getServerContext() + "/cache/");
-					HttpURLConnection conn = (HttpURLConnection) url
-							.openConnection(SYSTEM_PROXY);
-					conn.setRequestMethod("PUT");
-					conn.setDoOutput(true);
-					conn.setUseCaches(false);
-					conn.setRequestProperty("Content-Type", "application/json");
-					conn.setRequestProperty("Accept", "application/json");
-					String jsonValue = mapper.writeValueAsString(dataList);
-					conn.setRequestProperty("Content-Length",
-							Integer.toString(jsonValue.length()));
-					long start = System.currentTimeMillis();
-					System.out.println("sending " + jsonValue.length());
-					conn.getOutputStream().write(jsonValue.getBytes());
-					conn.getOutputStream().flush();
-					conn.getOutputStream().close();
-					conn.connect();
 
-					if (conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED) {
-						System.out.println("PUT method failed: "
-								+ conn.getResponseCode() + "\t"
-								+ conn.getResponseMessage());
+					String jsonValue = mapper.writeValueAsString(dataList);
+					StringEntity entity = new StringEntity(jsonValue);
+					entity.setContentType("application/json");
+					httpPut.setEntity(entity);
+					long start = System.currentTimeMillis();
+					HttpResponse response = httpclient.execute(httpPut,
+							new BasicHttpContext());
+					int code = response.getStatusLine().getStatusCode();
+					if (code != HttpURLConnection.HTTP_ACCEPTED) {
+						System.out.println("PUT method failed: " + code);
+						InputStream is = response.getEntity().getContent();
+						StringWriter writer = new StringWriter();
+						IOUtils.copy(is, writer);
+						String theString = writer.toString();
+						System.out.println(theString);
 						System.exit(-1);
 					} else {
 						System.out.println("POST method success on  " + server
 								+ " at ("
 								+ (System.currentTimeMillis() - start) + ")");
+
 					}
-					conn.getInputStream().close();
-					conn.disconnect();
+
+					/*
+					 * URL url = new URL(server.getServerContext() + "/cache/");
+					 * HttpURLConnection conn = (HttpURLConnection) url
+					 * .openConnection(SYSTEM_PROXY);
+					 * conn.setRequestMethod("PUT"); conn.setDoOutput(true);
+					 * conn.setUseCaches(false);
+					 * conn.setRequestProperty("Content-Type",
+					 * "application/json"); conn.setRequestProperty("Accept",
+					 * "application/json"); String jsonValue =
+					 * mapper.writeValueAsString(dataList);
+					 * conn.setRequestProperty("Content-Length",
+					 * Integer.toString(jsonValue.length())); long start =
+					 * System.currentTimeMillis(); System.out.println("sending "
+					 * + jsonValue.length());
+					 * conn.getOutputStream().write(jsonValue.getBytes());
+					 * conn.getOutputStream().flush();
+					 * conn.getOutputStream().close(); conn.connect();
+					 * 
+					 * if (conn.getResponseCode() !=
+					 * HttpURLConnection.HTTP_ACCEPTED) {
+					 * System.out.println("PUT method failed: " +
+					 * conn.getResponseCode() + "\t" +
+					 * conn.getResponseMessage()); System.exit(-1); } else {
+					 * System.out.println("POST method success on  " + server +
+					 * " at (" + (System.currentTimeMillis() - start) + ")"); }
+					 * conn.getInputStream().close(); conn.disconnect();
+					 */
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.exit(-1);
+				} finally {
+					httpPut.releaseConnection();
 				}
-			/*}
+
+			}
 		});
-*/
+
 	}
 
 	@Override
@@ -279,7 +330,7 @@ public class CreateCacheClient extends InsertIntoRegion {
 	}
 
 	public static void main(String[] args) {
-		new CreateCacheClient().pushData();
+		new CreateCacheClientV2().pushData();
 	}
 
 }

@@ -1,5 +1,9 @@
 package gabriel.yuppiewall.jdbc.ds.marketdata.repository;
 
+import gabriel.yuppiewall.ds.domain.Server;
+import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.market.domain.Exchange;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +23,12 @@ import org.springframework.stereotype.Service;
 public class JDBCSymbolStore {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private static List<String> symbolList;
+	private  List<Instrument> symbolList;
+	private  List<Server> serverList;
 
 	public void init() {
 		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT");
-		String sql = "select distinct symbol from end_of_day_data order by symbol";
+		String sql = "Select symbol_code, server_id, exchange from  instrument";
 
 		PreparedStatementCallback callback = new PreparedStatementCallback() {
 			@Override
@@ -36,20 +41,46 @@ public class JDBCSymbolStore {
 			}
 
 			private void extractData(ResultSet rs) throws SQLException {
-				symbolList = new ArrayList<>();
+				symbolList = new ArrayList<Instrument>();
 				while (rs.next()) {
-					String symbol = rs.getString(1);
-					System.out.println("processing " + symbol);
-					symbolList.add(symbol);
+					Instrument i = new Instrument(rs.getString(1),
+							new Exchange(rs.getString(3)));
+					i.setServer(rs.getString(2));
+					symbolList.add(i);
 				}
 
 			}
 		};
 
 		executeStreamed(jdbcTemplate, callback, sql);
-
 		symbolList = Collections.unmodifiableList(symbolList);
 		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT OVEr");
+		initSerever();
+	}
+
+	public void initSerever() {
+		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT");
+		String sql = "Select server_context, server_size from  region_server";
+
+		PreparedStatementCallback callback = new PreparedStatementCallback() {
+			@Override
+			public Void doInPreparedStatement(PreparedStatement pstmt)
+					throws SQLException, DataAccessException {
+				ResultSet rs = pstmt.executeQuery();
+				extractData(rs);
+				rs.close();
+				return null;
+			}
+
+			private void extractData(ResultSet rs) throws SQLException {
+				serverList = new ArrayList<Server>();
+				while (rs.next()) {
+					serverList.add(new Server(rs.getString(1), rs.getInt(2)));
+				}
+
+			}
+		};
+		executeStreamed(jdbcTemplate, callback, sql);
 	}
 
 	private void executeStreamed(JdbcTemplate jdbcTemplate,
@@ -68,8 +99,13 @@ public class JDBCSymbolStore {
 		jdbcTemplate.execute(creator, callback);
 	}
 
-	public static List<String> getSymbolList() {
+	public  List<Instrument> getSymbolList() {
 		return symbolList;
+	}
+	
+
+	public  List<Server> getServerList() {
+		return serverList;
 	}
 
 }

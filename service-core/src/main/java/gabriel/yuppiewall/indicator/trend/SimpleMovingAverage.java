@@ -97,16 +97,5 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 	 * }
 	 */
 
-	public static void main(String[] args) {
-
-		/*
-		 * EndOfDayData_ historical[] = new EndOfDayData_[6]; for (int i = 0; i
-		 * < historical.length; i++) { historical[i] = new EndOfDayData_("", "",
-		 * new Date(), new BigDecimal(0L), new BigDecimal(0L), new
-		 * BigDecimal(i), new BigDecimal(0L), new BigInteger("0"), new
-		 * BigDecimal(0L));
-		 * 
-		 * } new SimpleMovingAverage().calculate(historical);
-		 */
-	}
+	
 }

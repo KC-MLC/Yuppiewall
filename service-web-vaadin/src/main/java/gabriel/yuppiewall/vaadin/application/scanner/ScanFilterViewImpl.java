@@ -10,7 +10,6 @@ import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
-import gabriel.yuppiewall.scanner.domain.ScanParameter.PERIOD;
 import gabriel.yuppiewall.scanner.service.ScannerServive;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 import gabriel.yuppiewall.vaadin.UIConstant;
@@ -362,7 +361,7 @@ public class ScanFilterViewImpl implements Serializable {
 						ScanParameter param = new ScanParameter(gf);
 						param.setConditions(scanAdditionFilter
 								.getInsertedCondition());
-						List<ScanOutput> scanResult = scanner.runScan(param,
+						ScanOutput[] scanResult = scanner.runScan(param,
 								(PrimaryPrincipal) YuppiewallUI.getInstance()
 										.getApplicationData("user"));
 						eventBus.post(new NewScanResult(scanResult));

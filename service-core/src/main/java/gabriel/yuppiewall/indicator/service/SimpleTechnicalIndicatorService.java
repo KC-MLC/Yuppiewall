@@ -15,9 +15,9 @@ import java.util.Map;
 public class SimpleTechnicalIndicatorService implements
 		TechnicalIndicatorService {
 
-	private static Map<String, TechnicalIndicator> indicators = new HashMap<>();
+	private Map<String, TechnicalIndicator> indicators = new HashMap<>();
 
-	static {
+	{
 		indicators.put("RSI", new RSI());
 		indicators.put("SMA", new SimpleMovingAverage());
 		indicators.put("EMA", new ExponentialMovingAverage());

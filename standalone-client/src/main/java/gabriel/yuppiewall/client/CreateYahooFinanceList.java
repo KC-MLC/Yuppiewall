@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -19,6 +18,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CreateYahooFinanceList {
+	
+	private static Proxy SYSTEM_PROXY;
+
+	static {
+		// System.setProperty("java.net.useSystemProxies", "true");
+		SYSTEM_PROXY = Proxy.NO_PROXY;
+/*
+		SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
+				"43.80.41.41", 8080));*/
+
+	}
+
 
 	static ExecutorService executo = Executors.newFixedThreadPool(10);
 
@@ -65,14 +76,13 @@ public class CreateYahooFinanceList {
 			 * &b=18&c=2012 &ignore=.csv&s=GOOG
 			 */
 			try {
-				Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
-						"43.80.41.41", 8080));
+				
 				int BUFFER_SIZE = 4096;
 				URL url = new URL(
 						"http://ichart.finance.yahoo.com/table.csv?d=12&e=18&f=2012&g=d&a=12&b=18&c=2013&ignore=.csv&s="
 								+ symbol);
 				HttpURLConnection urlConnection = (HttpURLConnection) url
-						.openConnection(proxy);
+						.openConnection(SYSTEM_PROXY);
 				urlConnection.setRequestMethod("GET");
 				urlConnection.setDoOutput(true);
 				InputStream is = urlConnection.getInputStream();

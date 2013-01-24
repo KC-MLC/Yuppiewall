@@ -1,12 +1,14 @@
 package gabriel.yuppiewall.client;
 
 import gabriel.yuppiewall.common.LineIterator;
+import gabriel.yuppiewall.indicator.Constant;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +16,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class Test {
 
@@ -74,8 +80,9 @@ public class Test {
 
 	}
 
-	public static void main(String[] args) throws FileNotFoundException,
-			ClassNotFoundException, SQLException {
-		insertRecord();
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, JsonGenerationException, JsonMappingException, IOException {
+		//insertRecord();
+		ObjectMapper om = new ObjectMapper();
+		om.writeValueAsBytes(new Constant());
 	}
 }

@@ -12,16 +12,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 @SuppressWarnings("serial")
 public class StartupApplication extends HttpServlet {
 
-	public static boolean INIT;
-
 	@Override
 	public void init(final ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
 		// / Automatically java script can run here
 		System.out.println("***********************");
 		System.out.println("*** INITIALIZING DB ***");
-		if (INIT)
-			return;
+
 		new Thread(new Runnable() {
 
 			@Override
@@ -33,7 +30,6 @@ public class StartupApplication extends HttpServlet {
 						.getBean("JDBCSymbolStore");
 				jdbcSymbolStore.init();
 				System.out.println("***********");
-				INIT = true;
 
 			}
 		}).start();

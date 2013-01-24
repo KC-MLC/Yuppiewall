@@ -1,7 +1,5 @@
 package gabriel.yuppiewall.scanner.service;
 
-import gabriel.yuppiewall.indicator.service.SimpleTechnicalIndicatorService;
-import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
@@ -21,11 +19,6 @@ public class ScannerTest {
 		scanner = new ScannerServiceImpl() {
 
 			@Override
-			protected TechnicalIndicatorService getTechnicalIndicatorService() {
-				return new SimpleTechnicalIndicatorService();
-			}
-
-			@Override
 			protected EndOfDayDataRepository getEndOfDayDataRepository() {
 				// TODO Auto-generated method stub
 				return new EndOfDayDataRepository() {
@@ -43,23 +36,92 @@ public class ScannerTest {
 					}
 
 					@Override
-					public ScanRequest createScanRequest(
-							ScanParameter param) {/*
-						Map<String, List<EndOfDayData>> list = new HashMap<>();
-						{
-							EndOfDayData[] li;
-							try {
-								li = SampleData.setup();
-								List<EndOfDayData> l = Arrays.asList(li);
-								list.put("GOOG", l);
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-
-						}
-						return list;
-					*/return null;}
+					public ScanRequest createScanRequest(ScanParameter param) {/*
+																				 * Map
+																				 * <
+																				 * String
+																				 * ,
+																				 * List
+																				 * <
+																				 * EndOfDayData
+																				 * >>
+																				 * list
+																				 * =
+																				 * new
+																				 * HashMap
+																				 * <
+																				 * >
+																				 * (
+																				 * )
+																				 * ;
+																				 * {
+																				 * EndOfDayData
+																				 * [
+																				 * ]
+																				 * li
+																				 * ;
+																				 * try
+																				 * {
+																				 * li
+																				 * =
+																				 * SampleData
+																				 * .
+																				 * setup
+																				 * (
+																				 * )
+																				 * ;
+																				 * List
+																				 * <
+																				 * EndOfDayData
+																				 * >
+																				 * l
+																				 * =
+																				 * Arrays
+																				 * .
+																				 * asList
+																				 * (
+																				 * li
+																				 * )
+																				 * ;
+																				 * list
+																				 * .
+																				 * put
+																				 * (
+																				 * "GOOG"
+																				 * ,
+																				 * l
+																				 * )
+																				 * ;
+																				 * }
+																				 * catch
+																				 * (
+																				 * ParseException
+																				 * e
+																				 * )
+																				 * {
+																				 * /
+																				 * /
+																				 * TODO
+																				 * Auto
+																				 * -
+																				 * generated
+																				 * catch
+																				 * block
+																				 * e
+																				 * .
+																				 * printStackTrace
+																				 * (
+																				 * )
+																				 * ;
+																				 * }
+																				 * 
+																				 * }
+																				 * return
+																				 * list
+																				 * ;
+																				 */
+						return null;
+					}
 				};
 			}
 
@@ -73,14 +135,11 @@ public class ScannerTest {
 
 	@Test
 	public void testBasicParse() {
-		/*ScanParameter sp = new ScanParameter()
-				.Builder()
-				.fromExchange(new Exchange("NYSE"))
-				.addCondition(
-						new Expression("sma", PERIOD.DAILY, new BigDecimal(20),
-								SCAN_ON.VOLUME), OPERAND.GT,
-						new Expression(new BigDecimal(40000))).build();
-		scanner.runScan(sp);
-*/
+		/*
+		 * ScanParameter sp = new ScanParameter() .Builder() .fromExchange(new
+		 * Exchange("NYSE")) .addCondition( new Expression("sma", PERIOD.DAILY,
+		 * new BigDecimal(20), SCAN_ON.VOLUME), OPERAND.GT, new Expression(new
+		 * BigDecimal(40000))).build(); scanner.runScan(sp);
+		 */
 	}
 }

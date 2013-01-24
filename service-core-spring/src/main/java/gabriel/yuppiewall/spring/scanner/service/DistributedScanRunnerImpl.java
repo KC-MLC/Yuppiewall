@@ -1,8 +1,9 @@
 package gabriel.yuppiewall.spring.scanner.service;
 
+import gabriel.yuppiewall.ds.domain.Server;
 import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.jdbc.ds.marketdata.repository.JDBCSymbolStore;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
-import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.service.ScanRunner;
 
@@ -12,11 +13,33 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+@Service("distributedScanRunnerImpl")
 public class DistributedScanRunnerImpl implements ScanRunner {
 
 	private static final String RUNNER_ID = DistributedScanRunnerImpl.class
 			.getName();
 	private List<ScanRunner> wsScanRunnerList;
+
+	@Autowired
+	@Qualifier("JDBCSymbolStore")
+	private JDBCSymbolStore symbolStore;
+
+	private void init() {
+		wsScanRunnerList = new ArrayList<>();
+		List<Server> serverList = symbolStore.getServerList();
+		for (Server server : serverList) {
+			try {
+				wsScanRunnerList.add(new DSClientScanRunner(server));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
 
 	private ScanRunner getScanRunner(String id) {
 		for (ScanRunner scanRunner : wsScanRunnerList) {
@@ -29,8 +52,10 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 	}
 
 	@Override
-	public List<ScanOutput> runScan(List<Condition> conditions,
-			ScanRequest scanRequest) {
+	public ScanOutput[] runScan(ScanRequest scanRequest) {
+		if (wsScanRunnerList == null) {
+			init();
+		}
 		Thread[] threads = new Thread[wsScanRunnerList.size()];
 		RunScan[] runScan = new RunScan[wsScanRunnerList.size()];
 		System.out.println("STARTED GROUPING");
@@ -39,6 +64,9 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 				.iterator();
 		while (itrInstrument.hasNext()) {
 			Instrument instrument = (Instrument) itrInstrument.next();
+			if (instrument.getServer() == null) {
+				System.out.println("CHECK THIS");
+			}
 			List<Instrument> instruments = dsList.get(instrument.getServer());
 			if (instruments == null) {
 				instruments = new ArrayList<>();
@@ -47,7 +75,6 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 			instruments.add(instrument);
 		}
 
-		List<ScanOutput> retValue = new ArrayList<ScanOutput>();
 		Iterator<String> itrServerContext = dsList.keySet().iterator();
 
 		int j = 0;
@@ -56,8 +83,8 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 
 			ScanRunner scanRunner = getScanRunner(serverContext);
 
-			(threads[j] = new Thread(runScan[j] = new RunScan(conditions,
-					scanRequest, scanRunner))).start();
+			(threads[j] = new Thread(runScan[j] = new RunScan(scanRequest,
+					scanRunner))).start();
 			j++;
 		}
 		for (int i = 0; i < threads.length; i++) {
@@ -66,37 +93,41 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 			} catch (InterruptedException e) {
 			}
 		}
+		// calculate max size
+		int size = 0;
+		for (int i = 0; i < runScan.length; i++) {
+			ScanOutput[] output = runScan[i].getOutput();
+			size += output.length;
+		}
+		ScanOutput[] retValue = new ScanOutput[size];
+		int destPos = 0;
 		for (int i = 0; i < runScan.length; i++) {
 
-			List<ScanOutput> output = runScan[i].getOutput();
-			if (output == null) {
-				System.out.println("ERRRRRRRRRRRRRRRRRRRRRRRRRR aa");
-				continue;
-			}
-			retValue.addAll(output);
+			ScanOutput[] output = runScan[i].getOutput();
+			System.arraycopy(output, 0, retValue, destPos, output.length);
+			destPos += output.length;
+
 		}
 		return retValue;
 	}
 
 	class RunScan implements Runnable {
-		private List<Condition> conditions;
 		private ScanRequest scanRequest;
 		private ScanRunner scanner;
-		private List<ScanOutput> output;
+		private ScanOutput[] output;
 
-		public RunScan(List<Condition> conditions, ScanRequest scanRequest,
-				ScanRunner scanner) {
-			this.conditions = conditions;
+		public RunScan(ScanRequest scanRequest, ScanRunner scanner) {
 			this.scanRequest = scanRequest;
+			this.scanner = scanner;
 		}
 
-		public List<ScanOutput> getOutput() {
+		public ScanOutput[] getOutput() {
 			return output;
 		}
 
 		@Override
 		public void run() {
-			output = scanner.runScan(conditions, scanRequest);
+			output = scanner.runScan(scanRequest);
 		}
 	}
 

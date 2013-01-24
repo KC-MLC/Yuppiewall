@@ -1,11 +1,11 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -78,7 +78,7 @@ public class ScanResultViewImpl implements Serializable {
 	public void loadGrid(NewScanResult e) {
 		resultTable.removeAllItems();
 		@SuppressWarnings("unchecked")
-		List<ScanOutput> scanResult = (List<ScanOutput>) e.getSource();
+		ScanOutput[] scanResult = (ScanOutput[]) e.getSource();
 		for (ScanOutput scanOutput : scanResult) {
 			addRow(scanOutput);
 		}
@@ -86,17 +86,20 @@ public class ScanResultViewImpl implements Serializable {
 	}
 
 	private void addRow(ScanOutput data) {
-		Item item = resultTable.addItem(data.getSymbol());
-		item.getItemProperty(SYMBOL).setValue(data.getSymbol());
+		Instrument ins = data.getInstrument();
+		EndOfDayData eod = data.getEod();
+
+		Item item = resultTable.addItem(ins.getSymbol());
+		item.getItemProperty(SYMBOL).setValue(ins.getSymbol());
 		item.getItemProperty(NAME).setValue("-");
 		item.getItemProperty(EXCHANGE).setValue("-");
 		item.getItemProperty(SECTOR).setValue("-");
 		item.getItemProperty(INDUSTRY).setValue("-");
-		item.getItemProperty(OPEN).setValue(data.getOpen());
-		item.getItemProperty(HIGH).setValue(data.getHigh());
-		item.getItemProperty(LOW).setValue(data.getLow());
-		item.getItemProperty(CLOSE).setValue(data.getClose());
-		item.getItemProperty(VOLUME).setValue(data.getVolume());
+		item.getItemProperty(OPEN).setValue(eod.getStockPriceOpen());
+		item.getItemProperty(HIGH).setValue(eod.getStockPriceHigh());
+		item.getItemProperty(LOW).setValue(eod.getStockPriceLow());
+		item.getItemProperty(CLOSE).setValue(eod.getStockPriceAdjClose());
+		item.getItemProperty(VOLUME).setValue(eod.getStockVolume());
 
 	}
 

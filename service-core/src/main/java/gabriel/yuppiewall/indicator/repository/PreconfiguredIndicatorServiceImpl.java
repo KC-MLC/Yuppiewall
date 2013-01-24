@@ -13,8 +13,9 @@ import java.util.List;
 public abstract class PreconfiguredIndicatorServiceImpl implements
 		PreconfiguredIndicatorService {
 
-	protected static final List<PreconfiguredIndicator> preconfigList = new ArrayList<>();
-	static {
+	protected final List<PreconfiguredIndicator> preconfigList = new ArrayList<>();
+
+	{
 		{
 			PreconfiguredIndicator config = new PreconfiguredIndicator(
 					"New 52-week High");

@@ -19,7 +19,7 @@ public abstract class InsertIntoRegion {
 
 		final int distribution = (int) Math.ceil(instruments.size()
 				/ serverList.size());
-
+		System.out.println("distribution==" + distribution);
 		onData(
 
 		new Command<EndOfDayData>() {
@@ -30,6 +30,7 @@ public abstract class InsertIntoRegion {
 
 			@Override
 			public void execute(EndOfDayData data) {
+				//System.out.println(" GOT EOD ==" + data);
 				if (data == null) {
 					sendDataToServer();
 					return;
@@ -59,7 +60,7 @@ public abstract class InsertIntoRegion {
 				Server server = serverList.get(serverIndex);
 				count += 1;
 				updateServer(dataList, server);
-				updateDataList(dataList, server);
+				updateDataList(symbol, server);
 
 			}
 
@@ -69,8 +70,7 @@ public abstract class InsertIntoRegion {
 
 	protected abstract void onData(Command<EndOfDayData> command);
 
-	protected abstract void updateDataList(List<EndOfDayData> dataList,
-			Server server);
+	protected abstract void updateDataList(Instrument symbol, Server server);
 
 	protected abstract void updateServer(List<EndOfDayData> dataList,
 			Server server);

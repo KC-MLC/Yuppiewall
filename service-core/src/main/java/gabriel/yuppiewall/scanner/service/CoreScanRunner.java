@@ -2,6 +2,8 @@ package gabriel.yuppiewall.scanner.service;
 
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.indicator.TechnicalIndicator;
+import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
@@ -11,24 +13,30 @@ import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class CoreScanRunner implements ScanRunner {
+public abstract class CoreScanRunner implements ScanRunner {
 
 	private static final String RUNNER_ID = CoreScanRunner.class.getName();
 
 	@Override
-	public List<ScanOutput> runScan(List<Condition> conditions,
-			ScanRequest scanRequest) {
-		Iterator<Instrument> itr = getSymbols(scanRequest);
+	public ScanOutput[] runScan(ScanRequest scanRequest) {
+		List<Condition> conditions = scanRequest.getConditions();
+		for (Condition condition : conditions) {
+			setTechnicalIndicator(condition.getLhs());
+			setTechnicalIndicator(condition.getRhs());
+		}
+		Collection<Instrument> filteredList = getSymbols(scanRequest);
+		Iterator<Instrument> itr = filteredList.iterator();
 
 		while (itr.hasNext()) {
 			Instrument symbol = itr.next();
 			List<EndOfDayData> records = getSymbolEODRecord(symbol, scanRequest);
-			for (Condition condition : conditions) {
 
+			for (int i = 0; i < conditions.size(); i++) {
+				Condition condition = conditions.get(i);
 				Expression lhs = condition.getLhs();
 				Expression rhs = condition.getRhs();
 				try {
@@ -48,18 +56,28 @@ public class CoreScanRunner implements ScanRunner {
 
 			}
 		}
-		List<ScanOutput> retValue = new ArrayList<ScanOutput>(scanRequest
-				.getFilteredResult().size());
-		Iterator<Instrument> filteredResult = scanRequest.getFilteredResult()
-				.iterator();
-		while (filteredResult.hasNext()) {
-			Instrument key = filteredResult.next();
-			EndOfDayData eod = scanRequest.getInitialGrupedRecord().get(key)
-					.get(0);
-			retValue.add(new ScanOutput(key, eod));
+		ScanOutput[] retValue = new ScanOutput[scanRequest.getFilteredResult()
+				.size()];
+		itr = filteredList.iterator();
+		int i = 0;
+		while (itr.hasNext()) {
+			Instrument key = itr.next();
+
+			EndOfDayData eod = getSymbolEODRecord(key, scanRequest).get(0);
+			retValue[i++] = new ScanOutput(key, eod);
 		}
 		return retValue;
 
+	}
+
+	private void setTechnicalIndicator(Expression exp) {
+
+		if (exp.getIndicator() == null)
+			throw new UnsupportedOperationException(
+					"constant value not supported");
+		TechnicalIndicator ti = getTechnicalIndicatorService()
+				.getTechnicalIndicator(exp.getIndicator());
+		exp.setTechnicalIndicator(ti);
 	}
 
 	protected List<EndOfDayData> getSymbolEODRecord(Instrument instrument,
@@ -67,12 +85,12 @@ public class CoreScanRunner implements ScanRunner {
 		return scanRequest.getInitialGrupedRecord().get(instrument);
 	}
 
-	protected Iterator<Instrument> getSymbols(ScanRequest scanRequest) {
+	protected Collection<Instrument> getSymbols(ScanRequest scanRequest) {
 
-		return scanRequest.getFilteredResult().iterator();
+		return scanRequest.getFilteredResult();
 	}
 
-	private static BigDecimal run(Expression exp, List<EndOfDayData> records) {
+	private BigDecimal run(Expression exp, List<EndOfDayData> records) {
 		TechnicalIndicator_[] result = exp.getTechnicalIndicator().calculate(
 				records, exp);
 
@@ -80,8 +98,9 @@ public class CoreScanRunner implements ScanRunner {
 
 	}
 
-	private static boolean operate(BigDecimal lhs, OPERAND operand,
-			BigDecimal rhs) {
+	protected abstract TechnicalIndicatorService getTechnicalIndicatorService();
+
+	private boolean operate(BigDecimal lhs, OPERAND operand, BigDecimal rhs) {
 		switch (operand) {
 		case EQUAL:
 			return (lhs.compareTo(rhs) == 0);

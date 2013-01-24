@@ -71,32 +71,69 @@ public class Instrument implements Serializable {
 		this.symbol = symbol;
 	}
 
-	public String getName() {
-		return name;
+	
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
 	}
 
 	public Exchange getExchange() {
 		return exchange;
 	}
 
-	public String getSymbol() {
-		return symbol;
+	public void setExchange(Exchange exchange) {
+		this.exchange = exchange;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSecter() {
 		return secter;
 	}
 
+	public void setSecter(String secter) {
+		this.secter = secter;
+	}
+
 	public String getServer() {
 		return server;
+	}
+
+	public void setServer(String server) {
+		this.server = server;
 	}
 
 	public String getIndustry() {
 		return industry;
 	}
 
-	public void setServer(String server) {
-		this.server = server;
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public InstrumentType getType() {
+		return type;
+	}
+
+	public void setType(InstrumentType type) {
+		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "Instrument [symbol=" + symbol + ", exchange=" + exchange
+				+ ", name=" + name + ", secter=" + secter + ", server="
+				+ server + ", industry=" + industry + ", type=" + type + "]";
 	}
 
 	@Override

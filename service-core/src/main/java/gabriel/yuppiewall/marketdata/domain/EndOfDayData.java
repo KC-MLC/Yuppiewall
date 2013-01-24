@@ -11,7 +11,7 @@ import java.util.Date;
 public class EndOfDayData implements Serializable {
 
 	private Instrument instrument;
-	public static final String DATE_FORMAT = "ddMMyyyy";
+	public transient static final String DATE_FORMAT = "ddMMyyyy";
 	private Date date;
 	private String strDate;
 	private BigDecimal stockVolume;
@@ -37,40 +37,86 @@ public class EndOfDayData implements Serializable {
 		this.stockPriceAdjClose = stockPriceAdjClose;
 	}
 
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
+	}
+
 	public Date getDate() {
 		return date;
 	}
 
-	public BigDecimal getStockPriceOpen() {
-		return stockPriceOpen;
-	}
-
-	public BigDecimal getStockPriceHigh() {
-		return stockPriceHigh;
-	}
-
-	public BigDecimal getStockPriceLow() {
-		return stockPriceLow;
-	}
-
-	public BigDecimal getStockPriceClose() {
-		return stockPriceClose;
-	}
-
-	public BigDecimal getStockVolume() {
-		return stockVolume;
-	}
-
-	public BigDecimal getStockPriceAdjClose() {
-		return stockPriceAdjClose;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getStrDate() {
 		return strDate;
 	}
 
-	public Instrument getInstrument() {
-		return instrument;
+	public void setStrDate(String strDate) {
+		this.strDate = strDate;
+	}
+
+	public BigDecimal getStockVolume() {
+		return stockVolume;
+	}
+
+	public void setStockVolume(BigDecimal stockVolume) {
+		this.stockVolume = stockVolume;
+	}
+
+	public BigDecimal getStockPriceOpen() {
+		return stockPriceOpen;
+	}
+
+	public void setStockPriceOpen(BigDecimal stockPriceOpen) {
+		this.stockPriceOpen = stockPriceOpen;
+	}
+
+	public BigDecimal getStockPriceHigh() {
+		return stockPriceHigh;
+	}
+
+	public void setStockPriceHigh(BigDecimal stockPriceHigh) {
+		this.stockPriceHigh = stockPriceHigh;
+	}
+
+	public BigDecimal getStockPriceLow() {
+		return stockPriceLow;
+	}
+
+	public void setStockPriceLow(BigDecimal stockPriceLow) {
+		this.stockPriceLow = stockPriceLow;
+	}
+
+	public BigDecimal getStockPriceClose() {
+		return stockPriceClose;
+	}
+
+	public void setStockPriceClose(BigDecimal stockPriceClose) {
+		this.stockPriceClose = stockPriceClose;
+	}
+
+	public BigDecimal getStockPriceAdjClose() {
+		return stockPriceAdjClose;
+	}
+
+	public void setStockPriceAdjClose(BigDecimal stockPriceAdjClose) {
+		this.stockPriceAdjClose = stockPriceAdjClose;
+	}
+
+	@Override
+	public String toString() {
+		return "EndOfDayData [instrument=" + instrument + ", date=" + date
+				+ ", strDate=" + strDate + ", stockVolume=" + stockVolume
+				+ ", stockPriceOpen=" + stockPriceOpen + ", stockPriceHigh="
+				+ stockPriceHigh + ", stockPriceLow=" + stockPriceLow
+				+ ", stockPriceClose=" + stockPriceClose
+				+ ", stockPriceAdjClose=" + stockPriceAdjClose + "]";
 	}
 
 }

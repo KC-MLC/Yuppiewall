@@ -1,48 +1,61 @@
 package gabriel.yuppiewall.spring.scanner.service;
 
+import gabriel.yuppiewall.ds.domain.Server;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
-import gabriel.yuppiewall.scanner.domain.Condition;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.service.ScanRunner;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jackson.map.ObjectMapper;
 
 public class DSClientScanRunner implements ScanRunner {
 
 	ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
 	private URL url;
+	private String id;
 
-	public void init(Map<String, String> property) throws Exception {
-		String strURL = property.get("serverAddress");
+	public DSClientScanRunner(Server server) throws Exception {
+
+		String strURL = server.getServerContext() + "/scanrunner/scan";
 		url = new URL(strURL);
+		id = server.getServerContext();
 	}
 
 	@Override
-	public List<ScanOutput> runScan(List<Condition> conditionList,
-			ScanRequest scanRequest) {
-		DefaultHttpClient client = new DefaultHttpClient();
+	public ScanOutput[] runScan(ScanRequest scanRequest) {
+		// DefaultHttpClient client = new DefaultHttpClient();
 		HttpURLConnection conn;
 		try {
+			String jsonValue = mapper.writeValueAsString(scanRequest);
 			conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
 			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Content-Length",
+					Integer.toString(jsonValue.length()));
+			//System.out.println(jsonValue);
+			conn.getOutputStream().write(jsonValue.getBytes());
+			conn.getOutputStream().flush();
+			conn.connect();
 
-			byte[] conditionListByte = mapper.writeValueAsBytes(conditionList);
-			byte[] conditionScanRequest = mapper.writeValueAsBytes(scanRequest);
-			OutputStream os = conn.getOutputStream();
-			os.write(conditionListByte);
-			os.write(conditionScanRequest);
-			os.flush();
+			if (conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED) {
+				System.out.println("POST method failed: "
+						+ conn.getResponseCode() + "\t"
+						+ conn.getResponseMessage());
+
+			} else {
+				InputStream responseContent = (InputStream) conn.getContent();
+				ScanOutput[] output = mapper.readValue(responseContent,
+						ScanOutput[].class);
+				return output;
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -52,12 +65,12 @@ public class DSClientScanRunner implements ScanRunner {
 
 	@Override
 	public String getId() {
-		return url.toString();
+		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "" + url;
+		return id;
 	}
 
 }

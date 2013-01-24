@@ -25,8 +25,14 @@ public class Exchange implements Serializable {
 		this.country = country;
 	}
 
+	
+
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCountry() {
@@ -35,10 +41,6 @@ public class Exchange implements Serializable {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@Override

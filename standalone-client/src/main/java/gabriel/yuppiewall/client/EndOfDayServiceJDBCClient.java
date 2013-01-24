@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class EndOfDayServiceJDBCClient implements EndOfDayService {
 	static int count = 0;
+	final int batchSize = 1001;
 
 	public void saveEOD(EndOfDayData[] eodList) {
 		try {
@@ -20,7 +21,6 @@ public class EndOfDayServiceJDBCClient implements EndOfDayService {
 
 			Connection connection = getConnection();
 			PreparedStatement ps = connection.prepareStatement(sql);
-			final int batchSize = 1001;
 
 			for (EndOfDayData eod : eodList) {
 

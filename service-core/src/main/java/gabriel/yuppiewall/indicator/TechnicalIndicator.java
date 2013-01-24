@@ -4,10 +4,11 @@ import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface TechnicalIndicator {
+public interface TechnicalIndicator extends Serializable {
 
 	static abstract class EndOfDayDataScanOnValue {
 		abstract public BigDecimal getValue(EndOfDayData data);
