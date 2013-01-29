@@ -2,8 +2,10 @@ package gabriel.yuppiewall.instrument.domain;
 
 import gabriel.yuppiewall.common.meta.FieldDef;
 import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.io.Serializable;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Instrument implements Serializable {
@@ -43,6 +45,8 @@ public class Instrument implements Serializable {
 		}
 	}
 
+	private List<EndOfDayData> eodList;
+
 	private InstrumentType type = InstrumentType.STOCK;
 
 	/*
@@ -70,8 +74,6 @@ public class Instrument implements Serializable {
 	public Instrument(String symbol) {
 		this.symbol = symbol;
 	}
-
-	
 
 	public String getSymbol() {
 		return symbol;
@@ -127,6 +129,14 @@ public class Instrument implements Serializable {
 
 	public void setType(InstrumentType type) {
 		this.type = type;
+	}
+
+	public List<EndOfDayData> getEodList() {
+		return eodList;
+	}
+
+	public void setEodList(List<EndOfDayData> eodList) {
+		this.eodList = eodList;
 	}
 
 	@Override

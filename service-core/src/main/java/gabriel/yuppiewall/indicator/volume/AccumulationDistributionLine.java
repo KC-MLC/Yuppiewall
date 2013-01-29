@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.indicator.volume;
 
 import gabriel.yuppiewall.common.FU;
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
@@ -17,7 +17,7 @@ public class AccumulationDistributionLine implements TechnicalIndicator {
 	// 2. Money Flow Volume = Money Flow Multiplier x Volume for the Period
 	// 3. ADL = Previous ADL + Current Period's Money Flow Volume
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+	public TechnicalIndicatorOutput[] calculate(List<EndOfDayData> historical,
 			Expression exp) {
 
 		BigDecimal ADL = FU.U0;

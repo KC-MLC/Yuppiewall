@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.spring.marketdata.service;
 
-import gabriel.yuppiewall.market.service.MarketService;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.marketdata.service.EndOfDayServiceImpl;
 
@@ -15,16 +14,9 @@ public class SpringEndOfDayService extends EndOfDayServiceImpl {
 	@Qualifier("JPAEndOfDayDataRepository")
 	private EndOfDayDataRepository endOfDayDataRepository;
 
-	@Autowired
-	private MarketService marketService;
-
 	@Override
 	protected EndOfDayDataRepository getEndOfDayDataRepository() {
 		return endOfDayDataRepository;
 	}
 
-	@Override
-	protected MarketService getMarketService() {
-		return marketService;
-	}
 }

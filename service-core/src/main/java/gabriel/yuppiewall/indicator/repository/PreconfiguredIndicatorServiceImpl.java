@@ -93,6 +93,92 @@ public abstract class PreconfiguredIndicatorServiceImpl implements
 			}
 
 		}
+
+		{
+			PreconfiguredIndicator config = new PreconfiguredIndicator(
+					"Overbought w/Declining RSI");
+			preconfigList.add(config);
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "70", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.LT, rhs);
+				config.addCondition(condition);
+			}
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 1,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "71", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.GT, rhs);
+				config.addCondition(condition);
+			}
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 2,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "72", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.GT, rhs);
+				config.addCondition(condition);
+			}
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 3,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "73", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.GT, rhs);
+				config.addCondition(condition);
+			}
+
+		}
+		
+		{
+			PreconfiguredIndicator config = new PreconfiguredIndicator(
+					"Oversold w/Improving RSI");
+			preconfigList.add(config);
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "30", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.GT, rhs);
+				config.addCondition(condition);
+			}
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 1,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "29", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.LT, rhs);
+				config.addCondition(condition);
+			}
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 2,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "28", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.LT, rhs);
+				config.addCondition(condition);
+			}
+			{
+				Expression lhs = new Expression("RSI", "RSI", "14", 3,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+				Expression rhs = new Expression("Constant", "CONSTANT", "27", 0,
+						PERIOD.DAYS, SCAN_ON.CLOSING);
+
+				Condition condition = new Condition(lhs, OPERAND.LT, rhs);
+				config.addCondition(condition);
+			}
+
+		}
 	}
 
 }

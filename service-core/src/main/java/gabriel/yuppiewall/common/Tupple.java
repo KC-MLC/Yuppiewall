@@ -8,6 +8,9 @@ public class Tupple<K, V> implements Serializable {
 	private K key;
 	private V value;
 
+	public Tupple() {
+	}
+
 	public Tupple(K k) {
 		this.key = k;
 	}
@@ -27,6 +30,10 @@ public class Tupple<K, V> implements Serializable {
 
 	public K getKey() {
 		return key;
+	}
+
+	public void setKey(K key) {
+		this.key = key;
 	}
 
 	@Override

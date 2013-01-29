@@ -86,6 +86,8 @@ public class ScanResultViewImpl implements Serializable {
 	}
 
 	private void addRow(ScanOutput data) {
+		if(data == null)
+			return;
 		Instrument ins = data.getInstrument();
 		EndOfDayData eod = data.getEod();
 

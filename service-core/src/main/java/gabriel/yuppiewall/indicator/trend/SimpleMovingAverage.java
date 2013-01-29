@@ -2,7 +2,7 @@ package gabriel.yuppiewall.indicator.trend;
 
 import gabriel.yuppiewall.common.FU;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
@@ -59,7 +59,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 	}
 
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+	public TechnicalIndicatorOutput[] calculate(List<EndOfDayData> historical,
 			Expression exp) {
 		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue.getMapper(exp
 				.getScanOn());
@@ -80,7 +80,7 @@ public class SimpleMovingAverage implements TechnicalIndicator {
 		BigDecimal sma = sum.divide(new BigDecimal(historical.size()),
 				RoundingMode.HALF_UP);
 
-		return new TechnicalIndicator_[] { new TechnicalIndicator_(historical
+		return new TechnicalIndicatorOutput[] { new TechnicalIndicatorOutput(historical
 				.get(historical.size() - 1).getDate(), "SMA", ofset + "DAY",
 				sma) };
 	}

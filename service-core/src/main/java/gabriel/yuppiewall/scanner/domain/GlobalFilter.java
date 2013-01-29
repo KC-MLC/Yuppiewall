@@ -1,8 +1,11 @@
 package gabriel.yuppiewall.scanner.domain;
 
+import java.io.Serializable;
+
 import gabriel.yuppiewall.common.Tupple;
 
-public class GlobalFilter {
+@SuppressWarnings("serial")
+public class GlobalFilter implements Serializable {
 
 	private Tupple<String, String> group;
 

@@ -44,15 +44,14 @@ public class ScanRunnerController extends CoreScanRunner implements ScanRunner {
 	}
 
 	@Override
-	protected List<EndOfDayData> getSymbolEODRecord(Instrument instrument,
-			ScanRequest ignore) {
+	protected List<EndOfDayData> getSymbolEODRecord(Instrument instrument) {
 		return dataStore.get(instrument);
 	}
 
 	@Override
-	protected Collection<Instrument> getSymbols(ScanRequest ignore) {
+	protected Collection<String> getSymbols(ScanRequest scanRequest) {
 
-		return dataStore.keySetIterator();
+		return dataStore.keySetIterator(scanRequest.getExchanges());
 	}
 
 	@Override

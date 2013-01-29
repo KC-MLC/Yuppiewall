@@ -1,11 +1,6 @@
 package gabriel.yuppiewall.scanner.service;
 
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
-import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
-import gabriel.yuppiewall.marketdata.repository.ScanRequest;
-import gabriel.yuppiewall.scanner.domain.ScanParameter;
-
-import java.util.List;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,114 +14,13 @@ public class ScannerTest {
 		scanner = new ScannerServiceImpl() {
 
 			@Override
-			protected EndOfDayDataRepository getEndOfDayDataRepository() {
+			protected ScanRunner getScanRunner() {
 				// TODO Auto-generated method stub
-				return new EndOfDayDataRepository() {
-
-					@Override
-					public void createEndOfDayData(EndOfDayData endOfDayData) {
-						// TODO Auto-generated method stub
-
-					}
-
-					@Override
-					public void createEndOfDayData(List<EndOfDayData> list) {
-						// TODO Auto-generated method stub
-
-					}
-
-					@Override
-					public ScanRequest createScanRequest(ScanParameter param) {/*
-																				 * Map
-																				 * <
-																				 * String
-																				 * ,
-																				 * List
-																				 * <
-																				 * EndOfDayData
-																				 * >>
-																				 * list
-																				 * =
-																				 * new
-																				 * HashMap
-																				 * <
-																				 * >
-																				 * (
-																				 * )
-																				 * ;
-																				 * {
-																				 * EndOfDayData
-																				 * [
-																				 * ]
-																				 * li
-																				 * ;
-																				 * try
-																				 * {
-																				 * li
-																				 * =
-																				 * SampleData
-																				 * .
-																				 * setup
-																				 * (
-																				 * )
-																				 * ;
-																				 * List
-																				 * <
-																				 * EndOfDayData
-																				 * >
-																				 * l
-																				 * =
-																				 * Arrays
-																				 * .
-																				 * asList
-																				 * (
-																				 * li
-																				 * )
-																				 * ;
-																				 * list
-																				 * .
-																				 * put
-																				 * (
-																				 * "GOOG"
-																				 * ,
-																				 * l
-																				 * )
-																				 * ;
-																				 * }
-																				 * catch
-																				 * (
-																				 * ParseException
-																				 * e
-																				 * )
-																				 * {
-																				 * /
-																				 * /
-																				 * TODO
-																				 * Auto
-																				 * -
-																				 * generated
-																				 * catch
-																				 * block
-																				 * e
-																				 * .
-																				 * printStackTrace
-																				 * (
-																				 * )
-																				 * ;
-																				 * }
-																				 * 
-																				 * }
-																				 * return
-																				 * list
-																				 * ;
-																				 */
-						return null;
-					}
-				};
+				return null;
 			}
 
 			@Override
-			protected ScanRunner getScanRunner() {
+			protected SystemDataRepository getSystemDataRepository() {
 				// TODO Auto-generated method stub
 				return null;
 			}

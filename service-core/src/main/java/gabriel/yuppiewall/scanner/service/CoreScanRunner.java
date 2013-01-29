@@ -1,10 +1,9 @@
 package gabriel.yuppiewall.scanner.service;
 
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
-import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.Condition;
@@ -13,6 +12,7 @@ import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -28,13 +28,14 @@ public abstract class CoreScanRunner implements ScanRunner {
 			setTechnicalIndicator(condition.getLhs());
 			setTechnicalIndicator(condition.getRhs());
 		}
-		Collection<Instrument> filteredList = getSymbols(scanRequest);
-		Iterator<Instrument> itr = filteredList.iterator();
+		Collection<String> filteredList = getSymbols(scanRequest);
+		List<ScanOutput> result = new ArrayList<>();
+		Iterator<String> itr = filteredList.iterator();
 
 		while (itr.hasNext()) {
-			Instrument symbol = itr.next();
-			List<EndOfDayData> records = getSymbolEODRecord(symbol, scanRequest);
-
+			String symbol = itr.next();
+			List<EndOfDayData> records = getSymbolEODRecord(symbol);
+			boolean passed = true;
 			for (int i = 0; i < conditions.size(); i++) {
 				Condition condition = conditions.get(i);
 				Expression lhs = condition.getLhs();
@@ -44,29 +45,24 @@ public abstract class CoreScanRunner implements ScanRunner {
 					BigDecimal rValue = run(rhs, records);
 					if (!operate(lValue, condition.getOperand(), rValue)) {
 						itr.remove();
-						records = null;
+						passed = false;
 						break;
 					}
 				} catch (InvalidParameterValueException ipve) {
 					itr.remove();
-					records = null;
+					passed = false;
 					System.out.println(symbol);
 					break;
 				}
 
+				if (passed) {
+					result.add(new ScanOutput(records.get(0)));
+				}
+				records = null;
+
 			}
 		}
-		ScanOutput[] retValue = new ScanOutput[scanRequest.getFilteredResult()
-				.size()];
-		itr = filteredList.iterator();
-		int i = 0;
-		while (itr.hasNext()) {
-			Instrument key = itr.next();
-
-			EndOfDayData eod = getSymbolEODRecord(key, scanRequest).get(0);
-			retValue[i++] = new ScanOutput(key, eod);
-		}
-		return retValue;
+		return result.toArray(new ScanOutput[0]);
 
 	}
 
@@ -80,19 +76,13 @@ public abstract class CoreScanRunner implements ScanRunner {
 		exp.setTechnicalIndicator(ti);
 	}
 
-	protected List<EndOfDayData> getSymbolEODRecord(Instrument instrument,
-			ScanRequest scanRequest) {
-		return scanRequest.getInitialGrupedRecord().get(instrument);
-	}
+	protected abstract List<EndOfDayData> getSymbolEODRecord(String instrument);
 
-	protected Collection<Instrument> getSymbols(ScanRequest scanRequest) {
-
-		return scanRequest.getFilteredResult();
-	}
+	protected abstract Collection<String> getSymbols(ScanRequest scanRequest);
 
 	private BigDecimal run(Expression exp, List<EndOfDayData> records) {
-		TechnicalIndicator_[] result = exp.getTechnicalIndicator().calculate(
-				records, exp);
+		TechnicalIndicatorOutput[] result = exp.getTechnicalIndicator()
+				.calculate(records, exp);
 
 		return result[result.length - 1].getValue();
 

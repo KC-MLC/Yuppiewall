@@ -1,22 +1,16 @@
 package gabriel.yuppiewall.jdbc.marketdata.repository;
 
+import gabriel.yuppiewall.ds.domain.Server;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
-import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
-import gabriel.yuppiewall.marketdata.repository.ScanRequest;
-import gabriel.yuppiewall.scanner.domain.GlobalFilter;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,70 +22,141 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Service;
 
 @Service("JDBCInMemoryMarketdata")
-public class JDBCInMemoryMarketdata extends JDBCEndOfDayDataRepository {
+public class JDBCInMemoryMarketdata implements SystemDataRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private Map<Instrument, List<EndOfDayData>> groupedValue;
+
+	private Map<String, Instrument> instruments = new HashMap<>();
+	private Map<String, Exchange> exchanges = new HashMap<>();
+	private Map<String, Server> servers = new HashMap<>();
 
 	public void init() {
-		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT");
-		String sql = "select eod.identifier, eod.exchange, eod.symbol, eod.trade_date, eod.stock_volume, eod.stock_price_open, eod.stock_price_high, eod.stock_price_low, eod.stock_price_close, eod.stock_price_adj_close"
-				+ " from end_of_day_data eod, exchange ex"
-				+ " where trade_date >? order by trade_date desc";
+		{
+			String sql = "SELECT symbol_code, industry, comp_name, sector, server_id, exchange FROM instrument";
+			PreparedStatementCallback callback = populateInstrument();
 
-		final List<EndOfDayData> list = new ArrayList<>();
+			executeStreamed(jdbcTemplate, callback, sql);
+		}
+
+		{
+			String sql = "SELECT ex_symbol, ex_name, ex_country_code, ex_time_zone FROM exchange;";
+			PreparedStatementCallback callback = populateExchange();
+
+			executeStreamed(jdbcTemplate, callback, sql);
+		}
+		{
+			String sql = "SELECT server_context, server_size FROM region_server;";
+			PreparedStatementCallback callback = populateServer();
+
+			executeStreamed(jdbcTemplate, callback, sql);
+		}
+
+		// now poulate exchanges and servers
+
+		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT OVEr");
+	}
+
+	private PreparedStatementCallback populateServer() {
+
 		PreparedStatementCallback callback = new PreparedStatementCallback() {
 			@Override
 			public Void doInPreparedStatement(PreparedStatement pstmt)
 					throws SQLException, DataAccessException {
 				ResultSet rs = pstmt.executeQuery();
-				extractData(rs, list);
+				extractData(rs);
 				rs.close();
 				return null;
 			}
 
-			private void extractData(ResultSet rs, List<EndOfDayData> list)
-					throws SQLException {
+			private void extractData(ResultSet rs) throws SQLException {
 				while (rs.next()) {
 					System.out.println("processing " + rs.getString(1));
+					Server ex = getServer(rs.getString(1));
+					ex.setSize(rs.getInt(2));
+				}
+			}
 
-					list.add(new EndOfDayData(new Instrument(rs.getString(3),
-							new Exchange(rs.getString(2))), new Date(rs
-							.getDate(4).getTime()), rs.getBigDecimal(6), rs
-							.getBigDecimal(7), rs.getBigDecimal(8), rs
-							.getBigDecimal(9), rs.getBigDecimal(5), rs
-							.getBigDecimal(10)));
+		};
+		return callback;
+	}
+
+	private PreparedStatementCallback populateExchange() {
+
+		PreparedStatementCallback callback = new PreparedStatementCallback() {
+			@Override
+			public Void doInPreparedStatement(PreparedStatement pstmt)
+					throws SQLException, DataAccessException {
+				ResultSet rs = pstmt.executeQuery();
+				extractData(rs);
+				rs.close();
+				return null;
+			}
+
+			private void extractData(ResultSet rs) throws SQLException {
+				while (rs.next()) {
+					System.out.println("processing " + rs.getString(1));
+					Exchange ex = getExchange(rs.getString(1));
+					ex.setCountry(rs.getString(3));
+					ex.setName1(rs.getString(2));
+					ex.setTimeZone(rs.getString(4));
 				}
 
 			}
+
 		};
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return callback;
+	}
 
-		try {
-			executeStreamed(jdbcTemplate, callback, sql,
-					sdf.parse("2012-11-01"));
-		} catch (ParseException ignore) {
-			ignore.printStackTrace();
+	private Exchange getExchange(String symbol) {
+		Exchange ex = exchanges.get(symbol);
+		if (ex == null) {
+			ex = new Exchange(symbol);
+			exchanges.put(symbol, ex);
 		}
-		// group them in symbol
-		HashMap<Instrument, List<EndOfDayData>> temp = new HashMap<>();
+		return ex;
+	}
 
-		for (EndOfDayData eod : list) {
+	private Server getServer(String address) {
+		Server server = servers.get(address);
+		if (server == null) {
+			server = new Server(address);
+			servers.put(address, server);
+		}
+		return server;
+	}
 
-			List<EndOfDayData> eodList = temp.get(eod.getInstrument());
-			if (eodList == null) {
-				eodList = new ArrayList<>();
-				temp.put(eod.getInstrument(), eodList);
+	private PreparedStatementCallback populateInstrument() {
+
+		PreparedStatementCallback callback = new PreparedStatementCallback() {
+			@Override
+			public Void doInPreparedStatement(PreparedStatement pstmt)
+					throws SQLException, DataAccessException {
+				ResultSet rs = pstmt.executeQuery();
+				extractData(rs);
+				rs.close();
+				return null;
 			}
-			eodList.add(eod);
-		}
-		groupedValue = Collections.unmodifiableMap(temp);
-		System.out.println("STARTTTTTTTTTTTTEDDDD  INNNNNIIIIIIIIIIIIIIT OVEr");
+
+			private void extractData(ResultSet rs) throws SQLException {
+				while (rs.next()) {
+					System.out.println("processing " + rs.getString(1));
+					instruments.put(
+							rs.getString(1),
+							new Instrument(rs.getString(1), getExchange(rs
+									.getString(6)), rs.getString(3), rs
+									.getString(4), getServer(rs.getString(5))
+									.getServerContext(), rs.getString(2)));
+
+				}
+
+			}
+
+		};
+		return callback;
 	}
 
 	private void executeStreamed(JdbcTemplate jdbcTemplate,
-			PreparedStatementCallback callback, final String sql,
-			final Date value) {
+			PreparedStatementCallback callback, final String sql) {
 		PreparedStatementCreator creator = new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn)
@@ -100,16 +165,33 @@ public class JDBCInMemoryMarketdata extends JDBCEndOfDayDataRepository {
 						java.sql.ResultSet.TYPE_FORWARD_ONLY,
 						java.sql.ResultSet.CONCUR_READ_ONLY);
 				pstmt.setFetchSize(0);
-				pstmt.setDate(1, (new java.sql.Date(value.getTime())));
+
 				return pstmt;
 			}
 		};
 		jdbcTemplate.execute(creator, callback);
 	}
 
-	protected ScanRequest createList(GlobalFilter gfilter) {
+	@Override
+	public List<Exchange> getExchangeByCountryCode(String country) {
 
-		return new ScanRequest(new LinkedList<>(groupedValue.keySet()),
-				groupedValue);
+		return null;
+	}
+
+	@Override
+	public Collection<Server> getServerList() {
+		return servers.values();
+	}
+
+	@Override
+	public List<Server> getExchangeServerList(Exchange exchange) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Exchange getExchange(Instrument instrument) {
+		return exchanges.get(instruments.get(instrument.getSymbol())
+				.getExchange().getSymbol());
 	}
 }

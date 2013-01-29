@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.indicator.momentum;
 
 import gabriel.yuppiewall.common.FU;
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
@@ -24,7 +24,7 @@ public class RSI implements TechnicalIndicator {
 	 **/
 
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+	public TechnicalIndicatorOutput[] calculate(List<EndOfDayData> historical,
 			Expression exp) {
 		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue.getMapper(exp
 				.getScanOn());
@@ -38,7 +38,7 @@ public class RSI implements TechnicalIndicator {
 		BigDecimal sumOfGain = FU.U0;
 		BigDecimal sumOfLoss = FU.U0;
 
-		TechnicalIndicator_[] results = new TechnicalIndicator_[historical
+		TechnicalIndicatorOutput[] results = new TechnicalIndicatorOutput[historical
 				.size() - n];
 		int rIndex = 0;
 
@@ -86,7 +86,7 @@ public class RSI implements TechnicalIndicator {
 			BigDecimal rsi = FU.H100.subtract(FU.H100.divide(
 					FU.U1.add(aveGain.divide(aveLoss, FU.ROUND)), FU.ROUND));
 
-			results[rIndex++] = new TechnicalIndicator_(historical.get(i)
+			results[rIndex++] = new TechnicalIndicatorOutput(historical.get(i)
 					.getDate(), "RSI", n + "DAY", rsi);
 
 			System.out.println(historical.get(i).getDate() + "," + rsi);

@@ -1,9 +1,9 @@
 package gabriel.yuppiewall.spring.scanner.service;
 
 import gabriel.yuppiewall.ds.domain.Server;
-import gabriel.yuppiewall.instrument.domain.Instrument;
-import gabriel.yuppiewall.jdbc.ds.marketdata.repository.JDBCSymbolStore;
+import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.service.ScanRunner;
 
@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("distributedScanRunnerImpl")
@@ -22,18 +21,19 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 
 	private static final String RUNNER_ID = DistributedScanRunnerImpl.class
 			.getName();
-	private List<ScanRunner> wsScanRunnerList;
 
 	@Autowired
-	@Qualifier("JDBCSymbolStore")
-	private JDBCSymbolStore symbolStore;
+	private SystemDataRepository systemDataRepository;
+
+	private Map<String, ScanRunner> wsScanRunnerList;
 
 	private void init() {
-		wsScanRunnerList = new ArrayList<>();
-		List<Server> serverList = symbolStore.getServerList();
+		wsScanRunnerList = new HashMap<>();
+		List<Server> serverList = systemDataRepository.getServerList();
 		for (Server server : serverList) {
 			try {
-				wsScanRunnerList.add(new DSClientScanRunner(server));
+				wsScanRunnerList.put(server.getServerContext(),
+						new DSClientScanRunner(server));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -41,51 +41,33 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 		}
 	}
 
-	private ScanRunner getScanRunner(String id) {
-		for (ScanRunner scanRunner : wsScanRunnerList) {
-
-			if (scanRunner.getId().equals(id)) {
-				return scanRunner;
-			}
-		}
-		throw new UnsupportedOperationException("SERVER ID IS NOT REGISTERED");
-	}
-
 	@Override
 	public ScanOutput[] runScan(ScanRequest scanRequest) {
 		if (wsScanRunnerList == null) {
 			init();
 		}
-		Thread[] threads = new Thread[wsScanRunnerList.size()];
-		RunScan[] runScan = new RunScan[wsScanRunnerList.size()];
-		System.out.println("STARTED GROUPING");
-		Map<String /* server context */, List<Instrument>> dsList = new HashMap<>();
-		Iterator<Instrument> itrInstrument = scanRequest.getFilteredResult()
-				.iterator();
-		while (itrInstrument.hasNext()) {
-			Instrument instrument = (Instrument) itrInstrument.next();
-			if (instrument.getServer() == null) {
-				System.out.println("CHECK THIS");
+		Iterator<String> itr = scanRequest.getExchanges().iterator();
+		List<ScanRunner> scanRunners = new ArrayList<>();
+		while (itr.hasNext()) {
+			List<Server> serverList = systemDataRepository
+					.getExchangeServerList(new Exchange(itr.next()));
+			if (serverList == null)
+				continue;
+			for (Server server : serverList) {
+				scanRunners
+						.add(wsScanRunnerList.get(server.getServerContext()));
 			}
-			List<Instrument> instruments = dsList.get(instrument.getServer());
-			if (instruments == null) {
-				instruments = new ArrayList<>();
-				dsList.put(instrument.getServer(), instruments);
-			}
-			instruments.add(instrument);
+
 		}
 
-		Iterator<String> itrServerContext = dsList.keySet().iterator();
+		Thread[] threads = new Thread[scanRunners.size()];
+		RunScan[] runScan = new RunScan[scanRunners.size()];
 
 		int j = 0;
-		while (itrServerContext.hasNext()) {
-			String serverContext = itrServerContext.next();
-
-			ScanRunner scanRunner = getScanRunner(serverContext);
-
+		for (int i = j = 0; i < scanRunners.size(); i++, j++) {
+			ScanRunner scanRunner = scanRunners.get(i);
 			(threads[j] = new Thread(runScan[j] = new RunScan(scanRequest,
 					scanRunner))).start();
-			j++;
 		}
 		for (int i = 0; i < threads.length; i++) {
 			try {
@@ -97,6 +79,8 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 		int size = 0;
 		for (int i = 0; i < runScan.length; i++) {
 			ScanOutput[] output = runScan[i].getOutput();
+			if (output == null)
+				continue;
 			size += output.length;
 		}
 		ScanOutput[] retValue = new ScanOutput[size];
@@ -104,6 +88,8 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 		for (int i = 0; i < runScan.length; i++) {
 
 			ScanOutput[] output = runScan[i].getOutput();
+			if (output == null)
+				continue;
 			System.arraycopy(output, 0, retValue, destPos, output.length);
 			destPos += output.length;
 

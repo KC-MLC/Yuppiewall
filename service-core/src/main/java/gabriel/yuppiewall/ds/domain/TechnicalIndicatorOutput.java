@@ -3,14 +3,15 @@ package gabriel.yuppiewall.ds.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class TechnicalIndicator_ implements Comparable<TechnicalIndicator_> {
+public class TechnicalIndicatorOutput implements
+		Comparable<TechnicalIndicatorOutput> {
 
 	private Date date;
 	private String type;
 	private String key;
 	private BigDecimal value;
 
-	public TechnicalIndicator_(Date date, String type, String key,
+	public TechnicalIndicatorOutput(Date date, String type, String key,
 			BigDecimal value) {
 		super();
 		this.date = date;
@@ -36,7 +37,7 @@ public class TechnicalIndicator_ implements Comparable<TechnicalIndicator_> {
 	}
 
 	@Override
-	public int compareTo(TechnicalIndicator_ o) {
+	public int compareTo(TechnicalIndicatorOutput o) {
 		return value.compareTo(o.value);
 	}
 

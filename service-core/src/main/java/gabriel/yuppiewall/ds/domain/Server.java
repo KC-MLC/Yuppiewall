@@ -11,6 +11,10 @@ public class Server implements Serializable {
 	public Server() {
 	}
 
+	public Server(String serverContext) {
+		this.serverContext = serverContext;
+	}
+
 	public Server(String serverContext, Integer size) {
 		this.serverContext = serverContext;
 		this.size = size;
@@ -22,6 +26,10 @@ public class Server implements Serializable {
 
 	public Integer getSize() {
 		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
 	}
 
 	@Override

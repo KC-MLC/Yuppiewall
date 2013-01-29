@@ -1,14 +1,21 @@
 package gabriel.yuppiewall.scanner.service;
 
-import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
+import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
+import gabriel.yuppiewall.market.domain.Exchange;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.Condition;
+import gabriel.yuppiewall.scanner.domain.GlobalFilter;
 import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.domain.ScanParameter;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class ScannerServiceImpl implements ScannerServive {
 
@@ -32,20 +39,56 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 			conditions.add(aveVolConition);
 		}
 		// get group filter
-		ScanRequest scanRequest = getEndOfDayDataRepository()
-				.createScanRequest(param);
+		validateGroupFilter(param.getGlobalFilter());
+		validateCondition(param.getConditions());
 
-		
+		GlobalFilter gfilter = param.getGlobalFilter();
+		Tupple<String, String> group = gfilter.getGroup();
+		ScanRequest sr = new ScanRequest();
+		sr.setConditions(param.getConditions());
+		String key = group.getKey();
+		Set<String> exchanges = new HashSet<>();
+		if ("exchange".equals(key)) {
+			exchanges.add(group.getValue());
+		} else if ("country".equals(key)) {
 
-		return getScanRunner().runScan(scanRequest);
+			List<Exchange> exchangeList = getSystemDataRepository()
+					.getExchangeByCountryCode(group.getValue());
+			for (Exchange exchange : exchangeList) {
+				exchanges.add(exchange.getSymbol());
+			}
+
+		}
+		sr.setExchanges(exchanges);
+		// TODO need to populate Instrument detail
+		return getScanRunner().runScan(sr);
 	}
 
-	
+	private void validateCondition(List<Condition> conditions) {
+		// TODO Auto-generated method stub
 
-	
+	}
+
+	private void validateGroupFilter(GlobalFilter gfilter) {
+
+		if (gfilter == null)
+			throw new MissingRequiredFiledException(GlobalFilter.class,
+					"globalFilter", "Missing Global Filter");
+		Tupple<String, String> group = gfilter.getGroup();
+		if (group == null)
+			throw new MissingRequiredFiledException(GlobalFilter.class,
+					"globalFilter", "Missing Global Filter");
+		String key = group.getKey();
+		if (!("country".equals(key) || "exchange".equals(key))) {
+
+			throw new InvalidParameterValueException(GlobalFilter.class,
+					"globalFilter", key + " Fileter Not supported");
+		}
+
+	}
 
 	protected abstract ScanRunner getScanRunner();
 
-	protected abstract EndOfDayDataRepository getEndOfDayDataRepository();
+	protected abstract SystemDataRepository getSystemDataRepository();
 
 }

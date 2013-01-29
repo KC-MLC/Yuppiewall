@@ -26,7 +26,7 @@ public class YuppiewallShell extends Window {
 	private VerticalLayout sideBarMenu;
 	private Panel contentArea;
 
-	private String WINDOW_TITLE = "Title";
+	private String WINDOW_TITLE = "Yuppie Wall";
 
 	private static final String THEME_NAME = "wall-midnight";
 

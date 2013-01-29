@@ -1,8 +1,8 @@
 package gabriel.yuppiewall.jpa.market.domain;
 
-import java.io.Serializable;
-
 import gabriel.yuppiewall.market.domain.Exchange;
+
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,22 +15,31 @@ import javax.persistence.Table;
 public class JPAExchange implements Serializable {
 
 	@Id
+	@Column(name = "ex_symbol")
+	private String symbol;
+
 	@Column(name = "ex_name")
 	private String name;
+
 	@Column(name = "ex_country_code")
 	private String country;
+
+	@Column(name = "ex_time_zone")
+	private String timeZone;
 
 	public JPAExchange() {
 
 	}
 
 	public JPAExchange(Exchange e) {
-		this.name = e.getName();
+		this.symbol = e.getSymbol();
+		this.name = e.getName1();
 		this.country = e.getCountry();
+		this.timeZone = e.getTimeZone();
 	}
 
 	public Exchange getExchange() {
-		return new Exchange(name, country);
+		return new Exchange(name, symbol, country, timeZone);
 	}
 
 }

@@ -4,6 +4,7 @@ import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.market.service.MarketService;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Order;
 import gabriel.yuppiewall.trade.domain.Order.TransactionType;
@@ -23,13 +24,13 @@ public abstract class AccountManagerImpl implements AccountManager {
 	@Override
 	public void placeOrder(Account account1, Portfolio portfolio, Order order) {
 
-		MarketService ms = getMarketService();
-		Exchange exchange = ms.getExchange(order.getInstrument());
+		Exchange exchange = getSystemDataRepository().getExchange(
+				order.getInstrument());
 		if (exchange == null)
 			throw new InvalidParameterValueException(
-					gabriel.yuppiewall.instrument.domain.Instrument.class, "name",
-					"Instrument not supported");
-		Date exNow = ms.getExchangeCurrentTime(exchange);
+					gabriel.yuppiewall.instrument.domain.Instrument.class,
+					"name", "Instrument not supported");
+		Date exNow = getMarketService().getExchangeCurrentTime(exchange);
 		if (order.getDate().before(exNow)) {
 			// this is of type just store and forget
 			// create transaction
@@ -93,6 +94,8 @@ public abstract class AccountManagerImpl implements AccountManager {
 	}
 
 	protected abstract TransactionService getTransactionService();
+
+	protected abstract SystemDataRepository getSystemDataRepository();
 
 	protected abstract MarketService getMarketService();
 

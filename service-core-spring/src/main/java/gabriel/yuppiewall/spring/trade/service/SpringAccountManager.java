@@ -1,6 +1,7 @@
 package gabriel.yuppiewall.spring.trade.service;
 
 import gabriel.yuppiewall.market.service.MarketService;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.trade.service.AccountManagerImpl;
 import gabriel.yuppiewall.trade.service.PortfolioService;
 import gabriel.yuppiewall.trade.service.TransactionService;
@@ -18,6 +19,8 @@ public class SpringAccountManager extends AccountManagerImpl {
 	private TransactionService transactionService;
 	@Autowired
 	private MarketService marketService;
+	@Autowired
+	private SystemDataRepository systemDataRepository;
 
 	@Override
 	protected PortfolioService getPortfolioManager() {
@@ -32,6 +35,11 @@ public class SpringAccountManager extends AccountManagerImpl {
 	@Override
 	protected MarketService getMarketService() {
 		return marketService;
+	}
+
+	@Override
+	protected SystemDataRepository getSystemDataRepository() {
+		return systemDataRepository;
 	}
 
 }

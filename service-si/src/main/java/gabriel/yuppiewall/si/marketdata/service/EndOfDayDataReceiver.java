@@ -25,7 +25,7 @@ public class EndOfDayDataReceiver extends EndOfDayServiceImpl implements
 	@ServiceActivator
 	@Override
 	public void saveEOD(EndOfDayData[] eod) {
-		
+
 		super.saveEOD(eod);
 
 	}
@@ -33,11 +33,6 @@ public class EndOfDayDataReceiver extends EndOfDayServiceImpl implements
 	@Override
 	protected EndOfDayDataRepository getEndOfDayDataRepository() {
 		return endOfDayDataRepository;
-	}
-
-	@Override
-	protected MarketService getMarketService() {
-		return marketService;
 	}
 
 	@Override

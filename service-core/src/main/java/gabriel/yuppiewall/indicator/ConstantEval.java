@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.indicator;
 
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
 
@@ -16,7 +16,7 @@ public class ConstantEval implements TechnicalIndicator {
 	}
 
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+	public TechnicalIndicatorOutput[] calculate(List<EndOfDayData> historical,
 			Expression exp) {
 		final EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue
 				.getMapper(exp.getScanOn());
@@ -44,7 +44,7 @@ public class ConstantEval implements TechnicalIndicator {
 			});
 		}
 
-		return new TechnicalIndicator_[] { new TechnicalIndicator_(
+		return new TechnicalIndicatorOutput[] { new TechnicalIndicatorOutput(
 				max.getDate(), "CONSTANT", "MAX", mapper.getValue(max)) };
 	}
 }

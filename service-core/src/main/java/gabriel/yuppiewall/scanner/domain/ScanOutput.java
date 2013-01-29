@@ -4,20 +4,17 @@ import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @SuppressWarnings("serial")
 public class ScanOutput implements Serializable {
 
-	private Instrument instrument;
-
 	private EndOfDayData eod;
+	private Instrument instrument;
 
 	public ScanOutput() {
 	}
 
-	public ScanOutput(Instrument instrument, EndOfDayData eod) {
-		this.instrument = instrument;
+	public ScanOutput(EndOfDayData eod) {
 		this.eod = eod;
 	}
 

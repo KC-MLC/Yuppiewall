@@ -28,10 +28,8 @@
 		<module>service-core</module>
 		<module>service-core-spring</module>
 		<module>service-data</module>
-		<module>service-si</module>
-		<!--module>service-web</module -->
-		<module>service-si-client</module>
-		<module>service-ws</module>
+		<!--module>service-si</module> module>service-web</module > <module>service-si-client</module> 
+			<module>service-ws</module -->
 		<module>service-ds-ws</module>
 		<module>service-web-vaadin</module>
 	</modules>

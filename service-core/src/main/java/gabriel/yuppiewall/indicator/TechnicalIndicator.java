@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.indicator;
 
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
 
@@ -70,7 +70,7 @@ public interface TechnicalIndicator extends Serializable {
 		VOLUME, CLOSING, HIGH, LOW, OPEN
 	}
 
-	TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+	TechnicalIndicatorOutput[] calculate(List<EndOfDayData> historical,
 			Expression exp);
 
 }

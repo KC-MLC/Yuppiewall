@@ -72,7 +72,7 @@ public class JPAEndOfDayData implements Serializable {
 		this.stockVolume = eodd.getStockVolume();
 		this.instrument = new JPAInstrument(eodd.getInstrument());
 
-		this.identifier = eodd.getInstrument().getExchange().getName()
+		this.identifier = eodd.getInstrument().getExchange().getSymbol()
 				+ eodd.getInstrument().getSymbol() + eodd.getStrDate();
 	}
 

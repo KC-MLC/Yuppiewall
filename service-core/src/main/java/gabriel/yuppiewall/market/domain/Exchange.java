@@ -9,29 +9,32 @@ public class Exchange implements Serializable {
 
 	@FieldDef(field = "Exchange", notnull = true)
 	private String name;
+	private String symbol;
 
 	private String country;
+
+	private String timeZone;
+
+	public Exchange(String name, String symbol, String country, String timeZone) {
+		super();
+		this.name = name;
+		this.symbol = symbol;
+		this.country = country;
+		this.timeZone = timeZone;
+	}
 
 	public Exchange() {
 	}
 
-	public Exchange(String name) {
-		this.name = name;
-
+	public Exchange(String symbol) {
+		this.symbol = symbol;
 	}
 
-	public Exchange(String name, String country) {
-		this.name = name;
-		this.country = country;
-	}
-
-	
-
-	public String getName() {
+	public String getName1() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName1(String name) {
 		this.name = name;
 	}
 
@@ -43,9 +46,25 @@ public class Exchange implements Serializable {
 		this.country = country;
 	}
 
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
 	@Override
 	public String toString() {
 		return "Exchange_ [name=" + name + "]";
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 }

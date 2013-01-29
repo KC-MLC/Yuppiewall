@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.vaadin.application.scanner;
 
+import gabriel.yuppiewall.common.Command;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.indicator.TechnicalIndicator.SCAN_ON;
 import gabriel.yuppiewall.scanner.domain.Condition;
@@ -14,16 +15,20 @@ import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.IndexedContainer;
+import com.vaadin.terminal.ThemeResource;
 import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.AbstractSelect.Filtering;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.themes.BaseTheme;
 
 public class ScanAdditionFilter {
 
 	private Table additionalFilter;
-	private int row = 0;
+	private int rowIndex = 0;
 	private static final Object TYPE_PROPERTY_NAME = "name";
 	private static final Object TYPE_PROPERTY_VALUE = "value";
 
@@ -37,6 +42,7 @@ public class ScanAdditionFilter {
 	private static final Object PAPAMETER2 = "Parameters.";
 	private static final Object DATA_OFFSET2 = "Date Offset.";
 	private static final Object PERIOD2 = "Period.";
+	private static final Object DEL = "x";
 
 	private List<RowApplication> rowMaping = new ArrayList<>();
 
@@ -74,6 +80,8 @@ public class ScanAdditionFilter {
 		additionalFilter.addContainerProperty(PERIOD2, ComboBox.class, null);
 		additionalFilter.setColumnExpandRatio(PERIOD2, 1);
 
+		additionalFilter.addContainerProperty(DEL, Button.class, null);
+
 	}
 
 	public void insertRow(List<Condition> conditions) {
@@ -89,30 +97,31 @@ public class ScanAdditionFilter {
 		for (int i = 0; i < size; i++) {
 			Condition con = conditions.get(i);
 			Expression lhs = con.getLhs();
-			Item item = additionalFilter.getItem(emptyRow++);
-			ComboBox cb = (ComboBox) item.getItemProperty(INDICATOR).getValue();
+			// Item item = additionalFilter.getItem(emptyRow++);
+			RowApplication row = rowMaping.get(emptyRow++);
+			ComboBox cb = row.getIndicatorLHS();
 			cb.setValue(lhs.getId());
-			TextField tf = (TextField) item.getItemProperty(PAPAMETER)
-					.getValue();
+			TextField tf = row.getParameterLHS();
 			tf.setValue(lhs.getParameters());
-			tf = (TextField) item.getItemProperty(DATA_OFFSET).getValue();
+			tf = row.getDateOffSetLHS();
 			tf.setValue(lhs.getOffset());
 
-			cb = (ComboBox) item.getItemProperty(PERIOD).getValue();
+			cb = row.getPeriodLHS();
 			cb.setValue("Days");
 
 			Expression rhs = con.getRhs();
-			cb = (ComboBox) item.getItemProperty(INDICATOR2).getValue();
+			cb = row.getIndicatorRHS();
+			;
 			cb.setValue(rhs.getId());
-			tf = (TextField) item.getItemProperty(PAPAMETER2).getValue();
+			tf = row.getParameterRHS();
 			tf.setValue(rhs.getParameters());
-			tf = (TextField) item.getItemProperty(DATA_OFFSET2).getValue();
+			tf = row.getDateOffSetRHS();
 			tf.setValue(rhs.getOffset());
 
-			cb = (ComboBox) item.getItemProperty(PERIOD2).getValue();
+			cb = row.getPeriodRHS();
 			cb.setValue(0);
 
-			cb = (ComboBox) item.getItemProperty(COMPARATOR).getValue();
+			cb = row.getComparator();
 			cb.setValue(con.getOperand().getSymbol());
 		}
 
@@ -158,9 +167,24 @@ public class ScanAdditionFilter {
 		return true;
 	}
 
+	private Command<RowApplication> removeRow = new Command<RowApplication>() {
+
+		@Override
+		public void execute(RowApplication objectID) {
+			removeRow(objectID);
+
+		}
+	};
+
+	private void removeRow(RowApplication row) {
+		rowMaping.remove(row);
+		additionalFilter.removeItem(row.getRowId());
+	}
+
 	public void createEmptyRow() {
-		Item item = additionalFilter.addItem(row++);
-		RowApplication row = new RowApplication();
+		int rowID = rowIndex++;
+		Item item = additionalFilter.addItem(rowID);
+		RowApplication row = new RowApplication(rowID, removeRow);
 		rowMaping.add(row);
 		item.getItemProperty(INDICATOR).setValue(row.getIndicatorLHS());
 		item.getItemProperty(PAPAMETER).setValue(row.getParameterLHS());
@@ -173,6 +197,7 @@ public class ScanAdditionFilter {
 		item.getItemProperty(PAPAMETER2).setValue(row.getParameterRHS());
 		item.getItemProperty(DATA_OFFSET2).setValue(row.getDateOffSetRHS());
 		item.getItemProperty(PERIOD2).setValue(row.getPeriodRHS());
+		item.getItemProperty(DEL).setValue(row.getDelete());
 	}
 
 	public Table getAdditionalFilter() {
@@ -191,10 +216,13 @@ public class ScanAdditionFilter {
 		private TextField parameterRHS;
 		private ComboBox periodRHS;
 		private TextField dateOffSetRHS;
+		private Button delete;
+		private Integer rowId;
 
 		@SuppressWarnings("serial")
-		public RowApplication() {
-
+		public RowApplication(Integer rowId,
+				final Command<RowApplication> oneRemove) {
+			this.rowId = rowId;
 			indicatorLHS = getNewIndicatorCB();
 			indicatorLHS.addListener(new Property.ValueChangeListener() {
 
@@ -277,6 +305,7 @@ public class ScanAdditionFilter {
 					setParam(condition.getRhs(), parameterRHS);
 				}
 			});
+
 			periodRHS = getNewPeriodCB();
 			periodRHS.select("Days");
 			dateOffSetRHS = getNewTextField();
@@ -287,6 +316,19 @@ public class ScanAdditionFilter {
 					if (condition == null || condition.getRhs() == null)
 						return;
 					setOffset(condition.getRhs(), dateOffSetRHS);
+				}
+			});
+			delete = new Button();
+			delete.setStyleName(BaseTheme.BUTTON_LINK);
+			delete.setDescription("Remove scan");
+			delete.setIcon(new ThemeResource("../runo/icons/16/cancel.png"));
+			delete.setImmediate(true);
+
+			delete.addListener(new Button.ClickListener() {
+
+				@Override
+				public void buttonClick(ClickEvent event) {
+					oneRemove.execute(RowApplication.this);
 				}
 			});
 		}
@@ -368,6 +410,10 @@ public class ScanAdditionFilter {
 			return comparator;
 		}
 
+		public Integer getRowId() {
+			return rowId;
+		}
+
 		public ComboBox getIndicatorRHS() {
 			return indicatorRHS;
 		}
@@ -384,6 +430,10 @@ public class ScanAdditionFilter {
 			return dateOffSetRHS;
 		}
 
+		public Button getDelete() {
+			return delete;
+		}
+
 		private ComboBox getNewPeriodCB() {
 			ComboBox cb = new ComboBox();
 			cb.setWidth("100%");
@@ -393,6 +443,31 @@ public class ScanAdditionFilter {
 					new Tupple<String, Object>("Weeks", "w"));
 
 			return cb;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((rowId == null) ? 0 : rowId.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			RowApplication other = (RowApplication) obj;
+			if (rowId == null) {
+				if (other.rowId != null)
+					return false;
+			} else if (!rowId.equals(other.rowId))
+				return false;
+			return true;
 		}
 
 		private void setIndexexContainer(final ComboBox type) {
@@ -458,7 +533,7 @@ public class ScanAdditionFilter {
 				Tupple<String, Object>... value) {
 
 			for (int i = 0; i < value.length; i++) {
-				Tupple tupple = value[i];
+				Tupple<String, Object> tupple = value[i];
 				Object k = tupple.getKey();
 				Object v = tupple.getValue();
 				if (k == null || v == null)

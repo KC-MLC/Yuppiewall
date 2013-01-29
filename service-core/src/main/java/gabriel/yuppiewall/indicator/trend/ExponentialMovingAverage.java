@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.indicator.trend;
 
-import gabriel.yuppiewall.ds.domain.TechnicalIndicator_;
+import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.Expression;
@@ -16,13 +16,13 @@ public class ExponentialMovingAverage implements TechnicalIndicator {
 	// Multiplier: (2 / (Time periods + 1) ) = (2 / (10 + 1) ) = 0.1818 (18.18%)
 	// EMA: {Close - EMA(previous day)} x multiplier + EMA(previous day).
 	@Override
-	public TechnicalIndicator_[] calculate(List<EndOfDayData> historical,
+	public TechnicalIndicatorOutput[] calculate(List<EndOfDayData> historical,
 			Expression exp) {
 		EndOfDayDataScanOnValue mapper = EndOfDayDataScanOnValue.getMapper(exp
 				.getScanOn());
 
 		int n = Integer.parseInt(exp.getParameters());
-		TechnicalIndicator_[] results = new TechnicalIndicator_[historical
+		TechnicalIndicatorOutput[] results = new TechnicalIndicatorOutput[historical
 				.size() - n];
 		int rIndex = 0;
 		float k = 2F / (n + 1);
@@ -40,7 +40,7 @@ public class ExponentialMovingAverage implements TechnicalIndicator {
 			 * ema = historical[t].getStockPriceAdjClose().multiply(K.add(ema))
 			 * .multiply(Km1);
 			 */
-			results[rIndex++] = new TechnicalIndicator_(historical.get(t)
+			results[rIndex++] = new TechnicalIndicatorOutput(historical.get(t)
 					.getDate(), "EMA", n + "DAY", ema);
 			System.out.println(t + "\t" + historical.get(t).getDate() + "\t"
 					+ ema);
