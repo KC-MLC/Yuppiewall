@@ -6,7 +6,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class ScanParameter implements Serializable {
 
-	private String scanId;
+	//private String scanId;
 	private List<Condition> conditions;
 
 	public enum PERIOD {

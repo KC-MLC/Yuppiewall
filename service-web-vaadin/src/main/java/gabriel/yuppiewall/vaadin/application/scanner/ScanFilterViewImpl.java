@@ -361,7 +361,7 @@ public class ScanFilterViewImpl implements Serializable {
 						ScanParameter param = new ScanParameter(gf);
 						param.setConditions(scanAdditionFilter
 								.getInsertedCondition());
-						ScanOutput[] scanResult = scanner.runScan(param,
+						List<ScanOutput> scanResult = scanner.runScan(param,
 								(PrimaryPrincipal) YuppiewallUI.getInstance()
 										.getApplicationData("user"));
 						eventBus.post(new NewScanResult(scanResult));

@@ -8,12 +8,16 @@ import gabriel.yuppiewall.scanner.domain.ScanOutput;
 import gabriel.yuppiewall.scanner.service.ScanRunner;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("distributedScanRunnerImpl")
@@ -23,17 +27,18 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 			.getName();
 
 	@Autowired
+	@Qualifier("JDBCSystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 
 	private Map<String, ScanRunner> wsScanRunnerList;
 
 	private void init() {
 		wsScanRunnerList = new HashMap<>();
-		List<Server> serverList = systemDataRepository.getServerList();
+		Collection<Server> serverList = systemDataRepository.getServerList();
 		for (Server server : serverList) {
 			try {
 				wsScanRunnerList.put(server.getServerContext(),
-						new DSClientScanRunner(server));
+						new ProxyScanRunner(server));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -42,14 +47,14 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 	}
 
 	@Override
-	public ScanOutput[] runScan(ScanRequest scanRequest) {
+	public List<ScanOutput> runScan(ScanRequest scanRequest) {
 		if (wsScanRunnerList == null) {
 			init();
 		}
 		Iterator<String> itr = scanRequest.getExchanges().iterator();
-		List<ScanRunner> scanRunners = new ArrayList<>();
+		Set<ScanRunner> scanRunners = new HashSet<>();
 		while (itr.hasNext()) {
-			List<Server> serverList = systemDataRepository
+			Set<Server> serverList = systemDataRepository
 					.getExchangeServerList(new Exchange(itr.next()));
 			if (serverList == null)
 				continue;
@@ -64,10 +69,12 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 		RunScan[] runScan = new RunScan[scanRunners.size()];
 
 		int j = 0;
-		for (int i = j = 0; i < scanRunners.size(); i++, j++) {
-			ScanRunner scanRunner = scanRunners.get(i);
+
+		for (ScanRunner scanRunner : scanRunners) {
+
 			(threads[j] = new Thread(runScan[j] = new RunScan(scanRequest,
 					scanRunner))).start();
+			j += 1;
 		}
 		for (int i = 0; i < threads.length; i++) {
 			try {
@@ -75,23 +82,14 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 			} catch (InterruptedException e) {
 			}
 		}
-		// calculate max size
-		int size = 0;
-		for (int i = 0; i < runScan.length; i++) {
-			ScanOutput[] output = runScan[i].getOutput();
-			if (output == null)
-				continue;
-			size += output.length;
-		}
-		ScanOutput[] retValue = new ScanOutput[size];
-		int destPos = 0;
+
+		List<ScanOutput> retValue = new ArrayList<>();
 		for (int i = 0; i < runScan.length; i++) {
 
-			ScanOutput[] output = runScan[i].getOutput();
+			List<ScanOutput> output = runScan[i].getOutput();
 			if (output == null)
 				continue;
-			System.arraycopy(output, 0, retValue, destPos, output.length);
-			destPos += output.length;
+			retValue.addAll(output);
 
 		}
 		return retValue;
@@ -100,20 +98,24 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 	class RunScan implements Runnable {
 		private ScanRequest scanRequest;
 		private ScanRunner scanner;
-		private ScanOutput[] output;
+		private List<ScanOutput> output;
 
 		public RunScan(ScanRequest scanRequest, ScanRunner scanner) {
 			this.scanRequest = scanRequest;
 			this.scanner = scanner;
 		}
 
-		public ScanOutput[] getOutput() {
+		public List<ScanOutput> getOutput() {
 			return output;
 		}
 
 		@Override
 		public void run() {
-			output = scanner.runScan(scanRequest);
+			try {
+				output = scanner.runScan(scanRequest);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

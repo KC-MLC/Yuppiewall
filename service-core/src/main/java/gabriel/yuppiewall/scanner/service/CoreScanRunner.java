@@ -4,6 +4,7 @@ import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.ds.domain.TechnicalIndicatorOutput;
 import gabriel.yuppiewall.indicator.TechnicalIndicator;
 import gabriel.yuppiewall.indicator.service.TechnicalIndicatorService;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
 import gabriel.yuppiewall.scanner.domain.Condition;
@@ -13,28 +14,34 @@ import gabriel.yuppiewall.scanner.domain.ScanParameter.OPERAND;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public abstract class CoreScanRunner implements ScanRunner {
 
 	private static final String RUNNER_ID = CoreScanRunner.class.getName();
 
 	@Override
-	public ScanOutput[] runScan(ScanRequest scanRequest) {
+	public List<ScanOutput> runScan(ScanRequest scanRequest) {
 		List<Condition> conditions = scanRequest.getConditions();
 		for (Condition condition : conditions) {
 			setTechnicalIndicator(condition.getLhs());
 			setTechnicalIndicator(condition.getRhs());
 		}
-		Collection<String> filteredList = getSymbols(scanRequest);
+		LinkedList<Instrument> filteredList = getInstrumentFromExchange(scanRequest
+				.getExchanges());
 		List<ScanOutput> result = new ArrayList<>();
-		Iterator<String> itr = filteredList.iterator();
+		Iterator<Instrument> itr = filteredList.iterator();
 
 		while (itr.hasNext()) {
-			String symbol = itr.next();
+			Instrument symbol = itr.next();
 			List<EndOfDayData> records = getSymbolEODRecord(symbol);
+			if(records==null){
+				itr.remove();
+				continue;
+			}
 			boolean passed = true;
 			for (int i = 0; i < conditions.size(); i++) {
 				Condition condition = conditions.get(i);
@@ -62,7 +69,7 @@ public abstract class CoreScanRunner implements ScanRunner {
 
 			}
 		}
-		return result.toArray(new ScanOutput[0]);
+		return result;
 
 	}
 
@@ -76,9 +83,11 @@ public abstract class CoreScanRunner implements ScanRunner {
 		exp.setTechnicalIndicator(ti);
 	}
 
-	protected abstract List<EndOfDayData> getSymbolEODRecord(String instrument);
+	protected abstract List<EndOfDayData> getSymbolEODRecord(
+			Instrument instrument);
 
-	protected abstract Collection<String> getSymbols(ScanRequest scanRequest);
+	protected abstract LinkedList<Instrument> getInstrumentFromExchange(
+			Set<String /* symbol */> exchanges);
 
 	private BigDecimal run(Expression exp, List<EndOfDayData> records) {
 		TechnicalIndicatorOutput[] result = exp.getTechnicalIndicator()

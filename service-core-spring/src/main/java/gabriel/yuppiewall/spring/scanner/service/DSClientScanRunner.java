@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -26,7 +27,7 @@ public class DSClientScanRunner implements ScanRunner {
 	}
 
 	@Override
-	public ScanOutput[] runScan(ScanRequest scanRequest) {
+	public List<ScanOutput> runScan(ScanRequest scanRequest) {
 		// DefaultHttpClient client = new DefaultHttpClient();
 		HttpURLConnection conn;
 		try {
@@ -39,7 +40,7 @@ public class DSClientScanRunner implements ScanRunner {
 			conn.setRequestProperty("Accept", "application/json");
 			conn.setRequestProperty("Content-Length",
 					Integer.toString(jsonValue.length()));
-			//System.out.println(jsonValue);
+			// System.out.println(jsonValue);
 			conn.getOutputStream().write(jsonValue.getBytes());
 			conn.getOutputStream().flush();
 			conn.connect();
@@ -51,8 +52,8 @@ public class DSClientScanRunner implements ScanRunner {
 
 			} else {
 				InputStream responseContent = (InputStream) conn.getContent();
-				ScanOutput[] output = mapper.readValue(responseContent,
-						ScanOutput[].class);
+				List<ScanOutput> output = mapper.readValue(responseContent,
+						List.class);
 				return output;
 			}
 

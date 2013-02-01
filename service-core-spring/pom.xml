@@ -25,6 +25,11 @@
 			<artifactId>service-data-jdbc</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>gabriel.util.httprpc</groupId>
+			<artifactId>client</artifactId>
+			<version>2.0.0.0</version>
+		</dependency>
 		<!-- for ds client -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -34,7 +39,8 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.8.5</version>
+			<version>1.9.11</version>
 		</dependency>
+
 	</dependencies>
 </project>

@@ -50,12 +50,12 @@ public class FilebasedEODDataReaderV2 {
 						continue;
 
 					List<EndOfDayData> list = dataList.get(eod.getInstrument()
-							.getExchange().getName()
+							.getExchange().getSymbol()
 							+ eod.getDate().getTime());
 					if (list == null) {
 						list = new ArrayList<EndOfDayData>();
 						dataList.put(eod.getInstrument().getExchange()
-								.getName()
+								.getSymbol()
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
@@ -63,7 +63,7 @@ public class FilebasedEODDataReaderV2 {
 					if (list.size() == 20) {
 						// spawn the thread which will fire the webservice call
 						System.out.println(eod.getInstrument().getExchange()
-								.getName()
+								.getSymbol()
 								+ eod.getDate().getTime());
 						sendToServer(list.toArray(new EndOfDayData[0]));
 						list.clear();

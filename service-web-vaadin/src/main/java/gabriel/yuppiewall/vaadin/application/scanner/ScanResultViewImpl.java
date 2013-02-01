@@ -6,6 +6,7 @@ import gabriel.yuppiewall.scanner.domain.ScanOutput;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -78,7 +79,7 @@ public class ScanResultViewImpl implements Serializable {
 	public void loadGrid(NewScanResult e) {
 		resultTable.removeAllItems();
 		@SuppressWarnings("unchecked")
-		ScanOutput[] scanResult = (ScanOutput[]) e.getSource();
+		List<ScanOutput> scanResult = (List<ScanOutput>) e.getSource();
 		for (ScanOutput scanOutput : scanResult) {
 			addRow(scanOutput);
 		}
@@ -86,7 +87,7 @@ public class ScanResultViewImpl implements Serializable {
 	}
 
 	private void addRow(ScanOutput data) {
-		if(data == null)
+		if (data == null)
 			return;
 		Instrument ins = data.getInstrument();
 		EndOfDayData eod = data.getEod();

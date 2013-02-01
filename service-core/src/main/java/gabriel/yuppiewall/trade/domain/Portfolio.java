@@ -5,7 +5,6 @@ import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @SuppressWarnings("serial")
 public class Portfolio implements Serializable {
@@ -18,7 +17,7 @@ public class Portfolio implements Serializable {
 
 	private Date creationtDate;
 
-	private List<Transaction> transactions;
+	//private List<Transaction> transactions;
 
 	public Portfolio() {
 	}

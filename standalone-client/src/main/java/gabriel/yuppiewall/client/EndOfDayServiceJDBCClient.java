@@ -1,14 +1,13 @@
 package gabriel.yuppiewall.client;
 
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
-import gabriel.yuppiewall.marketdata.service.EndOfDayService;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class EndOfDayServiceJDBCClient implements EndOfDayService {
+public class EndOfDayServiceJDBCClient {
 	static int count = 0;
 	final int batchSize = 1001;
 
@@ -24,7 +23,8 @@ public class EndOfDayServiceJDBCClient implements EndOfDayService {
 
 			for (EndOfDayData eod : eodList) {
 
-				String identifier = eod.getInstrument().getExchange().getName()
+				String identifier = eod.getInstrument().getExchange()
+						.getSymbol()
 						+ eod.getInstrument().getSymbol() + eod.getStrDate();
 
 				ps.setString(1, identifier);

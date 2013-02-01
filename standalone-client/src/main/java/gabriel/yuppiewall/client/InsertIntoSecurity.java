@@ -33,7 +33,7 @@ public class InsertIntoSecurity {
 
 			ps.setString(1, instrument.getSymbol());
 			ps.setString(2, instrument.getName());
-			ps.setString(3, instrument.getExchange().getName());
+			ps.setString(3, instrument.getExchange().getSymbol());
 			System.out.println("(" + count + ") INSERTING-->"
 					+ instrument.getSymbol());
 			ps.addBatch();

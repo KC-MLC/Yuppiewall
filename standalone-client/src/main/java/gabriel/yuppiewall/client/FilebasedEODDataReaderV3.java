@@ -53,10 +53,10 @@ public class FilebasedEODDataReaderV3 {
 						continue;
 
 					List<EndOfDayData> list = dataList.get(eod.getInstrument().getExchange()
-							.getName() + eod.getDate().getTime());
+							.getSymbol() + eod.getDate().getTime());
 					if (list == null) {
 						list = new ArrayList<EndOfDayData>();
-						dataList.put(eod.getInstrument().getExchange().getName()
+						dataList.put(eod.getInstrument().getExchange().getSymbol()
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
@@ -104,7 +104,7 @@ public class FilebasedEODDataReaderV3 {
 		System.out.println("sending>>" + list.size());
 
 		for (EndOfDayData eod : list) {
-			String identifier = eod.getInstrument().getExchange().getName()
+			String identifier = eod.getInstrument().getExchange().getSymbol()
 					+ eod.getInstrument().getSymbol() + eod.getStrDate();
 			if (i[0] != 0)
 				bw.write(",");
@@ -114,7 +114,7 @@ public class FilebasedEODDataReaderV3 {
 					+ ", " + eod.getStockPriceLow() + ", "
 					+ eod.getStockPriceOpen() + ", " + eod.getStockVolume()
 					+ ", '" + eod.getInstrument().getSymbol() + "', '"
-					+ eod.getInstrument().getExchange().getName() + "')";
+					+ eod.getInstrument().getExchange().getSymbol() + "')";
 			System.out.println(i[0]++);
 			bw.write(v);
 

@@ -31,7 +31,7 @@ import java.util.concurrent.Executors;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class CreateCacheClient extends InsertIntoRegion {
+public class CreateCacheClient/* extends InsertIntoRegion*/ {
 
 	private static Proxy SYSTEM_PROXY;
 	// static ExecutorService executo = Executors.newFixedThreadPool(20);
@@ -40,7 +40,7 @@ public class CreateCacheClient extends InsertIntoRegion {
 	private Set<Tupple<Instrument, Server>> updateDataList = new HashSet<Tupple<Instrument, Server>>();
 	Map<Server, List<List<EndOfDayData>>> sendToServer = new HashMap<Server, List<List<EndOfDayData>>>();
 
-	@Override
+	//@Override
 	protected void onData(Command<EndOfDayData> command) {
 		try {
 			String sql = "SELECT identifier, trade_date, stock_price_adj_close, stock_price_close,"
@@ -139,7 +139,7 @@ public class CreateCacheClient extends InsertIntoRegion {
 
 	}
 
-	@Override
+	//@Override
 	protected void updateDataList(Instrument symbol, Server server) {
 		updateDataList.add(new Tupple<Instrument, Server>(symbol, server));
 		System.out.println("(" + updateDataList.size() + ") " + symbol);
@@ -155,7 +155,7 @@ public class CreateCacheClient extends InsertIntoRegion {
 		 
 	}
 
-	@Override
+	//@Override
 	protected void updateServer(final List<EndOfDayData> dataList,
 			final Server server) {
 		List<List<EndOfDayData>> list = sendToServer.get(server);
@@ -214,7 +214,7 @@ public class CreateCacheClient extends InsertIntoRegion {
 */
 	}
 
-	@Override
+	//@Override
 	protected List<Instrument> getAllInstruments() {
 		try {
 			String sql = "Select symbol_code, server_id, exchange from  instrument";
@@ -239,13 +239,13 @@ public class CreateCacheClient extends InsertIntoRegion {
 		return null;
 	}
 
-	@Override
+//	@Override
 	protected void validateServerList(List<Server> serverList) {
 		// TODO need to ping the server
 
 	}
 
-	@Override
+	//@Override
 	protected List<Server> getServer() {
 		try {
 			String sql = "Select server_context, server_size from  region_server";
@@ -279,7 +279,7 @@ public class CreateCacheClient extends InsertIntoRegion {
 	}
 
 	public static void main(String[] args) {
-		new CreateCacheClient().pushData();
+	//	new CreateCacheClient().pushData();
 	}
 
 }

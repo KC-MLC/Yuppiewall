@@ -3,6 +3,7 @@ package gabriel.yuppiewall.scanner.service;
 import gabriel.yuppiewall.common.Tupple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
+import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.marketdata.repository.ScanRequest;
@@ -20,7 +21,7 @@ import java.util.Set;
 public abstract class ScannerServiceImpl implements ScannerServive {
 
 	@Override
-	public ScanOutput[] runScan(final ScanParameter param,
+	public List<ScanOutput> runScan(final ScanParameter param,
 			final PrimaryPrincipal requester) {
 
 		List<Condition> conditions = param.getConditions();
@@ -60,8 +61,14 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 
 		}
 		sr.setExchanges(exchanges);
-		// TODO need to populate Instrument detail
-		return getScanRunner().runScan(sr);
+		List<ScanOutput> result = getScanRunner().runScan(sr);
+		SystemDataRepository sdr = getSystemDataRepository();
+		for (ScanOutput scanOutput : result) {
+			Instrument inst = scanOutput.getEod().getInstrument();
+			inst = sdr.getInstrument(inst);
+			scanOutput.setInstrument(inst);
+		}
+		return result;
 	}
 
 	private void validateCondition(List<Condition> conditions) {

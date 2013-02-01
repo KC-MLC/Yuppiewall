@@ -1,7 +1,6 @@
 package gabriel.yuppiewall.client;
 
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
-import gabriel.yuppiewall.marketdata.service.EndOfDayService;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -11,7 +10,7 @@ import java.net.URL;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class EndOfDayServiceRestClient implements EndOfDayService {
+public class EndOfDayServiceRestClient/* implements EndOfDayService*/ {
 
 	// @Override
 	public void saveEOD(EndOfDayData[] data) {

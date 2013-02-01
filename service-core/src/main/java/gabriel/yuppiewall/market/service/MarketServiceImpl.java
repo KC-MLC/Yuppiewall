@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-public abstract class MarketServiceImpl implements MarketService {
+public class MarketServiceImpl implements MarketService {
 
 	@Override
 	public Date getExchangeCurrentTime(Exchange exchange) {

@@ -69,13 +69,13 @@ public class Order implements Serializable {
 
 	}
 
-	private OrderType orderType;
+	//private OrderType orderType;
 	private TransactionType transactionType;
 	private Date date;
 	private Long quantity;
 	private BigDecimal price;
-	private BigDecimal stopPrice;
-	private Date expire;
+	//private BigDecimal stopPrice;
+	//private Date expire;
 	private Account account;
 	private Instrument instrument;
 

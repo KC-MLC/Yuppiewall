@@ -1,12 +1,14 @@
 package gabriel.yuppiewall.spring.trade.service;
 
 import gabriel.yuppiewall.market.service.MarketService;
+import gabriel.yuppiewall.market.service.MarketServiceImpl;
 import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.trade.service.AccountManagerImpl;
 import gabriel.yuppiewall.trade.service.PortfolioService;
 import gabriel.yuppiewall.trade.service.TransactionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("accountManager")
@@ -17,9 +19,10 @@ public class SpringAccountManager extends AccountManagerImpl {
 
 	@Autowired
 	private TransactionService transactionService;
+	// @Autowired
+	private MarketService marketService = new MarketServiceImpl();
 	@Autowired
-	private MarketService marketService;
-	@Autowired
+	@Qualifier("JDBCSystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 
 	@Override

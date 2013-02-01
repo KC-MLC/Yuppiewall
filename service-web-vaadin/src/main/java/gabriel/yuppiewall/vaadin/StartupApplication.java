@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.vaadin;
 
-import gabriel.yuppiewall.jdbc.ds.marketdata.repository.JDBCSymbolStore;
+import gabriel.yuppiewall.jdbc.marketdata.repository.JDBCSystemDataRepository;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -26,8 +26,8 @@ public class StartupApplication extends HttpServlet {
 				WebApplicationContext appContext = WebApplicationContextUtils
 						.getWebApplicationContext(servletConfig
 								.getServletContext());
-				JDBCSymbolStore jdbcSymbolStore = (JDBCSymbolStore) appContext
-						.getBean("JDBCSymbolStore");
+				JDBCSystemDataRepository jdbcSymbolStore = (JDBCSystemDataRepository) appContext
+						.getBean("JDBCSystemDataRepository");
 				jdbcSymbolStore.init();
 				System.out.println("***********");
 

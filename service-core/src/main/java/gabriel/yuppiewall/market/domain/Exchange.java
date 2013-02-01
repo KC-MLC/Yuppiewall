@@ -14,13 +14,16 @@ public class Exchange implements Serializable {
 	private String country;
 
 	private String timeZone;
+	private String marketCloseSchedule;
 
-	public Exchange(String name, String symbol, String country, String timeZone) {
+	public Exchange(String name, String symbol, String country,
+			String timeZone, String marketCloseSchedule) {
 		super();
 		this.name = name;
 		this.symbol = symbol;
 		this.country = country;
 		this.timeZone = timeZone;
+		this.marketCloseSchedule = marketCloseSchedule;
 	}
 
 	public Exchange() {
@@ -56,7 +59,7 @@ public class Exchange implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Exchange_ [name=" + name + "]";
+		return "Exchange_ [symbol=" + symbol + "]";
 	}
 
 	public String getTimeZone() {
@@ -65,6 +68,39 @@ public class Exchange implements Serializable {
 
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Exchange other = (Exchange) obj;
+		if (symbol == null) {
+			if (other.symbol != null)
+				return false;
+		} else if (!symbol.equals(other.symbol))
+			return false;
+		return true;
+	}
+
+	public String getMarketCloseSchedule() {
+		return marketCloseSchedule;
+	}
+
+	public void setMarketCloseSchedule(String marketCloseSchedule) {
+		this.marketCloseSchedule = marketCloseSchedule;
 	}
 
 }

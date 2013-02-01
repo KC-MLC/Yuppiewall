@@ -19,61 +19,24 @@ public abstract class InsertIntoRegion {
 
 		final int distribution = (int) Math.ceil(instruments.size()
 				/ serverList.size());
+
 		System.out.println("distribution==" + distribution);
-		onData(
+		int index = 0;
+		for (int i = 0; i < serverList.size(); i++) {
+			Server server = serverList.get(i);
 
-		new Command<EndOfDayData>() {
-			private List<EndOfDayData> dataList;
-			private Instrument symbol;
-			int count;
-			int serverIndex;
-
-			@Override
-			public void execute(EndOfDayData data) {
-				//System.out.println(" GOT EOD ==" + data);
-				if (data == null) {
-					sendDataToServer();
-					return;
-				}
-				if (symbol == null) {
-					symbol = data.getInstrument();
-					dataList = new ArrayList<>();
-				}
-				if (symbol.equals(data.getInstrument())) {
-					dataList.add(data);
-					return;
-				} else {
-					sendDataToServer();
-					symbol = null;
-					dataList = null;
-				}
-
+			for (int j = i * distribution, max = (((i + 1) * distribution) > instruments
+					.size()) ? instruments.size() : (i + 1) * distribution; j < max; j++) {
+				Instrument instrument = instruments.get(j);
+				instrument.setServer(server.getServerContext());
 			}
-
-			private void sendDataToServer() {
-				if (dataList == null)
-					return;
-				if (count > distribution) {
-					count = 0;
-					serverIndex += 1;
-				}
-				Server server = serverList.get(serverIndex);
-				count += 1;
-				updateServer(dataList, server);
-				updateDataList(symbol, server);
-
-			}
-
-		});
+		}
+		updateInstrumentServerDetails(instruments);
 
 	}
 
-	protected abstract void onData(Command<EndOfDayData> command);
-
-	protected abstract void updateDataList(Instrument symbol, Server server);
-
-	protected abstract void updateServer(List<EndOfDayData> dataList,
-			Server server);
+	protected abstract void updateInstrumentServerDetails(
+			List<Instrument> instruments);
 
 	protected abstract List<Instrument> getAllInstruments();
 

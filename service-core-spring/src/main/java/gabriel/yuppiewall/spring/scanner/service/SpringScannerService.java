@@ -15,7 +15,8 @@ public class SpringScannerService extends ScannerServiceImpl {
 	@Qualifier("distributedScanRunnerImpl")
 	private ScanRunner runner;
 	@Autowired
-	private SystemDataRepository marketMetaRepository;
+	@Qualifier("JDBCSystemDataRepository")
+	private SystemDataRepository systemDataRepository;
 
 	@Override
 	protected ScanRunner getScanRunner() {
@@ -23,7 +24,8 @@ public class SpringScannerService extends ScannerServiceImpl {
 	}
 
 	@Override
-	protected SystemDataRepository getMarketMetaRepository() {
-		return marketMetaRepository;
+	protected SystemDataRepository getSystemDataRepository() {
+		return systemDataRepository;
 	}
+
 }

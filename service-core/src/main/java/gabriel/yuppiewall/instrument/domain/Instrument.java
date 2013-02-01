@@ -75,6 +75,14 @@ public class Instrument implements Serializable {
 		this.symbol = symbol;
 	}
 
+	public Instrument(Instrument instrument) {
+		this.symbol = instrument.getSymbol();
+		this.exchange = instrument.getExchange();
+		this.name = instrument.getName();
+		this.secter = instrument.getSecter();
+		this.industry = instrument.getIndustry();
+	}
+
 	public String getSymbol() {
 		return symbol;
 	}

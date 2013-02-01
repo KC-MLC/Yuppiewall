@@ -1,16 +1,22 @@
 package gabriel.yuppiewall.ws.scanner.service;
 
+import gabriel.yuppiewall.common.util.Filter;
+import gabriel.yuppiewall.ds.domain.Server;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.market.domain.Exchange;
-import gabriel.yuppiewall.market.service.MarketService;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.ws.scanner.service.DataStore.STATUS;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service("regionServerInitilizer")
 public class RegionServerInitilizer {
 
 	@Autowired
@@ -18,7 +24,13 @@ public class RegionServerInitilizer {
 	private DataStore dataStore;
 
 	@Autowired
-	private MarketService marketService;
+	private EndOfDayDataRepository eodRepository;
+
+	@Autowired
+	private EodScheduler eodScheduler;
+
+	@Autowired
+	private SystemDataRepository systemDataRepository;
 
 	public void init() {
 		// check if need is there to initilize
@@ -31,22 +43,45 @@ public class RegionServerInitilizer {
 					try {
 
 						// get List of stock I am managing
-						Instrument[] symbolList = getManagedInstrumentList();
+						List<Instrument> symbolList = getManagedInstrumentList();
+						int i = 0;
 						for (Instrument instrument : symbolList) {
+							if (i++ > 10)
+								break;
 
 							Exchange exchange = instrument.getExchange();
 							Exchange e1 = dataStore.getExchange(exchange);
 							if (e1 == null) {
-								exchange = getExchange(exchange);
+								exchange = systemDataRepository
+										.getExchange(exchange);
 								dataStore.setExchange(exchange);
-								instrument.setExchange(exchange);
+								eodScheduler.createScheduler(exchange);
 							}
-							List<EndOfDayData> eodList = marketService
-									.getEndOfDayData(instrument);
+							instrument.setExchange(exchange);
+							List<EndOfDayData> eodList = eodRepository
+									.findAllEndOfDayData(new Instrument(
+											instrument.getSymbol()),
+											new Filter<EndOfDayData>() {
+
+												@Override
+												public boolean filter(
+														EndOfDayData eod) {
+													Calendar cal = Calendar
+															.getInstance();
+													cal.setTime(eod.getDate());
+													return (cal
+															.get(Calendar.YEAR) == 2010);
+												}
+											});
+							if (eodList == null) {
+								dataStore.addStockWithError(instrument
+										.getSymbol());
+								continue;
+							}
 							instrument.setEodList(eodList);
 							dataStore.setInstrument(instrument);
 						}
-
+						dataStore.setStatus(STATUS.INITIALIZED);
 					} catch (Exception e) {
 						dataStore.setStatus(STATUS.NOT_INITIALIZED);
 					}
@@ -56,12 +91,7 @@ public class RegionServerInitilizer {
 
 	}
 
-	private Exchange getExchange(Exchange exchange) {
-		// return marketService.getExchange(exchange);
-		return null;
-	}
-
-	private Instrument[] getManagedInstrumentList() {
+	private List<Instrument> getManagedInstrumentList() {
 		// find my id
 		/*
 		 * String requestID = dataStore.generateRequestID(); // make server call
@@ -70,7 +100,16 @@ public class RegionServerInitilizer {
 		 * return
 		 * regionServerService.getManagedInstrument(dataStore.getStoreID());
 		 */
-		return null;
+		System.out.println("STARTING GETTING OF SERVER");
+		/*
+		 * Server server = new
+		 * Server("http://localhost:7081/service-ds-ws/api");
+		 * dataStore.setServer(server);
+		 */
+		Server server = dataStore.getServer();
+		dataStore.setServer(server);
+		System.out.println("GOT SERVER" + server);
 
+		return systemDataRepository.getManagedInstrument(server);
 	}
 }
