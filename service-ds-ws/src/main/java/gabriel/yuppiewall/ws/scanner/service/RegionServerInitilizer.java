@@ -44,10 +44,11 @@ public class RegionServerInitilizer {
 
 						// get List of stock I am managing
 						List<Instrument> symbolList = getManagedInstrumentList();
-						int i = 0;
+						// int i = 0;
 						for (Instrument instrument : symbolList) {
-							if (i++ > 10)
-								break;
+							/*
+							 * if (i++ > 10) break;
+							 */
 
 							Exchange exchange = instrument.getExchange();
 							Exchange e1 = dataStore.getExchange(exchange);
@@ -70,7 +71,7 @@ public class RegionServerInitilizer {
 															.getInstance();
 													cal.setTime(eod.getDate());
 													return (cal
-															.get(Calendar.YEAR) == 2010);
+															.get(Calendar.YEAR) > 2010);
 												}
 											});
 							if (eodList == null) {

@@ -29,6 +29,7 @@ public class ScanAdditionFilter {
 
 	private Table additionalFilter;
 	private int rowIndex = 0;
+
 	private static final Object TYPE_PROPERTY_NAME = "name";
 	private static final Object TYPE_PROPERTY_VALUE = "value";
 
@@ -55,10 +56,11 @@ public class ScanAdditionFilter {
 		additionalFilter.setColumnCollapsingAllowed(false);
 		additionalFilter.setSortDisabled(false);
 		additionalFilter.setSelectable(true);
-		additionalFilter.setMultiSelect(false);
+		additionalFilter.setMultiSelect(true);
 		additionalFilter.setEditable(true);
 		additionalFilter.setImmediate(true);
 		additionalFilter.setPageLength(0);
+
 		additionalFilter.addContainerProperty(INDICATOR, ComboBox.class, null);
 		additionalFilter.setColumnExpandRatio(INDICATOR, 3);
 		additionalFilter.addContainerProperty(PAPAMETER, TextField.class, "");
@@ -217,12 +219,14 @@ public class ScanAdditionFilter {
 		private ComboBox periodRHS;
 		private TextField dateOffSetRHS;
 		private Button delete;
+
 		private Integer rowId;
 
 		@SuppressWarnings("serial")
 		public RowApplication(Integer rowId,
 				final Command<RowApplication> oneRemove) {
 			this.rowId = rowId;
+
 			indicatorLHS = getNewIndicatorCB();
 			indicatorLHS.addListener(new Property.ValueChangeListener() {
 
@@ -321,7 +325,7 @@ public class ScanAdditionFilter {
 			delete = new Button();
 			delete.setStyleName(BaseTheme.BUTTON_LINK);
 			delete.setDescription("Remove scan");
-			delete.setIcon(new ThemeResource("../runo/icons/16/cancel.png"));
+			delete.setIcon(new ThemeResource("../runo/icons/16/trash.png"));
 			delete.setImmediate(true);
 
 			delete.addListener(new Button.ClickListener() {

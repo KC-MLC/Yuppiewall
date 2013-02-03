@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.ws;
 
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.ws.scanner.service.DataStore;
 import gabriel.yuppiewall.ws.scanner.service.DataStore.STATUS;
 import gabriel.yuppiewall.ws.scanner.service.RegionServerInitilizer;
@@ -25,7 +26,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 /**
  * Servlet implementation class MoniterServlet
  */
-@WebServlet("/MoniterServlet")
+// @WebServlet("/MoniterServlet")
 public class MoniterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,6 +51,8 @@ public class MoniterServlet extends HttpServlet {
 		WebApplicationContext appContext = WebApplicationContextUtils
 				.getWebApplicationContext(servletConfig.getServletContext());
 		dataStore = (DataStore) appContext.getBean("dataStore");
+		regionServerInitilizer = (RegionServerInitilizer) appContext
+				.getBean("regionServerInitilizer");
 	}
 
 	protected void doDelete(HttpServletRequest request,

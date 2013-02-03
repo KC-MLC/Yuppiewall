@@ -23,7 +23,7 @@
 	<task:executor id="eodTradeExecutor" pool-size="5" />
 	<task:scheduler id="eodTradeScheduler" pool-size="10" />
 	<bean id="serverUrl" class="java.lang.String">
-		<constructor-arg value="http://localhost:8080/service-web-vaadin" />
+		<constructor-arg value="http://ec2-50-17-38-97.compute-1.amazonaws.com:8080/service-web-vaadin-1.0-SNAPSHOT" />
 	</bean>
 
 </beans>

@@ -44,4 +44,10 @@ public class Condition implements Serializable {
 		return rhs;
 	}
 
+	@Override
+	public String toString() {
+		return "Condition [lhs=" + lhs + ", operand=" + operand + ", rhs="
+				+ rhs + "]";
+	}
+
 }

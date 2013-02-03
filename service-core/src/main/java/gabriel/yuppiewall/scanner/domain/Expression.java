@@ -99,4 +99,12 @@ public class Expression implements Serializable {
 		this.technicalIndicator = technicalIndicator;
 	}
 
+	@Override
+	public String toString() {
+		return "Expression [indicator=" + indicator + ", period=" + period
+				+ ", scanOn=" + scanOn + ", parameters=" + parameters
+				+ ", offset=" + offset + ", id=" + id + ", technicalIndicator="
+				+ technicalIndicator + "]";
+	}
+
 }

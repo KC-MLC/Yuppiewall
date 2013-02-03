@@ -15,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @SuppressWarnings("serial")
-@WebServlet("/ScanRunner")
+// @WebServlet("/ScanRunner")
 public class ScanRunnerServlet extends RPCServlet implements ScanRunner {
 
 	private ScanRunner scanRunner;

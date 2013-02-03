@@ -22,7 +22,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 //@Controller
 //@RequestMapping("/cache")
 @SuppressWarnings("serial")
-@WebServlet("/ServerCacheService")
+//@WebServlet("/ServerCacheService")
 public class EndOfDayCacheController extends RPCServlet implements
 		ServerCacheService {
 

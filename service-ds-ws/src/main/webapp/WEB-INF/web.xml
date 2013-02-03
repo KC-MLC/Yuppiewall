@@ -1,28 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  <display-name>Yuppiewall-Services</display-name>
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  <servlet>
-    <servlet-name>Startup</servlet-name>
-    <servlet-class>gabriel.yuppiewall.ws.StartupApplication</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet>
-    <servlet-name>service</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value></param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>service</servlet-name>
-    <url-pattern>/api/*</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-    <welcome-file></welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>Yuppiewall-Services</display-name>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>Startup</servlet-name>
+		<servlet-class>gabriel.yuppiewall.ws.StartupApplication</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>service</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>service</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MoniterServlet</servlet-name>
+		<servlet-class>gabriel.yuppiewall.ws.MoniterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoniterServlet</servlet-name>
+		<url-pattern>/MoniterServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ServerCacheService</servlet-name>
+		<servlet-class>gabriel.yuppiewall.ws.scanner.service.EndOfDayCacheController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServerCacheService</servlet-name>
+		<url-pattern>/ServerCacheService</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>ScanRunner</servlet-name>
+		<servlet-class>gabriel.yuppiewall.ws.scanner.service.ScanRunnerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ScanRunner</servlet-name>
+		<url-pattern>/ScanRunner</url-pattern>
+	</servlet-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file></welcome-file>
+	</welcome-file-list>
 </web-app>

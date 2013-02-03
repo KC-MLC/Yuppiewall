@@ -38,7 +38,7 @@ public abstract class CoreScanRunner implements ScanRunner {
 		while (itr.hasNext()) {
 			Instrument symbol = itr.next();
 			List<EndOfDayData> records = getSymbolEODRecord(symbol);
-			if(records==null){
+			if (records == null) {
 				itr.remove();
 				continue;
 			}
@@ -61,13 +61,11 @@ public abstract class CoreScanRunner implements ScanRunner {
 					System.out.println(symbol);
 					break;
 				}
-
-				if (passed) {
-					result.add(new ScanOutput(records.get(0)));
-				}
-				records = null;
-
 			}
+			if (passed) {
+				result.add(new ScanOutput(records.get(0)));
+			}
+			records = null;
 		}
 		return result;
 

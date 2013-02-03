@@ -10,6 +10,7 @@ import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
