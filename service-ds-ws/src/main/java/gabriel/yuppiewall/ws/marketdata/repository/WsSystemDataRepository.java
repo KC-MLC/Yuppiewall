@@ -86,4 +86,9 @@ public class WsSystemDataRepository implements SystemDataRepository {
 		throw new UnsupportedOperationException("method not implemented");
 	}
 
+	@Override
+	public Collection<Instrument> getInstruments() {
+		throw new UnsupportedOperationException("method not implemented");
+	}
+
 }

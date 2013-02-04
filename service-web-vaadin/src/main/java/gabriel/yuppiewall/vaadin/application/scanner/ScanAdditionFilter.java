@@ -113,7 +113,7 @@ public class ScanAdditionFilter {
 
 			Expression rhs = con.getRhs();
 			cb = row.getIndicatorRHS();
-			;
+
 			cb.setValue(rhs.getId());
 			tf = row.getParameterRHS();
 			tf.setValue(rhs.getParameters());

@@ -37,6 +37,12 @@ public class Transaction implements Serializable {
 		this.user = user;
 	}
 
+	public Transaction(String transactionId, Instrument instrument) {
+
+		this.transactionId = transactionId;
+		this.instrument = instrument;
+	}
+
 	public PrimaryPrincipal getUser() {
 		return user;
 	}
@@ -63,6 +69,18 @@ public class Transaction implements Serializable {
 
 	public String getTransactionId() {
 		return transactionId;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
+	}
+
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
 	}
 
 }

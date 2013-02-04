@@ -22,7 +22,7 @@ public class SpringAccountManager extends AccountManagerImpl {
 	// @Autowired
 	private MarketService marketService = new MarketServiceImpl();
 	@Autowired
-	@Qualifier("JDBCSystemDataRepository")
+	@Qualifier("SystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 
 	@Override

@@ -27,7 +27,7 @@ public class DistributedScanRunnerImpl implements ScanRunner {
 			.getName();
 
 	@Autowired
-	@Qualifier("JDBCSystemDataRepository")
+	@Qualifier("SystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 
 	private Map<String, ScanRunner> wsScanRunnerList;

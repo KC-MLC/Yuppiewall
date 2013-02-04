@@ -284,6 +284,7 @@ public class ScanFilterViewImpl implements Serializable {
 					List<PreconfiguredIndicator> list = preconfiguredIndicatorService
 							.getPreconfiguredIndicator();
 
+					@SuppressWarnings("unchecked")
 					Tupple<String, Object> values[] = new Tupple[list.size()];
 					for (int i = 0; i < list.size(); i++) {
 						PreconfiguredIndicator preconfiguredIndicator = list

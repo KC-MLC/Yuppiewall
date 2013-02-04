@@ -29,4 +29,6 @@ public interface SystemDataRepository {
 
 	Instrument getInstrument(Instrument inst);
 
+	Collection<Instrument> getInstruments();
+
 }

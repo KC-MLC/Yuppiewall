@@ -26,7 +26,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Service;
 
-@Service("JDBCSystemDataRepository")
+@Service("SystemDataRepository")
 public class JDBCSystemDataRepository implements SystemDataRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -225,6 +225,11 @@ public class JDBCSystemDataRepository implements SystemDataRepository {
 	@Override
 	public Collection<Server> getServerList() {
 		return servers.values();
+	}
+
+	@Override
+	public Collection<Instrument> getInstruments() {
+		return instruments.values();
 	}
 
 	@Override

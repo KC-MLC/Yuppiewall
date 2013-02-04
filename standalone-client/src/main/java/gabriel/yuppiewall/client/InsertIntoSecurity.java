@@ -11,9 +11,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class InsertIntoSecurity {
 
@@ -21,7 +22,7 @@ public class InsertIntoSecurity {
 			FileNotFoundException, ClassNotFoundException {
 		// read and getsList of Instrument
 
-		List<Instrument> instruments = getInstrument();
+		Set<Instrument> instruments = getInstrument();
 
 		// insert record
 		String sql = "insert into instrument (symbol_code, comp_name, exchange) values (?, ?, ?)";
@@ -60,20 +61,20 @@ public class InsertIntoSecurity {
 		return connection;
 	}
 
-	private static List<Instrument> getInstrument()
-			throws FileNotFoundException {
+	private static Set<Instrument> getInstrument() throws FileNotFoundException {
 		//
-		File file = new File("/home/parvez/Downloads/NASDAQ.txt");
+		File file = new File(
+				"/home/parvez/rnd/Yuppiewall/standalone-client/BSE_NSE.txt");
 		Iterator<String> itr = new LineIterator(new FileInputStream(file));
-		List<Instrument> list = new ArrayList<Instrument>();
+		Set<Instrument> list = new HashSet<Instrument>();
 
 		while (itr.hasNext()) {
 			String line = itr.next();
 
-			String[] v = line.split(",");
-			System.out.println("(" + list.size() + ") READING-->" + v[1]);
-			list.add(new Instrument(v[1], new Exchange("nasdaq"), v[0], null,
-					null, null));
+			String[] v = line.split("\t");
+			System.out.println("(" + list.size() + ") READING-->" + v[0]);
+			list.add(new Instrument(v[0], new Exchange(v[2].toLowerCase()),
+					v[1]));
 		}
 		return list;
 

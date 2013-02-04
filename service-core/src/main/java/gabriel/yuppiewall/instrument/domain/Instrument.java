@@ -66,6 +66,13 @@ public class Instrument implements Serializable {
 		this.industry = industry;
 	}
 
+	public Instrument(String symbol, Exchange exchange, String name) {
+		super();
+		this.symbol = symbol;
+		this.exchange = exchange;
+		this.name = name;
+	}
+
 	public Instrument(String symbol, Exchange exchange) {
 		this.symbol = symbol;
 		this.exchange = exchange;

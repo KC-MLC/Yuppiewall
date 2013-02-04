@@ -27,7 +27,7 @@ public class StartupApplication extends HttpServlet {
 						.getWebApplicationContext(servletConfig
 								.getServletContext());
 				JDBCSystemDataRepository jdbcSymbolStore = (JDBCSystemDataRepository) appContext
-						.getBean("JDBCSystemDataRepository");
+						.getBean("SystemDataRepository");
 				jdbcSymbolStore.init();
 				System.out.println("***********");
 

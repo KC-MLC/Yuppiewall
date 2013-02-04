@@ -10,13 +10,13 @@ import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -28,8 +28,10 @@ public class YahooWEBEndOfDayDataRepository implements EndOfDayDataRepository {
 		// System.setProperty("java.net.useSystemProxies", "true");
 		SYSTEM_PROXY = Proxy.NO_PROXY;
 
-		/*SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
-				"43.80.41.41", 8080));*/
+		/*
+		 * SYSTEM_PROXY = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(
+		 * "43.80.41.41", 8080));
+		 */
 
 	}
 
@@ -125,6 +127,13 @@ public class YahooWEBEndOfDayDataRepository implements EndOfDayDataRepository {
 			System.out.println("FAILED TO PARSE:" + csv);
 			return null;
 		}
+
+	}
+
+	@Override
+	public Map<String, List<EndOfDayData>> findAllEndOfDayData(
+			List<Instrument> instrument, int offset, int start) {
+		throw new UnsupportedOperationException("method not implemented");
 
 	}
 

@@ -1,0 +1,2106 @@
+AXISBANK.NS	Axis Bank Ltd.	NSI
+JPASSOCIA.NS	Jaiprakash Associates Ltd.	NSI
+SAIL.NS	Steel Authority Of India Ltd.	NSI
+BHARTIARTL.BO	Bharti Airtel Ltd.	BSE
+JAIPRA.BO	Jaiprakash Associates Ltd.	BSE
+AXISBANK.BO	Axis Bank Ltd.	BSE
+KFA.BO	Kingfisher Airlines Ltd.	BSE
+AVONORG.BO	Avon Organics Ltd.	BSE
+KFA.NS	Kingfisher Airlines Ltd.	NSI
+ASHOKLEY.NS	Ashok Leyland	NSI
+APOLLOTYRE.BO	Apollo Tyres Ltd.	BSE
+ADANIENT.NS	Adani Enterprises Ltd.	NSI
+KERALAYUR.BO	Kerala Ayurveda Ltd.	BSE
+BHARTIART.NS	Bharti Airtel Ltd.	NSI
+ACC.BO	ACC Limited	BSE
+MRPL.BO	Mangalore Refinery and Petrochemicals Ltd.	BSE
+JETAIRWAY.NS	Jet Airways (India) Limited	NSI
+ASIANPAINT.BO	Asian Paints Ltd.	BSE
+APOLLOTYR.NS	Apollo Tyres Ltd.	NSI
+ALBK.NS	Allahabad Bank	NSI
+ABAN.NS	Aban Offshore Ltd.	NSI
+TATAMTRDV.NS	Tata Motors Limited	NSI
+SAIL.BO	Steel Authority Of India Ltd.	BSE
+MUNDRAPOR.NS	Adani Ports & Special Economic Zone Ltd	NSI
+JETAIRWAYS.BO	Jet Airways (India) Limited	BSE
+GAEL.BO	Gujarat Ambuja Exports Ltd.	BSE
+AQUA.BO	Aqua Logistics Ltd.	BSE
+ALEMBICLT.NS	Alembic Ltd.	NSI
+ADORMUL.BO	Ador Multiproducts Ltd.	BSE
+WWIL.NS	Siti Cable Network Ltd	NSI
+WWIL.BO	Siti Cable Network Ltd	BSE
+VYVRAUT.BO	Vybra Automet Ltd.	BSE
+SUNPHADV.BO	Sun Pharma Advanced Research Company Limited	BSE
+SHREEASHT.NS	Shree Ashtavinayak Cine Vision Ltd.	NSI
+LORDSCHLO.BO	Lords Chloro Alkali Ltd	BSE
+DIVISLAB.NS	Divi's Laboratories Ltd.	NSI
+AUROBINDOP.BO	Aurobindo Pharma Ltd.	BSE
+ASHOKLEY.BO	Ashok Leyland	BSE
+ASHAPURA.BO	Ashapura Minechem Ltd.	BSE
+ARCOTECH.BO	Arcotech Ltd	BSE
+APPAPER.BO	Andhra Pradesh Paper Mills Ltd.	BSE
+ANDHRABANK.BO	Andhra Bank	BSE
+AMTEKAUTO.BO	Amtek Auto Ltd.	BSE
+AMRITCORP.BO	Amrit Corporation Ltd.	BSE
+AMAR.BO	Amar Remedies Ltd.	BSE
+ADANIPOWER.BO	Adani Power Ltd.	BSE
+ADANIPOWE.NS	Adani Power Ltd.	NSI
+ADANIENTE.BO	Adani Enterprises Ltd.	BSE
+ACE.BO	Action Construction Equipment Ltd.	BSE
+ACC.NS	ACC Limited	NSI
+ABML.BO	Aditya Birla Money Ltd.	BSE
+ABB.NS	ABB Ltd (India)	NSI
+AARTIDRUG.NS	Aarti Drugs Ltd.	NSI
+VBCFERROQ.BO	VBC Ferro Alloys Ltd.	BSE
+USHER.BO	Usher Agro Ltd.	BSE
+TATACOFFE.NS	Tata Coffee Ltd.	NSI
+SANWARIA.NS	Sanwaria Agro Oils Ltd.	NSI
+REIAGROLT.NS	REI Agro Ltd	NSI
+RASHELAG.BO	Rashel Agrotech Ltd.	BSE
+PRRANETA.BO	Aadhaar Ventures India Ltd	BSE
+PICCADIL.BO	Piccadily Agro Industries Ltd.	BSE
+PASUPTAC.BO	Pasupati Acrylon Ltd.	BSE
+OMAX.BO	Omax Autos Ltd.	BSE
+NIKHILAD.BO	Nikhil Adhesives Ltd.	BSE
+NALCO.BO	National Aluminium Company Limited	BSE
+NAGAROIL.NS	Nagarjuna Oil Refinery 	NSI
+MUNJALAU.BO	Munjal Auto Industries Ltd.	BSE
+MORARJETE.NS	Morarjee Textiles Ltd.	NSI
+MANALU.NS	Maan Aluminium Ltd.	NSI
+MAJESAUT.BO	Majestic Auto Ltd	BSE
+LUMAXAU.BO	Lumax Automotive Systems Ltd.	BSE
+KALECONSU.NS	Accelya Kale Solutions Ltd	NSI
+JYOTIRES.BO	Jyoti Resins & Adhesives Ltd.	BSE
+JETAIRWAQF.BO	JET AIRWAYS	BSE
+JAYANTAG.BO	Jayant Agro-Organics Ltd.	BSE
+IMPAL.BO	India Motor Parts & Accessories Ltd.	BSE
+HATSUN.BO	Hatsun Agro Product Ltd.	BSE
+GOACARBON.NS	Goa Carbon Ltd.	NSI
+EUROSOFT.BO	EUROPE SOF A	BSE
+EASUG.BO	Eastern Sugar And Industries Ltd.	BSE
+CLUATPP.BO	CLUTCH AUTO INR10 P/P	BSE
+BOMBCYC.BO	Bombay Cycle & Motor Agency Ltd.	BSE
+BNALTD.BO	B&A Ltd.	BSE
+BALAJIAM.BO	Balaji Amines Ltd.	BSE
+BAJAJAUTO.NS	BAJAJ AUTO LTD	NSI
+AXISBANKQF.BO	AXIS BANK	BSE
+AVAILFC.BO	Available Finance Ltd.	BSE
+AUTOIND.BO	Autoline Industries Ltd.	BSE
+AUTOAXLES.BO	Automotive Axles Ltd.	BSE
+AUSTRAL.BO	Greenearth Resources & Projects Ltd.	BSE
+AUSOMENT.NS	Core Emballage Ltd.	NSI
+ATUL.NS	Atul Ltd.	NSI
+ATLASCYCL.NS	Atlas Cycles (Haryana) Ltd.	NSI
+ATHARVENT.BO	Atharv Enterprises Limited	BSE
+ATFL.NS	Agro Tech Foods Ltd.	NSI
+ASSAMCO.NS	Assam Co India Ltd.	NSI
+ASSAMCO.BO	Assam Co India Ltd.	BSE
+ASIANHTLW.BO	Asian Hotels (West) Ltd.	BSE
+ASIANHOT.BO	ASIANHOTNR	BSE
+ASHOKA.BO	ASHOKA	BSE
+ASHIMA.BO	Ashima Ltd.	BSE
+ASFLORA.BO	Asian Flora Ltd	BSE
+ARVINDREM.NS	Arvind Remedies Limited	NSI
+ARVINDREM.BO	Arvind Remedies Ltd.	BSE
+ARTSONEN.BO	Artson Engineering Ltd.	BSE
+ARSSINFRA.BO	ARSS Infrastructure Projects Ltd.	BSE
+APTECHT.NS	Aptech Ltd.	NSI
+APPAPER.NS	Andhra Pradesh Paper Mills Ltd.	NSI
+APIL.NS	Alstom India Ltd	NSI
+APCOTEXIN.NS	Apcotex Industries Ltd.	NSI
+ANUHPHR.BO	Anuh Pharma Limited	BSE
+ANKUSHFI.BO	Ankush Finstock Ltd.	BSE
+ANDHRSUGA.NS	Andhra Sugars Ltd.	NSI
+ANANTRAJ.NS	Anant Raj Ltd	NSI
+AMTL.BO	AMTL	BSE
+AMBJELE.BO	AMBUJA ELEC.	BSE
+AMARAJABA.NS	Amara Raja Batteries Ltd.	NSI
+AMAL.BO	Amal Ltd	BSE
+ALUMECO.BO	Alumeco India Extrusion Limited	BSE
+ALOKIND.BO	Alok Industries Ltd.	BSE
+ALLSEC.BO	Allsec Technologies Ltd.	BSE
+ALEMBICLTD.BO	Alembic Ltd.	BSE
+ALCHEMIST.BO	Alchemist Ltd.	BSE
+AKAIMPX.BO	AKAI IMPEX	BSE
+AJANTPHAR.NS	Ajanta Pharma Ltd.	NSI
+AFTEK.NS	Aftek Ltd.	NSI
+ADVMULT.BO	ADVANCE MULT	BSE
+ADVANTA.NS	Advanta India Ltd.	NSI
+ADSL.NS	Allied Digital Services Ltd.	NSI
+ADORWELD.NS	Ador Welding Ltd.	NSI
+ADINATH.BO	Adinath Textiles Ltd.	BSE
+ADHUNIK.NS	Adhunik Metaliks Ltd.	NSI
+ADANIPORTS.BO	ADANI PORTS	BSE
+ACIIN.BO	ACI Infocom Ltd.	BSE
+ACE.NS	Action Construction Equipment Ltd.	NSI
+ABCIL.NS	Aditya Birla Chemicals (India) Ltd.	NSI
+ABCBEARS.BO	ABC Bearings Ltd	BSE
+ABANOFFSH.BO	Aban Offshore Ltd.	BSE
+AARVEEDEN.NS	Aarvee Denims & Exports Ltd	NSI
+AMBUJACEM.NS	Ambuja Cements Ltd.	NSI
+ARNMNTX.BO	ARUN MANTEX	BSE
+AHLUCONT.NS	Ahluwalia Contracts India Ltd.	NSI
+ADVANIHO.BO	Advani Hotels & Resorts India Ltd.	BSE
+ASHCONIUL.BO	Ashco Niulab Industries Ltd.	BSE
+ANGAUTO.NS	ANG Auto Limited	NSI
+TAKSHEEL.NS	Taksheel Solutions Ltd 	NSI
+GUJAPOLIN.NS	GUJ. APOLLO IND. LTD. 	NSI
+PARADYNE.NS	Paradyne Infotech Limited	NSI
+PANASONIC.NS	Panasonic Appliances India Co. Ltd	NSI
+ADANIPORT.NS	ADANI PORT AND SPECIAL ECONOMIC	NSI
+AUTOAXLES.NS	Automotive Axles Ltd.	NSI
+ASSMRMO.BO	ASSOC.MARMO	BSE
+ABBOTSL.BO	ABBOT INDIA	BSE
+AVONMERC.BO	Avon Mercantile Ltd	BSE
+ARTIBIOIN.BO	Artillegence Bio-Innovations Ltd.	BSE
+APLLTD.NS	Alembic Pharma Ltd	NSI
+JETAIRWAYSL.BO	JET AIRWAYS	BSE
+ADANIPOWQF.BO	ADANI POWER	BSE
+ALPA.BO	Alpa Laboratories Limited	BSE
+DALMIASUG.NS	Dalmia Bharat Sugar and Industries Ltd.	NSI
+ASIAREF.BO	ASTA REFINER	BSE
+NEOCURE.NS	Country Condo's Ltd.	NSI
+RICOAUTOSL.BO	RICO AUT IND	BSE
+GALLANTT.NS	Gallantt Metal Ltd.	NSI
+AKSCHEM.BO	AksharChem India Ltd	BSE
+OCLISL.BO	OCL Iron and Steel Ltd.	BSE
+SAPL.NS	South Asian Petrochem Lim 	NSI
+MASL.BO	MAX ALERT	BSE
+PATELSAI.BO	Patels Airtemp (India) Limited	BSE
+ASHCAP.BO	Ashirwad Capital Ltd.	BSE
+PARKERAC.BO	Parker Agrochem Exports Ltd.	BSE
+ACIL.BO	ACIL Cotton Industries Ltd	BSE
+ANANDEL.BO		BSE
+AUROLAB.BO	Auro Laboratories Ltd.	BSE
+ADVANTASL.BO	ADVANTA	BSE
+SOMDIST.BO	Som Distilleries And Breweries Limited	BSE
+APOLLOSIN.NS	Apollo Sindhoori Capital 	NSI
+AURIONPRO.BO	Aurionpro Solutions Ltd.	BSE
+NEWMKTADV.BO	New Markets Advisory Ltd.	BSE
+DYNAMATEC.NS	Dynamatic Technologies Ltd.	NSI
+ADSDIAG.BO	Ahluwalia Contracts (India) Limited	BSE
+ARICENTINF.BO	ARICENTINF	BSE
+SALSTEEL.BO	S.A.L. Steel Ltd.	BSE
+NAGAAGRI.BO	Nagarjuna Agrichem Ltd.	BSE
+AVENTIS.NS	Sanofi India Ltd	NSI
+AMLSTEEL.NS	AML Steel Limited	NSI
+ARUMUGA.BO	ARUMUGA	BSE
+INDSILHYD.BO	Indsil Hydro Power & Manganese Ltd	BSE
+SHACIDS.BO	SH ACID CHEM	BSE
+ATCOM.BO	Atcom Technologies Ltd.	BSE
+ASSAMBR.BO	ASSAMBROOK L(BSE INDONEXT)	BSE
+ABEEINF.BO	ABEE INFO CO	BSE
+ESSARSHPN.NS	Essar Shipping Limited 	NSI
+BENGALASM.BO	Bengal & Assam Company Ltd.	BSE
+KJMCGLO.BO	KJMC Corporate Advisors (India) Ltd	BSE
+KOHINOORT.BO	Asian Independent Network Ltd.	BSE
+ARVINDLR.BO	ARVINDLR	BSE
+ARTKPOW.BO	Artech Power Products Limited	BSE
+AGCNET.NS	AGC Networks Ltd.	NSI
+ASECURT.BO	Safal Securities Ltd	BSE
+KARURKCP.NS	Karur KCP Packkagings Ltd	NSI
+EUROASIA.BO	EURO ASIA	BSE
+ADORWELDING.BO	Ador Welding Ltd.	BSE
+ARCUTTIP.BO	Arcuttipore Tea Co Ltd	BSE
+ALLSOFT.BO	Allsoft Corporation Limited	BSE
+RASRESOR.BO	Ras Resorts & Apart Hotels Ltd.	BSE
+MANAKSIA.NS	Manaksia Ltd.	NSI
+ALICON.BO	ALICON	BSE
+DATAMATIC.NS	Datamatics Global Services Ltd	NSI
+JMTAUTOLT.NS	JMT Auto Ltd.	NSI
+ORIABRAS.BO	Orient Abrasives Ltd.	BSE
+ASFINLS.BO	ASSOCIATED F	BSE
+RICOAUTO.NS	Rico Auto Industries Ltd.	NSI
+ANSALHSG.BO	Ansal Housing & Construction Ltd.	BSE
+CMAHENDRA.NS	C MAHENDRA EXPORTS LTD INR10	NSI
+NORTHGATE.BO	Green Fire Agri Commodities Ltd	BSE
+STRIDES.BO	Strides Arcolab Ltd.	BSE
+AKRUTI.NS	Akruti Nirman Limited	NSI
+INDAGIV.BO	Ind Agiv Commerce Ltd	BSE
+EIHAHOTEL.NS	EIH Associated Hotels Ltd.	NSI
+UNIABEXAL.BO	Uni Abex Alloy Products Ltd.	BSE
+ASAHINFRA.BO	Asahi Infrastructure and Projects Ltd.	BSE
+ANUJEWL.BO	Anugraha Jewellers Limited	BSE
+CANTABIL.NS	CANTABIL RETAIL LTD	NSI
+ACRYSIL.BO	Acrysil Ltd.	BSE
+ASHCO.NS	Ashco Niulab Industries Ltd.	NSI
+ARONICOMM.BO	Aroni Commercials Ltd.	BSE
+AKARTOOL.BO	Akar Tools Ltd.	BSE
+AXON.BO	Axon Infotech Ltd.	BSE
+BAJAJAUTSL.BO	BAJAJ AUTO	BSE
+ISHITADR.BO	Ishita Drugs And Industries Ltd.	BSE
+APARIND.BO	Apar Industries Ltd.	BSE
+BHRKALM.BO	Bhoruka Aluminium Ltd.	BSE
+ASHOKLEYQF.BO	ASHOK LEYLND	BSE
+JAMNAUTO.BO	Jamna Auto Industries Limited	BSE
+APTYR.BO	APOLLO TYRES	BSE
+PADALPO.BO	PADMANAB ALO	BSE
+AUTOIND.NS	Autoline Industries Ltd.	NSI
+AUTOIND.NS	Autoline Industries Ltd.	NSI
+ASIANVE.BO	Asian Vegpro Industries Ltd	BSE
+APLAPOLLO.BO	APL APOLLO	BSE
+UTTAMSUGA.NS	Uttam Sugar Mills Ltd.	NSI
+ABIRLANUV.NS	Aditya Birla Nuvo Limited	NSI
+ABIRLANUV.NS	Aditya Birla Nuvo Limited	NSI
+ARIHCAPM.BO	Arihant Capital Markets Limited	BSE
+ADTYFRG.BO	Aditya Forge Ltd	BSE
+NRAGRINDQ.BO	NR Agarwal Industries Ltd	BSE
+AKARLAMI.BO	AKAR LAMINAT	BSE
+KALECONSUL.BO	Accelya Kale Solutions Ltd	BSE
+HINDAPL.BO	Hindustan Appliances Ltd	BSE
+BALASTEEL.NS	Jai Balaji Sponge Limtied	NSI
+SREERAYA.BO	Sree Rayalaseema Alkalies & Allied Chemicals Ltd	BSE
+GUJPOLYA.BO	Gujarat Poly-AVX Electronics Ltd.	BSE
+ARCHSOFT.BO	Archana Software Ltd.	BSE
+EMKAR.BO	EMKAY AROMAT	BSE
+ABCIL.BO	Aditya Birla Chemicals (India) Ltd.	BSE
+HIMATAUT.BO	Himatsingka Auto Enterprises Ltd	BSE
+MANINFRA.NS	Man Infraconstruction Ltd.	NSI
+AURANPAP.BO	Aurangabad Paper Mills Ltd	BSE
+DRAGARWQ.BO	Dr. Agarwal'S Eye Hospital Ltd	BSE
+ALEMBICBBPH.BO	ALEMBIC LTD*	BSE
+ACESOFT.BO	Ace Software Exports Ltd.	BSE
+TANAA.BO	Taneja Aerospace & Aviation Ltd.	BSE
+ARCADIA.BO	ARCADIA MER	BSE
+CAMPHOR.BO	Camphor & Allied Products Ltd.	BSE
+UNQAGRO.BO	Unique AGro Processors (India) Ltd	BSE
+AMARDEE.BO	Amradeep Industries Ltd.	BSE
+ENRICH.BO	Anar Industries Ltd	BSE
+ASEEMG.BO	ASEEM GLOBAL	BSE
+PIPAVAVDO.NS	PIPAVAV DEFENCE & OFFSHORE ENG 	NSI
+PARAL.BO	Parekh Aluminex Ltd.	BSE
+ALCHEMISTSL.BO	ALCHEMIST LT	BSE
+KAYPOWR.BO	Kay Power and Paper Ltd	BSE
+AMDIND.NS	AMD Industries Ltd.	NSI
+AUTOLITIN.NS	AUTOLITE (INDIA) LTD	NSI
+ASHAPURMI.NS	Ashapura Minechem Ltd.	NSI
+SUTLEJTEX.NS	Sutlej Textiles And Industries Ltd	NSI
+SHBAJRG.BO	Shri Bajrang Alloys Limited	BSE
+ADSLBBPH.BO	ALLIEDDIG*	BSE
+ABACUS.BO	ABACUS COMPU	BSE
+AIL.NS	ALSTOM PROJECTS INDIA LTD	NSI
+AVTNPL.BO	AVT Natural Products Ltd.	BSE
+ACROW.BO	Acrow India Ltd.	BSE
+GRABALALK.BO	Grabal Alok Impex Ltd.	BSE
+ALFALAVAL.BO	Alfa Laval (India) Ltd.	BSE
+APTECH.BO	Aptech Ltd.	BSE
+LANABS.NS	LANXESS ABS Limited	NSI
+ASSOSTNB.BO	Associated Stone Industries (Kotah) Ltd.	BSE
+MRPL.NS	Mangalore Refinery and Petrochemicals Ltd.	NSI
+ABB.BO	ABB Ltd (India)	BSE
+ESSDEE.NS	ESS DEE Aluminium Ltd.	NSI
+ADVANTA.BO	Advanta India Ltd.	BSE
+ARUNJYOTI.BO	Arunjyoti Enterprises Ltd.	BSE
+BABA.BO	Baba Arts Ltd.	BSE
+GIRDSGA.BO	Girdharilal Sugar & Allied Industries Ltd	BSE
+AVINF.BO	AVINASH INFO	BSE
+SEASTAG.BO	SOUTHEAST AG	BSE
+FACORALL.BO	Facor Alloys Ltd.	BSE
+AVANTIFE.BO	Avanti Feeds Ltd	BSE
+DESHRAK.BO	Desh Rakshak Aushdhalaya Ltd	BSE
+AMARJOTHI.NS	Amarjothi Spinning Mills Ltd.	NSI
+INDOASIAF.BO	Indo Asian Finance Ltd.	BSE
+AXISITNT.BO	Axis-It&T Ltd.	BSE
+ATHENA.BO	ATHENA FIN	BSE
+BLKASHYAP.BO	B L Kashyap and Sons Ltd.	BSE
+ASHISHPO.BO	Ashish Polyplast Ltd.	BSE
+ADINATHBI.BO	Adinath Bio-Labs Ltd.	BSE
+AHLEAST.NS	Asian Hotels (East) Ltd.	NSI
+SRIOMTR.BO	Emergent Energy and Services Ltd	BSE
+GAEL.NS	Gujarat Ambuja Exports Ltd.	NSI
+AGRODUT.BO	Agro Dutch Industries Ltd.	BSE
+USHERAGRO.NS	Usher Agro Ltd.	NSI
+SHREAMBP.BO	SH AMBESH PA	BSE
+APLAB.BO	Aplab Ltd.	BSE
+ABG.BO	ABG Infralogistics Ltd.	BSE
+AREVA.BO	ALSTOM T&D India Ltd	BSE
+REIAGRO.NS	REI AGRO LIMITED	NSI
+ANGIND.BO	ANGIND	BSE
+ADAMCO.BO	Adam Comsof Ltd	BSE
+ALLCARGO.BO	Allcargo Logistics Ltd	BSE
+ADVENT.BO	Advent Computer Services Ltd.	BSE
+APEXINT.BO	APEX INTER L	BSE
+AVIPHOT.BO	AVI PHOTOCHM	BSE
+PENNARAL.BO	Pennar Aluminium Company Limited	BSE
+AROGRANI.BO	Aro Granite Industries Limited	BSE
+ACLQF.BO	AMBUJA CEME	BSE
+SHIVAAGRO.BO	SHIVA AGRO	BSE
+INDOBRIT.BO	Indo Britain AGro Farms Ltd	BSE
+ASHOKLEYSL.BO	ASHOK LEYLND	BSE
+MAHAPEX.BO	Maharashtra Apex Corporation Ltd.	BSE
+ANANDCR.BO	Anand Credit Ltd	BSE
+SHIVAM.BO	Shivam Autotech Ltd.	BSE
+BAJAJAUTQF.BO	BAJAJ AUTO	BSE
+TATACOMM.NS	Tata Communications, Ltd.	NSI
+ASIANHOTN.NS	Asian Hotels (North) Ltd.	NSI
+ASTEC.NS	Astec Lifesciences Ltd.	NSI
+AUROB.BO	AUROBIN PHAR	BSE
+RAMANEWSPR.BO	Rama Newsprint And Papers Limited	BSE
+ACCELYA.NS		NSI
+BHARTIARQF.BO	BHARTI ARTL	BSE
+GACLSL.BO	GUJARAT AMBU	BSE
+MUKTAARTS.NS	Mukta Arts Ltd.	NSI
+APOLLOHOSP.BO	Apollo Hospitals Enterprise Ltd	BSE
+AAREYDRUGLR.BO	AAREYDRUGLR	BSE
+BAJAJ-AUT.NS	Bajaj Auto Ltd.	NSI
+AGSINFO.BO	AGS INFO	BSE
+SAMINDUS.NS	SAM Industries Limited 	NSI
+BFIL.BO	Bharat Agri Fert & Realty Ltd	BSE
+ADFFOODQ.BO	ADF Foods Ltd.	BSE
+RAMANEWS.NS	Rama Newsprint And Papers Limited	NSI
+SEJALGLAS.NS	Sejal Architectural Glass 	NSI
+AGARIND.BO	Agarwal Industrial Corporation Ltd.	BSE
+ARORAFIB.BO	Arora Fibres Limited	BSE
+ARHTIND.BO	ARHAT INDUST	BSE
+AARYAGLOBL.BO	AARYAGLOBL	BSE
+ANIKINDS.BO	Anik Industries Limited	BSE
+PASUPATI.NS	Pasupati Fabrics Limited	NSI
+DINSHAL.BO	Dinesh Allorga Ltd.	BSE
+GUJCARB.BO	Gujarat Carbon And Industries Limited	BSE
+INDACRY.BO	Indian Acrylics Ltd.	BSE
+PONDYOXC.BO	Pondy Oxides And Chemicals Limited	BSE
+PRIMAGR.BO	Prima Agro Ltd	BSE
+ASTERSILI.BO	ASTER SILICATES LTD INR10	BSE
+SOASMUS.BO	SOUTH ASIAN	BSE
+ALEMPHARM.BO	ALEM PHARMA	BSE
+AECENTP.BO	AEC ENTERPRI	BSE
+GANDHIAP.BO	Butterfly Gandhimathi Appliances Ltd	BSE
+AROMAENT.BO	AROMA ENT	BSE
+ASHIHOU.BO	Ashiana Housing Ltd.	BSE
+ARROWGROU.NS	Arrow Webtex Limited 	NSI
+SAYAHOU.BO	Asya Infrastructure and Tourism Corporation Limited	BSE
+AJMERA.BO	Ajmera Realty & Infra India Ltd.	BSE
+GALKL.BO	GUJARAT ALKL	BSE
+ADHUNIK.BO	Adhunik Metaliks Ltd.	BSE
+PPAP.BO	Precision Pipes And Profiles Company Ltd.	BSE
+AURUMSOFT.BO	AURUM SOFT	BSE
+ADDIND.BO	Addi Industries	BSE
+ARCHIDPLY.BO	Archidply Industries Ltd.	BSE
+ALUFLUOR.BO	Alufluoride Ltd.	BSE
+COMPEAU.BO	Competent Automobiles Co.	BSE
+RAJRAYON.NS	Raj Rayon Ltd.	NSI
+AARTIIND.NS	Aarti Industries Ltd.	NSI
+AASHEESH.BO	Aasheesh Securities Ltd.	BSE
+ASTRAZEN.BO	AstraZeneca Pharma India Ltd.	BSE
+STRIDESSL.BO	STRIDES ARCO	BSE
+JAINEX.BO	Jainex Aamcol Ltd.	BSE
+ASIANFR.BO	Asian Fertilizers Ltd	BSE
+SBBJ.NS	State Bank Of Bikaner And Jaipur	NSI
+UMREAGR.BO	UMRED AGRO	BSE
+DATASOFT.BO	Datasoft Application Software India Ltd.	BSE
+AIMCO.BO	Aimco Pesticides Ltd.	BSE
+AHMEDGA.BO	Ahmedabad Gases Ltd.	BSE
+APARINDS.NS	Apar Industries Ltd.	NSI
+PARAL.BO	Parekh Aluminex Ltd.	BSE
+ARSHIYA.BO	Arshiya International Ltd.	BSE
+SAFIN.BO	S.A.FIN.EX	BSE
+GILLANDER.BO	Gillanders Arbuthnot & Company Ltd.	BSE
+ARUNAHTEL.BO	Aruna Hotels Ltd.	BSE
+BLUECOAST.NS	Blue Coast Hotels Ltd	NSI
+ANDHRABNQF.BO	ANDHRA BANK	BSE
+ASAL.BO	Automotive Stampings & Assemblies Ltd.	BSE
+ALMONDZ.BO	Almondz Capital And Management Services Ltd.	BSE
+MADHAVMA.BO	Madhav Marbles And Granites Ltd.	BSE
+MULTIARC.BO	MULTI ARC IN(BSE INDONEXT)	BSE
+AROCSIL.BO	AROCHEM SILV	BSE
+STAR.NS	Strides Arcolab Ltd.	NSI
+ALERPTR.BO	ALERT PETRO	BSE
+ALKADIA.BO	Alka Diamond Industries Ltd	BSE
+GOYALASS.BO	GOYAL ASSOCI	BSE
+HINDALUMI.BO	Hind Aluminium Industries Ltd	BSE
+AFL.BO	Accel Frontline Ltd.	BSE
+ASAHISONG.NS	Asahi Songwon Color Ltd 	NSI
+ARVINDIN.BO	Arvind International Ltd	BSE
+ALFREDHE.BO	Alfred Herbert India Ltd.	BSE
+SURANAT&P.NS	Surana Telecom and Power Ltd	NSI
+ARISE.BO	Arihants Securities Ltd	BSE
+VALLYAB.BO	Valley Abrasives Ltd	BSE
+ASHNOOR.BO	Ashnoor Textile Mills Ltd.	BSE
+ASIANTNE.BO	Asian Tea & Exports Ltd.	BSE
+ESSARPORT.NS	Essar Ship Port & Log Ltd	NSI
+GSAUTO.BO	GS Auto International Limited	BSE
+EMPSC.BO	Empee Sugars And Chemicals Ltd.	BSE
+IVRCLAH.NS	IVRCL Assets & Holdings Ltd.	NSI
+ATLANTA.NS	Atlanta Ltd.	NSI
+ACEEDU.BO	ACE EDU	BSE
+AKCAPIT.BO	A.K. Capital Services Ltd	BSE
+NAHARSPIN.NS	Nahar Spinning Mills Ltd.	NSI
+CRESTANI.NS	Crest Animation Studios Ltd.	NSI
+AKZOINDIA.NS	Akzo Nobel India Ltd	NSI
+AHMDSTE.BO	Ahmedabad Steelcraft Ltd.	BSE
+ASIANPAIN.NS	Asian Paints Ltd.	NSI
+NRMAGRO.BO	RATNAMANI AGRO LNDUSTRIES LTD I	BSE
+ADLABSFIL.NS	ADLABS FILMS LTD	NSI
+OISL.NS	OCL Iron and Steel Ltd.	NSI
+ASHAI.BO	Ashiana Agro Industries Ltd.	BSE
+ARROWTEX.NS	Arrow Textiles Limited 	NSI
+ARVINPRO.BO	Arvind Products Ltd.	BSE
+AVIVA.BO	Aviva Industries Ltd	BSE
+CRBARIH.BO	CRB-ARIHANT	BSE
+PALCRED.BO	Pal Credit And Capital Ltd.	BSE
+AMRAPLIN.BO	Amrapali Industries Ltd.	BSE
+ADMANUM.BO	Ad-Manum Finance Ltd.	BSE
+ANANTRJSL.BO	ANANT RAJ IN	BSE
+AMNPLST.BO	Amines & Plasticizers Ltd.	BSE
+ELDEHSG.BO	Eldeco Housing And Industries Ltd.	BSE
+NAHARCAP.NS	Nahar Capital & Financial Services Ltd.	NSI
+AHURAWE.BO	AHURA WELDIN	BSE
+GUJALKALI.BO	Gujarat Alkalies & Chemicals Ltd.	BSE
+ANSINDUS.BO	ANSINDUS	BSE
+APCOTEX.BO	Apcotex Industries Ltd.	BSE
+ANSALINFR.BO	Ansal Properties & Infrastructure Ltd.	BSE
+SHEETALB.BO	Sheetal Bio-Agro Tech Ltd.	BSE
+ALACRIEL.BO	ALACRIT ELEC	BSE
+SAENTER.BO	South Asian Enterprises Ltd.	BSE
+RCF.NS	Rashtriya Chemicals and Fertilizers Ltd.	NSI
+NATHSEED.NS	Nath Seeds Limited 	NSI
+ASCL.BO	Asahi Songwon Colors Ltd.	BSE
+AIAENG.BO	AIA Engineering Ltd.	BSE
+SEENTSOL.BO	Serve All Enterprise Solutions Ltd.	BSE
+NAGREEKA.NS	Jayaswals Neco Ltd	NSI
+PNG.BO	Procter & Gamble Hygiene and Health Care Limited	BSE
+RUCHISTR.BO	Ruchi Strips & Alloys Ltd	BSE
+NICCOUCO.BO	Nicco Uco Alliance Credit Ltd.	BSE
+APLAPOLL.BO	APL APOLL	BSE
+AJANTSOY.BO	Ajanta Soya Ltd.	BSE
+GGAUTO.BO	G G AUTOMOTI	BSE
+ACCUEXPO.BO	Accurate Exports Limited	BSE
+AVSINDU-B.BO	AVS INDUSTR.	BSE
+ASHIS.BO	Ashiana Ispat Ltd.	BSE
+ADVLIFE.BO	ADV LIFESTY	BSE
+AMBALALSA.BO	Ambalal Sarabhai Enterprises Ltd.	BSE
+RASEXTR.BO	R.A.S.EXTRU	BSE
+SPICEISL.BO	Spice Islands Apparels Ltd.	BSE
+ARIHFOU.BO	Arihant Foundations & Housing Ltd.	BSE
+BHEL.NS	Bharat Heavy Electricals Ltd.	NSI
+SBIN.NS	State Bank of India	NSI
+TATAMOTORS.BO	Tata Motors, Ltd.	BSE
+SPICEJET.BO	Spicejet Ltd.	BSE
+RIL.BO	Reliance Industries Ltd.	BSE
+NOCIL.BO	NOCIL Ltd.	BSE
+AXISBANK.NS	Axis Bank Ltd.	NSI
+TCS.BO	Tata Consultancy Services Ltd.	BSE
+SBI.BO	State Bank of India	BSE
+ICICIBANK.NS	ICICI Bank Ltd	NSI
+HDIL.BO	Housing Development & Infrastructure Ltd.	BSE
+BHEL.BO	Bharat Heavy Electricals Ltd.	BSE
+BHARTIARTL.BO	Bharti Airtel Ltd.	BSE
+SUZLON.BO	Suzlon Energy Ltd.	BSE
+XCLCROP.BO	Excel Crop Care Ltd.	BSE
+SIEMENS.BO	Siemens Ltd.	BSE
+RCOM.BO	Reliance Communications Limited	BSE
+JINDALSTEEL.BO	Jindal Steel & Power Ltd.	BSE
+HUL.BO	Hindustan Unilever Ltd.	BSE
+RANBAXY.BO	Ranbaxy Laboratories Ltd.	BSE
+TATASTEEL.NS	Tata Steel Ltd.	NSI
+BHEL.NS	Bharat Heavy Electricals Ltd.	NSI
+DLF.NS	DLF Ltd.	NSI
+AXISBANK.NS	Axis Bank Ltd.	NSI
+HINDALCO.NS	Hindalco Industries Ltd.	NSI
+BHEL.BO	Bharat Heavy Electricals Ltd.	BSE
+SUZLON.BO	Suzlon Energy Ltd.	BSE
+XCLCROP.BO	Excel Crop Care Ltd.	BSE
+RCOM.NS	Reliance Communications Limited	NSI
+SUZLON.NS	Suzlon Energy Ltd.	NSI
+THINKSOFT.NS	Thinksoft Global Services Ltd.	NSI
+EDUCOMP.NS	Educomp Solutions Ltd.	NSI
+HINDUNILV.NS	Hindustan Unilever Ltd.	NSI
+HDIL.NS	Housing Development & Infrastructure Ltd.	NSI
+RPOWER.NS	Reliance Power Ltd.	NSI
+IDFC.NS	IDFC Ltd	NSI
+RELINFRA.NS	Reliance Infrastructure Ltd.	NSI
+KFA.NS	Kingfisher Airlines Ltd.	NSI
+GMRINFRA.NS	GMR Infrastructure Ltd.	NSI
+ADANIENT.NS	Adani Enterprises Ltd.	NSI
+YESBANK.NS	Yes Bank Ltd.	NSI
+TECHM.NS	Tech Mahindra Ltd.	NSI
+BHARTIART.NS	Bharti Airtel Ltd.	NSI
+ZEEL.NS	Zee Entertainment Enterprises Ltd.	NSI
+SUNTV.NS	Sun TV Network Ltd.	NSI
+ISPATIND.NS	JSW ISPAT Steel Ltd	NSI
+IBSEC.NS	Indiabulls Securities Ltd.	NSI
+IBREALEST.NS	Indiabulls Real Estate Ltd.	NSI
+HCC.NS	Hindustan Construction Company Ltd.	NSI
+CENTRALBK.NS	Central Bank of India	NSI
+UFLEX.NS	Uflex Ltd.	NSI
+TULIP.NS	Tulip Telecom Ltd.	NSI
+TATAMTRDV.NS	Tata Motors Limited	NSI
+PFC.NS	Power Finance Corporation Limited	NSI
+NETWORK18.NS	Network 18 Media & Investments Ltd.	NSI
+MUNDRAPOR.NS	Adani Ports & Special Economic Zone Ltd	NSI
+KIRLOSOIL.NS	KIRLOSKAR OIL ENGINES LTD	NSI
+IRB.NS	IRB Infrastructure Developers Ltd.	NSI
+GAEL.BO	Gujarat Ambuja Exports Ltd.	BSE
+WWIL.NS	Siti Cable Network Ltd	NSI
+VARUN.NS	Varun Industries Ltd.	NSI
+VALECHAEN.NS	Valecha Engineering Ltd.	NSI
+SUNILHITEC.BO	Sunil Hitech Engineers Ltd.	BSE
+SHREEASHT.NS	Shree Ashtavinayak Cine Vision Ltd.	NSI
+SELMCL.NS	SEL Manufacturing Company Ltd.	NSI
+RENUKA.NS	Shree Renuka Sugars Limited	NSI
+RECLTD.NS	Rural Electrification Corporation Ltd.	NSI
+POWERGRID.NS	Power Grid Corporation Of India Ltd.	NSI
+PILANIINV.NS	Pilani Invest & Ind Ltd	NSI
+PATELENG.NS	Patel Engineering Ltd.	NSI
+PATELEN.BO	Patel Engineering Ltd.	BSE
+NMDC.NS	NMDC Ltd.	NSI
+NFL.NS	National Fertilizers Ltd.	NSI
+MOUNTEVE.BO	Mount Everest Mineral Water Ltd.	BSE
+MCX.NS	Multi Commodity Exchange	NSI
+JPPOWER.NS	Jaiprakash Power Ventures Ltd.	NSI
+IGPL.NS	Ig Petrochemicals Ltd	NSI
+GVKPIL.NS	GVK Power & Infrastructure Ltd.	NSI
+GODREJPRO.NS	Godrej Properties Ltd.	NSI
+EXCELCROP.NS	Excel Crop Care Ltd.	NSI
+ELGIEQUIP.NS	Elgi Equipments Ltd.	NSI
+ELECTCAST.NS	Electrosteel Castings Ltd.	NSI
+DELTACORP.NS	Delta Corp Ltd	NSI
+CAIRN.NS	Cairn India Ltd.	NSI
+ADANIPOWE.NS	Adani Power Ltd.	NSI
+ADANIENTE.BO	Adani Enterprises Ltd.	BSE
+ACE.BO	Action Construction Equipment Ltd.	BSE
+ZENITHEX.BO	Zenith Exports Ltd.	BSE
+ZEEENTER.BO	Zee Entertainment Enterprises Ltd.	BSE
+ZANDUREAL.NS	Zandu Realty Ltd.	NSI
+WSI.NS	W S Industries (I) Ltd.	NSI
+UNIPHOS.BO	Uniphos Enterprises Ltd	BSE
+UBL.NS	United Breweries Ltd.	NSI
+UBHOLDING.NS	United Breweries holdings	NSI
+UBENG.BO	UB Engineering Ltd.	BSE
+TRIVENI.NS	Triveni Engineering & Industries Limited	NSI
+TRIGYN.NS	Trigyn Technologies Ltd	NSI
+TREEHOUSE.NS	Tree House Edu Ltd	NSI
+TFL.NS	Transwarranty Finance Ltd	NSI
+TATACOFFE.NS	Tata Coffee Ltd.	NSI
+TASTYBIT.BO	Tasty Bite Eatables Limited	BSE
+TANTIACON.NS	Tantia Constructions Ltd	NSI
+SWISSGLA.BO	Swiss Glascoat Equipments Limited	BSE
+STRTECH.NS	Sterlite Technologies Ltd.	NSI
+SSLEL.BO	Sir Shadi Lal Enterprises Ltd.	BSE
+SRMENERGY.BO	SRM Energy Ltd	BSE
+SREINFRA.NS	Srei Infrastructure Finance Ltd.	NSI
+SJVN.NS	SJVN Ltd.	NSI
+SHHARICH.BO	Shree Hari Chemicals Export Limited	BSE
+SERVOTEC.BO	Servotech Engineering Industries Ltd	BSE
+SEINV.NS	S.E. INVESTMENTS LIMITED	NSI
+SANWARIA.NS	Sanwaria Agro Oils Ltd.	NSI
+SAHARA.BO	Sahara One Media & Entertainment Ltd.	BSE
+RMCL.NS	Radha Madhav Corporation Ltd.	NSI
+REVATHI.NS	Revathi Equipment Ltd.	NSI
+REIAGROLT.NS	REI Agro Ltd	NSI
+RASOYPR.NS	Rasoya Proteins Ltd	NSI
+RASIELEC.BO	Rasi Electrodes Ltd.	BSE
+RANENG.BO	Rane Engine Valve Ltd.	BSE
+RAJTV.NS	Raj Television Network Ltd.	NSI
+PUNJLLOYD.NS	Punj Lloyd Limited	NSI
+PROZONE.NS	Prozone Cap Shop Centers 	NSI
+PREMIER.NS	Premier Ltd.	NSI
+PIRHEALTH.NS	Piramal Enterprises Ltd	NSI
+PETRONENG.NS	Petron Engineering Construction Ltd.	NSI
+PAGEIND.NS	Page Industries Ltd.	NSI
+ORICON.BO	Oricon Enterprises Limited	BSE
+ORBITCORP.NS	Orbit Corporation Ltd.	NSI
+NITESHEST.BO	NITESH EST	BSE
+NANDAN.BO	Nandan Exim Ltd.	BSE
+NAGAROIL.NS	Nagarjuna Oil Refinery 	NSI
+MORARJETE.NS	Morarjee Textiles Ltd.	NSI
+MICROTECH.NS	Micro Technologies India Ltd.	NSI
+MCNALLYB.BO	McNally Bharat Engineering Company Ltd.	BSE
+MATHEWE.BO	Mathew Easow Research Securities Ltd.	BSE
+MANALU.NS	Maan Aluminium Ltd.	NSI
+LOTUSEYE.BO	Lotus Eye Care Hospital Ltd.	BSE
+KSK.NS	KSK Energy Ventures Ltd.	NSI
+KEMIE.BO	Kemrock Industries & Exports Ltd.	BSE
+KAVVERITE.NS	Kavveri Telecom Products Ltd.	NSI
+KALINDRA.BO	Kalindee Rail Nirman (Engineers) Ltd.	BSE
+JYOTHYLAB.NS	Jyothy Laboratories Ltd.	NSI
+JKIL.NS	J Kumar Infraprojects Ltd.	NSI
+JINDALSWH.NS	Jindal South West Holdings Ltd.	NSI
+JCTEL.NS	JCT Electronics Ltd.	NSI
+JAIBALAJI.NS	Jai Balaji Industries Ltd.	NSI
+INVENTURE.NS	Inventure Gro & Sec Ltd 	NSI
+INDOWIND.BO	Indowind Energy Ltd.	BSE
+INDIANIPPON.BO	India Nippon Electricals Ltd.	BSE
+HTMTGLOBA.NS	HTMT Global Solutions Ltd 	NSI
+HSIL.NS	HSIL Ltd	NSI
+HINDOILEXP.BO	Hindustan Oil Exploration Company Ltd.	BSE
+HCIL.NS	Himadri Chemicals & Industries Limited	NSI
+HATHWAY.NS	Hathway Cable & Datacom Ltd.	NSI
+HANUNG.NS	Hanung Toys & Textiles Ltd.	NSI
+GTLINFRA.NS	Gtl Infrastructure Ltd.	NSI
+GRANULES.NS	Granules India Ltd.	NSI
+GOACARBON.NS	Goa Carbon Ltd.	NSI
+GLODYNE.NS	Glodyne Technoserve Ltd.	NSI
+GKWLIMITE.NS	GKW Ltd.	NSI
+GITANJALI.NS	Gitanjali Gems Ltd.	NSI
+GANPOLY.BO	Ganesha Ecosphere Ltd	BSE
+FEDDERLOY.NS	Fedders Lloyd Corporation Ltd.	NSI
+FCSSOFT.NS	FCS Software Solutions Ltd.	NSI
+EUROSOFT.BO	EUROPE SOF A	BSE
+ESCORTS.NS	Escorts Ltd.	NSI
+ESARIND.BO	Esaar India Ltd	BSE
+ENGINERSI.NS	Engineers India Ltd.	NSI
+ENERGY.BO	Energy Development Company Ltd.	BSE
+EMPIND.BO	Empire Industries Ltd.	BSE
+EMMSONS.BO	Emmsons International Ltd.	BSE
+EMCO.NS	EMCo., Ltd.	NSI
+EMAMI.BO	Emami Ltd.	BSE
+ELGIEQUIP.BO	Elgi Equipments Ltd.	BSE
+ELEMARB.BO	Elegant Marbles & Grani Industries Ltd.	BSE
+ELBEE.BO	Elbee Services Ltd.	BSE
+ECORECO.BO	ECORECO	BSE
+ECLERX.BO	eClerx Services Ltd.	BSE
+EASUG.BO	Eastern Sugar And Industries Ltd.	BSE
+DISHTV.NS	Dish TV India Ltd.	NSI
+DCB.NS	Development Credit Bank Limited	NSI
+CORDSCABL.NS	Cords Cable Industries Ltd.	NSI
+COLPAL.NS	Colgate-Palmolive (India) Ltd.	NSI
+CMAHENDRA.BO	C MAHENDRA EXPORTS LTD INR10	BSE
+CERA.NS	Cera Sanitaryware Ltd.	NSI
+CEATLTD.NS	Ceat Ltd.	NSI
+BSTCR.BO	Best & Crompton Engineering Ltd.	BSE
+BRIGADE.BO	Brigade Enterprises Ltd.	BSE
+BRANDHOUS.NS	Brandhouse Retails Ltd.	NSI
+BGRENERGY.NS	BGR Energy Systems Ltd.	NSI
+BGRENERGY.BO	BGR Energy Systems Ltd.	BSE
+BAFEG.BO	Baffin Engineering Projects Ltd.	BSE
+AUSOMENT.NS	Core Emballage Ltd.	NSI
+ATHARVENT.BO	Atharv Enterprises Limited	BSE
+ASSAMCO.NS	Assam Co India Ltd.	NSI
+ARVINDREM.NS	Arvind Remedies Limited	NSI
+ARTSONEN.BO	Artson Engineering Ltd.	BSE
+APCOTEXIN.NS	Apcotex Industries Ltd.	NSI
+ANANTRAJ.NS	Anant Raj Ltd	NSI
+AMBJELE.BO	AMBUJA ELEC.	BSE
+ALUMECO.BO	Alumeco India Extrusion Limited	BSE
+AFTEK.NS	Aftek Ltd.	NSI
+ADVANTA.NS	Advanta India Ltd.	NSI
+ADSL.NS	Allied Digital Services Ltd.	NSI
+ADHUNIK.NS	Adhunik Metaliks Ltd.	NSI
+ACE.NS	Action Construction Equipment Ltd.	NSI
+ABCIL.NS	Aditya Birla Chemicals (India) Ltd.	NSI
+AARVEEDEN.NS	Aarvee Denims & Exports Ltd	NSI
+DALMIASUG.NS	Dalmia Bharat Sugar and Industries Ltd.	NSI
+FIRSTWIN.NS	First Winner Industries L 	NSI
+EPICENZY.BO	EPIC Enzymes Pharmaceuticals & Industrial Chemicals Ltd.	BSE
+KARMAENRG.BO	KARMA ENERG	BSE
+CINEMAX.NS	Cinemax Properties Ltd	NSI
+BHANDHOS.BO	Bhandari Hosiery Exports Ltd.	BSE
+AMLSTEEL.NS	AML Steel Limited	NSI
+VENLONENT.BO	Venlon Enterprises Ltd.	BSE
+XCLGLASS.BO	Excel Glasses Ltd.	BSE
+NECLIFE.NS	Nectar Lifesciences Ltd.	NSI
+JKTYRE.NS	JK Tyre & Industries Ltd.	NSI
+PARAPRINT.NS	Paramount Printpack Ltd 	NSI
+ESSARPORTS.BO	ESSAR PORTS	BSE
+TRNSPEN.BO	TRANSPOW.ENG	BSE
+ESSARSHPN.NS	Essar Shipping Limited 	NSI
+MIRC.BO	MIRC Electronics Ltd.	BSE
+SCHNEIDER.NS	Schneider Electric Infra	NSI
+SUBHLTR.BO	SUBHLAXMI EX	BSE
+GLXYENT.BO	Galaxy Entertainment Corporation Ltd.	BSE
+AGCNET.NS	AGC Networks Ltd.	NSI
+KARURKCP.NS	Karur KCP Packkagings Ltd	NSI
+IBPOW.NS	Indiabulls Power Ltd.	NSI
+EUROASIA.BO	EURO ASIA	BSE
+GESHIPPIN.NS	GREAT EASTERN SHIPPING CO	NSI
+IECEDU.BO	IEC Education Ltd.	BSE
+MVLIND.NS	MVL Industries Ltd.	NSI
+EDSERVSOF.BO	Edserv Softsystems Ltd.	BSE
+EDL.BO	Empee Distilleries Ltd.	BSE
+FIEMIND.NS	FIEM Industries Ltd.	NSI
+MANAKSIA.NS	Manaksia Ltd.	NSI
+DATAMATIC.NS	Datamatics Global Services Ltd	NSI
+JMTAUTOLT.NS	JMT Auto Ltd.	NSI
+SAKTHIFIN.NS	Sakthi Finance Limited	NSI
+TECHNO.NS	Techno Elt & Eng Co. Ltd	NSI
+ZENITHEXP.NS	Zenith Exports Ltd.	NSI
+KOKUYOCML.NS	KOKUYO CAMLIN LTD INR1	NSI
+BAJFINANC.NS	BAJAJ FINANCE LIMITED	NSI
+COREEMBLG.NS	CORE EMBALLAGE LTD	NSI
+JSWENERGY.NS	JSW Energy Ltd.	NSI
+TECHNOFAB.BO	Technofab Engineering Ltd.	BSE
+CMAHENDRA.NS	C MAHENDRA EXPORTS LTD INR10	NSI
+ELLOPAP.BO	Ellora Paper Mills Ltd.	BSE
+V2RETAIL.NS		NSI
+AMBIKCO.NS	Ambika Cotton Mills Ltd.	NSI
+BELSL.BO	BHARAT ELECT	BSE
+HINDEVER.BO	Hindustan Everest Tools Ltd.	BSE
+AKRUTI.NS	Akruti Nirman Limited	NSI
+EIHAHOTEL.NS	EIH Associated Hotels Ltd.	NSI
+CANTABIL.NS	CANTABIL RETAIL LTD	NSI
+COROMANDE.NS	Coromandel International Ltd.	NSI
+ASHCO.NS	Ashco Niulab Industries Ltd.	NSI
+MSPL.NS	MSP Steel & Power Ltd.	NSI
+WINSOMEDJ.NS		NSI
+GSPL.NS	Gujarat State Petronet Ltd.	NSI
+VASWANI.NS	VASWANI IND LTD 	NSI
+KINETICE.BO	Kinetic Engineering Ltd.	BSE
+ECEINDBBPH.BO	ECE IND*	BSE
+EONELECT.BO		BSE
+GRAVITA.NS	GRAVITA INDIA LIMITED	NSI
+MANINDS.NS	Man Industries (India) Ltd.	NSI
+GUJAPOLEQ.NS	GUJARAT APOLLO EQUIP LTD. 	NSI
+EICLLTD.BO	EICL LTD	BSE
+EXELON.BO	Exelon Infrastructure Ltd	BSE
+EXIDEIND.BO	Exide Industries Ltd.	BSE
+ACKRUTI.NS	Hubtown Ltd	NSI
+VICEROY.NS	Viceroy Hotels Ltd.	NSI
+AUTOIND.NS	Autoline Industries Ltd.	NSI
+THOMASCOT.NS	Thomas Scott (India) Ltd 	NSI
+SADBHAVSL.BO	SADBHAV ENGG	BSE
+SIYSIL.NS	Siyaram Silk Mills Ltd	NSI
+STARVOX.BO	STARVOX ELEC	BSE
+INDIANB.NS	Indian Bank	NSI
+ORIENTCER.NS	Orient Bell Ltd	NSI
+UTTAMSUGA.NS	Uttam Sugar Mills Ltd.	NSI
+MUKANDENG.NS	Mukand Engineers Ltd.	NSI
+ABIRLANUV.NS	Aditya Birla Nuvo Limited	NSI
+TULSYAN.NS	Tulsyan Nec Ltd.	NSI
+ENILSL.BO	ENT NETWORK	BSE
+SRHHLINDS.NS	SRHHL Industries Ltd.	NSI
+PONNIEROD.NS	Ponni Sugars (Erode) Ltd.	NSI
+SATELENG.BO	Satellite Engineering Ltd.	BSE
+IBN18.NS	TV18 Broadcast Ltd	NSI
+BALASTEEL.NS	Jai Balaji Sponge Limtied	NSI
+GUJPOLYA.BO	Gujarat Poly-AVX Electronics Ltd.	BSE
+EMKAR.BO	EMKAY AROMAT	BSE
+GESHIPQF.BO	GREAT EASTE	BSE
+HIMATAUT.BO	Himatsingka Auto Enterprises Ltd	BSE
+ICRA.NS	ICRA Ltd.	NSI
+MAXWELL.NS	Maxwell Industries Ltd.	NSI
+MANINFRA.NS	Man Infraconstruction Ltd.	NSI
+CONART.BO	Conart Engineers Limited	BSE
+DRAGARWQ.BO	Dr. Agarwal'S Eye Hospital Ltd	BSE
+SUNEART.BO	SUN EARTH CE	BSE
+ESSARSEC.BO	ESSAR SECU	BSE
+M&MFIN.NS	Mahindra & Mahindra Financial Services Ltd.	NSI
+CINEPRO.NS	Cinemax India Limited 	NSI
+VTL.NS	Vardhman Textiles Ltd.	NSI
+RAASIENT.BO	Raasi Enterprises Limited	BSE
+LOGIXMICR.NS	Logix Microsystems Ltd.	NSI
+CORALHUB.NS	Coral Hub Ltd.	NSI
+ELANTAS.BO	Elantas Beck India Ltd.	BSE
+ENRICH.BO	Anar Industries Ltd	BSE
+CLNINDIA.NS	Clariant Chemicals India Ltd.	NSI
+PIPAVAVDO.NS	PIPAVAV DEFENCE & OFFSHORE ENG 	NSI
+RML.NS	Rane (Madras) Ltd.	NSI
+NOVA.NS	Nova Petrochem Ltd 	NSI
+ESCORTSF.BO	Escorts Finance Limited	BSE
+EVINIX.BO	Evinix Industries Ltd.	BSE
+BIMETAL.NS	Bimetal Bearings Ltd.	NSI
+ORIENTBEL.NS	ORIENT BELL LTD INR10	NSI
+CELESTIAL.NS	Celestial Biolabs Ltd.	NSI
+PGEL.NS	PG ELECTROPLAST LTD	NSI
+CONEQUE.BO	CONDEQUIP EN	BSE
+KLRF.NS	KLRF Ltd.	NSI
+RANKLIN.NS	Ranklin Solutions Limited 	NSI
+VISHALEXP.NS	Vishal Exports Overseas Ltd.	NSI
+AMDIND.NS	AMD Industries Ltd.	NSI
+PRIMSOL.BO	Prime Solvent Extractions Ltd	BSE
+EONBBPH.BO	EONELEC*	BSE
+NORBTEAEX.NS	Norben Tea & Exports Ltd.	NSI
+PEPL.NS	Pearl Engineering Polymers Ltd.	NSI
+EIHQF.BO	EIH LIMITED	BSE
+EUPLA.BO	EUPHARMA LAB	BSE
+SUTLEJTEX.NS	Sutlej Textiles And Industries Ltd	NSI
+PBAINFRA.NS	PBA Infrastructure Ltd.	NSI
+BARTRONIC.NS	Bartronics India Ltd.	NSI
+EPCIN.BO	EPC Industrial Ltd	BSE
+AIL.NS	ALSTOM PROJECTS INDIA LTD	NSI
+MANUGRAPH.NS	Manugraph India Ltd.	NSI
+SRSLTD.NS	SRS Limited 	NSI
+PROCAL.BO	Procal Electronics India Ltd.	BSE
+MIDVAL.BO	MIDVAL ENT	BSE
+LANABS.NS	LANXESS ABS Limited	NSI
+MALVICAE.BO	Malvica Engineering Ltd.	BSE
+PARADYNE.NS	Paradyne Infotech Limited	NSI
+KHAITANEL.NS	Khaitan Electricals Ltd.	NSI
+VISASTEEL.NS	Visa Steel Ltd.	NSI
+EROSMEDIA.NS	Eros Intl Media Ltd	NSI
+COMPUSOFT.NS	Compucom Software Ltd 	NSI
+ESSDEE.NS	ESS DEE Aluminium Ltd.	NSI
+INOXLEISU.NS	Inox Leisure Ltd.	NSI
+SPECIALIT.NS	SPECIALITY REST LTD	NSI
+INDOPACIF.BO	Indo Pacific Software & Entertainment Ltd.	BSE
+MONNETISP.NS	Monnet Ispat & Energy Ltd	NSI
+RAJOOENG.BO	Rajoo Engineers Ltd.	BSE
+ARUNJYOTI.BO	Arunjyoti Enterprises Ltd.	BSE
+GTOFFSHOR.NS	Gol Offshore Ltd	NSI
+JUBLINDS.NS	JUBILANT INDUSTRIES LTD INR10	NSI
+TRF.NS	TRF Ltd.	NSI
+MEGH.NS	Meghmani Organics Limited	NSI
+GATI.NS	Gati Ltd.	NSI
+DOLPOFF.BO	Dolphin Offshore Enterprises India Ltd.	BSE
+LOKESHMAC.NS	Lokesh Machines Ltd.	NSI
+EXCELINFO.BO	Excel Infoways Ltd.	BSE
+MANGCHEFE.NS	Mangalore Chemicals & Fertilizers Ltd.	NSI
+ORIENTALT.NS	Oriental Trimex Ltd.	NSI
+AMARJOTHI.NS	Amarjothi Spinning Mills Ltd.	NSI
+RAJESHEXP.NS	Rajesh Exports Ltd.	NSI
+BINANICEM.NS	Binani Cement Ltd.	NSI
+KWALITY.NS	Kwality Dairy (India) Ltd.	NSI
+SHAKTIPUM.NS	Shakti Pumps (I) Ltd	NSI
+JAGRAN.NS	Jagran Prakashan Limited	NSI
+NAGREEKCA.NS	Nagreeka Capital & Infrastructre Ltd.	NSI
+TULSI.BO	Tulsi Extrusions Ltd	BSE
+SATKAR.BO	SATKAR ELECT	BSE
+OMMETALS.NS	OM METALS INFRAPRO LTD	NSI
+COMPUAGE.NS	Compuage Infocom Ltd.	NSI
+GPPL.NS	Gujarat Pipavav Port Ltd 	NSI
+ORIENTREF.NS	ORIENT REFRACTORIES LTD	NSI
+PATINTLOG.NS	Patel Integrated Logistics Ltd.	NSI
+TATAELXSI.NS	Tata Elxsi Ltd.	NSI
+ENGLISHIN.BO	EICL Ltd	BSE
+SELAN.BO	Selan Exploration Technology Ltd.	BSE
+RESPONIND.NS	Responsive Industries Ltd	NSI
+PERIATEA.NS	Peria Karamalai Tea & Produce Co., Ltd.	NSI
+AHLEAST.NS	Asian Hotels (East) Ltd.	NSI
+SRIOMTR.BO	Emergent Energy and Services Ltd	BSE
+SPICETELE.NS	Spice Communications Limi 	NSI
+GAEL.NS	Gujarat Ambuja Exports Ltd.	NSI
+SUPRAENG.BO	Suprajit Engineering Ltd.	BSE
+NUCLEUSSOFT.BO	Nucleus Software Exports Ltd.	BSE
+USHERAGRO.NS	Usher Agro Ltd.	NSI
+OMNDE.BO	OMNI DYECH E	BSE
+KIRIINDUS.NS		NSI
+OTOKLIN.BO	Otoklin Plants & Equipments Limited	BSE
+EASTRED.BO	Eastern Treads Ltd.	BSE
+BOSCHLTD.NS	Bosch Ltd.	NSI
+TUMUSEL.BO	TUMUS ELECTR	BSE
+EDELWEISS.NS	Edelweiss Financial Services Ltd	NSI
+SMLISUZU.NS	SML ISUZU LTD INR10	NSI
+VINYLINDI.NS	Vinyl Chemicals (India) Ltd.	NSI
+JAYNECOIN.NS	Jayaswal NECO Industries Ltd.	NSI
+SMENER.BO	SM Energy Teknik & Electronics Ltd.	BSE
+EMERGY.BO	EMERGY PHARM	BSE
+LEENEE.BO	Lee & Nee Softwares (Exports) Ltd.	BSE
+EIHSL.BO	EIH LIMITED	BSE
+BANG.NS	Bang Overseas Ltd.	NSI
+SPANCO.NS	Spanco Limited 	NSI
+JIKIND.NS	JIK Industries Ltd.	NSI
+RELMEDIA.NS	Reliance Mediaworks Ltd.	NSI
+BELLCERAT.NS	Bell Ceramics Ltd.	NSI
+CILNOVA.NS	CIL Nova Petro Chm Ltd 	NSI
+GALLANTT.NS	Gallantt Metal Ltd.	NSI
+VSSL.NS	Vardhman Spc Steel Ltd 	NSI
+COUNCODOS.NS	COUNTRY CONDO'S LIMITED 	NSI
+SHLAKSHMI.NS	Shri Lakshmi Cotsyn Ltd.	NSI
+LLOYDSME.BO	LLOYDS MET E	BSE
+BAJAJCORP.NS	Bajaj Corp Ltd.	NSI
+GALLOPENT.BO	GALLOPS ENT	BSE
+SARTHAKIN.NS	Sarthak Industries Ltd 	NSI
+GLORY.NS	Glory Polyfilms Ltd.	NSI
+JOCIL.NS	Jocil Ltd.	NSI
+SCHENHERD.NS	State Bank of Travancore	NSI
+ESSAROIL.NS	Essar Oil Ltd.	NSI
+GOKALDAS.BO	Gokaldas Exports Ltd.	BSE
+SWARAJENG.NS	Swaraj Engines Ltd.	NSI
+BEELE.BO	Bee Electronic Machines Limited	BSE
+NANDANEXI.NS	NANDAN EXIM LIMITED 	NSI
+TATACOMM.NS	Tata Communications, Ltd.	NSI
+PIIND.NS	PI Industries Ltd 	NSI
+JIK.NS		NSI
+ASIANHOTN.NS	Asian Hotels (North) Ltd.	NSI
+NATHSEED.NS	Nath Seeds Limited 	NSI
+ASTEC.NS	Astec Lifesciences Ltd.	NSI
+ZANUKCOM.BO	Anukaran Commercial Enterprises Ltd	BSE
+BELQF.BO	BHARAT ELECT	BSE
+ACCELYA.NS		NSI
+TWILITAKA.NS	Twilight Litaka Pharma Ltd.	NSI
+INFOTECEN.NS	InfoTech Enterprises Ltd.	NSI
+REVTEQP.BO	Revathi Equipment Ltd.	BSE
+APOLLOHOSP.BO	Apollo Hospitals Enterprise Ltd	BSE
+KNL.NS	Karuturi Networks Limited 	NSI
+BOBSHELL.BO	BOBSHELL ELE	BSE
+BAJAJ-AUT.NS	Bajaj Auto Ltd.	NSI
+ESTERIND.BO	Ester Industries Ltd.	BSE
+NICCO.NS	Nicco Corporation Ltd.	NSI
+SAMINDUS.NS	SAM Industries Limited 	NSI
+WEIZFIN.BO	Easy Fincorp Ltd.	BSE
+KILITCH.NS	Kilitch Drugs (India) Ltd.	NSI
+ESSMCAT.BO	ESSEM CATAL.	BSE
+RAMANEWS.NS	Rama Newsprint And Papers Limited	NSI
+GBN.NS	Global Broadcast News Limited	NSI
+SHGANEL.BO	SHR GAN ELAS	BSE
+SEJALGLAS.NS	Sejal Architectural Glass 	NSI
+PDPL.NS	Parenteral Drugs (India) Ltd.	NSI
+NELCAST.NS	Nelcast Ltd.	NSI
+SUNTECK.NS	Sunteck Realty Limited	NSI
+RKDL.NS	Ravi Kumar Distilleries 	NSI
+RAJOIL.NS	Raj Oil Mills Ltd.	NSI
+CENTENKA.BO	Century Enka Ltd.	BSE
+PASUPATI.NS	Pasupati Fabrics Limited	NSI
+EMAMILTD.NS	Emami Ltd.	NSI
+MIRZAINT.NS	Mirza International Ltd.	NSI
+MURLIIND.NS	Murli Industries Ltd.	NSI
+IPRINGLTD.NS	IP Rings Ltd.	NSI
+FTCPOF3YD.NS	Franklin Templeton Capita 	NSI
+ERPSOFT.BO	ERP Soft Systems Ltd	BSE
+PRESTIGE.NS	Prestige Estate Ltd	NSI
+JEMINDU.BO	JYOTI ELEC	BSE
+PRAKSOV.BO	Prakash Solvent Extractions Ltd	BSE
+ESSARSHIP.NS	Essar Ports Ltd	NSI
+LOTUSEYE.NS	Lotus Eye Care Hospital Ltd.	NSI
+AMTEKINDI.NS	Amtek India Ltd.	NSI
+DECOLIGHT.NS	Decolight Ceramics Ltd.	NSI
+GOLDENTOB.NS	Golden Tobacco Ltd.	NSI
+RAGHAES.BO	RAGHAVA EST&PROPS ORD INR10	BSE
+GEINDSYS.NS	Gei Industrial Systems Ltd.	NSI
+AECENTP.BO	AEC ENTERPRI	BSE
+DQE.NS	DQ Entertainment Int Ltd	NSI
+AROMAENT.BO	AROMA ENT	BSE
+CHOLADBS.NS		NSI
+SNOWCEM.BO	SIL Business Enterprises Ltd.	BSE
+KIRLOSENG.NS	Kirloskar Oil Eng Ltd 	NSI
+ARROWGROU.NS	Arrow Webtex Limited 	NSI
+ENJNATF.BO	ENJAYES NATU	BSE
+EDSERV.NS	Edserv Softsystems Ltd.	NSI
+SKMEGGPRO.NS	SKM Egg Products Export (India) Ltd.	NSI
+KSERASERA.NS		NSI
+SEZAL.NS	Sezal Glass Limited 	NSI
+CHARMGR.BO	Charminar Granites Exports Ltd	BSE
+PVR.NS	PVR Ltd.	NSI
+STEERINTER.BO	Sterling International Enterprises Ltd.	BSE
+GOLDSHARE.BO	UTI GOLD ETF	BSE
+NBCC.NS	NATIONAL BUILDINGS LTD	NSI
+SPMLINFRA.NS	SPML Infra Ltd.	NSI
+RAJRAYON.NS	Raj Rayon Ltd.	NSI
+ORISSAMIN.NS	Orissa Minerals Development Ltd.	NSI
+WWLEATH.BO	Worldwide Leather Exports Ltd.	BSE
+BIRLAPOWE.NS	Birla Power Solutions Ltd.	NSI
+GANECOS.BO	GANESH ECOSP	BSE
+ELFORGE.BO	El Forge Ltd.	BSE
+KECINFRA.NS	KEC Infrastructures Limited	NSI
+MARICO.NS	Marico Ltd.	NSI
+REGAL.BO	Regal Entertainment & Consultants Ltd.	BSE
+SBBJ.NS	State Bank Of Bikaner And Jaipur	NSI
+MEDIA.NS	Media Video Limited 	NSI
+WANBURY.NS	Wanbury Ltd.	NSI
+SUBROS.NS	Subros Ltd.	NSI
+SIGROUPIN.NS	Siemens Ltd	NSI
+MHRIL.NS	Mahindra Holidays & Resorts India Ltd.	NSI
+SAFIN.BO	S.A.FIN.EX	BSE
+BLUECOAST.NS	Blue Coast Hotels Ltd	NSI
+PANASONIC.NS	Panasonic Appliances India Co. Ltd	NSI
+TRENDELEC.BO	Trend Electronics Ltd	BSE
+MPSLTD.NS	MPS Ltd	NSI
+SUNDARAM.NS	Sundaram Multi Pap Ltd.	NSI
+REISIXTEN.NS	REI Six Ten Retail Ltd.	NSI
+SARDAEN.BO	Sarda Energy & Minerals Ltd.	BSE
+GOENKA.NS	Goenka Diamond & Jewels Ltd.	NSI
+SHIV-VANI.NS	Shiv-Vani Oil & Gas Exploration Services Ltd.	NSI
+VULCANEN.BO	Vulcan Engineers Ltd.	BSE
+IILTD.NS	Insecticides (India) Limi 	NSI
+ITDCEM.NS	ITD Cementation India Ltd.	NSI
+DHFL.NS	DEWAN HOUSING FIN CORP	NSI
+MINTAGE.BO	MINTA ELE EQ	BSE
+CHAMANSEQ.BO	Chaman Lal Setia Exports Ltd.	BSE
+INDOFREB.BO	INDOFR BIO E	BSE
+XLTELENE.NS	XL Energy Ltd.	NSI
+GLOBUSSPR.NS	Globus Spirits Ltd.	NSI
+ASAHISONG.NS	Asahi Songwon Color Ltd 	NSI
+EMKAYGLOF.BO	Emkay Global Financial Services Ltd.	BSE
+MLL.NS	Mercator Ltd	NSI
+PGIL.NS		NSI
+BHAGWATIH.NS	Bhagwati Banquets & Hotels Ltd.	NSI
+DMCEDU.BO	DMC EDU	BSE
+KHAITANE.BO	Khaitan Electricals Ltd.	BSE
+ADANIPORT.NS	ADANI PORT AND SPECIAL ECONOMIC	NSI
+DYNAMATEC.NS	Dynamatic Technologies Ltd.	NSI
+REVL.NS	RANE ENGINE VALVES LTD	NSI
+MMFSL.NS	Money Matters F S Limited	NSI
+SURANAT&P.NS	Surana Telecom and Power Ltd	NSI
+ENSSI.BO	Ensa Steel Industries Limited	BSE
+HINDNATGL.NS	Hindusthan National Glass & Industries Ltd.	NSI
+SRHHYPOLT.NS	Sree Rayalaseema Hi-Strength Hypo Ltd.	NSI
+ZEEENTBBPH.BO	ZEE ENT*	BSE
+JSL.NS	JSL Stainless Ltd.	NSI
+VIKSHEN.BO	VIKSHIT ENG	BSE
+SHYAMTEL.NS	Shyam Telecom Ltd.	NSI
+HOPFL.NS	Pearl Global Industries Ltd	NSI
+EMAMIPAP.BO	Emami Paper Mills Ltd.	BSE
+BRABOURNE.NS		NSI
+TIIL.NS	Technocraft Industries India Ltd.	NSI
+ZBHILENG.BO	Bhilai Engineering Corporation Ltd.	BSE
+FLEXITUFF.NS	Flexituff Inter Limited	NSI
+SWOEF.BO	Swojas Energy Foods Ltd	BSE
+SWELECTES.NS		NSI
+ELCONFN.BO	ELCON FINLEA	BSE
+ASIANTNE.BO	Asian Tea & Exports Ltd.	BSE
+ESSARPORT.NS	Essar Ship Port & Log Ltd	NSI
+NAUKRI.BO	Info Edge (India) Ltd.	BSE
+PTL.NS	PTL ENTERPRISES LTD. INR2	NSI
+SHARMEH.BO	Sharma East India Hospitals & Medical Research Ltd	BSE
+IVRCLAH.NS	IVRCL Assets & Holdings Ltd.	NSI
+BILENERGY.NS	Bil Energy Systems Ltd 	NSI
+RPL.NS	Reliance Petroleum Limited	NSI
+ATLANTA.NS	Atlanta Ltd.	NSI
+GOLDINFRA.NS	Goldstone Infratech Ltd.	NSI
+MIRCELECT.NS	MIRC Electronics Ltd.	NSI
+EICHERMOT.NS	Eicher Motors Ltd.	NSI
+ETC.NS	ETC Networks Ltd.	NSI
+ACEEDU.BO	ACE EDU	BSE
+NAHARSPIN.NS	Nahar Spinning Mills Ltd.	NSI
+HINVDIR.NS		NSI
+AKZOINDIA.NS	Akzo Nobel India Ltd	NSI
+GUJGLASS.NS	Gujarat Glass Limited 	NSI
+LGBBROSLT.NS	LG Balakrishnan & Bros Ltd.	NSI
+PRAJAYEN.BO	Prajay Engineers Syndicate Ltd.	BSE
+SHILPI.NS	Shilpi Cable Tech Ltd 	NSI
+ZEVERBLD.BO	EVEREST BUIL	BSE
+DPTL.NS	Dhunseri Petrochem & Tea Ltd.	NSI
+HINDUJAFO.NS	Hinduja Foundries Ltd.	NSI
+KKCL.NS	Kewal Kiran Clothing Ltd.	NSI
+SALONACOT.NS	Salona Cotspin Ltd.	NSI
+PIRGLASS.NS	Piramal Glass Ltd.	NSI
+MKEXIM.BO	M.K. Exim (India) Limited	BSE
+ECE.BO	ECE Industries Ltd.	BSE
+CAMLIN.NS	Camlin Ltd.	NSI
+XLENERGY.NS		NSI
+OISL.NS	OCL Iron and Steel Ltd.	NSI
+ARROWTEX.NS	Arrow Textiles Limited 	NSI
+SYNCOM.NS	Syncom Healthcare Ltd.	NSI
+ROLCOEN.BO	ROLCON ENG.	BSE
+INTRLNK.BO	INTERLINK EX	BSE
+ETPCORP.BO	ETP CORPORAT	BSE
+BHAGYNAGA.NS	Bhagyanagar India Ltd.	NSI
+ERAINFRASL.BO	ERA INFRA	BSE
+EMKAYIN.BO	EMKAY INDUST	BSE
+PANELEC.BO	Pan Electronics India Ltd.	BSE
+JAYTEX.BO	Jaybharat Textiles & Real Estate Ltd.	BSE
+ELEXT.BO	ELECTREX IND	BSE
+BRIGADE.NS	Brigade Enterprises Ltd.	NSI
+REPRO.NS	Repro India Ltd.	NSI
+ELDEHSG.BO	Eldeco Housing And Industries Ltd.	BSE
+INDOSOLAR.NS	Indosolar Limited 	NSI
+SUPRAJIT.NS	Suprajit Engineering Ltd.	NSI
+NAHARCAP.NS	Nahar Capital & Financial Services Ltd.	NSI
+TV18BRDCS.NS	TV18 BROADCAST LTD INR2	NSI
+POCHIRAJU.NS	Pochiraju Industries Ltd.	NSI
+RPGLS.NS	RPG Life Sciences Limited	NSI
+RMEDIA.NS	Rel. Media World Ltd 	NSI
+MEDIAONE.BO	Mediaone Global Entertainment Ltd.	BSE
+JCTELE.BO	JCT Electronics Ltd.	BSE
+EPSOMPRO.BO	Epsom Properties Ltd.	BSE
+UTISUNDER.NS	S&P CNX NIFTY UTI ETF	NSI
+SADBHAV.BO	Sadbhav Engineering Ltd.	BSE
+EIDPARRY.NS	E.I.D. Parry India Ltd	NSI
+ENNOREFO.NS	Ennore Foundries Limited 	NSI
+NILKAMAL.NS	Nilkamal Ltd.	NSI
+KALSTEELS.NS	Kalyani Steels Ltd 	NSI
+ZKHATAUE.BO	KHATAU EXIM.	BSE
+SUNILHITE.NS	Sunil Hitech Engineers Ltd.	NSI
+JHS.NS	JHS Svendgaard Laboratories Ltd.	NSI
+EMMBI.NS	Emmbi Polyarns Ltd.	NSI
+VOLTAMP.NS	Voltamp Transformers Ltd.	NSI
+LGBFORGE.NS	LGB Forge Ltd.	NSI
+ALACRIEL.BO	ALACRIT ELEC	BSE
+ESTL.NS	Essar Steel Limited	NSI
+SAENTER.BO	South Asian Enterprises Ltd.	BSE
+IBINFO.BO	IB Infotech Enterprises Limited	BSE
+KLTHRAE.BO	Koluthara Exports Ltd	BSE
+SHRAJOI.BO	Shri Rajivlochan Oil Extraction Ltd.	BSE
+GPIL.NS	Godawari Power & Ispat Ltd.	NSI
+GPIL.NS	Godawari Power & Ispat Ltd.	NSI
+AIAENG.BO	AIA Engineering Ltd.	BSE
+SEENTSOL.BO	Serve All Enterprise Solutions Ltd.	BSE
+NAGREEKA.NS	Jayaswals Neco Ltd	NSI
+SANGHVIFO.NS	SANGHVI FOR & ENG LTD	NSI
+GEOJIT.NS		NSI
+ZEEENTERQF.BO	ZEE ENTER	BSE
+FTCPOF5YD.NS	Franklin Templeton Capita 	NSI
+ECEINDS.BO	ECE INDUSTR*	BSE
+MARG.NS	Marg Ltd.	NSI
+PLASTIBLE.NS	Plastiblends India Ltd.	NSI
+ACCUEXPO.BO	Accurate Exports Limited	BSE
+CANDC.NS	C & C Constructions Ltd.	NSI
+THEBYKE.NS	The Byke Hospitality Ltd	NSI
+IFL.NS	India Foils Limited 	NSI
+STYABS.NS	STYROLUTION ABS (IND) LTD	NSI
+ZDIGIELE.BO	DIGITAL ELE.	BSE
+AMBALALSA.BO	Ambalal Sarabhai Enterprises Ltd.	BSE
+BLUEDART.NS	Blue Dart Express Ltd.	NSI
+RASEXTR.BO	R.A.S.EXTRU	BSE
+KBL.NS	Kirloskar Brothers Limited	NSI
+KSL.NS	Kalyani Steels Ltd.	NSI
+TEIL.BO	Triveni Engineering & Industries Limited	BSE
+AAKARENG.BO	AKAR ENG MAF	BSE
+SOLECTCEN.NS	SOLECTRON CENTUM ELEC LTD	NSI
+SKSMICRO.NS	SKS Microfinance Ltd.	NSI
+JUMBO.NS	Jumbo Bag Ltd.	NSI
+SUNDYEX.BO	Sunday Exports Ltd	BSE
+PLENTER.BO	P.L.ENTERPRI	BSE
+RUCHIRA.NS	Ruchira Papers Ltd.	NSI
+PRECISIO.BO	Precision Electronics Ltd.	BSE
+KRIEW.BO	KRISHN ENG W	BSE
+ELQPO.BO	Sen Pet (India) Ltd	BSE
+ELPRO.BO	Elpro International Ltd.	BSE
+EIDER.BO	EIDER TELECM	BSE
+AMTL.NS	Adv Metering Tech Ltd 	NSI
+ENVCLEN.BO	ENVIRO-CLEAN	BSE
+TATAGLOBA.NS	Tata Global Beverages Ltd.	NSI
+TANLA.NS	Tanla Solutions Ltd.	NSI
+CHOLAFIN.NS	Cholamandalam Investment And Finance Co., Ltd.	NSI
+ELGITYRE.NS	ELGITREAD (INDIA) LIMITED	NSI
+JJEXPO.BO	J J Exporters Limited	BSE
+EUROFIN.BO	EUROFINMART	BSE
+FCH.NS	Capital First Ltd	NSI
+ELDERPHAR.NS	Elder Pharmaceuticals Ltd.	NSI
+AUSTENGBBPH.BO	AUSTIN ENGG*	BSE
+TDPOWERSY.NS	TD Power Systems Ltd.	NSI
+UMESLTD.NS	Usha Martin Infotech Limited	NSI
+EMEDTECH.BO	EMEDTECH	BSE
+IPGETF.NS	ICICI Prudential Gold ETF	NSI
+DPSCLTD.NS	DPSC Ltd.	NSI
+MARKSANS.NS	Marksans Pharma Ltd.	NSI
+NITCO.NS	Nitco Tiles Ltd.	NSI
+TREL.BO	TEXMACO RAIL & ENGINEERING LTD 	BSE
+LUMAXTECH.NS	Lumax Auto Technologies Ltd	NSI
+SPLIL.NS	SPL Industries Ltd.	NSI
+TVSSRICHA.NS	TVS Srichakra Ltd.	NSI
+SERVALL.NS	Servalakshmi Paper Ltd 	NSI
+BANSWRAS.NS	Banswara Syntex Ltd.	NSI
+TAKE.NS	Take Solutions Ltd.	NSI
+KANSAINER.NS	Kansai Nerolac Paints Ltd.	NSI
+SWANENG.BO	SWAN ENG	BSE
+EMERCK.NS	E MERCK (INDIA) LTD	NSI
+EUROTEXIN.NS	Eurotex Industries & Exports Ltd.	NSI
+ELFORGELR.BO	ELFORGELR	BSE
+ADVANIHOT.NS	Advani Hotels & Resorts India Ltd.	NSI
+CRONIMET.NS	Cronimet Alloys India Ltd.	NSI
+MMFL.NS	MM Forgings Ltd.	NSI
+ENIL.BO	Entertainment Network (India) Ltd.	BSE
+NAMTEC.BO	NAMTE ELEC D	BSE
+HIGHENE.BO	High Energy Batteries India Ltd.	BSE
+EWHAFOM.BO	Blue Pearl Texspin Limited	BSE
+PIRLIFE.NS	Piramal Life Sciences Ltd.	NSI
+ASCENTEX.BO	Ascent Exim (India) Ltd.	BSE
+VALUEIND.NS	Value Industries Ltd.	NSI
+WOMENNET.BO	Pagaria Energy Ltd.	BSE
+GOKEX.NS	Gokaldas Exports Ltd.	NSI
+SHWALEL.BO	SHAW WAL ELE	BSE
+ORIENTLTD.NS	Orient Press Ltd.	NSI
+KNDENGT.BO	KND ENGG.TEC	BSE
+TORNTPOWE.NS	Torrent Power Ltd.	NSI
+DHANUKA.NS	Dhanuka Agritech Ltd	NSI
+SURANAVEL.NS	SURANA VENTURES LIMITED INR10	NSI
+RMMIL.NS	Resurgere Mines & Mineral 	NSI
+SATHAISPA.NS	Sathavahana Ispat Ltd	NSI
+BANCOINDI.NS	Banco Products India Ltd.	NSI
+STEELXIND.BO	Steel Exchange India Ltd.	BSE
+COREEDUTE.NS	CORE PROJECTS & TECHNOLOGIES IN	NSI
+ELDERPHARM.BO	Elder Pharmaceuticals Ltd.	BSE
+THAES.BO	Thana Electric Supply Company Ltd.	BSE
+SAMBHAAV.NS	Sambhaav Media Ltd.	NSI
+KRISHNAEN.NS	Krishna Engineering Works Ltd.	NSI
+KSERAPRO.NS	K Sera Sera Ltd.	NSI
+LAKSHMIFI.NS	Lakshmi Finance & Industrial Corporation Ltd.	NSI
+BGLOBAL.NS	Bharatiya Global Info Ltd 	NSI
+MOTILALOF.NS	Motilal Oswal Financial Services Ltd.	NSI
+ABGSHIP.NS	ABG Shipyard Limited	NSI
+WEIZFOREX.NS	WEIZMANN FOREX LIMITED	NSI
+ARIHANT.NS	Arihant Foundations & Housing Ltd.	NSI
+HGSL.NS	Hinduja Global Solutions Ltd.	NSI
+INFINITE.NS	Infinite Computer Solutions (India) Ltd.	NSI
+AUSOMENT.BO	Core Emballage Ltd.	BSE
+MALCO.NS	THE MADRAS ALUM. CO. LTD. 	NSI
+JPINFRATE.NS	Jaypee Infratech Ltd.	NSI
+EON.BO	EON ELECT	BSE
+NUTEK.NS	Nu Tek India Ltd.	NSI
+PIPAVAVYD.NS	Pipavav Defence & Offshore Engineering Co Ltd	NSI
+ENBETRD.BO	ENBEE TRAD(P	BSE
+ASTRAL.NS	Astral Poly Technik Ltd.	NSI
+EILQF.BO	ENGINER IN	BSE
+GENUSOVER.NS		NSI
+HEXATRADE.NS	Hexa Tradex Limited 	NSI
+EDUCOMPSL.BO	EDUCOMP SOLN	BSE
+GEMINI.NS	Gemini Communication Ltd	NSI
+AGRE.NS	Agre Developers Ltd 	NSI
+HMVL.NS	Hindustan Media Ventures Ltd.	NSI
+CENTUM.BO	Centum Electronics Ltd.	BSE
+ENCHANTE.BO	Enchante Jewellery Ltd.	BSE
+REILELEC.BO	REIL Electricals India Ltd	BSE
+EUREKAI.BO	Eureka Industries Ltd	BSE
+KALYANIST.NS		NSI
+ENCORE.BO	Encore Software Ltd.	BSE
+MERCK.NS	Merck Ltd.	NSI
+NUCENTFI.BO	NuCent Estate Ltd.	BSE
+DECCANCE.NS	Deccan Cements Ltd.	NSI
+SRICHAKTY.NS	TVS SRICHAKRA LIMITED 	NSI
+BLUEBIRD.NS	Blue Bird (India) Ltd.	NSI
+FTCSF3YGR.NS	Franklin Templeton Mutual 	NSI
+LANCOIN.NS	Lanco Industries Ltd.	NSI
+ESQRMON.BO	ESQUIR MONEY	BSE
+EASTSILK.BO	Eastern Silk Industries Ltd.	BSE
+APOLLOHOS.NS	Apollo Hospitals Enterprise Ltd	NSI
+PFOCUS.NS	Prime Focus Limited	NSI
+GLOBOFFS.NS	GLOBAL OFFSHORE SERVICES LTD IN	NSI
+VJLAXMIE.BO	Veejay Lakshmi Engineering Works	BSE
+RASANDIK.BO	Rasandik Engineering Industries India Ltd.	BSE
+DTIL.NS	Dhunseri Tea & Industries 	NSI
+RELIGARE.NS	Religare Enterprises Ltd.	NSI
+SEZALGLAS.NS		NSI
+CEBBCO.NS	Commercial Eng & Co. Ltd	NSI
+IDEA.NS	Idea Cellular Ltd.	NSI
+AGRMARI.BO	AGri-Marine Exports Ltd	BSE
+NCOPPER.NS	Nissan Copper Limited 	NSI
+BLOWPLAST.NS	B. L. Kashyap and Sons Limited	NSI
+PURVA.NS	Puravankara Projects Ltd.	NSI
+SRICHAMUN.NS	Chamundeswari Sug Ltd 	NSI
+DHRUVES.BO	Dhruv Estates Ltd.	BSE
+SBIGETS.BO	SBI GOLD ETS	BSE
+CTE.BO	Cambridge Technology Enterprises Ltd.	BSE
+QNIFTY.NS	Quantum Index Fund -Excha 	NSI
+COROENGG.BO	CORO ENGG	BSE
+SYMPHONY.NS	Symphony Limited	NSI
+KSK.BO	KSK Energy Ventures Ltd.	BSE
+BURNPUR.NS	Burnpur Cement Ltd.	NSI
+KOVAI.NS	Kovai Medical Center & Hospital Ltd.	NSI
+EMAMINFRA.BO	Emami Infrastructure Ltd.	BSE
+SHRIRAMEPC.BO	Shriram EPC Ltd.	BSE
+SURANACOR.NS	Surana Corporation Ltd	NSI
+ECLERXSL.BO	ECLERX	BSE
+INDUJENER.NS	INDUJ ENERTECH LTD	NSI
+BOSCHCHAS.NS		NSI
+EUROMULT.BO	Euro Multivision Ltd.	BSE
+ACESOFT.BO	Ace Software Exports Ltd.	BSE
+ENKTI.BO	Enkay Texofood Industries Ltd	BSE
+ELGIRUBCO.NS	Elgi Rubber Co. Ltd	NSI
+TRICOM.NS	Tricom India Ltd.	NSI
+IMFA.NS	Indian Metals & Ferro Alloys Ltd.	NSI
+RANEHOLDI.NS	Rane Holdings Ltd.	NSI
+SGL.NS	STL Global Ltd.	NSI
+EUROCERA.BO	Euro Ceramics Ltd.	BSE
+PIONEERE.BO	Pioneer Embroideries Ltd.	BSE
+TECPRO.NS	Tecpro Systems Limited	NSI
+INDXTRA.BO	Indian Extractions Limited	BSE
+REL.NS	RELIANCE ENERGY LTD	NSI
+DILVKAS.BO	Kratos Energy & Infrastructure Ltd	BSE
+MBECL.NS	McNally Bharat Engineering Company Ltd.	NSI
+TREADS.NS	Treadsdirect Limited 	NSI
+NAHAREXP.NS	NAHAR EXPORTS LTD	NSI
+KIRLOSIND.NS	Kirloskar Industries Ltd.	NSI
+EMPSC.BO	Empee Sugars And Chemicals Ltd.	BSE
+KMSUGAR.NS	K.M.Sugar Mills Limited 	NSI
+GPELECT.NS	G P ELECTRONICS LTD	NSI
+GESHIP.NS	Great Eastern Shipping Company Ltd.	NSI
+BAJAJELE.BO	Bajaj Electricals Ltd.	BSE
+SITASHREE.NS	Sita Shree Food Products Ltd.	NSI
+VICTENT.BO	Victoria Enterprises Limited	BSE
+SAKUMAEXP.BO	Sakuma Exports Ltd.	BSE
+SICAGEN.NS	Sicagen India Ltd.	NSI
+EDUCOMPQF.BO	EDUCOMP SOLN	BSE
+EILSL.BO	ENGINER IN	BSE
+INFRABEES.NS	Infra Benchmark ETS	NSI
+EVFINTR.BO	EVEREST FINT	BSE
+INSECTICI.NS	Insecticides (India) Limited	NSI
+KICL.NS	KALYANI INVESTMENT CO LTD INR10	NSI
+AIRDECCAN.NS	Deccan Aviation Limited	NSI
+CHEMFALKA.NS	Chemfab Alkalies Ltd.	NSI
+ENKEIWHEL.BO	ENKEI WHEEL	BSE
+EVEREADY.NS	Eveready Industries India Ltd.	NSI
+OBEROIREA.NS	Oberoi Realty Limited 	NSI
+ALPINEHOU.NS	Alpine Housing Dev Corp 	NSI
+CAMBRIDGE.NS	Xchanging Solution Ltd	NSI
+EKC.NS	Everest Kanto Cylinder Ltd.	NSI
+KGNENT.BO	KGN ENT	BSE
+ALPHAGEO.NS	Alphageo India Ltd.	NSI
+STEL.NS		NSI
+SUNCLAYTO.NS	Sundaram Clayton Ltd	NSI
+HITECHPLA.NS	Hitech Plast Ltd.	NSI
+EVERONN.BO	Everonn Systems India Ltd.	BSE
+FACTENT.BO	Fact Enterprise Ltd.	BSE
+SAPL.NS	South Asian Petrochem Lim 	NSI
+INDOTECH.NS	Indo Tech Transformers Ltd.	NSI
+MIC.BO	MIC Electronics Ltd.	BSE
+VTMLTD.NS	VTM Limited 	NSI
+ELDERPG.BO	Elder Pharmaceuticals Ltd.	BSE
+ESKAY.BO	Eskay Knit India Ltd.	BSE
+JUPITER.NS	Jupiter Bioscience Ltd.	NSI
+PEARLENG.BO	Pearl Engineering Polymers Ltd.	BSE
+EMETALSI.BO	E-Metals India Ltd	BSE
+ECEIND.NS	ECE Industries Ltd.	NSI
+VKSPL.NS	VKS PROJECTS LIMITED	NSI
+ENEPRO.BO	Energy Products (I) Ltd	BSE
+SUJANAUNI.NS	Sujana Universal Industries Ltd.	NSI
+SOUTHISPQ.BO	Southern Ispat & Energy Ltd.	BSE
+VISUINTL.NS	Visu International Ltd	NSI
+ERAINFRA.NS	Era Infra Engineering Ltd.	NSI
+IL&FSENGG.NS	IL&FS ENGINEERING & CONSTRUCTIO	NSI
+BSTRANSCO.NS	BS TransComm Limited 	NSI
+RAJESHXQF.BO	RAJESH EXPOT	BSE
+EASTERNGAS.BO	Eastern Gases Ltd.	BSE
+KIRLOSBRO.NS	Kirloskar Brothers Ltd.	NSI
+BEDMUTHA.NS	Bedmutha Indust Ltd 	NSI
+TEXINFRA.NS	TEXMACO INFRA & HOLDG LTD	NSI
+MAHAXPO.BO	MAH.EXPL F.	BSE
+VISHALRET.NS	V2 Retail Ltd	NSI
+THEMISMED.NS	Themis Medicare Limited	NSI
+MAITHANAL.NS	Maithan Alloys Ltd	NSI
+STARELE.BO	STAR PREC.EL	BSE
+GIENG.BO	GI Engineering Solutions Ltd.	BSE
+WABAG.NS	VA TECH WABAG LTD INR5	NSI
+ASIANELEC.NS	Asian Electronics Ltd.	NSI
+M50.BO	M50 ETF	BSE
+SHREYAS.NS	Shreyas Shipping & Logistics Ltd.	NSI
+BEL.NS	Bharat Electronics Ltd.	NSI
+BIRLACORP.NS	Birla Corporation Ltd.	NSI
+ESTER.NS	Ester Industries Ltd 	NSI
+SILINV.NS	SIL Investments Ltd.	NSI
+NETFINCO.NS	Netflier Finco Limited 	NSI
+EMMESSA.BO	Emmessar Biotech And Nutrition Ltd.	BSE
+AMANITRA.BO	Amani Trading & Exports Ltd.	BSE
+PRAKASHST.NS	Prakash Steelage Ltd.	NSI
+SMSPHARMA.NS	SMS Pharmaceuticals Ltd.	NSI
+PSTL.NS	Pyramid Saimira Theatre Ltd.	NSI
+RESURGERE.NS	Resurgere Mines & Minerals India Ltd.	NSI
+KNIWE.BO	Knitworth Exports Ltd	BSE
+BSCFAUG08.NS	Broadcast Initiatives Limited	NSI
+SUPER.NS	Super Sales India Ltd.	NSI
+RBN.NS	RELIANCE BRDCT NTWRK LTD	NSI
+ZKHANDEN.BO	KHANDELWAL E	BSE
+AMBUJACEM.NS	Ambuja Cements Ltd.	NSI
+MINDACORP.NS	Minda Corporation Ltd	NSI
+PACHELI.BO	PACHELI ENT	BSE
+PRETAILDV.NS	Pantaloon Retail (India) Ltd.	NSI
+SHAILY.BO	Shaily Engineering Plastics Ltd.	BSE
+MCDHOLDIN.NS	McDowell Holdings Ltd.	NSI
+RELGOLD.BO	REL GOLD ETF	BSE
+TARMAT.NS		NSI
+QUINTEGRA.NS	Quintegra Solutions Ltd.	NSI
+RECLTD.BO	Rural Electrification Corporation Ltd.	BSE
+HERCULES.NS	Hercules Hoists Ltd.	NSI
+UNITEDTEA.NS	The United Nilgiri Tea Estates Company Limited	NSI
+PARKERAC.BO	Parker Agrochem Exports Ltd.	BSE
+HINDUJATM.NS	Hinduja TMT Limited 	NSI
+SHAHALLOY.NS	Shah Alloys Ltd.	NSI
+GKB.NS	GKB Ophthalmics Ltd.	NSI
+BAJAJELEC.NS	Bajaj Electricals Ltd.	NSI
+ZICOM.BO	Zicom Electronic Security Systems Ltd.	BSE
+JDORGOCHE.NS	JD Orgochem Ltd.	NSI
+VASCONEQ.NS	Vascon Engineers Ltd.	NSI
+KHYATI.BO	Khyati Multimedia-Entertainment Ltd.	BSE
+ESSJSYN.BO	Essjay Synthetics Ltd	BSE
+BIRLAMONE.NS	Aditya Birla Money Ltd.	NSI
+VIVIMEDLA.NS	Vivimed Labs Ltd.	NSI
+CHI.NS	CHI Investments Limited 	NSI
+ARSSINFRA.NS	ARSS Infrastructure Projects Ltd.	NSI
+DBSTOCKBR.NS	DB (Int) Stock Brokers	NSI
+HTMEDIA.NS	HT Media Limited	NSI
+BASML.NS	Bannari Amman Spinning Mills Ltd.	NSI
+AURIONPRO.NS	Aurionpro Solutions Ltd.	NSI
+ASWTR.BO	Aaswa Trading & Exports Ltd.	BSE
+RELAXO.NS	Relaxo Foot Ltd.	NSI
+MADHUCON.NS	Madhucon Projects Ltd.	NSI
+EUROTXIN.BO	Eurotex Industries & Exports Ltd.	BSE
+MAHLIFE.NS	Mahindra Lifespace Developers Ltd.	NSI
+NAHAREXPO.NS	Jayaswals Neco Ltd	NSI
+INNOVIS.BO	INNOVISI E C	BSE
+ENTEGRA.NS	Entegra Ltd.	NSI
+INGVYSYAB.NS	ING Vysya Bank Ltd.	NSI
+AHLUCONT.NS	Ahluwalia Contracts India Ltd.	NSI
+VISHALEXPO.BO	Vishal Exports Overseas Ltd.	BSE
+MBSWITCH.NS	M&B SWITCHGEARS LTD	NSI
+TRIDENT.NS		NSI
+CORAL-HUB.NS	Coral Hub Limited 	NSI
+SANFORG.BO	SANGHVI FORGING & ENGINEERING L	BSE
+LAKSHMIEF.NS	Lakshmi Energy & Foods Ltd.	NSI
+CENTEXTR.BO	Century Extrusions Ltd	BSE
+TIMBOR.NS	Timbor Home Limited 	NSI
+BAJAJHLDN.NS	Bajaj Holdings and Investment Ltd.	NSI
+FSL.NS	Firstsource Solutions Limited	NSI
+EPCINLR.BO		BSE
+SUNGRAN.BO	SUN GRAN EXP	BSE
+EDL.NS	Empee Distilleries Ltd.	NSI
+SHRIRAMEP.NS	Shriram EPC Ltd.	NSI
+KESARENT.NS	Kesar Enterprises Ltd.	NSI
+BRFL.NS	Bombay Rayon Fashions Ltd.	NSI
+INDTERRAI.NS	Ind Terrain Fashions Ltd 	NSI
+JSWENERGYQF.BO	JSW ENERGY	BSE
+PONNISUG.BO	Ponni Sugars (Erode) Ltd.	BSE
+VITLINFO.NS	Vishal Information Techno 	NSI
+SELANBBPH.BO	SELAN EXPLO*	BSE
+SHARRESLT.NS	Sharyans Resources Ltd.	NSI
+AANJANEYA.NS	AANJANEYA LIFECARE LTD	NSI
+GESCOSL.BO	GREAT EASTE	BSE
+RELIANCE.NS	Reliance Industries Ltd.	NSI
+SBIN.NS	State Bank of India	NSI
+TATAMOTORS.BO	Tata Motors, Ltd.	BSE
+SPICEJET.BO	Spicejet Ltd.	BSE
+RIL.BO	Reliance Industries Ltd.	BSE
+NOCIL.BO	NOCIL Ltd.	BSE
+TCS.BO	Tata Consultancy Services Ltd.	BSE
+SBI.BO	State Bank of India	BSE
+HINDALCO.NS	Hindalco Industries Ltd.	NSI
+ICICIBANK.NS	ICICI Bank Ltd	NSI
+HDIL.BO	Housing Development & Infrastructure Ltd.	BSE
+BHEL.BO	Bharat Heavy Electricals Ltd.	BSE
+SAIL.NS	Steel Authority Of India Ltd.	NSI
+BHARTIARTL.BO	Bharti Airtel Ltd.	BSE
+SUZLON.BO	Suzlon Energy Ltd.	BSE
+XCLCROP.BO	Excel Crop Care Ltd.	BSE
+SIEMENS.BO	Siemens Ltd.	BSE
+RCOM.BO	Reliance Communications Limited	BSE
+JINDALSTEEL.BO	Jindal Steel & Power Ltd.	BSE
+HUL.BO	Hindustan Unilever Ltd.	BSE
+RANBAXY.BO	Ranbaxy Laboratories Ltd.	BSE
+MARUTI.NS	Maruti Suzuki India Ltd.	NSI
+INFY.BO	INFOSYS LTD.-ORDINARY	BSE
+THINKSOFT.NS	Thinksoft Global Services Ltd.	NSI
+JAIPRA.BO	Jaiprakash Associates Ltd.	BSE
+ITC.BO	ITC Ltd.	BSE
+ICICIBANK.BO	ICICI Bank Ltd	BSE
+HDIL.NS	Housing Development & Infrastructure Ltd.	NSI
+GAIL.NS	GAIL India Ltd.	NSI
+DCHL.BO	Deccan Chronicle Holdings Limited	BSE
+AXISBANK.BO	Axis Bank Ltd.	BSE
+WIPRO.BO	Wipro, Ltd.	BSE
+SURYACHAKRA.BO	Suryachakra Power Corporation Ltd.	BSE
+SATYAM.BO	Mahindra Satyam	BSE
+LICHSGFIN.BO	LIC Housing Finance Ltd.	BSE
+KFA.BO	Kingfisher Airlines Ltd.	BSE
+JAINIRRIG.BO	Jain Irrigation Systems Ltd.	BSE
+IFCI.NS	IFCI Ltd.	NSI
+IFCI.BO	IFCI Ltd.	BSE
+IDFC.NS	IDFC Ltd	NSI
+AVONORG.BO	Avon Organics Ltd.	BSE
+UNITECH.BO	Unitech International Ltd	BSE
+TATAYODO.BO	Tayo Rolls Ltd	BSE
+STERLITEIND.BO	Sterlite Industries (India), Ltd.	BSE
+RPOWER.BO	Reliance Power Ltd.	BSE
+RIDDHI.BO	Riddhi Siddhi Gluco Biols Ltd	BSE
+RELINFRA.NS	Reliance Infrastructure Ltd.	NSI
+RELCAPITAL.BO	Reliance Capital Ltd.	BSE
+PACIF.BO	Pacific Cotspin Ltd.	BSE
+ONGC.BO	Oil & Natural Gas Corporation Ltd.	BSE
+LITL.BO	Lanco Infratech Ltd.	BSE
+ITC.NS	ITC Ltd.	NSI
+IDFC.BO	IDFC Ltd	BSE
+GMRINFRA.NS	GMR Infrastructure Ltd.	NSI
+DLF.BO	DLF Ltd.	BSE
+COALINDIA.BO	COAL INDIA	BSE
+BOI.BO	Bank Of India	BSE
+APOLLOTYRE.BO	Apollo Tyres Ltd.	BSE
+YESBANK.BO	Yes Bank Ltd.	BSE
+UNITECH.NS	Unitech International Ltd	NSI
+TITAN.NS	Titan Industries Ltd.	NSI
+RELINFRA.BO	Reliance Infrastructure Ltd.	BSE
+OPTOCIRCU.NS	Opto Circuits (India) Ltd.	NSI
+NTPC.BO	NTPC Ltd.	BSE
+NIKKIGL.BO	Nikki Global Finance Ltd.	BSE
+KPIT.NS	KPIT Cummins Infosystems Ltd.	NSI
+KERALAYUR.BO	Kerala Ayurveda Ltd.	BSE
+DELTACORP.BO	Delta Corp Ltd	BSE
+DABUR.NS	Dabur India Ltd.	NSI
+COCHINM.BO	Cochin Minerals & Rutile Ltd.	BSE
+CIPLA.BO	Cipla Ltd.	BSE
+ACC.BO	ACC Limited	BSE
+WANBURY.BO	Wanbury Ltd.	BSE
+UNIONBANK.NS	Union Bank of India	NSI
+TECHM.BO	Tech Mahindra Ltd.	BSE
+TATASTL.BO	Tata Steel Ltd.	BSE
+SWASTIKA.BO	Swastika Investsmart Ltd	BSE
+SUNPHARMA.NS	Sun Pharmaceuticals Industries Ltd.	NSI
+SANRAA.BO	Sanraa Media Ltd.	BSE
+ROLTA.NS	Rolta India Ltd	NSI
+PFC.BO	Power Finance Corporation Limited	BSE
+NHPC.BO	NHPC Ltd.	BSE
+MTNL.BO	Mahanagar Telephone Nigam Limited	BSE
+MRPL.BO	Mangalore Refinery and Petrochemicals Ltd.	BSE
+MOSERBAER.BO	Moser Baer India Ltd.	BSE
+MANAPFIN.BO	MANAP FIN	BSE
+LNT.BO	Larsen & Toubro Limited	BSE
+JETAIRWAY.NS	Jet Airways (India) Limited	NSI
+IVRCLINFR.NS	IVRCL Ltd	NSI
+ISPATIND.NS	JSW ISPAT Steel Ltd	NSI
+IOC.NS	Indian Oil Corporation Ltd.	NSI
+IBSEC.NS	Indiabulls Securities Ltd.	NSI
+IBREALEST.NS	Indiabulls Real Estate Ltd.	NSI
+DAMOTH.BO	Damodar Threads Ltd.	BSE
+CROMPTON.BO	Crompton Greaves Ltd.	BSE
+CENTURYTE.NS	Century Textiles & Industries Ltd.	NSI
+CENTRALBK.NS	Central Bank of India	NSI
+ASIANPAINT.BO	Asian Paints Ltd.	BSE
+WOCKHARDT.BO	Wockhardt Ltd.	BSE
+VIPIND.NS	VIP Industries Ltd.	NSI
+VADILINDQ.BO	Vadilal Industries Ltd	BSE
+TRABI.BO	Transgene Biotek Ltd.	BSE
+TORNTPOWR.BO	Torrent Power Ltd.	BSE
+TITAN.BO	Titan Industries Ltd.	BSE
+SOUTHINDBA.BO	South Indian Bank Ltd.	BSE
+SOUTHBANK.NS	South Indian Bank Ltd.	NSI
+SINTEX.NS	Sintex Industries	NSI
+SINTEX.BO	Sintex Industries Ltd.	BSE
+SHASUNPHA.BO	SHASUNPHAR	BSE
+SESAGOA.BO	Sesa Goa Ltd.	BSE
+SEATV.BO	SEATV	BSE
+SBNT.BO	SB&T International Ltd.	BSE
+SAIL.BO	Steel Authority Of India Ltd.	BSE
+RELAXO.BO	Relaxo Footwears Ltd	BSE
+REGALIAA.BO	Regaliaa Realty Ltd.	BSE
+POLARIND.NS	Polar Industries Ltd.	NSI
+PANTALOONR.BO	Pantaloon Retail (India) Ltd.	BSE
+PANTALOON.NS	Pantaloon Retail (India) Ltd.	NSI
+NIITTECH.BO	NIIT Technologies Ltd.	BSE
+NETWORK18.NS	Network 18 Media & Investments Ltd.	NSI
+NESTLE.BO	Nestle India Ltd.	BSE
+MMTC.BO	MMTC Ltd.	BSE
+MARUTI.BO	Maruti Suzuki India Ltd.	BSE
+KARUTGLOB.BO	Karuturi Global Ltd.	BSE
+JETAIRWAYS.BO	Jet Airways (India) Limited	BSE
+IRB.NS	IRB Infrastructure Developers Ltd.	NSI
+IOB.BO	Indian Overseas Bank	BSE
+INDUSINDB.NS	IndusInd Bank Ltd.	NSI
+IMPOWERS.BO	IMP Powers Ltd.	BSE
+HINDALCO.BO	Hindalco Industries Ltd.	BSE
+HIMGRANI.BO	Himalaya Granites Ltd.	BSE
+HDFCBANK.BO	HDFC Bank, Ltd.	BSE
+HDFC.BO	Housing Development Finance Corp Ltd.	BSE
+GVKPIL.BO	GVK Power & Infrastructure Ltd.	BSE
+GREATOFF.BO	Gol Offshore Ltd	BSE
+GONTER.BO	Gontermann-Peipers India Ltd.	BSE
+GOLDBEES.BO	GOLDBEES	BSE
+GAEL.BO	Gujarat Ambuja Exports Ltd.	BSE
+DHARFIN.BO	Dharani Finance Ltd.	BSE
+CASTROL.NS	Castrol India Ltd.	NSI
+CANARABANK.BO	Canara Bank	BSE
+CALSREF.BO	Cals Refineries Limited	BSE
+BAJAJFINS.BO	Bajaj Finserv Ltd.	BSE
+AQUA.BO	Aqua Logistics Ltd.	BSE
+ADORMUL.BO	Ador Multiproducts Ltd.	BSE
+YUKEN.BO	Yuken India Limited	BSE
+WWIL.NS	Siti Cable Network Ltd	NSI
+WWIL.BO	Siti Cable Network Ltd	BSE
+WESTCOASTP.BO	West Coast Paper Mills Ltd.	BSE
+VYVRAUT.BO	Vybra Automet Ltd.	BSE
+VOLTAS.BO	Voltas Ltd.	BSE
+VIKASWSP.BO	Vikas WSP Ltd.	BSE
+VARUN.NS	Varun Industries Ltd.	NSI
+TULIP.BO	Tulip Telecom Ltd.	BSE
+TIMKEN.BO	Timken India Ltd.	BSE
+THAKDEV.BO	Thakkars Developers Ltd	BSE
+SURANAIN.BO	Surana Industries Ltd.	BSE
+SURANACO.BO	Surana Corporation Ltd	BSE
+SUNTV.BO	Sun TV Network Ltd.	BSE
+SUNPHARMA.BO	Sun Pharmaceuticals Industries Ltd.	BSE
+SUNPHADV.BO	Sun Pharma Advanced Research Company Limited	BSE
+SUNILHITEC.BO	Sunil Hitech Engineers Ltd.	BSE
+STLSTRINF.BO	Steel Strips Infrastructures Limited	BSE
+SOMANY.BO	Somany Ceramics Ltd.	BSE
+SOLIXTEC.BO	TechNVision Ventures Ltd	BSE
+SLSTLQ.BO	Sri Lakshimi Saraswathi Textiles	BSE
+SKSMICRO.BO	SKS MICRO	BSE
+SHREERAM.BO	Shree Ram Urban Infrastructure Ltd.	BSE
+RUCHIRA.BO	Ruchira Papers Ltd.	BSE
+ROLTA.BO	Rolta India Ltd	BSE
+REMIMET.BO	Remi Metals Gujarat Ltd.	BSE
+RADHEDE.BO	Radhe Developers (India) Ltd.	BSE
+PSB.BO	PUNJAB & SIND BANK INR10	BSE
+PRAJIND.BO	Praj Industries Ltd.	BSE
+POWERGRID.NS	Power Grid Corporation Of India Ltd.	NSI
+POWERGRID.BO	Power Grid Corporation Of India Ltd.	BSE
+PILANIINV.NS	Pilani Invest & Ind Ltd	NSI
+PATELEN.BO	Patel Engineering Ltd.	BSE
+OBC.BO	Oriental Bank of Commerce	BSE
+NOIMC.BO	Noida Medicare Centre Ltd.	BSE
+MRF.BO	MRF Ltd.	BSE
+MOUNTEVE.BO	Mount Everest Mineral Water Ltd.	BSE
+MOSERBAER.NS	Moser Baer India Ltd.	NSI
+MCCIL.BO	MCC INV LEAS	BSE
+MASTERTR.BO	Master Trust Ltd.	BSE
+LUPIN.BO	Lupin Ltd	BSE
+LORDSCHLO.BO	Lords Chloro Alkali Ltd	BSE
+KILITCHD.BO	Kilitch Drugs (India) Ltd.	BSE
+JUBLIND.BO	JUBILANT INDUSTRIES LTD INR10	BSE
+JPTSEC.BO	JPT Securities Ltd.	BSE
+JISLJALEQ.NS	Jain Irrigation Systems Limited	NSI
+IPCALABSL.BO	IPCA LAB LTD	BSE
+IOB.NS	Indian Overseas Bank	NSI
+INDUSFILA.BO	Indus Fila Ltd.	BSE
+INDIAGLYCOL.BO	India Glycols Ltd.	BSE
+IGPL.NS	Ig Petrochemicals Ltd	NSI
+IGPETRO.BO	Ig Petrochemicals Ltd	BSE
+HPCL.BO	Hindustan Petroleum Corporation Ltd.	BSE
+HMVL.BO	Hindustan Media Ventures Ltd.	BSE
+HIPOLIN.BO	Hipolin Ltd.	BSE
+HEROMOTOCO.BO	HEROMOTOCO	BSE
+HCL-INSYS.NS	HCL Infosystems Ltd.	NSI
+HCC.BO	Hindustan Construction Company Ltd.	BSE
+GVKPIL.NS	GVK Power & Infrastructure Ltd.	NSI
+GRASIM.NS	Grasim Industries Ltd.	NSI
+GPIL.BO	Godawari Power & Ispat Ltd.	BSE
+GLODYNE.BO	Glodyne Technoserve Ltd.	BSE
+GEINDSYS.BO	Gei Industrial Systems Ltd.	BSE
+GARDENSILK.BO	Garden Silk Mills Ltd.	BSE
+FORCEMOT.BO	Force Motors Ltd.	BSE
+COMMEXTECH.BO	COMMEX TECH	BSE
+CHAMBAL.BO	Chambal Fertilisers & Chemicals Ltd.	BSE
+CAIRN.NS	Cairn India Ltd.	NSI
+BPCL.BO	Bharat Petroleum Corporation Ltd.	BSE
+BNKCAP.BO	BNK Capital Markets Limited	BSE
+BERLDRG.BO	Beryl Drugs Ltd.	BSE
+BERGEPAIN.NS	Berger Paints India Ltd.	NSI
+BEML.BO	BEML Ltd.	BSE
+BATAINDIA.NS	Bata India Ltd.	NSI
+AUROBINDOP.BO	Aurobindo Pharma Ltd.	BSE
+ASHOKLEY.BO	Ashok Leyland	BSE
+ASHAPURA.BO	Ashapura Minechem Ltd.	BSE
+ARCOTECH.BO	Arcotech Ltd	BSE
+APPAPER.BO	Andhra Pradesh Paper Mills Ltd.	BSE
+ANDHRABANK.BO	Andhra Bank	BSE
+AMTEKAUTO.BO	Amtek Auto Ltd.	BSE
+AMRITCORP.BO	Amrit Corporation Ltd.	BSE
+AMAR.BO	Amar Remedies Ltd.	BSE
+ADANIPOWER.BO	Adani Power Ltd.	BSE
+ADANIENTE.BO	Adani Enterprises Ltd.	BSE
+ACE.BO	Action Construction Equipment Ltd.	BSE
+ABML.BO	Aditya Birla Money Ltd.	BSE
+ABB.NS	ABB Ltd (India)	NSI
+ZODIACJR.BO	Zodiac JRD- MKJ Ltd.	BSE
+ZENITHIN.BO	Zenith Infotech Ltd.	BSE
+ZENITHHE.BO	Zenith Healthcare Ltd.	BSE
+ZENITHEX.BO	Zenith Exports Ltd.	BSE
+ZEELEARN.BO	ZEE LEARN LTD INR1 REG S	BSE
+ZEEENTER.BO	Zee Entertainment Enterprises Ltd.	BSE
+WSIND.BO	W S Industries (I) Ltd.	BSE
+WSI.NS	W S Industries (I) Ltd.	NSI
+WIMPLAS.BO	Wim Plast Ltd	BSE
+WHIRLPOOL.BO	Whirlpool of India Ltd.	BSE
+WELLWININ.NS	WELLWIN INDUSTRY LIMITED	NSI
+VSTIND.NS	VST Industries Ltd.	NSI
+VOITHPAPR.BO	Voith Paper Fabrics India Ltd.	BSE
+VISASTEEL.BO	Visa Steel Ltd.	BSE
+VIPIND.BO	VIP Industries Ltd.	BSE
+VINYOFL.BO	Vinyoflex Ltd.	BSE
+VIKASHMET.BO	Vikash Metal & Power Ltd	BSE
+VIDEOIND.NS	Videocon Industries Ltd.	NSI
+VIDEOCON.BO	Videocon Industries Ltd.	BSE
+VESUVIUS.BO	Vesuvius India Ltd.	BSE
+VENKYS.BO	Venkys India Ltd.	BSE
+VBCFERROQ.BO	VBC Ferro Alloys Ltd.	BSE
+VAXHS.BO	Vax Housing Finance Corporation Ltd.	BSE
+UTTAMSTEEL.BO	Uttam Galva Steels Limited GDR	BSE
+USHER.BO	Usher Agro Ltd.	BSE
+UNITDSPR.BO	United Spirits Ltd.	BSE
+UNIPHOS.BO	Uniphos Enterprises Ltd	BSE
+UNIMININ.BO	Unimin India Ltd	BSE
+ULTRAMAR.BO	Ultramarine & Pigments Ltd.	BSE
+UCO.BO	UCO Bank	BSE
+UBENG.BO	UB Engineering Ltd.	BSE
+TTML.BO	Tata Teleservices (Maharashtra) Ltd.	BSE
+TSIL.BO	TSIL	BSE
+TRIVENIGQ.BO	Triveni Glass Ltd.	BSE
+TRIVENI.NS	Triveni Engineering & Industries Limited	NSI
+TRIMURTHI.BO	Trimurthi Drugs & Pharmaceuticals Limited	BSE
+TRICOM.BO	Tricom India Ltd.	BSE
+TPLPLAST.BO	TPL Plastech Limited	BSE
+TOTEX.BO	Total Hospitality Ltd.	BSE
+TOKYOPLA.BO	Tokyo Plast International Ltd.	BSE
+TIMEX.BO	Timex Group India Ltd.	BSE
+TIJARIA.BO	TIJARIA PPL	BSE
+THINKSOFT.BO	Thinksoft Global Services Ltd.	BSE
+TATAPOWER.BO	Tata Power Co., Ltd.	BSE
+TATACHEM.BO	Tata Chemicals Ltd.	BSE
+TASTYBIT.BO	Tasty Bite Eatables Limited	BSE
+SYMPHONY.BO	Symphony Ltd.	BSE
+SWISSGLA.BO	Swiss Glascoat Equipments Limited	BSE
+SWASTIVI.BO	Swasti Vinayaka Synthetics Ltd.	BSE
+SUNTECK.BO	Sunteck Realty Limited	BSE
+SUNSHIEL.BO	Sunshield Chemicals Limited	BSE
+SUJANAMETAL.BO	Sujana Metal Products Limited	BSE
+SUDAI.BO	Sudal Industries Ltd.	BSE
+SUBHKAM.BO	Subhkam Capital Ltd.	BSE
+STER.NS	Sterlite Industries (India), Ltd.	NSI
+SSLEL.BO	Sir Shadi Lal Enterprises Ltd.	BSE
+SRPML.BO	Shree Rajeshwaran & Paper Mills Ltd.	BSE
+SRMENERGY.BO	SRM Energy Ltd	BSE
+SREINFRA.NS	Srei Infrastructure Finance Ltd.	NSI
+SPECIALITY.BO	SPECIALITY R	BSE
+SPANCO.BO	Spanco Telesystems & Solutions Ltd.	BSE
+SOTL.BO	Savita Oil Technologies Ltd	BSE
+SONATA.BO	Sonata Software Ltd.	BSE
+SOMATEX.BO	Soma Textiles & Industries Ltd.	BSE
+SMLISUZU.BO	SMLISUZU	BSE
+SMIL.BO	SMIL	BSE
+SKUMARN.BO	S. Kumars Nationwide Ltd	BSE
+SKF.BO	SKF India Ltd.	BSE
+SJCORP.BO	SJ Corporation Limited	BSE
+SIMPLEX.BO	Simplex Projects Ltd.	BSE
+SIBARSOF.BO	SIBAR SOF SR	BSE
+SHRJAGP.BO	Shri Jagdamba Polymers Ltd.	BSE
+SHRISTI.BO	Shristi Infrastructure Development Corporation Ltd.	BSE
+SHRENTH.BO	Shree Nath Commercial & Finance Ltd.	BSE
+SHRAJSYNQ.BO	Shree Rajasthan Syntex Ltd.	BSE
+SHHARICH.BO	Shree Hari Chemicals Export Limited	BSE
+SHETR.BO	Shetron Ltd.	BSE
+SHAWGELQ.BO	Narmada Gelatines Ltd.	BSE
+SHARPTR.BO	Omnitech Petroleum Ltd	BSE
+SHARPIND.BO	Sharp Industries Ltd.	BSE
+SGJHL.BO	Shree Ganesh Jewellery House (I) Ltd	BSE
+SERVOTEC.BO	Servotech Engineering Industries Ltd	BSE
+SEINV.NS	S.E. INVESTMENTS LIMITED	NSI
+SCI.NS	Shipping Corporation of India Ltd.	NSI
+SCI.BO	Shipping Corporation of India Ltd.	BSE
+SBM.BO	State Bank of Mysore	BSE
+SAWACA.BO	Sawaca Communication Limited	BSE
+SAKSOFT.BO	Saksoft Ltd.	BSE
+SAINTGOBAIN.BO	Saint Gobain Sekurit India Ltd.	BSE
+SAHARA.BO	Sahara One Media & Entertainment Ltd.	BSE
+RSSOFTWAR.NS	R. S. Software (India) Ltd.	NSI
+ROSSELL.BO	ROSSELL IND	BSE
+RJKMRFR.BO	Rajkumar Forge Ltd.	BSE
+RISHILASE.BO	Rishi Laser Ltd.	BSE
+RIIL.NS	Reliance Industrial Infrastructure Ltd.	NSI
+RIIL.BO	Reliance Industrial Infrastructure Ltd.	BSE
+RESURGERE.BO	Resurgere Mines & Minerals India Ltd.	BSE
+RESPONIND.BO	Responsive Industries Ltd.	BSE
+REMSONQ.BO	Remsons Industries Ltd	BSE
+RELINFRASL.BO	REL INFRA	BSE
+RAYLA.BO	Raymed Laboratories Ltd	BSE
+RASPRO.BO	Ras Propack Lamipack Ltd.	BSE
+RASOI.BO	Rasoi Ltd	BSE
+RASIELEC.BO	Rasi Electrodes Ltd.	BSE
+RASHELAG.BO	Rashel Agrotech Ltd.	BSE
+RANENG.BO	Rane Engine Valve Ltd.	BSE
+RANEMADRAS.BO	Rane (Madras) Ltd.	BSE
+RANEBRK.BO	Rane Brake Linings Ltd.	BSE
+RAMRAT.BO	Ram Ratna Wires Ltd	BSE
+RAJIND.BO	Rajdarshan Industries Ltd.	BSE
+PTC.NS	PTC India Ltd.	NSI
+PRRANETA.BO	Aadhaar Ventures India Ltd	BSE
+PROVOGUE.BO	Provogue (India) Ltd.	BSE
+PRIYADSP.BO	Priyadarshini Spinning Mills Ltd.	BSE
+PRATIBHA.BO	Pratibha Industries Ltd.	BSE
+PRAKASHSTL.BO	PRAKASHSTL	BSE
+PNB.BO	Punjab National Bank	BSE
+PIRAMLIFE.BO	Piramal Life Sciences Ltd.	BSE
+PIDILITIN.NS	Pidilite Industries Ltd.	NSI
+PICCADIL.BO	Piccadily Agro Industries Ltd.	BSE
+PHOENIX.BO	Phoenix Mills Ltd.	BSE
+PHILIPCA.BO	Phillips Carbon Black Ltd.	BSE
+PERSISTENT.BO	Persistent Systems Ltd.	BSE
+PENINSULA.BO	Peninsula Land Ltd.	BSE
+PATINTLOG.BO	Patel Integrated Logistics Ltd.	BSE
+PASUPTAC.BO	Pasupati Acrylon Ltd.	BSE
+PASUFIN.BO	Pasupati Fincap Limited	BSE
+PANACEABIO.BO	Panacea Biotec Ltd.	BSE
+PAGEIND.NS	Page Industries Ltd.	NSI
+ORISSASP.BO	Orissa Sponge Iron & Steel Ltd.	BSE
+ORICON.BO	Oricon Enterprises Limited	BSE
+OMMEINFRA.BO	OM Metals Infraprojects Ltd.	BSE
+OMDC.BO	ORISSA MINE	BSE
+OMAX.BO	Omax Autos Ltd.	BSE
+OIL.BO	Oil India Ltd.	BSE
+NUTECH.BO	Nu-Tech Corporate Services Limited	BSE
+NKIND.BO	N.K. Industries Ltd	BSE
+NITESHEST.BO	NITESH EST	BSE
+NIKHILAD.BO	Nikhil Adhesives Ltd.	BSE
+NICCOPAR.BO	Nicco Parks & Resorts Ltd	BSE
+NEYVELILIG.BO	Neyveli Lignite Corporation Limited	BSE
+NEULAND.BO	Neuland Laboratories Ltd.	BSE
+NEPCMICON.NS	NEPC India Ltd.	NSI
+NATRAJPR.BO	Natraj Proteins Ltd.	BSE
+NATPLAS.BO	National Plastic Industries Limited	BSE
+NANDAN.BO	Nandan Exim Ltd.	BSE
+NALCO.BO	National Aluminium Company Limited	BSE
+NAHARSPG.BO	Nahar Spinning Mills Ltd.	BSE
+NAHARPOLY.BO	NAHAR POLY	BSE
+MUSKFER.BO	Muskan Ferro Silicons Ltd	BSE
+MUNJALAU.BO	Munjal Auto Industries Ltd.	BSE
+MOTHERSUMI.BO	Motherson Sumi Systems Ltd.	BSE
+MOREPENLAB.BO	Morepen Laboratories Ltd.	BSE
+MONEYMATF.BO	Money Matters Financial Services Ltd.	BSE
+MNM.BO	Mahindra & Mahindra Ltd.	BSE
+MINOLTAF.BO	MINOLT FINAN	BSE
+MIDFIELD.BO	Midfield Industries Ltd.	BSE
+MICROTECH.NS	Micro Technologies India Ltd.	NSI
+MICROTEC.BO	Micro Technologies India Ltd.	BSE
+MCNALLYB.BO	McNally Bharat Engineering Company Ltd.	BSE
+MBPARIKH.BO	M.B. Parikh Finstocks Limited	BSE
+MAX.BO	Max India Ltd.	BSE
+MATHEWE.BO	Mathew Easow Research Securities Ltd.	BSE
+MARATHON.BO	Marathon Nextgen Realty Ltd.	BSE
+MANAKSIA.BO	Manaksia Ltd.	BSE
+MAJESAUT.BO	Majestic Auto Ltd	BSE
+MAHINCOMP.BO	Mahindra Composites Ltd	BSE
+MAHAPOL.BO	Maharashtra Polybutenes Ltd.	BSE
+MAHALXSE.BO	Mahalaxmi Seamless Ltd.	BSE
+LUMAXAU.BO	Lumax Automotive Systems Ltd.	BSE
+LOVABLE.BO	LOVABLE LINGERIE LTD INR10	BSE
+LOTUSEYE.BO	Lotus Eye Care Hospital Ltd.	BSE
+LOGIX.BO	Logix Microsystems Ltd.	BSE
+LNTFH.BO	L&T FINANCE HOLDINGS LTD INR10	BSE
+LNPOL.BO	LN Industries India Ltd	BSE
+LINKH.BO	Linkhouse Industries Limited	BSE
+LIBERTYP.BO	Liberty Phosphate Ltd.	BSE
+LAMBODHARA.BO	Lambodhara Textiles Ltd.	BSE
+KSOIL.BO	K. S. Oils Limited	BSE
+KSCL.BO	Kaveri Seed Company Ltd.	BSE
+KREBSBIO.BO	Krebs Biochemicals & Industries Ltd.	BSE
+KOUTONS.BO	Koutons Retail India Ltd.	BSE
+KOTAKBANK.BO	Kotak Mahindra Bank Ltd.	BSE
+KKCL.BO	Kewal Kiran Clothing Ltd.	BSE
+KITPLYIND.NS	Kitply Industries Ltd.	NSI
+KITEXTX.BO	Kitex Garments Ltd	BSE
+KINETIC.BO	Kinetic Motors Co., Ltd.	BSE
+KHANDSE.BO	Khandwala Securities Ltd.	BSE
+KGDENIM.BO	KG Denim Ltd.	BSE
+KESORAMIN.NS	Kesoram Industries Ltd.	NSI
+KENFIN.BO	Ken Financial Services Ltd.	BSE
+KEMIE.BO	Kemrock Industries & Exports Ltd.	BSE
+KAYCEEI.BO	Kaycee Industries Ltd.	BSE
+KANPRPLA.BO	Kanpur Plastipack Ltd	BSE
+KANORICHE.NS	Kanoria Chemicals & Industries Ltd.	NSI
+KANORIAC.BO	Kanoria Chemicals & Industries Ltd.	BSE
+KAMRLAB.BO	KAMRON LAB.	BSE
+KALPENA.BO	Kalpena Industries Ltd	BSE
+KALINDRA.BO	Kalindee Rail Nirman (Engineers) Ltd.	BSE
+KAKCEM.BO	Kakatiya Cement Sugar & Industries Ltd.	BSE
+KAIRA.BO	Kaira Can Company Limited	BSE
+JYOTIRES.BO	Jyoti Resins & Adhesives Ltd.	BSE
+JUNIORBEES.BO	JUNIOR BEES	BSE
+JSWSL.BO	JSW Steel Ltd.	BSE
+JSWISPAT.BO	JSW ISPAT	BSE
+JOLLNEW.BO	Jolly Board Ltd.	BSE
+JKIL.NS	J Kumar Infraprojects Ltd.	NSI
+JINDALCOT.BO	Jindal Cotex Ltd.	BSE
+JENBURPH.BO	Jenburkt Pharmaceuticals Ltd	BSE
+JAYANTAG.BO	Jayant Agro-Organics Ltd.	BSE
+JAIPAN.BO	Jaipan Industries Ltd.	BSE
+JAICORP.BO	Jai Corp Ltd.	BSE
+JAIBALAJI.NS	Jai Balaji Industries Ltd.	NSI
+JAGSONPH.BO	Jagsonpal Pharmaceuticals Ltd.	BSE
+ITL.BO	ITL Industries Limited	BSE
+IRB.BO	IRB Infrastructure Developers Ltd.	BSE
+IPCALAB.NS	Ipca Laboratories Ltd.	NSI
+INVENTURE.NS	Inventure Gro & Sec Ltd 	NSI
+INTLCOMBQ.BO	International Combustion (India) Limited	BSE
+INSILCO.BO	Insilco Ltd.	BSE
+INNOVTEC.BO	Innovative Tech Pack Ltd.	BSE
+INGERSOL.BO	Ingersoll Rand (India) Ltd.	BSE
+INGERRAND.NS	Ingersoll Rand (India) Ltd.	NSI
+INFINITE.BO	Infinite Computer Solutions (India) Ltd.	BSE
+INDUSINDBK.BO	IndusInd Bank Ltd.	BSE
+INDTONER.BO	Indian Toners & Developers Ltd.	BSE
+INDSWFLA.BO	Ind Swift Laboratories Ltd.	BSE
+INDOWIND.BO	Indowind Energy Ltd.	BSE
+INDOCOUIN.BO	Indo Count Industries Ltd.	BSE
+INDOCO.BO	Indoco Remedies Ltd.	BSE
+INDIANIPPON.BO	India Nippon Electricals Ltd.	BSE
+INDIANB.BO	Indian Bank	BSE
+INDIAINFO.BO	India Infoline Ltd.	BSE
+INDIABULL.NS	Indiabulls Financial Services Ltd.	NSI
+INCAP.BO	Incap Limited	BSE
+IMPAL.BO	India Motor Parts & Accessories Ltd.	BSE
+ILFSENGG.BO	ILFSENGG	BSE
+IGL.NS	Indraprastha Gas Ltd.	NSI
+IDBI.BO	IDBI Bank Ltd.	BSE
+IBULLS.BO	Indiabulls Financial Services Ltd.	BSE
+IBPOWER.BO	Indiabulls Power Ltd.	BSE
+HPCOTTON.BO	HP Cotton Textile Mills Ltd.	BSE
+HONDASIEL.BO	Honda Siel Power Products Ltd.	BSE
+HINDOILEXP.BO	Hindustan Oil Exploration Company Ltd.	BSE
+HEXAWARE.BO	Hexaware Technologies Ltd.	BSE
+HEIDELCEM.BO	HeidelbergCement India Ltd	BSE
+HCLTECH.BO	HCL Technologies Ltd.	BSE
+HCIL.NS	Himadri Chemicals & Industries Limited	NSI
+HAVELLS.NS	Havells India Ltd.	NSI
+HAVELLS.BO	Havells India Ltd.	BSE
+HATSUN.BO	Hatsun Agro Product Ltd.	BSE
+GUJNRE.BO	Gujarat NRE Coke Ltd.	BSE
+GUJHOTE.BO	Gujarat Hotels Ltd.	BSE
+GTNINDS.BO	GTN Industries Ltd.	BSE
+GTLINFRA.NS	Gtl Infrastructure Ltd.	NSI
+GTL.BO	GTL Ltd.	BSE
+GSPL.BO	Gujarat State Petronet Ltd.	BSE
+GRAVITA.BO	GRAVITA	BSE
+GRANULES.NS	Granules India Ltd.	NSI
+GOODLUC.BO	Good Luck Steel Tubes Ltd.	BSE
+GODREJPRP.BO	Godrej Properties Ltd.	BSE
+GODREJCP.BO	Godrej Consumer Products Ltd.	BSE
+GMETCOAL.BO	GMETCOAL(BSE INDONEXT)	BSE
+GMDC.BO	Gujarat Mineral Development Corporation	BSE
+GLENMARK.BO	Glenmark Pharmaceuticals Ltd.	BSE
+GINISILK.BO	Gini Silk Mills Limited	BSE
+GENESYS.BO	Genesys International Corporation Ltd.	BSE
+GAYATRIBI.BO	Gayatri BioOrganics Ltd	BSE
+GANPOLY.BO	Ganesha Ecosphere Ltd	BSE
+GAIL.BO	GAIL India Ltd.	BSE
+FSL.BO	Firstsource Solutions Limited	BSE
+FRONTBUSS.BO	Frontline Business Solutions Ltd.	BSE
+FORTIS.BO	Fortis Healthcare Ltd	BSE
+FINOLEXIND.BO	Finolex Industries Ltd.	BSE
+FIEMIND.BO	FIEM Industries Ltd.	BSE
+FERVENTSYN.BO	FERVENTSYN	BSE
+FEDBANK.BO	Federal Bank Limited	BSE
+EUROSOFT.BO	EUROPE SOF A	BSE
+ESARIND.BO	Esaar India Ltd	BSE
+ENGINERSI.NS	Engineers India Ltd.	NSI
+ENERGY.BO	Energy Development Company Ltd.	BSE
+EMPIND.BO	Empire Industries Ltd.	BSE
+EMMSONS.BO	Emmsons International Ltd.	BSE
+EMAMI.BO	Emami Ltd.	BSE
+ELGIEQUIP.BO	Elgi Equipments Ltd.	BSE
+ELEMARB.BO	Elegant Marbles & Grani Industries Ltd.	BSE
+ELBEE.BO	Elbee Services Ltd.	BSE
+HCIL.NS	Himadri Chemicals & Industries Limited	NSI
+HAVELLS.NS	Havells India Ltd.	NSI
+HAVELLS.BO	Havells India Ltd.	BSE
+HATSUN.BO	Hatsun Agro Product Ltd.	BSE
+GUJNRE.BO	Gujarat NRE Coke Ltd.	BSE
+GUJHOTE.BO	Gujarat Hotels Ltd.	BSE
+GTNINDS.BO	GTN Industries Ltd.	BSE
+GTLINFRA.NS	Gtl Infrastructure Ltd.	NSI
+GTL.BO	GTL Ltd.	BSE
+GSPL.BO	Gujarat State Petronet Ltd.	BSE
+GRAVITA.BO	GRAVITA	BSE
+GRANULES.NS	Granules India Ltd.	NSI
+GOODLUC.BO	Good Luck Steel Tubes Ltd.	BSE
+GODREJPRP.BO	Godrej Properties Ltd.	BSE
+GODREJCP.BO	Godrej Consumer Products Ltd.	BSE
+GMETCOAL.BO	GMETCOAL(BSE INDONEXT)	BSE
+GMDC.BO	Gujarat Mineral Development Corporation	BSE
+GLENMARK.BO	Glenmark Pharmaceuticals Ltd.	BSE
+GINISILK.BO	Gini Silk Mills Limited	BSE
+GENESYS.BO	Genesys International Corporation Ltd.	BSE
+GAYATRIBI.BO	Gayatri BioOrganics Ltd	BSE
+GANPOLY.BO	Ganesha Ecosphere Ltd	BSE
+GAIL.BO	GAIL India Ltd.	BSE
+FSL.BO	Firstsource Solutions Limited	BSE
+FRONTBUSS.BO	Frontline Business Solutions Ltd.	BSE
+FORTIS.BO	Fortis Healthcare Ltd	BSE
+FINOLEXIND.BO	Finolex Industries Ltd.	BSE
+FIEMIND.BO	FIEM Industries Ltd.	BSE
+FERVENTSYN.BO	FERVENTSYN	BSE
+FEDBANK.BO	Federal Bank Limited	BSE
+EUROSOFT.BO	EUROPE SOF A	BSE
+ESARIND.BO	Esaar India Ltd	BSE
+ENGINERSI.NS	Engineers India Ltd.	NSI
+ENERGY.BO	Energy Development Company Ltd.	BSE
+EMPIND.BO	Empire Industries Ltd.	BSE
+EMMSONS.BO	Emmsons International Ltd.	BSE
+EMAMI.BO	Emami Ltd.	BSE
+ELGIEQUIP.BO	Elgi Equipments Ltd.	BSE
+ELEMARB.BO	Elegant Marbles & Grani Industries Ltd.	BSE
+ELBEE.BO	Elbee Services Ltd.	BSE
+ECORECO.BO	ECORECO	BSE
+ECLERX.BO	eClerx Services Ltd.	BSE
+EASUG.BO	Eastern Sugar And Industries Ltd.	BSE
+DRREDDY.BO	Dr. Reddy Laboratories, Ltd.	BSE
+DOLAT.BO	Dolat Investments Ltd.	BSE
+DJSSS.BO	Djs Stock & Shares Ltd	BSE
+DISHTV.NS	Dish TV India Ltd.	NSI
+DISHTV.BO	Dish TV India Ltd.	BSE
+DISHMAN.BO	Dishman Pharmaceuticals & Chemicals Ltd.	BSE
+DISAQ.BO	Disa India Ltd.	BSE
+DINIRST.BO	DINA IRON &S	BSE
+DELTAMAG.BO	Delta Magnets Ltd.	BSE
+DCB.BO	Development Credit Bank Limited	BSE
+DABUR.BO	Dabur India Ltd.	BSE
+CYBERTE.BO	Cybertech Systems & Software Ltd.	BSE
+CUMMINS.BO	Cummins India Ltd.	BSE
+CRAVATEX.BO	Cravatex Ltd.	BSE
+CORDSCABL.NS	Cords Cable Industries Ltd.	NSI
+CONTROLPR.BO	Control Print Ltd	BSE
+COLPAL.NS	Colgate-Palmolive (India) Ltd.	NSI
+CNSDSEC.BO	Consolidated Securities Ltd.	BSE
+CMAHENDRA.BO	C MAHENDRA EXPORTS LTD INR10	BSE
+CLUATPP.BO	CLUTCH AUTO INR10 P/P	BSE
+CILNOVA.BO	CIL NOVA	BSE
+CESC.BO	Cesc Ltd.	BSE
+CENTURYTEX.BO	Century Textiles & Industries Ltd.	BSE
+CENTRALBK.BO	Central Bank of India	BSE
+CEEJAY.BO	Ceejay Finance Limited	BSE
+CASTROL.BO	Castrol India Ltd.	BSE
+CANFINHOME.BO	Can Fin Homes Ltd.	BSE
+CAIRN.BO	Cairn India Ltd.	BSE
+BSTCR.BO	Best & Crompton Engineering Ltd.	BSE
+BROOKSLABS.BO	BROOKS LABORATORIES LTD INR10	BSE
+BRIGADE.BO	Brigade Enterprises Ltd.	BSE
+BRFL.BO	Bombay Rayon Fashions Ltd.	BSE
+BOMBCYC.BO	Bombay Cycle & Motor Agency Ltd.	BSE
+BOB.BO	Bank of Baroda	BSE
+BNALTD.BO	B&A Ltd.	BSE
+BLISSGVS.BO	Bliss GVS Pharma Ltd.	BSE
+BKDUPLEX.BO	B. K. Duplex Board Ltd	BSE
+ECORECO.BO	ECORECO	BSE
+ECLERX.BO	eClerx Services Ltd.	BSE
+EASUG.BO	Eastern Sugar And Industries Ltd.	BSE
+DRREDDY.BO	Dr. Reddy Laboratories, Ltd.	BSE
+DOLAT.BO	Dolat Investments Ltd.	BSE
+DJSSS.BO	Djs Stock & Shares Ltd	BSE
+DISHTV.NS	Dish TV India Ltd.	NSI
+DISHTV.BO	Dish TV India Ltd.	BSE
+DISHMAN.BO	Dishman Pharmaceuticals & Chemicals Ltd.	BSE
+DISAQ.BO	Disa India Ltd.	BSE
+DINIRST.BO	DINA IRON &S	BSE
+DELTAMAG.BO	Delta Magnets Ltd.	BSE
+DCB.BO	Development Credit Bank Limited	BSE
+DABUR.BO	Dabur India Ltd.	BSE
+CYBERTE.BO	Cybertech Systems & Software Ltd.	BSE
+CUMMINS.BO	Cummins India Ltd.	BSE
+CRAVATEX.BO	Cravatex Ltd.	BSE
+CORDSCABL.NS	Cords Cable Industries Ltd.	NSI
+CONTROLPR.BO	Control Print Ltd	BSE
+COLPAL.NS	Colgate-Palmolive (India) Ltd.	NSI
+CNSDSEC.BO	Consolidated Securities Ltd.	BSE
+CMAHENDRA.BO	C MAHENDRA EXPORTS LTD INR10	BSE
+CLUATPP.BO	CLUTCH AUTO INR10 P/P	BSE
+CILNOVA.BO	CIL NOVA	BSE
+CESC.BO	Cesc Ltd.	BSE
+CENTURYTEX.BO	Century Textiles & Industries Ltd.	BSE
+CENTRALBK.BO	Central Bank of India	BSE
+CEEJAY.BO	Ceejay Finance Limited	BSE
+CASTROL.BO	Castrol India Ltd.	BSE
+CANFINHOME.BO	Can Fin Homes Ltd.	BSE
+CAIRN.BO	Cairn India Ltd.	BSE
+BSTCR.BO	Best & Crompton Engineering Ltd.	BSE
+BROOKSLABS.BO	BROOKS LABORATORIES LTD INR10	BSE
+BRIGADE.BO	Brigade Enterprises Ltd.	BSE
+BRFL.BO	Bombay Rayon Fashions Ltd.	BSE
+BOMBCYC.BO	Bombay Cycle & Motor Agency Ltd.	BSE
+BOB.BO	Bank of Baroda	BSE
+BNALTD.BO	B&A Ltd.	BSE
+BLISSGVS.BO	Bliss GVS Pharma Ltd.	BSE
+BKDUPLEX.BO	B. K. Duplex Board Ltd	BSE
+BIRLAPOWER.BO	Birla Power Solutions Ltd.	BSE
+BHARATGE.BO	Bharat Gears Ltd.	BSE
+BHAGCHEM.BO	Bhagiradha Chemicals & Industries Ltd.	BSE
+BGRENERGY.BO	BGR Energy Systems Ltd.	BSE
+BEDMUTHA.BO	BEDMUTHA IN	BSE
+BATLIBOI.BO	Batliboi Ltd.	BSE
+BANKINDIA.NS	Bank Of India	NSI
+BANCO.BO	Banco Products India Ltd.	BSE
+BALRAMCHIN.BO	Balrampur Chini Mills Ltd.	BSE
+BALAJIAM.BO	Balaji Amines Ltd.	BSE
+BAJAJST.BO	Bajaj Steel Industries Ltd.	BSE
+BAFNAPHAR.BO	Bafna Pharmaceuticals Ltd	BSE
+BAFEG.BO	Baffin Engineering Projects Ltd.	BSE
+AVAILFC.BO	Available Finance Ltd.	BSE
+AUTOIND.BO	Autoline Industries Ltd.	BSE
+AUTOAXLES.BO	Automotive Axles Ltd.	BSE
+AUSTRAL.BO	Greenearth Resources & Projects Ltd.	BSE
+ATHARVENT.BO	Atharv Enterprises Limited	BSE
+ASSAMCO.NS	Assam Co India Ltd.	NSI
+ASSAMCO.BO	Assam Co India Ltd.	BSE
+ASIANHTLW.BO	Asian Hotels (West) Ltd.	BSE
+ASIANHOT.BO	ASIANHOTNR	BSE
+ASHOKA.BO	ASHOKA	BSE
+ASHIMA.BO	Ashima Ltd.	BSE
+ASFLORA.BO	Asian Flora Ltd	BSE
+ARVINDREM.BO	Arvind Remedies Ltd.	BSE
+ARTSONEN.BO	Artson Engineering Ltd.	BSE
+ARSSINFRA.BO	ARSS Infrastructure Projects Ltd.	BSE
+APIL.NS	Alstom India Ltd	NSI
+APCOTEXIN.NS	Apcotex Industries Ltd.	NSI
+ANUHPHR.BO	Anuh Pharma Limited	BSE
+ANKUSHFI.BO	Ankush Finstock Ltd.	BSE
+ANANTRAJ.NS	Anant Raj Ltd	NSI
+AMTL.BO	AMTL	BSE
+AMBJELE.BO	AMBUJA ELEC.	BSE
+AMAL.BO	Amal Ltd	BSE
+ALUMECO.BO	Alumeco India Extrusion Limited	BSE
+ALOKIND.BO	Alok Industries Ltd.	BSE
+ALLSEC.BO	Allsec Technologies Ltd.	BSE
+ALEMBICLTD.BO	Alembic Ltd.	BSE

@@ -15,7 +15,7 @@ public class SpringScannerService extends ScannerServiceImpl {
 	@Qualifier("distributedScanRunnerImpl")
 	private ScanRunner runner;
 	@Autowired
-	@Qualifier("JDBCSystemDataRepository")
+	@Qualifier("SystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 
 	@Override

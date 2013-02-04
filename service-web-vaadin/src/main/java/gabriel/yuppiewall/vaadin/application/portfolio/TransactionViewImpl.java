@@ -2,6 +2,7 @@ package gabriel.yuppiewall.vaadin.application.portfolio;
 
 import gabriel.yuppiewall.common.exception.BusinessException;
 import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 import gabriel.yuppiewall.trade.domain.Order;
 import gabriel.yuppiewall.trade.domain.Order.TransactionType;
 import gabriel.yuppiewall.trade.domain.Portfolio;
@@ -11,12 +12,14 @@ import gabriel.yuppiewall.vaadin.YuppiewallUI;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -35,6 +38,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PopupDateField;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
@@ -85,7 +89,8 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 				.getTransactions(selectedPortfolio);
 		// group the list
 		Map<Instrument, List<Transaction>> groupedMap = new HashMap<>();
-
+		SystemDataRepository sdr = YuppiewallUI.getInstance().getService(
+				"SystemDataRepository");
 		for (Transaction transaction : list) {
 			List<Transaction> txList = groupedMap.get(transaction
 					.getInstrument());
@@ -93,6 +98,9 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 				txList = new ArrayList<>();
 				groupedMap.put(transaction.getInstrument(), txList);
 			}
+			Instrument instrument = sdr.getInstrument(transaction
+					.getInstrument());
+			transaction.setInstrument(instrument);
 			txList.add(transaction);
 		}
 		for (Iterator<Instrument> iterator = groupedMap.keySet().iterator(); iterator
@@ -105,7 +113,6 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 			} else {
 				Transaction tx = txList.get(0);
 				addRow(tx, false);
-
 			}
 
 		}
@@ -116,6 +123,7 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 		Item item = holdingTT.addItem(tx.getTransactionId());
 		item.getItemProperty(TT_SYMBOL)
 				.setValue(tx.getInstrument().getSymbol());
+		item.getItemProperty(TT_NAME).setValue(tx.getInstrument().getName());
 		item.getItemProperty(TT_SHARE).setValue(tx.getQuantity());
 		item.getItemProperty(TT_PRICE_SHARE).setValue(tx.getPrice());
 		holdingTT.setChildrenAllowed(tx.getTransactionId(), allowChildren);
@@ -123,7 +131,25 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 	}
 
 	private void setParentChild(Instrument instrument, List<Transaction> txList) {
-		// TODO Auto-generated method stub
+		Transaction parent = new Transaction(UUID.randomUUID().toString(),
+				instrument);
+		long quantity = 0L;
+		BigDecimal price = BigDecimal.ZERO;
+		for (Transaction transaction : txList) {
+			quantity += transaction.getQuantity();
+			price = price.add(transaction.getPrice().multiply(
+					new BigDecimal(transaction.getQuantity())));
+		}
+		parent.setPrice(price.divide(new BigDecimal(quantity),
+				RoundingMode.HALF_UP));
+		parent.setQuantity(quantity);
+		addRow(parent, true);
+		for (Transaction transaction : txList) {
+			addRow(transaction, false);
+			holdingTT.setParent(transaction.getTransactionId(),
+					parent.getTransactionId());
+
+		}
 
 	}
 
@@ -173,9 +199,11 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 		holdingTT.setColumnCollapsingAllowed(true);
 		holdingTT.setSelectable(true);
 		holdingTT.setMultiSelect(false);
+		//holdingTT.setPageLength(0);
 
 		Panel holdingTTPanel = new Panel();
-		holdingTTPanel.setSizeFull();
+		// holdingTTPanel.setSizeFull();
+		holdingTTPanel.setHeight("100%");
 		holdingTTPanel.addComponent(holdingTT);
 		rootlayout.addComponent(holdingTTPanel);
 		rootlayout.setExpandRatio(holdingTTPanel, 1);
@@ -184,19 +212,29 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 		holdingTT.addContainerProperty(TT_NAME, String.class, "");
 		holdingTT.addContainerProperty(TT_LAST_PRICE, BigDecimal.class,
 				new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_LAST_PRICE, Table.ALIGN_RIGHT);
+
 		holdingTT.addContainerProperty(TT_SHARE, Integer.class, new Integer(0));
+		holdingTT.setColumnAlignment(TT_SHARE, Table.ALIGN_RIGHT);
 		holdingTT.addContainerProperty(TT_PRICE_SHARE, BigDecimal.class,
 				new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_PRICE_SHARE, Table.ALIGN_RIGHT);
 		holdingTT.addContainerProperty(TT_MKT_VALUE, BigDecimal.class,
 				new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_MKT_VALUE, Table.ALIGN_RIGHT);
 		holdingTT.addContainerProperty(TT_UN_REALIZED_PL, BigDecimal.class,
 				new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_UN_REALIZED_PL, Table.ALIGN_RIGHT);
 		holdingTT.addContainerProperty(TT_UN_REALIZED_PL_PERCENT,
 				BigDecimal.class, new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_UN_REALIZED_PL_PERCENT,
+				Table.ALIGN_RIGHT);
 		holdingTT.addContainerProperty(TT_REALIZED_PL, BigDecimal.class,
 				new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_REALIZED_PL, Table.ALIGN_RIGHT);
 		holdingTT.addContainerProperty(TT_REALIZED_PL_PERCENT,
 				BigDecimal.class, new BigDecimal(0.0));
+		holdingTT.setColumnAlignment(TT_REALIZED_PL, Table.ALIGN_RIGHT);
 
 		VerticalLayout bottomLayount = new VerticalLayout();
 		bottomLayount.setSpacing(true);
@@ -206,6 +244,19 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 		// Drawer is designed to work best with explicitly defined widths.
 		drawer.setWidth("100%");
 		rootlayout.addComponent(drawer);
+		((VerticalLayout) bottom.getContent()).setSpacing(true);
+		final ComboBox share = new ComboBox("Symbol",
+				SymbolUtil.getSymbolContainer());
+		bottom.addComponent(share);
+		share.setItemCaptionPropertyId(SymbolUtil.PROPERTY_NAME);
+		share.setItemCaptionMode(AbstractSelect.ITEM_CAPTION_MODE_PROPERTY);
+
+		// Set the appropriate filtering mode for this example
+		share.setFilteringMode(Filtering.FILTERINGMODE_CONTAINS);
+		share.setImmediate(true);
+		// share.addListener(this);
+
+		share.setNullSelectionAllowed(false);
 		HorizontalLayout addNewTransactionLayout = new HorizontalLayout();
 		bottom.addComponent(addNewTransactionLayout);
 		// contentPaneSearchSection.addComponent(bottom);
@@ -238,9 +289,6 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 		addNewTransactionLayout.addComponent(date);
 		date.setResolution(PopupDateField.RESOLUTION_DAY);
 
-		final TextField share = new TextField("Symbol");
-		addNewTransactionLayout.addComponent(share);
-
 		final TextField price = new TextField("price");
 		addNewTransactionLayout.addComponent(price);
 
@@ -269,8 +317,8 @@ public class TransactionViewImpl implements TransactionView, Serializable {
 						AccountManager accountManager = YuppiewallUI
 								.getInstance().getService("accountManager");
 						Order order = new Order(txType, (Date) txDate,
-								txQuantity, txPrice, null,
-								new Instrument(symbol));
+								txQuantity, txPrice, null, new Instrument(
+										symbol));
 						try {
 							accountManager.placeOrder(null, selectedPortfolio,
 									order);

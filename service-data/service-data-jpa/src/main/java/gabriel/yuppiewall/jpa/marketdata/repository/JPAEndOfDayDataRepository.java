@@ -10,6 +10,7 @@ import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,7 +23,7 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 	private JPAEODDataRepository jpaEODDataRepository;
 
 	@Autowired
-	@Qualifier("JDBCSystemDataRepository")
+	@Qualifier("SystemDataRepository")
 	private SystemDataRepository marketMetaRepository;
 
 	@Override
@@ -62,5 +63,11 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 		}
 
 		return returnValue;
+	}
+
+	@Override
+	public Map<String, List<EndOfDayData>> findAllEndOfDayData(
+			List<Instrument> instrument, int offset, int start) {
+		throw new UnsupportedOperationException("not Implemented");
 	}
 }

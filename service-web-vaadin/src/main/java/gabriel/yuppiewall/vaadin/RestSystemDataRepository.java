@@ -42,7 +42,7 @@ public class RestSystemDataRepository extends RPCServlet implements
 	}
 
 	@Autowired
-	@Qualifier("JDBCSystemDataRepository")
+	@Qualifier("SystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 	private WebApplicationContext appContext;
 
@@ -52,7 +52,7 @@ public class RestSystemDataRepository extends RPCServlet implements
 		appContext = WebApplicationContextUtils
 				.getWebApplicationContext(servletConfig.getServletContext());
 		systemDataRepository = (SystemDataRepository) appContext
-				.getBean("JDBCSystemDataRepository");
+				.getBean("SystemDataRepository");
 	}
 
 	@RequestMapping(value = "/ping", method = RequestMethod.GET)
@@ -140,6 +140,11 @@ public class RestSystemDataRepository extends RPCServlet implements
 
 	@Override
 	public Instrument getInstrument(Instrument inst) {
+		throw new UnsupportedOperationException("method not implemented");
+	}
+
+	@Override
+	public Collection<Instrument> getInstruments() {
 		throw new UnsupportedOperationException("method not implemented");
 	}
 }

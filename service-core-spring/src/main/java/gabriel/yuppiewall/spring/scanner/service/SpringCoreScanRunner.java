@@ -23,7 +23,7 @@ public class SpringCoreScanRunner extends CoreScanRunner {
 	@Autowired
 	private EndOfDayDataRepository eodRepository;
 	@Autowired
-	@Qualifier("JDBCSystemDataRepository")
+	@Qualifier("SystemDataRepository")
 	private SystemDataRepository systemDataRepository;
 
 	private TechnicalIndicatorService technicalIndicatorService = new SimpleTechnicalIndicatorService();
