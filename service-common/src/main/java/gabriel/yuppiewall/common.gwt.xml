@@ -1,0 +1,14 @@
+<module>
+  <inherits name='com.google.gwt.user.User'/>
+  <source path="common"></source>
+<source path="ds"></source>
+<source path="feed"></source>
+<source path="indicator"></source>
+<source path="instrument"></source>
+<source path="market"></source>
+<source path="marketdata"></source>
+<source path="scanner"></source>
+<source path="trade"></source>
+<source path="um"></source>
+
+</module> 

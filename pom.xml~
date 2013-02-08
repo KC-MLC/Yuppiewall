@@ -33,7 +33,7 @@
 			<module>service-ws</module -->
 		<module>service-ds-ws</module>
 		<module>service-web-vaadin</module>
-		<module>service-web-gwt</module>
+		<!--<module>service-web-gwt</module>-->
 	</modules>
 	<dependencies>
 
