@@ -88,6 +88,7 @@ public class Instrument implements Serializable {
 		this.name = instrument.getName();
 		this.secter = instrument.getSecter();
 		this.industry = instrument.getIndustry();
+		this.server = instrument.getServer();
 	}
 
 	public String getSymbol() {

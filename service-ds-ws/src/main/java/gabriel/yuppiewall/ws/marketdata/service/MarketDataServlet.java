@@ -1,5 +1,6 @@
 package gabriel.yuppiewall.ws.marketdata.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -37,14 +38,14 @@ public class MarketDataServlet extends RPCServlet implements MarketDataService {
 	}
 
 	@Override
-	public List<InstrumentMarketDetail> getInstrmentCurrentStatus(
+	public Collection<InstrumentMarketDetail> getInstrmentCurrentStatus(
 			List<Instrument> instrument) {
 		return marketDataService.getInstrmentCurrentStatus(instrument);
 	}
 
 	@Override
 	public Map<String, List<EndOfDayData>> findAllEndOfDayData(
-			List<Instrument> instrument, int offset, int start) {
+			Collection<Instrument> instrument, int offset, int start) {
 		return marketDataService.findAllEndOfDayData(instrument, offset, start);
 	}
 

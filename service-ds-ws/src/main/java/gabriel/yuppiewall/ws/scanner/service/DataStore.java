@@ -70,7 +70,8 @@ public class DataStore {
 	}
 
 	public List<EndOfDayData> get(Instrument instrument) {
-		return record.get(instrument.getSymbol()).getEodList();
+		instrument = record.get(instrument.getSymbol());
+		return (instrument == null) ? null : instrument.getEodList();
 
 	}
 

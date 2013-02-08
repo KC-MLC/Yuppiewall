@@ -6,6 +6,7 @@ import gabriel.yuppiewall.marketdata.domain.InstrumentMarketDetail;
 import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public abstract class MarketDataServiceImpl implements MarketDataService {
 
 	@Override
 	public Map<String, List<EndOfDayData>> findAllEndOfDayData(
-			List<Instrument> instrument, int offset, int start) {
+			Collection<Instrument> instrument, int offset, int start) {
 		return getEndOfDayDataRepository().findAllEndOfDayData(instrument,
 				offset, start);
 	}

@@ -9,6 +9,7 @@ import gabriel.yuppiewall.marketdata.repository.EndOfDayDataRepository;
 import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -67,7 +68,9 @@ public class JPAEndOfDayDataRepository implements EndOfDayDataRepository {
 
 	@Override
 	public Map<String, List<EndOfDayData>> findAllEndOfDayData(
-			List<Instrument> instrument, int offset, int start) {
-		throw new UnsupportedOperationException("not Implemented");
+			Collection<Instrument> instruments, int offset, int start) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

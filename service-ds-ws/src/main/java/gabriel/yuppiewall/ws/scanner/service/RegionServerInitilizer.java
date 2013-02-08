@@ -24,6 +24,7 @@ public class RegionServerInitilizer {
 	private DataStore dataStore;
 
 	@Autowired
+	@Qualifier("YahooWEBEndOfDayDataRepository")
 	private EndOfDayDataRepository eodRepository;
 
 	@Autowired
@@ -44,12 +45,12 @@ public class RegionServerInitilizer {
 
 						// get List of stock I am managing
 						List<Instrument> symbolList = getManagedInstrumentList();
-						// int i = 0;
+						int i = 0;
 						for (Instrument instrument : symbolList) {
-							/*
-							 * if (i++ > 10) break;
-							 */
 
+							if (i++ > 10)
+								break;
+							System.out.println(instrument.getSymbol());
 							Exchange exchange = instrument.getExchange();
 							Exchange e1 = dataStore.getExchange(exchange);
 							if (e1 == null) {

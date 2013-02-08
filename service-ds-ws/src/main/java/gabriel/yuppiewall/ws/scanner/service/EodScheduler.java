@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class EodScheduler {
 	@Autowired
 	private DataStore dataStore;
 	@Autowired
+	@Qualifier("YahooWEBEndOfDayDataRepository")
 	private EndOfDayDataRepository eodRepository;
 
 	void createScheduler(Exchange exchange) {

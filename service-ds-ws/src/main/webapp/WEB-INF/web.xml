@@ -35,6 +35,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>MarketDataService</servlet-name>
+		<servlet-class>gabriel.yuppiewall.ws.marketdata.service.MarketDataServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MarketDataService</servlet-name>
+		<url-pattern>/MarketDataService</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>ServerCacheService</servlet-name>
 		<servlet-class>gabriel.yuppiewall.ws.scanner.service.EndOfDayCacheController</servlet-class>
 	</servlet>

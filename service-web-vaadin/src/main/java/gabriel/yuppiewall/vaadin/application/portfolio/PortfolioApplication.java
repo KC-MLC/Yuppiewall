@@ -1,20 +1,32 @@
 package gabriel.yuppiewall.vaadin.application.portfolio;
 
+import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
+import gabriel.yuppiewall.marketdata.repository.SystemDataRepository;
+import gabriel.yuppiewall.marketdata.service.MarketDataService;
+import gabriel.yuppiewall.trade.domain.Portfolio;
+import gabriel.yuppiewall.trade.domain.Transaction;
+import gabriel.yuppiewall.trade.service.AccountManager;
+import gabriel.yuppiewall.vaadin.YuppiewallUI;
 import gabriel.yuppiewall.vaadin.application.Application;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.vaadin.vaadinvisualizations.AnnotatedTimeLine;
-import org.vaadin.vaadinvisualizations.AnnotatedTimeLineEntry;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import com.vaadin.terminal.Sizeable;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 
@@ -37,6 +49,23 @@ public class PortfolioApplication implements Application<ComponentContainer>,
 
 	@Autowired
 	private NewsReaperViewImpl newsReaperView;
+	@Autowired
+	private EventBus eventBus;
+
+	private Panel atlPanel;
+	private AnnotatedTimeLine atl;
+	private VerticalSplitPanel contentPane;
+
+	class PortfolioChangeRecorder {
+		@Subscribe
+		public void recordPortfolioChange(PortfolioSelectedEvent e) {
+			Portfolio selectedPortfolio = (Portfolio) e.getSource();
+			if (selectedPortfolio == null)
+				return;
+
+			loadATL(selectedPortfolio);
+		}
+	}
 
 	@Override
 	public void initialize() {
@@ -46,6 +75,7 @@ public class PortfolioApplication implements Application<ComponentContainer>,
 		if (initialize) {
 			return;
 		}
+		eventBus.register(new PortfolioChangeRecorder());
 		applicationUI = new VerticalLayout();
 		applicationUI.setSizeFull();
 		HorizontalSplitPanel hsp = new HorizontalSplitPanel();
@@ -62,84 +92,45 @@ public class PortfolioApplication implements Application<ComponentContainer>,
 		newsReaperView.init();
 		navBar.setSecondComponent(newsReaperView.getRoot());
 
-		VerticalSplitPanel contentPane = new VerticalSplitPanel();
+		contentPane = new VerticalSplitPanel();
 		contentPane.setSplitPosition(70, Sizeable.UNITS_PERCENTAGE);
 		hsp.setSecondComponent(contentPane);
 		contentPaneSearchSection.init();
 		contentPane.setFirstComponent(contentPaneSearchSection.getRoot());
 
-		{
-			AnnotatedTimeLine atl = new AnnotatedTimeLine();
-			atl.setOption("displayAnnotations", true);
-			// atl.setOption("wmode", "window");
-			atl.setOption("wmode", "opaque");
-
-			atl.addLineLabel("Sold Pencils");
-			atl.addLineLabel("Sold Pens");
-			// a time line can have multiple entries as above 'Sold Pencils' and
-			// 'Sold Pens'
-			// for each distinct entry you have to set a value for each of the
-			// above entries
-
-			ArrayList<AnnotatedTimeLineEntry> timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-
-			timeLineEntries.add(new AnnotatedTimeLineEntry(30000, "", "")); // Sold
-																			// Pencils
-			timeLineEntries.add(new AnnotatedTimeLineEntry(40645, "", "")); // Sold
-																			// Pens
-
-			atl.add(new GregorianCalendar(2008, 0, 1), timeLineEntries);
-
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-
-			timeLineEntries.add(new AnnotatedTimeLineEntry(14045, "", "")); // Sold
-																			// Pencils
-			timeLineEntries.add(new AnnotatedTimeLineEntry(20374, "", "")); // Sold
-																			// Pens
-
-			atl.add(new GregorianCalendar(2008, 0, 2), timeLineEntries);
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-
-			timeLineEntries.add(new AnnotatedTimeLineEntry(55022, "", "")); // Sold
-																			// Pencils
-			timeLineEntries.add(new AnnotatedTimeLineEntry(50766, "", "")); // Sold
-																			// Pens
-
-			atl.add(new GregorianCalendar(2008, 0, 3), timeLineEntries);
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-
-			timeLineEntries.add(new AnnotatedTimeLineEntry(75284, "", "")); // Sold
-																			// Pencils
-			timeLineEntries.add(new AnnotatedTimeLineEntry(14334,
-					"Out of Stock", "Ran out of stock at 4pm")); // Sold Pens
-
-			atl.add(new GregorianCalendar(2008, 0, 4), timeLineEntries);
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-			timeLineEntries.add(new AnnotatedTimeLineEntry(41476,
-					"Bought Pens", "Bought 200k Pens")); // Sold Pencils
-			timeLineEntries.add(new AnnotatedTimeLineEntry(66467, "", "")); // Sold
-																			// Pens
-
-			atl.add(new GregorianCalendar(2008, 0, 5), timeLineEntries);
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-
-			timeLineEntries = new ArrayList<AnnotatedTimeLineEntry>();
-			timeLineEntries.add(new AnnotatedTimeLineEntry(33322,
-					"Closed Shop", "Had enough of pencils business")); // Sold
-																		// Pencils
-			timeLineEntries.add(new AnnotatedTimeLineEntry(39463,
-					"Pens look good", "Swapping to pens wholesale")); // Sold
-																		// Pens
-
-			atl.add(new GregorianCalendar(2008, 0, 6), timeLineEntries);
-
-			atl.setSizeFull();
-			contentPane.setSecondComponent(atl);
-		}
+		// contentPane.setSecondComponent(atlPanel = new Panel());
+		// atlPanel.setSizeFull();
 
 		initialize = true;
+	}
+
+	public void loadATL(Portfolio selectedPortfolio) {
+		AccountManager accountManager = YuppiewallUI.getInstance().getService(
+				"accountManager");
+		List<Transaction> list = accountManager
+				.getTransactions(selectedPortfolio);
+		Collection<Instrument> instrumentSet = new HashSet<>();
+		SystemDataRepository sdr = YuppiewallUI.getInstance().getService(
+				"SystemDataRepository");
+		for (Transaction transaction : list) {
+			Instrument instrument = sdr.getInstrument(transaction
+					.getInstrument());
+			instrumentSet.add(instrument);
+		}
+
+		MarketDataService mds = YuppiewallUI.getInstance().getService(
+				"MarketDataService");
+		Map<String, List<EndOfDayData>> value = mds.findAllEndOfDayData(
+				instrumentSet, 255, 0);
+		if (atl != null) {
+			atlPanel.removeComponent(atl);
+			atl = null;
+		}
+
+		atl = new ATLView().drawChart1(value);
+		// atlPanel.addComponent(atl);
+		contentPane.setSecondComponent(atl);
+
 	}
 
 	@Override

@@ -3,8 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:int="http://www.springframework.org/schema/integration"
 	xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
-	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
-	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit" xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp-2.1.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
@@ -23,7 +22,9 @@
 	<task:executor id="eodTradeExecutor" pool-size="5" />
 	<task:scheduler id="eodTradeScheduler" pool-size="10" />
 	<bean id="serverUrl" class="java.lang.String">
-		<constructor-arg value="http://ec2-50-17-38-97.compute-1.amazonaws.com:8080/service-web-vaadin-1.0-SNAPSHOT" />
+		<constructor-arg value="http://localhost:8080/service-web-vaadin" />
+		<!-- <constructor-arg value="http://ec2-50-17-38-97.compute-1.amazonaws.com:8080/service-web-vaadin-1.0-SNAPSHOT" 
+			/> -->
 	</bean>
 
 </beans>

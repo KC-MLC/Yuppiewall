@@ -1,5 +1,7 @@
 package gabriel.yuppiewall.ws.marketdata.repository;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,14 +44,19 @@ public class CacheEndOfDayDataRepository implements EndOfDayDataRepository {
 
 	@Override
 	public Map<String, List<EndOfDayData>> findAllEndOfDayData(
-			List<Instrument> instruments, int offset, int start) {
+			Collection<Instrument> instruments, int offset, int start) {
 		Map<String, List<EndOfDayData>> retValue = new HashMap<String, List<EndOfDayData>>();
 		for (Instrument instrument : instruments) {
-			List<EndOfDayData> list = dataStore.get(instrument).subList(start,
-					offset);
-			retValue.put(instrument.getSymbol(), list);
+			List<EndOfDayData> tempList = dataStore.get(instrument);
+			if (tempList == null)
+				continue;
+			int max = tempList.size();
+			List<EndOfDayData> list = tempList.subList(start,
+					(max > offset) ? offset : max);
+			retValue.put(instrument.getSymbol(), new ArrayList<>(list));
 		}
 
 		return retValue;
 	}
+
 }
