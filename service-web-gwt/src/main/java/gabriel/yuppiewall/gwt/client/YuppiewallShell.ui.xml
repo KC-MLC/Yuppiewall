@@ -1,0 +1,56 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateLocales='default'>
+
+
+
+	<ui:style>
+		.titleBar {
+		padding: 0 10px;
+		border-bottom: 1px solid #C3C3C3;
+		}
+		.title {
+		color: #7b8fae;
+		font-size: 20pt;
+		font-weight: bold;
+		text-shadow:
+		#ddd 3px 3px 1px;
+		margin: 0;
+		padding: 0 0 0 4px;
+		}
+		.mainMenu
+		{
+		background-color: #d7dde8;
+		border-right: 1px solid #c3c3c3;
+		}
+	</ui:style>
+
+	<g:DockLayoutPanel unit='PT'>
+
+		<!-- Title Bar. -->
+		<g:north size='35'>
+			<g:HTMLPanel styleName='{style.titleBar}'>
+				<h1 class='{style.title}'>
+					<ui:msg key='mainTitle'>Yuppie wall</ui:msg>
+				</h1>
+			</g:HTMLPanel>
+		</g:north>
+
+		<g:west size='55'>
+			<!-- Main menu tree. -->
+			<g:SimpleLayoutPanel ui:field='mainMenuPanel'
+				styleName='{style.mainMenu}' />
+
+		</g:west>
+		<!-- Main content area. -->
+		<g:center>
+			<g:SimpleLayoutPanel ui:field='contentPanel' />
+
+		</g:center>
+
+
+	</g:DockLayoutPanel>
+
+</ui:UiBinder> 
