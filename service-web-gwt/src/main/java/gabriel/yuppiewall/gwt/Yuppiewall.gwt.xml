@@ -14,7 +14,8 @@
 
 <module rename-to="yuppiewall">
 	<source path="client" />
-	
+	<source path="common" />
+
 
 	<inherits name='com.google.gwt.user.User' />
 	<inherits name='com.google.gwt.editor.Editor' />
@@ -39,6 +40,7 @@
 	<set-property name="gwt.logging.systemHandler" value="ENABLED" />
 	<set-property name="gwt.logging.simpleRemoteHandler"
 		value="DISABLED" />
+	<inherits name='gabriel.yuppiewall.common' />
 
 	<!-- Uncomment if you are enabling server side deobfuscation of StackTraces 
 		<set-property name="compiler.stackMode" value="emulated" /> <set-configuration-property 

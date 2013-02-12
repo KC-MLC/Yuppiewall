@@ -79,17 +79,15 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 	private void validateGroupFilter(GlobalFilter gfilter) {
 
 		if (gfilter == null)
-			throw new MissingRequiredFiledException(GlobalFilter.class,
-					"globalFilter", "Missing Global Filter");
+			throw new MissingRequiredFiledException("Missing Global Filter");
 		Tupple<String, String> group = gfilter.getGroup();
 		if (group == null)
-			throw new MissingRequiredFiledException(GlobalFilter.class,
-					"globalFilter", "Missing Global Filter");
+			throw new MissingRequiredFiledException("Missing Global Filter");
 		String key = group.getKey();
 		if (!("country".equals(key) || "exchange".equals(key))) {
 
-			throw new InvalidParameterValueException(GlobalFilter.class,
-					"globalFilter", key + " Fileter Not supported");
+			throw new InvalidParameterValueException(key
+					+ " Fileter Not supported");
 		}
 
 	}

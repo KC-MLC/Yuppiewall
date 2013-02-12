@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.trade.domain;
 
-import gabriel.yuppiewall.common.meta.FieldDef;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
@@ -9,10 +8,8 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Portfolio implements Serializable {
 
-	@FieldDef(field = "primaryPrincipal", notnull = true)
 	private PrimaryPrincipal user;
 	private String portfolioId;
-	@FieldDef(field = "portfolioName", notnull = true)
 	private String portfolioName;
 
 	private Date creationtDate;

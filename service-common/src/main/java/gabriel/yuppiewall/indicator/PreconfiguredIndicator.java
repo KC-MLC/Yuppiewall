@@ -10,7 +10,7 @@ import java.util.List;
 public class PreconfiguredIndicator implements Serializable {
 
 	private String name;
-	private List<Condition> conditions = new ArrayList<>();
+	private List<Condition> conditions = new ArrayList<Condition>();
 
 	public PreconfiguredIndicator() {
 	}

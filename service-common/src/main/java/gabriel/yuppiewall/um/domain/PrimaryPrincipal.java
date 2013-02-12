@@ -1,10 +1,9 @@
 package gabriel.yuppiewall.um.domain;
 
 import java.io.Serializable;
-import java.security.Principal;
 
 @SuppressWarnings("serial")
-public class PrimaryPrincipal implements Principal, Serializable {
+public class PrimaryPrincipal implements Serializable {
 
 	private String uuid;
 
@@ -16,7 +15,6 @@ public class PrimaryPrincipal implements Principal, Serializable {
 		this.uuid = uuid;
 	}
 
-	@Override
 	public String getName() {
 		return uuid;
 	}

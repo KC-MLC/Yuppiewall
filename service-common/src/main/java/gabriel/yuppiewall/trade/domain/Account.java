@@ -10,7 +10,8 @@ import javax.security.auth.Subject;
 public class Account implements Serializable {
 
 	private PrimaryPrincipal client;
-	private Account accountId;
+	private String accountId;
+
 	private List<Portfolio> portfolios;
 
 	public PrimaryPrincipal getClient() {

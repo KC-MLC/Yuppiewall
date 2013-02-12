@@ -27,9 +27,7 @@ public abstract class AccountManagerImpl implements AccountManager {
 		Exchange exchange = getSystemDataRepository().getExchange(
 				order.getInstrument());
 		if (exchange == null)
-			throw new InvalidParameterValueException(
-					gabriel.yuppiewall.instrument.domain.Instrument.class,
-					"name", "Instrument not supported");
+			throw new InvalidParameterValueException("Instrument not supported");
 		Date exNow = getMarketService().getExchangeCurrentTime(exchange);
 		if (order.getDate().before(exNow)) {
 			// this is of type just store and forget

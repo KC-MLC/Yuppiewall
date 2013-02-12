@@ -12,12 +12,10 @@ public class InvalidParameterValueException extends BusinessException {
 	public InvalidParameterValueException() {
 	}
 
-	public InvalidParameterValueException(String message) {
-		super(message);
-	}
 
-	public InvalidParameterValueException(Class<?> clz, String fieldHandle,
+
+	public InvalidParameterValueException(
 			String message) {
-		super(clz, fieldHandle, COZ_ID, message);
+		super(COZ_ID, message);
 	}
 }

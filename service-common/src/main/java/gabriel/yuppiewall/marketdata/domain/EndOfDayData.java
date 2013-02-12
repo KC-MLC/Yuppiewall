@@ -12,6 +12,8 @@ public class EndOfDayData implements Serializable {
 
 	private Instrument instrument;
 	public transient static final String DATE_FORMAT = "ddMMyyyy";
+	private transient final SimpleDateFormat sdf = new SimpleDateFormat(
+			DATE_FORMAT);
 	private Date date;
 	private String strDate;
 	private BigDecimal stockVolume;
@@ -28,7 +30,7 @@ public class EndOfDayData implements Serializable {
 
 		this.instrument = instrument;
 		this.date = date;
-		this.strDate = new SimpleDateFormat(DATE_FORMAT).format(date);
+		this.strDate = sdf.format(date);
 		this.stockPriceOpen = stockPriceOpen;
 		this.stockPriceHigh = stockPriceHigh;
 		this.stockPriceLow = stockPriceLow;

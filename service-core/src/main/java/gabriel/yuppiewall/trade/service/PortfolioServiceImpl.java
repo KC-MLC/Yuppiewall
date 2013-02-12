@@ -1,8 +1,6 @@
 package gabriel.yuppiewall.trade.service;
 
 import gabriel.yuppiewall.common.exception.EntityAlreadyExistsException;
-import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
-import gabriel.yuppiewall.common.util.ValidationUtil;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.trade.domain.Portfolio;
 import gabriel.yuppiewall.trade.repository.PortfolioRepositorty;
@@ -16,17 +14,17 @@ public abstract class PortfolioServiceImpl implements PortfolioService {
 	@Override
 	public Portfolio createPortfolio(Portfolio portfolio) {
 
-		List<String> error = ValidationUtil.vallidate(portfolio);
+		/*List<String> error = ValidationUtil.vallidate(portfolio);
 		if (error != null)
 			throw new MissingRequiredFiledException(Portfolio.class, error,
-					null);
+					null);*/
 
 		// check if name is unique
 		String portfolioId = getPortfolioRepositorty().findPortfolioId(
 				portfolio);
 		if (portfolioId != null)
-			throw new EntityAlreadyExistsException(Portfolio.class,
-					"portfolioName", "portfolio name already in use");
+			throw new EntityAlreadyExistsException(
+					"portfolio name already in use");
 
 		// create a new portfolio
 		portfolio.setCreationtDate(new Date());

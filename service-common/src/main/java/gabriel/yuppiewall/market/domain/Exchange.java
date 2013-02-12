@@ -1,13 +1,10 @@
 package gabriel.yuppiewall.market.domain;
 
-import gabriel.yuppiewall.common.meta.FieldDef;
-
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Exchange implements Serializable {
 
-	@FieldDef(field = "Exchange", notnull = true)
 	private String name;
 	private String symbol;
 

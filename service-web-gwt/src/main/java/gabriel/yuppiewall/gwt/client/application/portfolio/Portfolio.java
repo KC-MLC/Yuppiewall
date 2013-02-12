@@ -11,9 +11,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ProvidesKey;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 
 public class Portfolio extends ApplicationWidget {
 
@@ -28,6 +33,13 @@ public class Portfolio extends ApplicationWidget {
 	 */
 	@UiField(provided = true)
 	DataGrid<Transaction> portfolioDetailList;
+	@UiField
+	Button btAddAccount;
+
+	@UiField
+	VerticalPanel vLytAccount;
+
+	private DialogBox dAddAccount;
 
 	private static final SafeHtml DESC = SafeHtmlUtils
 			.fromString("Portfolio Managment");
@@ -50,9 +62,13 @@ public class Portfolio extends ApplicationWidget {
 				});
 
 		portfolioDetailList.setMinimumTableWidth(140, Unit.EM);
+		
+	
 		// Create the UiBinder.
 		Binder uiBinder = GWT.create(Binder.class);
 		Widget widget = uiBinder.createAndBindUi(this);
+		vLytAccount.add(new AccountSummaryView());
+		vLytAccount.add(new AccountSummaryView());
 		return widget;
 
 	}
@@ -69,5 +85,21 @@ public class Portfolio extends ApplicationWidget {
 				callback.onSuccess(onInitialize());
 			}
 		});
+	}
+
+	@UiHandler("btAddAccount")
+	void onButtonClick(ClickEvent event) {
+		if (dAddAccount == null) {
+			dAddAccount = new DialogBox();
+			dAddAccount.ensureDebugId("dAddAccount");
+			dAddAccount.setGlassEnabled(true);
+			dAddAccount.setAnimationEnabled(true);
+			dAddAccount.setModal(true);
+
+			dAddAccount.setWidget(new AddAccount());
+			dAddAccount.setSize("300px", "300px");
+		}
+		dAddAccount.center();
+		dAddAccount.show();
 	}
 }

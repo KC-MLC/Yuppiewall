@@ -2,6 +2,7 @@
 .project
 .settings/
 target/
+.gwt/
 service-web-vaadin/src/main/webapp/VAADIN/widgetsets/
 *.class
 /*/*~

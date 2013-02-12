@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.common.exception;
 
-import java.util.List;
 
 /**
  * HTTP_ERROR CODE 400
@@ -14,15 +13,7 @@ public class MissingRequiredFiledException extends BusinessException {
 
 	}
 
-	public MissingRequiredFiledException(Class<?> clz,
-			List<String> fieldHandle, String message) {
-
-		super(clz, fieldHandle, COZ_ID, message);
-
-	}
-
-	public MissingRequiredFiledException(Class<?> clz, String fieldHandle,
-			String message) {
-		super(clz, fieldHandle, COZ_ID, message);
+	public MissingRequiredFiledException(String message) {
+		super(COZ_ID, message);
 	}
 }

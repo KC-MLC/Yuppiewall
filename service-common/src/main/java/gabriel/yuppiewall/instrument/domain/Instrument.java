@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.instrument.domain;
 
-import gabriel.yuppiewall.common.meta.FieldDef;
 import gabriel.yuppiewall.market.domain.Exchange;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 
@@ -10,7 +9,6 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class Instrument implements Serializable {
 
-	@FieldDef(field = "Instrument", notnull = true)
 	private String symbol;
 	private Exchange exchange;
 

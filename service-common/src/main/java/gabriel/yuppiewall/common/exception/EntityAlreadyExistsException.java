@@ -1,6 +1,5 @@
 package gabriel.yuppiewall.common.exception;
 
-
 /**
  * HTTP_ERROR CODE 409
  * 
@@ -14,10 +13,9 @@ public class EntityAlreadyExistsException extends BusinessException {
 
 	}
 
-	public EntityAlreadyExistsException(Class<?> clz, String fieldHandle,
-			String message) {
+	public EntityAlreadyExistsException(String message) {
 
-		super(clz, fieldHandle, COZ_ID, message);
+		super(COZ_ID, message);
 
 	}
 }

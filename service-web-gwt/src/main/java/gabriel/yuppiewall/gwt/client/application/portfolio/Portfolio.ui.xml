@@ -24,7 +24,7 @@
 			<g:SplitLayoutPanel>
 
 				<g:north size='128'>
-					<g:VerticalPanel width="100%">
+					<g:VerticalPanel width="100%" ui:field="vLytAccount">
 
 						<g:HorizontalPanel width="100%">
 							<g:cell horizontalAlignment="ALIGN_LEFT">
@@ -32,10 +32,11 @@
 							</g:cell>
 							<g:cell horizontalAlignment="ALIGN_RIGHT">
 								<g:HorizontalPanel>
-									<g:Button styleName="{style.button-link}">add</g:Button>
+									<g:Button styleName="{style.button-link}" ui:field="btAddAccount">add</g:Button>
 									<g:Button styleName="{style.button-link}">manage</g:Button>
 								</g:HorizontalPanel>
 							</g:cell>
+							
 
 						</g:HorizontalPanel>
 					</g:VerticalPanel>
