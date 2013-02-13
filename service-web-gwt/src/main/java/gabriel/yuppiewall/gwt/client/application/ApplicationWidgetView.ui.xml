@@ -27,7 +27,7 @@
 		</g:HTMLPanel>
 
 		<!-- Content. -->
-		<g:SimplePanel ui:field='applicationPanel' />
+		<g:SimpleLayoutPanel ui:field='applicationPanel' />
 	</g:HeaderPanel>
 
 </ui:UiBinder> 

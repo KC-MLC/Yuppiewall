@@ -73,7 +73,7 @@ public class JPAEndOfDayData implements Serializable {
 		this.instrument = new JPAInstrument(eodd.getInstrument());
 
 		this.identifier = eodd.getInstrument().getExchange().getSymbol()
-				+ eodd.getInstrument().getSymbol() + eodd.getStrDate();
+				+ eodd.getInstrument().getSymbol() + eodd.getDate().getTime();
 	}
 
 	public EndOfDayData getEndOfDayData() {

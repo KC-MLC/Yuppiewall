@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+
+	<g:VerticalPanel width="100%" ui:field="accountList">
+		<g:HTMLPanel>
+			<table>
+				<tr>
+					<td>Total</td>
+					<td class="value">$91,400</td>
+				</tr>
+				<tr>
+					<td>Today</td>
+					<td>
+						$40 (0.0%)
+					</td>
+				</tr>
+			</table>
+		</g:HTMLPanel>
+
+	</g:VerticalPanel>
+</ui:UiBinder> 

@@ -25,7 +25,8 @@ public class EndOfDayServiceJDBCClient {
 
 				String identifier = eod.getInstrument().getExchange()
 						.getSymbol()
-						+ eod.getInstrument().getSymbol() + eod.getStrDate();
+						+ eod.getInstrument().getSymbol()
+						+ eod.getDate().getTime();
 
 				ps.setString(1, identifier);
 				ps.setDate(2, new java.sql.Date(eod.getDate().getTime()));

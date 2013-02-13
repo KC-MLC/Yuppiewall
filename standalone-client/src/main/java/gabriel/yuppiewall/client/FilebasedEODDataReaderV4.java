@@ -52,11 +52,13 @@ public class FilebasedEODDataReaderV4 {
 					if (cal.get(Calendar.YEAR) < 2011)
 						continue;
 
-					List<EndOfDayData> list = dataList.get(eod.getInstrument().getExchange()
-							.getSymbol() + eod.getDate().getTime());
+					List<EndOfDayData> list = dataList.get(eod.getInstrument()
+							.getExchange().getSymbol()
+							+ eod.getDate().getTime());
 					if (list == null) {
 						list = new ArrayList<EndOfDayData>();
-						dataList.put(eod.getInstrument().getExchange().getSymbol()
+						dataList.put(eod.getInstrument().getExchange()
+								.getSymbol()
 								+ eod.getDate().getTime(), list);
 					}
 					list.add(eod);
@@ -108,7 +110,7 @@ public class FilebasedEODDataReaderV4 {
 
 		for (EndOfDayData eod : list) {
 			String identifier = eod.getInstrument().getExchange().getSymbol()
-					+ eod.getInstrument().getSymbol() + eod.getStrDate();
+					+ eod.getInstrument().getSymbol() + eod.getDate().getTime();
 
 			String v = identifier + "," + sdf.format(eod.getDate()) + ","
 					+ eod.getStockPriceAdjClose() + ","

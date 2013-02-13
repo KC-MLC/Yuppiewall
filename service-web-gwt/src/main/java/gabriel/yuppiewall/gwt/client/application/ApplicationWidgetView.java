@@ -25,7 +25,7 @@ public class ApplicationWidgetView extends ResizeComposite {
 	private static ApplicationWidgetViewUiBinder uiBinder = GWT
 			.create(ApplicationWidgetViewUiBinder.class);
 	@UiField(provided = true)
-	SimplePanel applicationPanel;
+	SimpleLayoutPanel applicationPanel;
 
 	@UiField
 	Element nameElem;

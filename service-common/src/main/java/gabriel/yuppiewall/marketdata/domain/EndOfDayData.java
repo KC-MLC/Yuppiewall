@@ -4,7 +4,6 @@ import gabriel.yuppiewall.instrument.domain.Instrument;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
@@ -12,10 +11,12 @@ public class EndOfDayData implements Serializable {
 
 	private Instrument instrument;
 	public transient static final String DATE_FORMAT = "ddMMyyyy";
-	private transient final SimpleDateFormat sdf = new SimpleDateFormat(
-			DATE_FORMAT);
+	/*
+	 * private transient final SimpleDateFormat sdf = new SimpleDateFormat(
+	 * DATE_FORMAT);
+	 */
 	private Date date;
-	private String strDate;
+	/* private String strDate; */
 	private BigDecimal stockVolume;
 	private BigDecimal stockPriceOpen, stockPriceHigh, stockPriceLow,
 			stockPriceClose, stockPriceAdjClose;
@@ -30,7 +31,7 @@ public class EndOfDayData implements Serializable {
 
 		this.instrument = instrument;
 		this.date = date;
-		this.strDate = sdf.format(date);
+		/* this.strDate = datesdf.format(date); */
 		this.stockPriceOpen = stockPriceOpen;
 		this.stockPriceHigh = stockPriceHigh;
 		this.stockPriceLow = stockPriceLow;
@@ -53,14 +54,6 @@ public class EndOfDayData implements Serializable {
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public String getStrDate() {
-		return strDate;
-	}
-
-	public void setStrDate(String strDate) {
-		this.strDate = strDate;
 	}
 
 	public BigDecimal getStockVolume() {
@@ -114,7 +107,7 @@ public class EndOfDayData implements Serializable {
 	@Override
 	public String toString() {
 		return "EndOfDayData [instrument=" + instrument + ", date=" + date
-				+ ", strDate=" + strDate + ", stockVolume=" + stockVolume
+				+ ", stockVolume=" + stockVolume
 				+ ", stockPriceOpen=" + stockPriceOpen + ", stockPriceHigh="
 				+ stockPriceHigh + ", stockPriceLow=" + stockPriceLow
 				+ ", stockPriceClose=" + stockPriceClose
