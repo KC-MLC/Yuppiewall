@@ -1,14 +1,19 @@
 package gabriel.yuppiewall.gwt.client.application.portfolio;
 
+import gabriel.yuppiewall.gwt.common.application.portfolio.AccountSummary;
+import gabriel.yuppiewall.gwt.common.application.portfolio.PortfolioSummary;
+
 import java.util.List;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
@@ -30,6 +35,12 @@ public class AccountSummaryView extends Composite {
 	@UiField
 	VerticalPanel accountList;
 
+	@UiField
+	Label laAccountTotal;
+
+	@UiField
+	Label laAccountTotalChange;
+
 	static class PortfolioSummaryCell extends AbstractCell<PortfolioSummary> {
 
 		@Override
@@ -40,33 +51,22 @@ public class AccountSummaryView extends Composite {
 				return;
 			}
 
-			sb.appendHtmlConstant("<table>");
+			sb.appendHtmlConstant("<table width='100%'>");
 
 			// Add the contact image.
-			sb.appendHtmlConstant("<tr><td rowspan='3'>");
-			sb.appendEscaped("kc1");
+			sb.appendHtmlConstant("<tr><td align='left' rowspan='2'>");
+			sb.appendEscaped(value.getName());
 			sb.appendHtmlConstant("</td>");
 
-			// Add the name and address.
+			sb.appendHtmlConstant("<td align='right' style='font-size:95%;'>");
+			sb.appendEscaped(numberFormat.format(value.getTotal()));
+			sb.appendHtmlConstant("</td></tr>");
+
 			sb.appendHtmlConstant("<tr>");
-			sb.appendHtmlConstant("<td style='font-size:95%;'>");
-			sb.appendEscaped("$657");
-			sb.appendHtmlConstant("</td>");
+			sb.appendHtmlConstant("<td align='right' style='font-size:95%;'>");
 			sb.appendEscaped("$2.50 (0.4%)");
 			sb.appendHtmlConstant("</td></tr>");
 
-			// Add the contact image.
-			sb.appendHtmlConstant("<tr><td rowspan='3'>");
-			sb.appendEscaped("kc2");
-			sb.appendHtmlConstant("</td>");
-
-			// Add the name and address.
-			sb.appendHtmlConstant("<tr>");
-			sb.appendHtmlConstant("<td style='font-size:95%;'>");
-			sb.appendEscaped("$1000");
-			sb.appendHtmlConstant("</td>");
-			sb.appendEscaped("$3.50 (0.4%)");
-			sb.appendHtmlConstant("</td></tr>");
 			sb.appendHtmlConstant("</table>");
 		}
 	}
@@ -75,13 +75,14 @@ public class AccountSummaryView extends Composite {
 	 * The CellList.
 	 */
 	private CellList<PortfolioSummary> clPortfolioSummary;
+	private static NumberFormat numberFormat;
 	/**
 	 * The key provider that provides the unique ID of a contact.
 	 */
 	public static final ProvidesKey<PortfolioSummary> KEY_PROVIDER = new ProvidesKey<PortfolioSummary>() {
 		@Override
 		public Object getKey(PortfolioSummary item) {
-			return item == null ? null : item.getId();
+			return item == null ? null : item.getName();
 		}
 	};
 
@@ -90,10 +91,25 @@ public class AccountSummaryView extends Composite {
 		PortfolioSummaryCell portfolioSummaryCell = new PortfolioSummaryCell();
 		clPortfolioSummary = new CellList<PortfolioSummary>(
 				portfolioSummaryCell, KEY_PROVIDER);
+
 		accountList.add(clPortfolioSummary);
 		dataProvider.addDataDisplay(clPortfolioSummary);
+
+	}
+
+	public AccountSummaryView(AccountSummary accountSummary) {
+		this();
+		numberFormat = NumberFormat.getCurrencyFormat(accountSummary
+				.getCurrencyCode());
+		laAccountTotal.setText(numberFormat.format(accountSummary.getTotal()));
+
+		PortfolioSummary[] pfs = accountSummary.getPortFolioSummary();
+		if (pfs == null)
+			return;
 		List<PortfolioSummary> list = dataProvider.getList();
-		list.add(new PortfolioSummary());
+		for (PortfolioSummary portfolioSummary : pfs) {
+			list.add(portfolioSummary);
+		}
 
 	}
 }

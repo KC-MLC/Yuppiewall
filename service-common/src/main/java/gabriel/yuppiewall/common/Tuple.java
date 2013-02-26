@@ -3,19 +3,19 @@ package gabriel.yuppiewall.common;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Tupple<K, V> implements Serializable {
+public class Tuple<K, V> implements Serializable {
 
 	private K key;
 	private V value;
 
-	public Tupple() {
+	public Tuple() {
 	}
 
-	public Tupple(K k) {
+	public Tuple(K k) {
 		this.key = k;
 	}
 
-	public Tupple(K k, V v) {
+	public Tuple(K k, V v) {
 		this.key = k;
 		this.value = v;
 	}
@@ -53,7 +53,7 @@ public class Tupple<K, V> implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		@SuppressWarnings("rawtypes")
-		Tupple other = (Tupple) obj;
+		Tuple other = (Tuple) obj;
 		if (key == null) {
 			if (other.key != null)
 				return false;

@@ -2,7 +2,6 @@ package gabriel.yuppiewall.trade.domain;
 
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.trade.domain.Order.TransactionType;
-import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,7 +11,7 @@ import java.util.Date;
 public class Transaction implements Serializable {
 
 	private String transactionId;
-	private PrimaryPrincipal user;
+	private Account account;
 	private TransactionType type;
 
 	private Instrument instrument;
@@ -24,7 +23,7 @@ public class Transaction implements Serializable {
 	public Transaction() {
 	}
 
-	public Transaction(String transactionId, PrimaryPrincipal user,
+	public Transaction(String transactionId, Account account,
 			TransactionType type, Instrument instrument, Date dateOfExecution,
 			BigDecimal price, Long quantity) {
 
@@ -34,7 +33,7 @@ public class Transaction implements Serializable {
 		this.dateOfExecution = dateOfExecution;
 		this.price = price;
 		this.quantity = quantity;
-		this.user = user;
+		this.account = account;
 	}
 
 	public Transaction(String transactionId, Instrument instrument) {
@@ -43,8 +42,8 @@ public class Transaction implements Serializable {
 		this.instrument = instrument;
 	}
 
-	public PrimaryPrincipal getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
 	public TransactionType getType() {

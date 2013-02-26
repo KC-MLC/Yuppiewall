@@ -1,22 +1,19 @@
 package gabriel.yuppiewall.jpa.trade.domain;
 
 import gabriel.yuppiewall.instrument.domain.Instrument;
-import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
+import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Order.TransactionType;
 import gabriel.yuppiewall.trade.domain.Transaction;
-import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,9 +27,9 @@ public class JPATransaction implements Serializable {
 	@Column(name = "transaction_id")
 	private String transactionId;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "user_id", nullable = false, updatable = false)
-	private JPAPrincipal user;
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private JPAAccount account;
 
 	@Column(name = "tx_type", insertable = true, nullable = false, updatable = false)
 	private Integer txType;
@@ -51,7 +48,7 @@ public class JPATransaction implements Serializable {
 
 	public JPATransaction(Transaction transaction) {
 		transactionId = transaction.getTransactionId();
-		user = new JPAPrincipal(transaction.getUser());
+		account = new JPAAccount(transaction.getAccount());
 		symbol = transaction.getInstrument().getSymbol();
 		dateOfExecution = transaction.getDateOfExecution();
 		price = transaction.getPrice();
@@ -59,9 +56,16 @@ public class JPATransaction implements Serializable {
 		txType = transaction.getType().getCode();
 	}
 
-	public Transaction getTransaction(PrimaryPrincipal user) {
+	public Transaction getTransaction(Account account) {
 
-		return new Transaction(transactionId, user,
+		return new Transaction(transactionId, account,
+				TransactionType.getType(txType), new Instrument(symbol),
+				dateOfExecution, price, quantity);
+	}
+
+	public Transaction getTransaction() {
+
+		return new Transaction(transactionId, account.getAccount(),
 				TransactionType.getType(txType), new Instrument(symbol),
 				dateOfExecution, price, quantity);
 	}

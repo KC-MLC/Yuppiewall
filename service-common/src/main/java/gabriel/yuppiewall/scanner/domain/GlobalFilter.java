@@ -2,17 +2,17 @@ package gabriel.yuppiewall.scanner.domain;
 
 import java.io.Serializable;
 
-import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.common.Tuple;
 
 @SuppressWarnings("serial")
 public class GlobalFilter implements Serializable {
 
-	private Tupple<String, String> group;
+	private Tuple<String, String> group;
 
 	private Condition avgVolue;
 	private Condition avgPrice;
 
-	public Tupple<String, String> getGroup() {
+	public Tuple<String, String> getGroup() {
 		return group;
 	}
 
@@ -28,7 +28,7 @@ public class GlobalFilter implements Serializable {
 		this.avgPrice = avgPrice;
 	}
 
-	public void setGroup(Tupple<String, String> group) {
+	public void setGroup(Tuple<String, String> group) {
 		this.group = group;
 	}
 

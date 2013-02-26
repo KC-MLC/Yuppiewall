@@ -1,16 +1,14 @@
 package gabriel.yuppiewall.trade.service;
 
-import java.util.List;
-
 import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Portfolio;
-import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
+
+import java.util.List;
 
 public interface PortfolioService {
 
-	Portfolio createPortfolio(Portfolio portfolio);
-
-	List<Portfolio> getPortfolio(PrimaryPrincipal user);
+	void createPortfolio(Account account, Portfolio portfolio);
 
 	List<Instrument> getPortfolioInstrument(Portfolio portfolio);
 

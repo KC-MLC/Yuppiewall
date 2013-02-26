@@ -13,7 +13,7 @@
 			text-decoration: underline;
 		}
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel height="100%" width="100%">
 		<p>Enter a name and currency type for your Account , in future we will
 			also take working capital if any. You
 			will be able to import or enter

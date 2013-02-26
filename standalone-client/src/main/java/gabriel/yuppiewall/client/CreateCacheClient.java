@@ -1,7 +1,7 @@
 package gabriel.yuppiewall.client;
 
 import gabriel.yuppiewall.common.Command;
-import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.common.Tuple;
 import gabriel.yuppiewall.ds.domain.Server;
 import gabriel.yuppiewall.ds.service.InsertIntoRegion;
 import gabriel.yuppiewall.instrument.domain.Instrument;
@@ -37,7 +37,7 @@ public class CreateCacheClient/* extends InsertIntoRegion*/ {
 	// static ExecutorService executo = Executors.newFixedThreadPool(20);
 	private Map<Server, ExecutorService> serverToThread = new HashMap<Server, ExecutorService>();
 	private ObjectMapper mapper = new ObjectMapper();
-	private Set<Tupple<Instrument, Server>> updateDataList = new HashSet<Tupple<Instrument, Server>>();
+	private Set<Tuple<Instrument, Server>> updateDataList = new HashSet<Tuple<Instrument, Server>>();
 	Map<Server, List<List<EndOfDayData>>> sendToServer = new HashMap<Server, List<List<EndOfDayData>>>();
 
 	//@Override
@@ -106,7 +106,7 @@ public class CreateCacheClient/* extends InsertIntoRegion*/ {
 
 	}
 
-	private void updateDataList(Set<Tupple<Instrument, Server>> updateDataList2) {
+	private void updateDataList(Set<Tuple<Instrument, Server>> updateDataList2) {
 		String sql = "UPDATE instrument"
 				+ " SET server_id=? where symbol_code=?";
 		try {
@@ -114,7 +114,7 @@ public class CreateCacheClient/* extends InsertIntoRegion*/ {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			final int batchSize = 1001;
 			int count = 0;
-			for (Tupple<Instrument, Server> tupple : updateDataList2) {
+			for (Tuple<Instrument, Server> tupple : updateDataList2) {
 
 				ps.setString(1, tupple.getValue().getServerContext());
 				ps.setString(2, tupple.getKey().getSymbol());
@@ -141,7 +141,7 @@ public class CreateCacheClient/* extends InsertIntoRegion*/ {
 
 	//@Override
 	protected void updateDataList(Instrument symbol, Server server) {
-		updateDataList.add(new Tupple<Instrument, Server>(symbol, server));
+		updateDataList.add(new Tuple<Instrument, Server>(symbol, server));
 		System.out.println("(" + updateDataList.size() + ") " + symbol);
 
 	}

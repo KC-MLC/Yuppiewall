@@ -1,6 +1,7 @@
 package gabriel.yuppiewall.trade.service;
 
 import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Transaction;
 import gabriel.yuppiewall.trade.repository.TransactionRepositorty;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
@@ -15,15 +16,17 @@ public abstract class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public List<Transaction> getTransactionDetails(PrimaryPrincipal user,
+	public List<Transaction> getTransactionDetails(Account account,
 			List<Instrument> instruments) {
-		return getTransactionRepositorty().getTransactionDetails(user,
+		return getTransactionRepositorty().getTransactionDetails(account,
 				instruments);
 	}
 
 	@Override
-	public List<Transaction> getTransactionDetails(PrimaryPrincipal user) {
-		return getTransactionRepositorty().getTransactionDetails(user);
+	public List<Transaction> getAllUserParticpatedTransaction(
+			PrimaryPrincipal user) {
+		return getTransactionRepositorty().getAllUserParticpatedTransaction(
+				user);
 	}
 
 	protected abstract TransactionRepositorty getTransactionRepositorty();

@@ -1,10 +1,11 @@
 package gabriel.yuppiewall.trade.service;
 
 import gabriel.yuppiewall.common.exception.EntityAlreadyExistsException;
+import gabriel.yuppiewall.common.util.ValidationUtil;
 import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Portfolio;
 import gabriel.yuppiewall.trade.repository.PortfolioRepositorty;
-import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.util.Date;
 import java.util.List;
@@ -12,29 +13,30 @@ import java.util.List;
 public abstract class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
-	public Portfolio createPortfolio(Portfolio portfolio) {
+	public void createPortfolio(Account account, Portfolio portfolio) {
 
-		/*List<String> error = ValidationUtil.vallidate(portfolio);
-		if (error != null)
-			throw new MissingRequiredFiledException(Portfolio.class, error,
-					null);*/
+		// Validate Account
+		account = ValidationUtil.notNull(account, "account should be valid");
+		account.setAccountId(ValidationUtil.notNull(account.getAccountId(),
+				"account should be valid"));
 
+		// Validate Portfolio
+		portfolio = ValidationUtil.notNull(portfolio,
+				"portfolio should be valid");
+		portfolio.setPortfolioName(ValidationUtil.notNull(
+				portfolio.getPortfolioName(), "portfolio should be valid"));
 		// check if name is unique
-		String portfolioId = getPortfolioRepositorty().findPortfolioId(
+		Portfolio temp = getPortfolioRepositorty().findPortfolioByName(account,
 				portfolio);
-		if (portfolioId != null)
+		if (temp != null)
 			throw new EntityAlreadyExistsException(
 					"portfolio name already in use");
 
 		// create a new portfolio
 		portfolio.setCreationtDate(new Date());
-		portfolioId = portfolio.getCreationtDate().getTime() + ":"
-				+ portfolio.getUser().getName();
-		portfolio.setPortfolioId(portfolioId);
+
 		getPortfolioRepositorty().createPortfolio(portfolio);
-		portfolioId = getPortfolioRepositorty().findPortfolioId(portfolio);
-		portfolio.setPortfolioId(portfolioId);
-		return portfolio;
+
 	}
 
 	@Override
@@ -43,16 +45,11 @@ public abstract class PortfolioServiceImpl implements PortfolioService {
 		return getPortfolioRepositorty().getPortfolioInstrument(portfolio);
 	}
 
-	@Override
-	public List<Portfolio> getPortfolio(PrimaryPrincipal user) {
-
-		return getPortfolioRepositorty().findAllPortfolio(user);
-	}
-
 	protected abstract PortfolioRepositorty getPortfolioRepositorty();
 
 	@Override
 	public void attachIfNotpresent(Portfolio portfolio, Instrument instrument) {
 		getPortfolioRepositorty().attachIfNotpresent(portfolio, instrument);
 	}
+
 }

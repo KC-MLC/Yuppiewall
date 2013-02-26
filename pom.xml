@@ -32,7 +32,7 @@
 		<!--module>service-si</module> module>service-web</module > <module>service-si-client</module> 
 			<module>service-ws</module -->
 		<module>service-ds-ws</module>
-		<module>service-web-vaadin</module>
+		<!--module>service-web-vaadin</module-->
 		<module>service-web-gwt</module>
 	</modules>
 	<dependencies>

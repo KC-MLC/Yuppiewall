@@ -3,10 +3,10 @@ package gabriel.yuppiewall.jpa.trade.repository;
 import gabriel.yuppiewall.instrument.domain.Instrument;
 import gabriel.yuppiewall.jpa.er.EntityRelation;
 import gabriel.yuppiewall.jpa.er.EntityRelationRepository;
+import gabriel.yuppiewall.jpa.trade.domain.JPAAccount;
 import gabriel.yuppiewall.jpa.trade.domain.JPAPortfolio;
-import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
+import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Portfolio;
-import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +24,11 @@ public class JpaPortfolioRepositorty implements
 	private EntityRelationRepository entityRelationRepository;
 
 	@Override
-	public String findPortfolioId(Portfolio portfolio) {
+	public Portfolio findPortfolioByName(Account account, Portfolio portfolio) {
 
-		JPAPortfolio p = portfolioRepositorty.findByPortfolioId(
-				portfolio.getPortfolioName(),
-				new JPAPrincipal(portfolio.getUser()));
-		return (p == null) ? null : p.getPortfolioId();
+		JPAPortfolio p = portfolioRepositorty.findPortfolioByName(
+				new JPAAccount(account), portfolio.getPortfolioName());
+		return (p == null) ? null : p.getPortfolio();
 	}
 
 	@Override
@@ -39,15 +38,29 @@ public class JpaPortfolioRepositorty implements
 	}
 
 	@Override
-	public List<Portfolio> findAllPortfolio(PrimaryPrincipal user) {
-		List<JPAPortfolio> p = portfolioRepositorty
-				.findAllByUser(new JPAPrincipal(user));
-		List<Portfolio> retValue = new ArrayList<>();
-		for (JPAPortfolio jpaPortfolio : p) {
-			retValue.add(jpaPortfolio.getPortfolio(user));
+	public List<Portfolio> getAllAccountPortfolio(List<Account> accountList) {
+		List<JPAAccount> jpaAccountList = new ArrayList<JPAAccount>();
+		for (Account account : accountList) {
+			jpaAccountList.add(new JPAAccount(Long.parseLong(account
+					.getAccountId())));
 		}
-		return retValue;
+		List<JPAPortfolio> jpaPortfolioList = portfolioRepositorty
+				.findAllAccountPortfolio(jpaAccountList);
+
+		List<Portfolio> portfolioList = new ArrayList<Portfolio>();
+		for (JPAPortfolio jpaPortfolio : jpaPortfolioList) {
+			portfolioList.add(jpaPortfolio.getPortfolio());
+		}
+		return portfolioList;
 	}
+
+	/*
+	 * @Override public List<Portfolio> findAllPortfolio(PrimaryPrincipal user)
+	 * { List<JPAPortfolio> p = portfolioRepositorty .findAllByUser(new
+	 * JPAPrincipal(user)); List<Portfolio> retValue = new ArrayList<>(); for
+	 * (JPAPortfolio jpaPortfolio : p) {
+	 * retValue.add(jpaPortfolio.getPortfolio(user)); } return retValue; }
+	 */
 
 	@Override
 	public void attachIfNotpresent(Portfolio portfolio, Instrument instrument) {
@@ -78,4 +91,5 @@ public class JpaPortfolioRepositorty implements
 		return retvalue;
 
 	}
+
 }

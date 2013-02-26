@@ -9,6 +9,7 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ProvidesKey;
@@ -26,7 +27,7 @@ public class PortfolioView extends Composite {
 	 */
 	@UiField(provided = true)
 	DataGrid<Transaction> portfolioDetailList;
-	@UiField
+	// @UiField
 	FlexTable lytAddNewTransaction;
 
 	public PortfolioView() {
@@ -40,9 +41,22 @@ public class PortfolioView extends Composite {
 						return null;
 					}
 				});
+
 		initWidget(uiBinder.createAndBindUi(this));
 
-		portfolioDetailList.setMinimumTableWidth(140, Unit.EM);
+		/*
+		 * Do not refresh the headers every time the data is updated. The footer
+		 * depends on the current data, so we do not disable auto refresh on the
+		 * footer.
+		 */
+		portfolioDetailList.setAutoHeaderRefreshDisabled(true);
+
+		// Set the message to display when the table is empty.
+		portfolioDetailList.setEmptyTableWidget(new Label(
+				"No Active Transaction found"));
+
+		portfolioDetailList.setMinimumTableWidth(14, Unit.EM);
+		// portfolioDetailList.setMinimumTableWidth(14, Unit.EM);
 		// Add a text column to show the name.
 		TextColumn<Transaction> nameColumn = new TextColumn<Transaction>() {
 			@Override
@@ -99,6 +113,8 @@ public class PortfolioView extends Composite {
 
 		// Put some text at the table's extremes. This forces the table to be
 		// 4 by 3.
+		if (lytAddNewTransaction == null)
+			return;
 		lytAddNewTransaction.setText(0, 0, "Symbol");
 		lytAddNewTransaction.setWidget(2, 3, new TextBox());
 		lytAddNewTransaction.setWidget(3, 0, new Button("Add to Account"));

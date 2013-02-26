@@ -1,19 +1,18 @@
 package gabriel.yuppiewall.jpa.trade.domain;
 
-import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
+import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.trade.domain.Portfolio;
-import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,8 +23,9 @@ import javax.persistence.TemporalType;
 public class JPAPortfolio implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "portfolio_id")
-	private String portfolioId;
+	private Long portfolioId;
 
 	@Column(name = "portfolio_name", nullable = false)
 	private String portfolioName;
@@ -33,9 +33,9 @@ public class JPAPortfolio implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationtDate;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "owner_id", nullable = false, updatable = false)
-	private JPAPrincipal ownerID;
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private JPAAccount account;
 
 	public static final String REL_HAS_INSTRUMENT = "has_instument";
 
@@ -45,21 +45,24 @@ public class JPAPortfolio implements Serializable {
 	public JPAPortfolio(Portfolio portfolio) {
 		this.portfolioName = portfolio.getPortfolioName();
 		this.creationtDate = portfolio.getCreationtDate();
-		this.portfolioId = portfolio.getPortfolioId();
-		this.ownerID = new JPAPrincipal(portfolio.getUser());
+		String value = portfolio.getPortfolioId();
+		if (value != null && !(value = value.trim()).isEmpty())
+			this.portfolioId = Long.parseLong(value);
+		this.account = new JPAAccount(portfolio.getAccount());
 	}
 
-	public String getPortfolioId() {
+	public Long getPortfolioId() {
 		return portfolioId;
 	}
 
 	public Portfolio getPortfolio() {
-		return new Portfolio(ownerID.getPrimaryPrincipal(), portfolioId,
+		return new Portfolio(account.getAccount(), portfolioId.toString(),
 				portfolioName, creationtDate);
 	}
 
-	public Portfolio getPortfolio(PrimaryPrincipal user) {
-		return new Portfolio(user, portfolioId, portfolioName, creationtDate);
+	public Portfolio getPortfolio(Account account) {
+		return new Portfolio(account, portfolioId.toString(), portfolioName,
+				creationtDate);
 	}
 
 }

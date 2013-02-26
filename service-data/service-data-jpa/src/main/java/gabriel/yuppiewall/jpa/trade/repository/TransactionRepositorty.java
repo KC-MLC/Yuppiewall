@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.jpa.trade.repository;
 
-import gabriel.yuppiewall.jpa.trade.domain.JPAPortfolio;
+import gabriel.yuppiewall.jpa.trade.domain.JPAAccount;
 import gabriel.yuppiewall.jpa.trade.domain.JPATransaction;
 import gabriel.yuppiewall.jpa.um.domain.JPAPrincipal;
 
@@ -17,17 +17,13 @@ public interface TransactionRepositorty extends
 		JpaSpecificationExecutor<JPATransaction>,
 		JpaRepository<JPATransaction, String> {
 
-	@Query(value = "select e from JPAPortfolio e where e.portfolioName = :name and e.ownerID = :principal")
-	JPAPortfolio findByPortfolioId(@Param("name") String id,
-			@Param("principal") JPAPrincipal principal);
-
-	@Query(value = "select e from JPATransaction e where e.user = :principal and e.symbol IN :symbols")
+	@Query(value = "select e from JPATransaction e where e.account = :account and e.symbol IN :symbols")
 	List<JPATransaction> findTransactionDetails(
-			@Param("principal") JPAPrincipal jpaPrincipal,
+			@Param("account") JPAAccount jpaAccount,
 			@Param("symbols") List<String> symbols);
 
-	@Query(value = "select e from JPATransaction e where e.user = :principal")
-	List<JPATransaction> findTransactionDetails(
+	@Query(value = "select e from JPATransaction e,JPAAccount a where e.account = a and a.client =:principal")
+	List<JPATransaction> findAllUserParticpatedTransaction(
 			@Param("principal") JPAPrincipal jpaPrincipal);
 
 }

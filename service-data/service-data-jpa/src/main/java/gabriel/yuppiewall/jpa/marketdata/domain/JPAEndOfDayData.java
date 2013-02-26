@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.jpa.marketdata.domain;
 
-import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.common.Tuple;
 import gabriel.yuppiewall.jpa.market.domain.JPAInstrument;
 import gabriel.yuppiewall.marketdata.domain.EndOfDayData;
 import gabriel.yuppiewall.scanner.domain.GlobalFilter;
@@ -90,7 +90,7 @@ public class JPAEndOfDayData implements Serializable {
 				public Predicate toPredicate(Root eoddata, CriteriaQuery query,
 						CriteriaBuilder builder) {
 					Predicate predicate = builder.conjunction();
-					Tupple<String, String> groupFilter = globalFilter
+					Tuple<String, String> groupFilter = globalFilter
 							.getGroup();
 					if (groupFilter.getKey().equals("country")) {
 

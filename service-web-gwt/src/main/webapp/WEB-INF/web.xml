@@ -1,13 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app>
-
-	<!-- Default page to serve -->
-	<welcome-file-list>
-		<welcome-file>Yuppiewall.html</welcome-file>
-	</welcome-file-list>
-
-
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>GWT Web Application</display-name>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>service</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>service</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
 	<!-- Servlets -->
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>pingServlet</servlet-name>
+		<servlet-class>gabriel.yuppiewall.gwt.server.PingServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>pingServlet</servlet-name>
+		<url-pattern>/Yuppiewall/ping</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>accountManagmentService</servlet-name>
 		<servlet-class>gabriel.yuppiewall.gwt.server.application.portfolio.AccountManagmentServlet</servlet-class>
@@ -15,6 +37,21 @@
 
 	<servlet-mapping>
 		<servlet-name>accountManagmentService</servlet-name>
-		<url-pattern>/yuppiewall/accountManagmentService</url-pattern>
+		<url-pattern>/Yuppiewall/accountManagmentService</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>portfolioService</servlet-name>
+		<servlet-class>gabriel.yuppiewall.gwt.server.application.portfolio.PortfolioServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>portfolioService</servlet-name>
+		<url-pattern>/Yuppiewall/portfolioService</url-pattern>
+	</servlet-mapping>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>Yuppiewall.html</welcome-file>
+	</welcome-file-list>
+
 </web-app>

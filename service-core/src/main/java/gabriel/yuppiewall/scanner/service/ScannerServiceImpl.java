@@ -1,6 +1,6 @@
 package gabriel.yuppiewall.scanner.service;
 
-import gabriel.yuppiewall.common.Tupple;
+import gabriel.yuppiewall.common.Tuple;
 import gabriel.yuppiewall.common.exception.InvalidParameterValueException;
 import gabriel.yuppiewall.common.exception.MissingRequiredFiledException;
 import gabriel.yuppiewall.instrument.domain.Instrument;
@@ -44,7 +44,7 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 		validateCondition(param.getConditions());
 
 		GlobalFilter gfilter = param.getGlobalFilter();
-		Tupple<String, String> group = gfilter.getGroup();
+		Tuple<String, String> group = gfilter.getGroup();
 		ScanRequest sr = new ScanRequest();
 		sr.setConditions(param.getConditions());
 		String key = group.getKey();
@@ -80,7 +80,7 @@ public abstract class ScannerServiceImpl implements ScannerServive {
 
 		if (gfilter == null)
 			throw new MissingRequiredFiledException("Missing Global Filter");
-		Tupple<String, String> group = gfilter.getGroup();
+		Tuple<String, String> group = gfilter.getGroup();
 		if (group == null)
 			throw new MissingRequiredFiledException("Missing Global Filter");
 		String key = group.getKey();
