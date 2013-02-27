@@ -21,6 +21,11 @@
 	<!-- Servlets -->
 	<!-- Servlets -->
 	<servlet>
+		<servlet-name>Startup</servlet-name>
+		<servlet-class>gabriel.yuppiewall.gwt.server.system.StartupApplication</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
 		<servlet-name>pingServlet</servlet-name>
 		<servlet-class>gabriel.yuppiewall.gwt.server.PingServiceImpl</servlet-class>
 	</servlet>
@@ -48,6 +53,16 @@
 	<servlet-mapping>
 		<servlet-name>portfolioService</servlet-name>
 		<url-pattern>/Yuppiewall/portfolioService</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>systemDataService</servlet-name>
+		<servlet-class>gabriel.yuppiewall.gwt.server.system.SystemDataServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>systemDataService</servlet-name>
+		<url-pattern>/Yuppiewall/systemDataService</url-pattern>
 	</servlet-mapping>
 	<!-- Default page to serve -->
 	<welcome-file-list>

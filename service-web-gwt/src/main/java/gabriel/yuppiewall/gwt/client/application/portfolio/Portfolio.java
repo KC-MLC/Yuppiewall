@@ -13,7 +13,10 @@ import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -27,14 +30,14 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class Portfolio extends ApplicationWidget {
+	public static class AppUtils {
+
+		public static EventBus EVENT_BUS = GWT.create(SimpleEventBus.class);
+	}
 
 	interface Binder extends UiBinder<Widget, Portfolio> {
 	}
 
-	/*
-	 * @UiField(provided = true) SplitLayoutPanel mainLayoutPanel = new
-	 * SplitLayoutPanel(5);
-	 */
 	private AccountManagmentServiceAsync accountManagmentService = AccountManagmentServiceAsync.Util
 			.getInstance();
 
@@ -45,14 +48,19 @@ public class Portfolio extends ApplicationWidget {
 	Button btAddAccount;
 
 	@UiField
-	ListBox groupSelection;
+	ListBox lbGroupSelection;
 
 	@UiField
 	VerticalPanel vLytAccount;
 
 	private HashMap<Integer, Tuple<Integer, String>> groupValues = new HashMap<Integer, Tuple<Integer, String>>();
+	private int selectedIndex = -1;
 
 	private DialogBox dAddAccount;
+
+	private Account selectedAccount;
+
+	private gabriel.yuppiewall.trade.domain.Portfolio selectedPortfolio;
 
 	private static final SafeHtml DESC = SafeHtmlUtils
 			.fromString("Portfolio Managment");
@@ -67,9 +75,7 @@ public class Portfolio extends ApplicationWidget {
 		// Create the UiBinder.
 		Binder uiBinder = GWT.create(Binder.class);
 		Widget widget = uiBinder.createAndBindUi(this);
-		System.out.println("START LOAD");
 		loadpage();
-		System.out.println("START LOAD OVER");
 		return widget;
 
 	}
@@ -100,7 +106,7 @@ public class Portfolio extends ApplicationWidget {
 				for (int i = 0, index = 0; i < result.size(); i++) {
 					Account account = result.get(i);
 					int itemNumber = index++;
-					groupSelection.insertItem(account.getAccountName(),
+					lbGroupSelection.insertItem(account.getAccountName(),
 							itemNumber);
 
 					groupValues.put(itemNumber, new Tuple<Integer, String>(1,
@@ -115,13 +121,16 @@ public class Portfolio extends ApplicationWidget {
 					 */
 					for (gabriel.yuppiewall.trade.domain.Portfolio portfolio : portfolios) {
 						itemNumber = index++;
-						groupSelection.insertItem(
+						lbGroupSelection.insertItem(
 								"-----" + portfolio.getPortfolioName(),
 								itemNumber);
 						groupValues.put(itemNumber, new Tuple<Integer, String>(
 								2, portfolio.getPortfolioId()));
 					}
 				}
+
+				lbGroupSelection.setSelectedIndex(0);
+				onChange(null);
 			}
 		};
 
@@ -168,6 +177,29 @@ public class Portfolio extends ApplicationWidget {
 				callback.onSuccess(onInitialize());
 			}
 		});
+	}
+
+	@UiHandler("lbGroupSelection")
+	void onChange(ChangeEvent event) {
+		int temp = lbGroupSelection.getSelectedIndex();
+		if (temp == selectedIndex)
+			return;
+		selectedIndex = temp;
+		Tuple<Integer, String> value = groupValues.get(selectedIndex);
+		selectedAccount = null;
+		selectedPortfolio = null;
+		switch (value.getKey().intValue()) {
+		case 1:
+			selectedAccount = new Account(value.getValue());
+			break;
+		case 2:
+			selectedPortfolio = new gabriel.yuppiewall.trade.domain.Portfolio(
+					value.getValue());
+		default:
+			// TODO disaster
+		}
+		AppUtils.EVENT_BUS.fireEvent(new GroupSelectionEvent(value));
+
 	}
 
 	@UiHandler("btAddAccount")

@@ -22,6 +22,10 @@ public class Account implements Serializable {
 	public Account() {
 	}
 
+	public Account(String accountId) {
+		this.accountId = accountId;
+	}
+
 	public Account(PrimaryPrincipal client, String accountName,
 			Date creationtDate, String currencyCode) {
 		this.client = client;

@@ -54,6 +54,11 @@ public class Instrument implements Serializable {
 	public Instrument() {
 	}
 
+	public Instrument(String symbol, String name) {
+		this.symbol = symbol;
+		this.name = name;
+	}
+
 	public Instrument(String symbol, Exchange exchange, String name,
 			String secter, String server, String industry) {
 		this.symbol = symbol;

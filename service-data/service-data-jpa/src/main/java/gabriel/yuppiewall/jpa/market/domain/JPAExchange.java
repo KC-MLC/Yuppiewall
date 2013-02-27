@@ -20,6 +20,8 @@ public class JPAExchange implements Serializable {
 
 	@Column(name = "ex_name")
 	private String name;
+	@Column(name = "trade_currency")
+	private String tradeCurrency;
 
 	@Column(name = "ex_country_code")
 	private String country;
@@ -35,14 +37,15 @@ public class JPAExchange implements Serializable {
 
 	public JPAExchange(Exchange e) {
 		this.symbol = e.getSymbol();
-		this.name = e.getName1();
+		this.name = e.getName();
 		this.country = e.getCountry();
 		this.timeZone = e.getTimeZone();
+		this.tradeCurrency = e.getTradeCurrencyCode();
 		this.marketCloseSchedule = e.getMarketCloseSchedule();
 	}
 
 	public Exchange getExchange() {
-		return new Exchange(name, symbol, country, timeZone,
+		return new Exchange(name, symbol, country, tradeCurrency, timeZone,
 				marketCloseSchedule);
 	}
 

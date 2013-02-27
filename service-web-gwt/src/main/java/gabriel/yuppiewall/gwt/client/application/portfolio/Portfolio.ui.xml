@@ -61,7 +61,7 @@
 		<g:north size='3'>
 			<g:HorizontalPanel spacing="10">
 				<g:Label>Select Group Or Portfolio</g:Label>
-				<g:ListBox ui:field="groupSelection" width="10em"></g:ListBox>
+				<g:ListBox ui:field="lbGroupSelection" width="10em"></g:ListBox>
 			</g:HorizontalPanel>
 		</g:north>
 		<g:center>

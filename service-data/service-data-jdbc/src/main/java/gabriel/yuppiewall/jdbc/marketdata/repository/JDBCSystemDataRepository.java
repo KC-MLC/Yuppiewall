@@ -39,6 +39,13 @@ public class JDBCSystemDataRepository implements SystemDataRepository {
 	private Map<String, List<Exchange>> exchangeCountryList = new HashMap<>();
 
 	public void init() {
+
+		{
+			String sql = "SELECT ex_symbol, ex_name, ex_country_code, ex_time_zone, ex_close_schedule, trade_currency FROM exchange;";
+			PreparedStatementCallback callback = populateExchange();
+
+			executeStreamed(jdbcTemplate, callback, sql);
+		}
 		{
 			String sql = "SELECT symbol_code, industry, comp_name, sector, server_id, exchange FROM instrument";
 			PreparedStatementCallback callback = populateInstrument();
@@ -46,12 +53,6 @@ public class JDBCSystemDataRepository implements SystemDataRepository {
 			executeStreamed(jdbcTemplate, callback, sql);
 		}
 
-		{
-			String sql = "SELECT ex_symbol, ex_name, ex_country_code, ex_time_zone, ex_close_schedule FROM exchange;";
-			PreparedStatementCallback callback = populateExchange();
-
-			executeStreamed(jdbcTemplate, callback, sql);
-		}
 		{
 			String sql = "SELECT server_context, server_size FROM region_server;";
 			PreparedStatementCallback callback = populateServer();
@@ -140,9 +141,10 @@ public class JDBCSystemDataRepository implements SystemDataRepository {
 					// System.out.println("processing " + rs.getString(1));
 					Exchange ex = getExchange(rs.getString(1));
 					ex.setCountry(rs.getString(3));
-					ex.setName1(rs.getString(2));
+					ex.setName(rs.getString(2));
 					ex.setTimeZone(rs.getString(4));
 					ex.setMarketCloseSchedule(rs.getString(5));
+					ex.setTradeCurrencyCode(rs.getString(6));
 				}
 
 			}

@@ -7,18 +7,20 @@ public class Exchange implements Serializable {
 
 	private String name;
 	private String symbol;
-
 	private String country;
+	private String tradeCurrencyCode;
 
 	private String timeZone;
 	private String marketCloseSchedule;
 
 	public Exchange(String name, String symbol, String country,
-			String timeZone, String marketCloseSchedule) {
+			String tradeCurrencyCode, String timeZone,
+			String marketCloseSchedule) {
 		super();
 		this.name = name;
 		this.symbol = symbol;
 		this.country = country;
+		this.tradeCurrencyCode = tradeCurrencyCode;
 		this.timeZone = timeZone;
 		this.marketCloseSchedule = marketCloseSchedule;
 	}
@@ -30,11 +32,11 @@ public class Exchange implements Serializable {
 		this.symbol = symbol;
 	}
 
-	public String getName1() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName1(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -65,6 +67,14 @@ public class Exchange implements Serializable {
 
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
+	}
+
+	public String getTradeCurrencyCode() {
+		return tradeCurrencyCode;
+	}
+
+	public void setTradeCurrencyCode(String tradeCurrencyCode) {
+		this.tradeCurrencyCode = tradeCurrencyCode;
 	}
 
 	@Override

@@ -17,14 +17,15 @@
 			text-decoration: underline;
 		}
 	</ui:style>
-	<g:DockLayoutPanel unit='EM'>
+	<g:DockLayoutPanel unit='EM' >
 		<g:west size='18'>
 			<g:DockLayoutPanel unit='PCT'>
 				<g:north size="50">
 					<g:StackLayoutPanel unit='EM'>
 						<g:stack>
 							<g:header size='2'>
-								<b>ACCOUNT</b>Summary
+								<b>ACCOUNT</b>
+								Summary
 							</g:header>
 							<g:HeaderPanel>
 								<g:HorizontalPanel width="100%">
@@ -45,9 +46,10 @@
 						</g:stack>
 						<g:stack>
 							<g:header size='2'>
-								<b>WATCH</b>List
+								<b>WATCH</b>
+								List
 							</g:header>
-							<g:Label>baker</g:Label>
+							<g:Label>Some List</g:Label>
 						</g:stack>
 					</g:StackLayoutPanel>
 				</g:north>
@@ -56,8 +58,11 @@
 				</g:center>
 			</g:DockLayoutPanel>
 		</g:west>
-		<g:north size='2'>
-			<g:Label>Add group Section</g:Label>
+		<g:north size='3'>
+			<g:HorizontalPanel spacing="10">
+				<g:Label>Select Group Or Portfolio</g:Label>
+				<g:ListBox ui:field="lbGroupSelection" width="10em"></g:ListBox>
+			</g:HorizontalPanel>
 		</g:north>
 		<g:center>
 			<p1:PortfolioView width="100%" height="100%" />
