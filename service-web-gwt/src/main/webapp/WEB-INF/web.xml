@@ -46,16 +46,6 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>portfolioService</servlet-name>
-		<servlet-class>gabriel.yuppiewall.gwt.server.application.portfolio.PortfolioServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>portfolioService</servlet-name>
-		<url-pattern>/Yuppiewall/portfolioService</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>systemDataService</servlet-name>
 		<servlet-class>gabriel.yuppiewall.gwt.server.system.SystemDataServiceServlet</servlet-class>
 	</servlet>

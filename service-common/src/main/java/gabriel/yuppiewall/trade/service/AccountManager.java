@@ -27,6 +27,26 @@ public interface AccountManager {
 			return account;
 		}
 	};
+	public static Validate<Order> validatePlaceOrder = new Validate<Order>() {
+
+		@Override
+		public Order validate(Order order) {
+			order = ValidationUtil.notNull(order, "order must not be null");
+			// do validation on account having mandatory value
+
+			ValidationUtil.notNull(order.getTransactionType(),
+					"TransactionType must not be null");
+			ValidationUtil.notNull(order.getDate(), "Date must not be null");
+			ValidationUtil.notNull(order.getInstrument(),
+					"Instrument must not be null");
+			ValidationUtil.notNull(order.getInstrument().getSymbol(),
+					"Instrument must not be null");
+			ValidationUtil.notNull(order.getPrice(), "Price must not be null");
+			ValidationUtil.notNull(order.getQuantity(),
+					"Quantity must not be null");
+			return order;
+		}
+	};
 
 	Account createAccount(Account account);
 
@@ -34,7 +54,7 @@ public interface AccountManager {
 
 	List<Account> getAccountPortfolioList(PrimaryPrincipal principal);
 
-	void placeOrder(Account account, Portfolio portfolio, Order order);
+	void placeOrder(Order order, Portfolio portfolio);
 
 	List<Transaction> getTransactions(Portfolio portfolio);
 

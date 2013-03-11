@@ -1,13 +1,12 @@
 package gabriel.yuppiewall.gwt.client.application.portfolio;
 
-import gabriel.yuppiewall.common.Tuple;
 import gabriel.yuppiewall.gwt.client.application.ApplicationWidget;
 import gabriel.yuppiewall.gwt.common.application.portfolio.AccountManagmentServiceAsync;
 import gabriel.yuppiewall.gwt.common.application.portfolio.AccountSummary;
-import gabriel.yuppiewall.gwt.common.application.portfolio.PortfolioServiceAsync;
 import gabriel.yuppiewall.trade.domain.Account;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,23 +28,31 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class Portfolio extends ApplicationWidget {
+public class PortfolioApplication extends ApplicationWidget {
 	public static class AppUtils {
 
 		public static EventBus EVENT_BUS = GWT.create(SimpleEventBus.class);
 	}
 
-	interface Binder extends UiBinder<Widget, Portfolio> {
+	interface Binder extends UiBinder<Widget, PortfolioApplication> {
 	}
+
+	// System data//
+	static class SystemData {
+		static ArrayList<Account> accounts;
+	}
+
+	public static final SystemData SYSTEMDATA = new SystemData();
+
+	// /
 
 	private AccountManagmentServiceAsync accountManagmentService = AccountManagmentServiceAsync.Util
 			.getInstance();
 
-	private PortfolioServiceAsync portfolioService = PortfolioServiceAsync.Util
-			.getInstance();
-
 	@UiField
 	Button btAddAccount;
+	@UiField
+	Button btManageAccount;
 
 	@UiField
 	ListBox lbGroupSelection;
@@ -53,20 +60,19 @@ public class Portfolio extends ApplicationWidget {
 	@UiField
 	VerticalPanel vLytAccount;
 
-	private HashMap<Integer, Tuple<Integer, String>> groupValues = new HashMap<Integer, Tuple<Integer, String>>();
+	private HashMap<Integer, gabriel.yuppiewall.trade.domain.Portfolio> groupValues = new HashMap<Integer, gabriel.yuppiewall.trade.domain.Portfolio>();
 	private int selectedIndex = -1;
 
 	private DialogBox dAddAccount;
-
-	private Account selectedAccount;
+	private DialogBox dManageAccount;
 
 	private gabriel.yuppiewall.trade.domain.Portfolio selectedPortfolio;
 
 	private static final SafeHtml DESC = SafeHtmlUtils
-			.fromString("Portfolio Managment");
+			.fromString("PortfolioApplication Managment");
 
-	public Portfolio() {
-		super("Portfolio Manager", DESC);
+	public PortfolioApplication() {
+		super("PortfolioApplication Manager", DESC);
 	}
 
 	@Override
@@ -85,32 +91,36 @@ public class Portfolio extends ApplicationWidget {
 		// initializeAccountSummarysection
 		initializeAccountSummarySection();
 		// InitiliazegroupSection
-		InitiliazeGroupSection();
+		initiliazeGroupSection();
 
 	}
 
-	private void InitiliazeGroupSection() {
+	private void initiliazeGroupSection() {
 
 		// Set up the callback object.
-		AsyncCallback<List<Account>> callback = new AsyncCallback<List<Account>>() {
+		AsyncCallback<ArrayList<Account>> callback = new AsyncCallback<ArrayList<Account>>() {
 			public void onFailure(Throwable caught) {
 				caught.printStackTrace();
 
 			}
 
-			public void onSuccess(List<Account> result) {
+			public void onSuccess(ArrayList<Account> result) {
 				System.out.println("GETTING ACCOUNT >>" + result);
 				if (result == null)
 					return;
-
+				SystemData.accounts = null;
+				SystemData.accounts = result;
 				for (int i = 0, index = 0; i < result.size(); i++) {
 					Account account = result.get(i);
 					int itemNumber = index++;
 					lbGroupSelection.insertItem(account.getAccountName(),
 							itemNumber);
 
-					groupValues.put(itemNumber, new Tuple<Integer, String>(1,
-							account.getAccountId()));
+					gabriel.yuppiewall.trade.domain.Portfolio allHoldingPortfolio = new gabriel.yuppiewall.trade.domain.Portfolio(
+							"ALL_HOLDING");
+
+					allHoldingPortfolio.setAccount(account);
+					groupValues.put(itemNumber, allHoldingPortfolio);
 
 					List<gabriel.yuppiewall.trade.domain.Portfolio> portfolios = account
 							.getPortfolios();
@@ -124,8 +134,8 @@ public class Portfolio extends ApplicationWidget {
 						lbGroupSelection.insertItem(
 								"-----" + portfolio.getPortfolioName(),
 								itemNumber);
-						groupValues.put(itemNumber, new Tuple<Integer, String>(
-								2, portfolio.getPortfolioId()));
+						portfolio.setAccount(account);
+						groupValues.put(itemNumber, portfolio);
 					}
 				}
 
@@ -160,14 +170,14 @@ public class Portfolio extends ApplicationWidget {
 
 		// Make the call to the stock price service.
 
-		portfolioService.getAccountSummaryCurrencyWise(new PrimaryPrincipal(
-				"khushboo.choudhary@gmail.com"), callback);
+		accountManagmentService.getAccountSummaryCurrencyWise(
+				new PrimaryPrincipal("khushboo.choudhary@gmail.com"), callback);
 
 	}
 
 	@Override
 	protected void asyncOnInitialize(final AsyncCallback<Widget> callback) {
-		GWT.runAsync(Portfolio.class, new RunAsyncCallback() {
+		GWT.runAsync(PortfolioApplication.class, new RunAsyncCallback() {
 
 			public void onFailure(Throwable caught) {
 				callback.onFailure(caught);
@@ -185,21 +195,34 @@ public class Portfolio extends ApplicationWidget {
 		if (temp == selectedIndex)
 			return;
 		selectedIndex = temp;
-		Tuple<Integer, String> value = groupValues.get(selectedIndex);
-		selectedAccount = null;
-		selectedPortfolio = null;
-		switch (value.getKey().intValue()) {
-		case 1:
-			selectedAccount = new Account(value.getValue());
-			break;
-		case 2:
-			selectedPortfolio = new gabriel.yuppiewall.trade.domain.Portfolio(
-					value.getValue());
-		default:
-			// TODO disaster
-		}
-		AppUtils.EVENT_BUS.fireEvent(new GroupSelectionEvent(value));
+		selectedPortfolio = groupValues.get(selectedIndex);
 
+		AppUtils.EVENT_BUS
+				.fireEvent(new GroupSelectionEvent(selectedPortfolio));
+
+	}
+
+	@UiHandler("btManageAccount")
+	void onBtManageAccountClick(ClickEvent event) {
+		if (dManageAccount == null) {
+			dManageAccount = new DialogBox();
+			dManageAccount.ensureDebugId("dManageAccount");
+			dManageAccount.setGlassEnabled(true);
+			// dManageAccount.setAnimationEnabled(true);
+			dManageAccount.setModal(true);
+
+			dManageAccount.setWidget(new ManageAccountView() {
+				@Override
+				public void dispose() {
+					super.dispose();
+					dManageAccount.hide();
+					dManageAccount = null;
+				}
+			});
+			dManageAccount.setSize("450px", "200px");
+		}
+		dManageAccount.center();
+		dManageAccount.show();
 	}
 
 	@UiHandler("btAddAccount")

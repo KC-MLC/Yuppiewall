@@ -2,7 +2,7 @@ package gabriel.yuppiewall.gwt.client.application;
 
 import gabriel.yuppiewall.gwt.client.Yuppiewall;
 import gabriel.yuppiewall.gwt.client.application.home.HomepageApplication;
-import gabriel.yuppiewall.gwt.client.application.portfolio.Portfolio;
+import gabriel.yuppiewall.gwt.client.application.portfolio.PortfolioApplication;
 import gabriel.yuppiewall.gwt.client.application.scanner.ScannerApplication;
 
 import java.util.ArrayList;
@@ -93,11 +93,11 @@ public class ApplicationRegistry {
 		// CwCheckBox is the default example, so don't prefetch it.
 		app.addApplicationWidget(homePage, null);
 
-		Portfolio portfolio = new Portfolio();
+		PortfolioApplication portfolio = new PortfolioApplication();
 		app = new ApplicationHolder(portfolio.getName());
 		catList.add(app);
 		app.addApplicationWidget(portfolio,
-				RunAsyncCode.runAsyncCode(Portfolio.class));
+				RunAsyncCode.runAsyncCode(PortfolioApplication.class));
 
 		ScannerApplication scanner = new ScannerApplication();
 		app = new ApplicationHolder(scanner.getName());

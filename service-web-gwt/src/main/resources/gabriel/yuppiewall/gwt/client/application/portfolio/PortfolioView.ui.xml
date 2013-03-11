@@ -58,9 +58,11 @@
 							<g:Label>baker</g:Label>
 						</g:tab>
 					</g:TabLayoutPanel>
-					<g:DisclosurePanel animationEnabled="true">
+					<g:DisclosurePanel animationEnabled="true"
+						ui:field="dpAddNewTransaction">
 						<g:header>Add transaction data</g:header>
-						<g:VerticalPanel ui:field="lytAddNewTransaction" spacing="3"/>
+						<g:VerticalPanel ui:field="lytAddNewTransaction"
+							spacing="3" />
 					</g:DisclosurePanel>
 				</g:VerticalPanel>
 			</g:ScrollPanel>

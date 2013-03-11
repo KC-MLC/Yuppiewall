@@ -2,8 +2,12 @@ package gabriel.yuppiewall.gwt.client.application.portfolio;
 
 import gabriel.yuppiewall.common.Tuple;
 import gabriel.yuppiewall.gwt.client.widget.CurrencyBox;
+import gabriel.yuppiewall.gwt.common.application.portfolio.AccountManagmentServiceAsync;
 import gabriel.yuppiewall.gwt.common.system.SystemDataServiceAsync;
 import gabriel.yuppiewall.instrument.domain.Instrument;
+import gabriel.yuppiewall.trade.domain.Order;
+import gabriel.yuppiewall.trade.domain.Order.TransactionType;
+import gabriel.yuppiewall.trade.service.AccountManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +15,8 @@ import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.text.shared.Renderer;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -20,9 +26,9 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ValueListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -45,7 +51,10 @@ public class PortfolioView extends Composite {
 	DataGrid<Transaction> portfolioDetailList;
 	@UiField
 	VerticalPanel lytAddNewTransaction;
+	@UiField
+	DisclosurePanel dpAddNewTransaction;
 
+	private gabriel.yuppiewall.trade.domain.Portfolio selectedPortfolio;
 	private InstrumentSuggestOracle oracle;
 
 	public PortfolioView() {
@@ -61,15 +70,19 @@ public class PortfolioView extends Composite {
 				});
 
 		initWidget(uiBinder.createAndBindUi(this));
-		/*
-		 * Portfolio.AppUtils.EVENT_BUS.addHandler(GroupSelectionEvent.TYPE, new
-		 * GroupSelectionEventHandler() {
-		 * 
-		 * @Override public void onGroupSelectionChanged( GroupSelectionEvent
-		 * groupSelectionEvent) {
-		 * 
-		 * } });
-		 */
+
+		PortfolioApplication.AppUtils.EVENT_BUS.addHandler(GroupSelectionEvent.TYPE,
+				new GroupSelectionEventHandler() {
+
+					@Override
+					public void onGroupSelectionChanged(
+							GroupSelectionEvent groupSelectionEvent) {
+
+						selectedPortfolio = groupSelectionEvent.getValue();
+						initSuggestBox(groupSelectionEvent.getValue());
+
+					}
+				});
 
 		/*
 		 * Do not refresh the headers every time the data is updated. The footer
@@ -141,10 +154,13 @@ public class PortfolioView extends Composite {
 		// Put some text at the table's extremes. This forces the table to be
 		// 4 by 3.
 
-		oracle = new InstrumentSuggestOracle();
-		SuggestBox instrumentSuggestBox = new SuggestBox(oracle);
-		instrumentSuggestBox.setLimit(20);
+		/*
+		 * oracle = new InstrumentSuggestOracle(); SuggestBox
+		 * instrumentSuggestBox = new SuggestBox(oracle);
+		 * instrumentSuggestBox.setLimit(20);
+		 */
 
+		final TextBox instrumentSuggestBox = new TextBox();
 		HorizontalPanel suggestPanel = new HorizontalPanel();
 		suggestPanel.setSpacing(5);
 		suggestPanel.add(new Label("Symbol"));
@@ -155,11 +171,9 @@ public class PortfolioView extends Composite {
 		lytAddNewTransaction.add(txDetailPanel);
 
 		txDetailPanel.add(new Label("Type"));
-		ValueListBox<Tuple<Integer, String>> vlbType = new ValueListBox<Tuple<Integer, String>>(
+		final ValueListBox<Tuple<Integer, String>> vlbType = new ValueListBox<Tuple<Integer, String>>(
 				new Renderer<Tuple<Integer, String>>() {
 					public String render(Tuple<Integer, String> value) {
-						if (value == null)
-							return "-";
 						return value.getValue();
 					}
 
@@ -175,20 +189,61 @@ public class PortfolioView extends Composite {
 
 		txDetailPanel.add(new Label("Date"));
 		DateTimeFormat dateFormat = DateTimeFormat.getFormat("MMM dd, yyyy");
-		DateBox dateBox = new DateBox();
+		final DateBox dateBox = new DateBox();
 
 		dateBox.setFormat(new DateBox.DefaultFormat(dateFormat));
 		txDetailPanel.add(dateBox);
 
 		txDetailPanel.add(new Label("Price"));
-		txDetailPanel.add(new CurrencyBox());
+		final CurrencyBox tbPrice = new CurrencyBox();
+		txDetailPanel.add(tbPrice);
 
 		txDetailPanel.add(new Label("Quantity"));
-		txDetailPanel.add(new TextBox());
+		final TextBox tbQuantity = new TextBox();
+		txDetailPanel.add(tbQuantity);
 
-		lytAddNewTransaction.add(new Button("Add to Account"));
+		Button btAddToAccount = new Button("Add to Account");
+		lytAddNewTransaction.add(btAddToAccount);
+		btAddToAccount.addClickHandler(new ClickHandler() {
 
-		initSuggestBox();
+			@Override
+			public void onClick(ClickEvent arg0) {
+
+				AccountManagmentServiceAsync serviceRPC = AccountManagmentServiceAsync.Util
+						.getInstance();
+				Order order = null;
+				try {
+					order = new Order(TransactionType.getType(vlbType
+							.getValue().getKey()), dateBox.getValue(), Long
+							.parseLong(tbQuantity.getValue()), tbPrice
+							.getValue(), selectedPortfolio.getAccount(),
+							new Instrument(instrumentSuggestBox.getValue()));
+
+					order = AccountManager.validatePlaceOrder.validate(order);
+				} catch (Exception be) {
+					be.printStackTrace();
+				}
+				serviceRPC.placeOrder(order, selectedPortfolio.getPortfolioId()
+						.equals("ALL_HOLDING") ? null : selectedPortfolio,
+						new AsyncCallback<Void>() {
+
+							public void onFailure(Throwable caught) {
+								caught.printStackTrace();
+
+							}
+
+							public void onSuccess(Void v) {
+
+								System.out.println("FINALLY");
+								dpAddNewTransaction.setOpen(false/* close */);
+								
+							}
+
+						});
+
+			}
+		});
+
 		vlbType.setValue(new Tuple<Integer, String>(1, "Buy"));
 		List<Tuple<Integer, String>> types = new ArrayList<Tuple<Integer, String>>();
 		types.add(new Tuple<Integer, String>(1, "Buy"));
@@ -204,10 +259,12 @@ public class PortfolioView extends Composite {
 		// lytAddNewTransaction.getFlexCellFormatter().setColSpan(1, 0, 3);
 	}
 
-	private void initSuggestBox() {
+	private void initSuggestBox(
+			gabriel.yuppiewall.trade.domain.Portfolio portfolio) {
 		SystemDataServiceAsync serviceRPC = SystemDataServiceAsync.Util
 				.getInstance();
-		serviceRPC.getAllInstrument(null, "INR",
+		String currencyCode = portfolio.getAccount().getCurrencyCode();
+		serviceRPC.getAllInstrument(null, currencyCode,
 				new AsyncCallback<List<Instrument>>() {
 
 					public void onFailure(Throwable caught) {

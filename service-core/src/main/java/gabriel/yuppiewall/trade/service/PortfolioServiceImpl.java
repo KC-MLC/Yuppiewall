@@ -13,16 +13,18 @@ import java.util.List;
 public abstract class PortfolioServiceImpl implements PortfolioService {
 
 	@Override
-	public void createPortfolio(Account account, Portfolio portfolio) {
+	public void createPortfolio(Portfolio portfolio) {
 
 		// Validate Account
+		portfolio = ValidationUtil.notNull(portfolio,
+				"portfolio should be valid");
+		Account account = portfolio.getAccount();
 		account = ValidationUtil.notNull(account, "account should be valid");
 		account.setAccountId(ValidationUtil.notNull(account.getAccountId(),
 				"account should be valid"));
 
 		// Validate Portfolio
-		portfolio = ValidationUtil.notNull(portfolio,
-				"portfolio should be valid");
+
 		portfolio.setPortfolioName(ValidationUtil.notNull(
 				portfolio.getPortfolioName(), "portfolio should be valid"));
 		// check if name is unique

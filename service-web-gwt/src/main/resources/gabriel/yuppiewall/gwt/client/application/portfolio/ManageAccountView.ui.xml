@@ -1,0 +1,45 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+
+	<ui:style>
+		.browser {
+			height: 200px;
+			border: 1px solid #ccc;
+		}
+		
+		.button-link {
+			cursor: pointer;
+			cursor: hand;
+			border: none;
+			/* Disable the button-style */
+			background-color: transparent;
+			padding: 0px;
+			color: #4784C3;
+			text-decoration: underline;
+		}
+	</ui:style>
+
+	<g:VerticalPanel height="210px" width="450px">
+		<g:HorizontalPanel spacing="13">
+			<g:VerticalPanel width="10em" height="100%">
+				<g:Label>Account</g:Label>
+
+				<g:ListBox ui:field="accountList" width="100%" height="100%"></g:ListBox>
+			</g:VerticalPanel>
+			<g:VerticalPanel width="10em" height="100%">
+				<g:HorizontalPanel spacing="2">
+					<g:Label>Portfolio</g:Label>
+					<g:Button styleName="{style.button-link}" ui:field="btAddNewPortfolio">Add New</g:Button>
+					<g:Button styleName="{style.button-link}" ui:field="btDeletePortfolio">Delete</g:Button>
+				</g:HorizontalPanel>
+				<c:CellList addStyleNames='{style.browser}' width='15em'
+					ui:field='portfolioList' />
+			</g:VerticalPanel>
+			<!-- <c:CellBrowser addStyleNames='{style.browser}' defaultColumnWidth='100' 
+				ui:field='addedHoldingBrowser' /> <c:CellBrowser addStyleNames='{style.browser}' 
+				defaultColumnWidth='100' ui:field='allHoldingBrowser' /> -->
+
+		</g:HorizontalPanel>
+	</g:VerticalPanel>
+</ui:UiBinder>

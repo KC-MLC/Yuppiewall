@@ -63,8 +63,9 @@ public abstract class AccountManagerImpl implements AccountManager {
 	}
 
 	@Override
-	public void placeOrder(Account account1, Portfolio portfolio, Order order) {
+	public void placeOrder(Order order, Portfolio portfolio) {
 
+		order = validatePlaceOrder.validate(order);
 		Exchange exchange = getSystemDataRepository().getExchange(
 				order.getInstrument());
 		if (exchange == null)
@@ -77,10 +78,10 @@ public abstract class AccountManagerImpl implements AccountManager {
 			if (type == TransactionType.BUY) {
 				String txID = UUID.randomUUID().toString();
 
-				addTransaction(new Transaction(txID, account1, type,
+				addTransaction(new Transaction(txID, order.getAccount(), type,
 						order.getInstrument(), order.getDate(),
 						order.getPrice(), order.getQuantity()));
-				if (portfolio.getPortfolioId() != null)
+				if (portfolio != null)
 					getPortfolioManager().attachIfNotpresent(portfolio,
 							order.getInstrument());
 			} else { // TODO not supported

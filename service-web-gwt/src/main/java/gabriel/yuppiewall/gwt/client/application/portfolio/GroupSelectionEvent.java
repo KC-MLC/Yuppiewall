@@ -1,15 +1,15 @@
 package gabriel.yuppiewall.gwt.client.application.portfolio;
 
-import gabriel.yuppiewall.common.Tuple;
+import gabriel.yuppiewall.trade.domain.Portfolio;
 
 import com.google.gwt.event.shared.GwtEvent;
 
 public class GroupSelectionEvent extends GwtEvent<GroupSelectionEventHandler> {
 
 	public static Type<GroupSelectionEventHandler> TYPE = new Type<GroupSelectionEventHandler>();
-	private Tuple<Integer, String> value;
+	private Portfolio value;
 
-	public GroupSelectionEvent(Tuple<Integer, String> value) {
+	public GroupSelectionEvent(Portfolio value) {
 		this.value = value;
 	}
 
@@ -18,7 +18,7 @@ public class GroupSelectionEvent extends GwtEvent<GroupSelectionEventHandler> {
 		return TYPE;
 	}
 
-	public Tuple<Integer, String> getValue() {
+	public Portfolio getValue() {
 		return value;
 	}
 

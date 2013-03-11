@@ -1,9 +1,11 @@
 package gabriel.yuppiewall.gwt.common.application.portfolio;
 
-import java.util.List;
-
 import gabriel.yuppiewall.trade.domain.Account;
+import gabriel.yuppiewall.trade.domain.Order;
+import gabriel.yuppiewall.trade.domain.Portfolio;
 import gabriel.yuppiewall.um.domain.PrimaryPrincipal;
+
+import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -13,7 +15,11 @@ public interface AccountManagmentService extends RemoteService {
 
 	void createAccount(Account account);
 
-	List<Account> getAccountPortfolioList(PrimaryPrincipal principal);
-	
+	ArrayList<Account> getAccountPortfolioList(PrimaryPrincipal principal);
+	void placeOrder(Order order, Portfolio portfolio);
+
+	AccountSummary[] getAccountSummaryCurrencyWise(PrimaryPrincipal subject);
+
+	void createPortfolio(Portfolio portfolio);
 	
 }

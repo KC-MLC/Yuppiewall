@@ -67,4 +67,9 @@ public class Portfolio implements Serializable {
 		return getPortfolioName();
 	}
 
+	public void setAccount(Account account) {
+		this.account = account;
+
+	}
+
 }

@@ -113,4 +113,8 @@ public class Order implements Serializable {
 		return price;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+
 }
